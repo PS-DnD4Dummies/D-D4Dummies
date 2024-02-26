@@ -8,6 +8,9 @@ import {SharedModule} from "@shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -17,12 +20,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [
-    CommonModule,
-    CoreModule,
-    SharedModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule, SharedModule],
   providers: [
     {
       provide: LocationStrategy,

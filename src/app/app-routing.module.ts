@@ -6,22 +6,13 @@ import { HomeComponent } from './modules/home/pages/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'home', // Ruta de inicio
-    component: HomeComponent,
-  },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirigir desde la ruta base a /home
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }, // Manejo de rutas no encontradas
+    path:'',
+    loadChildren: () => import('./modules/home/home.module').then(m=> m.HomeModule),
+  }
 ];
 
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeModule,
-    RouterModule.forRoot(routes, { useHash: true })
-  ],
-  exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes, { useHash: false })],
+	exports: [RouterModule],
 })
 export class AppRoutingModule { }

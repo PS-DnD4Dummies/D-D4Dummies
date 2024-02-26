@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    RouterModule,
   ],
   imports: [
     CommonModule,
     RouterModule,
-  ]
+  ],
+  exports: [CommonModule,RouterModule]
 })
 export class SharedModule { }
