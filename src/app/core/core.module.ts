@@ -8,6 +8,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AuthenticationFirebaseService } from './services/authentication-firebase.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { firebaseConf } from '@data/constanst/environment';
 
 
 
@@ -15,7 +16,7 @@ import { AngularFireModule } from '@angular/fire/compat';
   declarations: [],
   imports: [
     CommonModule,
-    provideFirebaseApp(() => initializeApp({"projectId":"dnd4dummies-ccc4c","appId":"1:901122310306:web:78ee194daafc6ed50cd7fb","storageBucket":"dnd4dummies-ccc4c.appspot.com","apiKey":"AIzaSyAe4aopttJArT5OF-Krg0IqCc7-m6wNgvE","authDomain":"dnd4dummies-ccc4c.firebaseapp.com","messagingSenderId":"901122310306","measurementId":"G-WMLJ84ND12"})),
+    provideFirebaseApp(() => initializeApp(firebaseConf)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     provideFirestore(() => getFirestore()),
