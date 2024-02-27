@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 
 
@@ -24,6 +29,8 @@ import { BrowserModule } from '@angular/platform-browser';
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
+    ScreenTrackingService,
+    UserTrackingService,
   ],
   bootstrap: [AppComponent],
   exports: []

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DnD4Dummies": {
+    "dnd4dummies": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/dn-d4-dummies",
+            "outputPath": "dist/dnd4dummies",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "DnD4Dummies:build:production"
+              "buildTarget": "dnd4dummies:build:production"
             },
             "development": {
-              "buildTarget": "DnD4Dummies:build:development"
+              "buildTarget": "dnd4dummies:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "DnD4Dummies:build"
+            "buildTarget": "dnd4dummies:build"
           }
         },
         "test": {
@@ -94,6 +94,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "dnd4dummies:build:production",
+              "serveTarget": "dnd4dummies:serve:production"
+            },
+            "development": {
+              "buildTarget": "dnd4dummies:build:development",
+              "serveTarget": "dnd4dummies:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

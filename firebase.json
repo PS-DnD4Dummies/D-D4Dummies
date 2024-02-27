@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "dnd4dummies",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

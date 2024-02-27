@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "dnd4dummies-ccc4c"
+  },
+  "targets": {
+    "dnd4dummies-ccc4c": {
+      "hosting": {
+        "dnd4dummies": [
+          "dnd4dummies-ccc4c"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
