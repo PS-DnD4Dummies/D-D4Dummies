@@ -29,8 +29,7 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
-    ScreenTrackingService,
-    UserTrackingService,
+    
   ],
   bootstrap: [AppComponent],
   exports: []
