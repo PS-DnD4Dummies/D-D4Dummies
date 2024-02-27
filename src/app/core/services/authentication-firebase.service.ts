@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
@@ -10,7 +10,7 @@ export class AuthenticationFirebaseService {
 
 
   constructor(private auth:Auth) {
-    //this.authStatusListener();
+    this.authStatusListener();
   }
 
   currentUser!:any ;
@@ -18,7 +18,7 @@ export class AuthenticationFirebaseService {
   currentAuthStatus = this.authStatusSub.asObservable();
 
   //https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
-  async login(email: string, password: string): Promise<any> {
+  async signIn(email: string, password: string): Promise<any> {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
@@ -28,6 +28,24 @@ export class AuthenticationFirebaseService {
       return null;
     }
   }
+
+  async signInWithGoogle(): Promise <any> {
+    try{
+      var provider = new GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      const result = await signInWithPopup(this.auth,provider);
+      const user = result.user;
+      // This gives you a Google Access Token.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential!.accessToken;
+      console.log(result);
+      console.log(token);
+    }catch(error){
+      console.log("Error al iniciar sesión con google. Error: "+ error);
+    }
+  }
+
 
   //https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#createuserwithemailandpassword
   async signUp(email: string, password: string): Promise<any> {
@@ -42,7 +60,7 @@ export class AuthenticationFirebaseService {
   }
 
   //https://medium.com/@anichidera/managing-auth-state-in-your-angular-firebase-app-c08d62cf3f43
-  /*USAGE:  this.auth.authStatusListener();
+  /*USAGE:  this.auth.authStatusListener(); (se puede obviar si se pone en el constructor de este servicio)
             this.auth.currentAuthStatus.subscribe(authStatus => console.log(authStatus));
   */
   authStatusListener(){

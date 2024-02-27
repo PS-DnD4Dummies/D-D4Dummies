@@ -56,12 +56,12 @@ describe('AuthenticationFirebaseService', () => {
     const result = await service.signUp(email, password);
     expect(result).not.toBe(null);
 
-    const loginResult = await service.login(email, password);
+    const loginResult = await service.signIn(email, password);
     expect(loginResult).not.toBe(null);
   });
 
   it("does not log users in when the email and password are invalid", async () => {
-    const loginResult = await service.login(
+    const loginResult = await service.signIn(
       "invalid@email.invalid",
       "password"
     );
