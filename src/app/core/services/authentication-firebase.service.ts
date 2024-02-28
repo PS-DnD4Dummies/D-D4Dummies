@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
@@ -29,6 +29,8 @@ export class AuthenticationFirebaseService {
     }
   }
 
+
+
   async signInWithGoogle(): Promise <any> {
     try{
       var provider = new GoogleAuthProvider();
@@ -47,17 +49,42 @@ export class AuthenticationFirebaseService {
   }
 
 
+
+
+
   //https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#createuserwithemailandpassword
   async signUp(email: string, password: string): Promise<any> {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
+
+      this.emailVerification(user);
+
       return user;
     } catch (error) {
       console.log("Error al registrar un usuario. Error: " + error);
       return null;
     }
   }
+
+  emailVerification(user:User){
+    sendEmailVerification(user).then(result => {
+      console.log(result);
+
+    }).catch(error=>{
+      console.log("Error al mandar el correo de verificación. Error: "+error);
+
+    })
+  }
+
+  //https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#sendpasswordresetemail
+  // resetPasword(email:string){
+  //   sendPasswordResetEmail(this.auth,"jpereiro1@gmail.com").then(result=>{
+  //     console.log(result);
+  //   }).catch(error=>{
+  //     console.log("Error al mandar el correo de resetear contraseña. Error: "+error);
+  //   })
+  // }
 
   //https://medium.com/@anichidera/managing-auth-state-in-your-angular-firebase-app-c08d62cf3f43
   /*USAGE:  this.auth.authStatusListener(); (se puede obviar si se pone en el constructor de este servicio)
@@ -87,7 +114,7 @@ export class AuthenticationFirebaseService {
 
 
 
-    
+
 
 
 
