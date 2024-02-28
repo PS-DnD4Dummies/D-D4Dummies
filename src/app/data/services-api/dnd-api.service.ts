@@ -8,11 +8,13 @@ import { Observable } from 'rxjs';
 export class DndApiService {
   private baseUrl = 'https://www.dnd5eapi.co/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getSpell(spellId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/spells/${spellId}`);
+  getClasses(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/classes`);
   }
 
-  // Agrega más métodos según sea necesario para otras rutas de la API
+  getClassDetails(className: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/classes/${className}`);
+  }
 }
