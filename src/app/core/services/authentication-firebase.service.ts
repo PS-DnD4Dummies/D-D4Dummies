@@ -78,13 +78,14 @@ export class AuthenticationFirebaseService {
   }
 
   //https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#sendpasswordresetemail
-  // resetPasword(email:string){
-  //   sendPasswordResetEmail(this.auth,"jpereiro1@gmail.com").then(result=>{
-  //     console.log(result);
-  //   }).catch(error=>{
-  //     console.log("Error al mandar el correo de resetear contraseña. Error: "+error);
-  //   })
-  // }
+  resetPasword(email:string){
+     sendPasswordResetEmail(this.auth,email).then(result=>{
+       console.log(result);
+       alert("Correo mandado a "+ email);
+     }).catch(error=>{
+       console.log("Error al mandar el correo de resetear contraseña. Error: "+error);
+     })
+  }
 
   //https://medium.com/@anichidera/managing-auth-state-in-your-angular-firebase-app-c08d62cf3f43
   /*USAGE:  this.auth.authStatusListener(); (se puede obviar si se pone en el constructor de este servicio)
