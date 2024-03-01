@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile } from '@angular/fire/auth';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
@@ -41,8 +41,7 @@ export class AuthenticationFirebaseService {
       // This gives you a Google Access Token.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential!.accessToken;
-      console.log(result);
-      console.log(token);
+      return user;
     }catch(error){
       console.log("Error al iniciar sesión con google. Error: "+ error);
     }
@@ -111,6 +110,21 @@ export class AuthenticationFirebaseService {
     } catch (error) {
       console.log("Error al cerrar sesión. Error: " + error);
     }
+  }
+
+
+  //https://firebase.google.com/docs/auth/web/manage-users?hl=es-419
+  async updateProfile(user:User,displayName?:string,photoURL?:string): Promise<boolean>{
+    return await updateProfile(user,{
+      displayName: displayName!=undefined? displayName:user.displayName,
+      photoURL:photoURL!=undefined? photoURL:user.photoURL,
+    }).then( () => {
+      console.log("El usuario ha modificado el perfil correctamenta");
+      return true;
+    }).catch(error=>{
+      console.log("Error al actualizar el perfil. Error: " + error);
+      return false;
+    })
   }
 
 
