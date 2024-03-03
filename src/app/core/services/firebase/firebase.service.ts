@@ -3,6 +3,7 @@ import { AuthenticationFirebaseService } from './authentication/authentication-f
 import { FirestoreService } from './firestore/firestore.service';
 import { CloudStorageService } from './cloud-storage/cloud-storage.service';
 import { User } from '@data/interfaces';
+import { defaultProfilePhotoURL } from '@data/constanst/url';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class FirebaseService {
     private cloudStorageService:CloudStorageService
   ) { }
 
+  
+
 
   async signUpProcess(email:string,password:string):Promise<Boolean>{
     const signUpCheck = await this.authService.signUp(email,password);
@@ -23,8 +26,26 @@ export class FirebaseService {
     const user:User={
       uid: signUpCheck.uid,
       email: signUpCheck.email,
-      photoURL: signUpCheck.photoURL
+      photoURL: signUpCheck.photoURL !== null ? signUpCheck.photoURL : defaultProfilePhotoURL
     }
+
+    const createSchemaCheck = await this.firestoreService.addUser(user);
+    if(!createSchemaCheck) return false;
+    
+    return true;
+  }
+
+  async signInWithGoogleProcess():Promise<Boolean>{
+    const signInCheck = await this.authService.signInWithGoogle();
+    if(signInCheck===null)  return false;
+
+    const user:User={
+      uid: signInCheck.uid,
+      email: signInCheck.email,
+      photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
+    }
+
+
     const createSchemaCheck = await this.firestoreService.addUser(user);
     if(!createSchemaCheck) return false;
     

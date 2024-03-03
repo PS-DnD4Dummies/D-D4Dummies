@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile } from '@angular/fire/auth';
+import { defaultProfilePhotoURL } from '@data/constanst/url';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
@@ -22,6 +23,7 @@ export class AuthenticationFirebaseService {
     try {
       const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
       const user = userCredential.user;
+
       return user;
     } catch (error) {
       console.log("Error al iniciar sesión con email y contraseña. Error: " + error);
@@ -58,6 +60,7 @@ export class AuthenticationFirebaseService {
       const user = userCredential.user;
 
       this.emailVerification(user);
+      await this.updateProfile(user,undefined,defaultProfilePhotoURL);
 
       return user;
     } catch (error) {
