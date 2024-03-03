@@ -1,5 +1,5 @@
 {
-  "name": "dn-d4-dummies",
+  "name": "dnd4dummies",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:DnD4Dummies": "node dist/dn-d4-dummies/server/server.mjs"
+    "serve:ssr:DnD4Dummies": "node dist/dnd4dummies/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -15,6 +15,7 @@
     "@angular/common": "^17.2.0",
     "@angular/compiler": "^17.2.0",
     "@angular/core": "^17.2.0",
+    "@angular/fire": "^17.0.1",
     "@angular/forms": "^17.2.0",
     "@angular/platform-browser": "^17.2.0",
     "@angular/platform-browser-dynamic": "^17.2.0",

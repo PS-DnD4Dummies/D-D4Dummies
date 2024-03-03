@@ -24,6 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
+    
   ],
   bootstrap: [AppComponent],
   exports: []
