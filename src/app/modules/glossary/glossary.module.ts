@@ -9,7 +9,6 @@ import { GlossaryComponent } from './pages/glossary/glossary.component';
 @NgModule({
   declarations: [GlossaryComponent],
   imports: [
-    CommonModule,
     GlossaryRoutingModule,
     SharedModule
   ]

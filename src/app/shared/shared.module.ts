@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import { BrowserModule } from '@angular/platform-browser';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [
   ],
   imports: [
-    BrowserAnimationsModule,
     MatIconModule,
-    CommonModule,
-    RouterModule,
+    CommonModule
   ],
-  exports: [CommonModule,RouterModule,BrowserAnimationsModule,MatIconModule]
+  exports: [MatIconModule,CommonModule]
 })
 export class SharedModule { }
