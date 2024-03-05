@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { socialMediaURL } from '@data/constanst/url';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
+  socialMediaURL = socialMediaURL;
 }
