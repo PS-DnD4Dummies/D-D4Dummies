@@ -1,3 +1,51 @@
 footer{
-    background-color: black;
+    display: grid;
+    background-color: #646464;
+    
+    grid-template-rows: 10em;
+    grid-template-columns: 3fr 2fr 2fr;
+    
+    font-size: 75%;
+}
+
+.about-us {
+    color: #333;
+    grid-column: 1;
+    padding: 1em;
+
+}
+
+
+.about-us__text-container{
+    border-left: .15em solid;
+    margin-top: .5em;
+    margin-left: .5em;
+    padding-left: .4em;
+}
+
+.follow-us {
+    color:#c9c5c5;
+    background-color: #333;
+    grid-column: 3;
+    padding: 1em;
+
+}
+
+.follow-us__link-list{
+    padding-left: .5em;
+    padding-top: .5em;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.follow-us__icon {
+    position: relative;
+    top: 1.5px;
+    
+}
+
+.follow-us__link {
+    text-decoration: none;
+    color: inherit;
 }
