@@ -6,6 +6,7 @@ import {HomeComponent} from "@modules/home/pages/home/home.component";
 import { BannerComponent } from './components/banner/banner.component';
 import { SharedModule } from '@shared/shared.module';
 import { AppModule } from 'src/app/app.module';
+import { FormBuilder } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AppModule } from 'src/app/app.module';
   imports: [
     SharedModule,
     HomeRoutingModule,
+    
   ]
 })
 export class HomeModule { }

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
       imageSrc:"/assets/images/vertical-banner.jpg"
     },
     {
-      routeLink:ROUTES.FOROUM.DEFAULT,
+      routeLink:ROUTES.FORUM.DEFAULT,
       imageSrc:"/assets/images/vertical-banner.jpg"  
     }
   ];

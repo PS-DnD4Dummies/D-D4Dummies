@@ -1,4 +1,56 @@
-<p>header works!</p>
-<a routerLink="glosario">glosario</a>
-<a routerLink="auth/perfil">registro</a>
-<a routerLink="auth/registro">perfil</a>
+<header class="main-container">
+    <section class="upper-bar">
+        <div class="upper-bar__main-logo">
+            <a class="upper-bar__main-logo-action" [routerLink]="routesURL.HOME.DEFAULT">
+                <img class="upper-bar_main-logo-image" src="/assets/images/logo.png" alt="Logo">
+            </a>
+        </div>
+        
+
+        <h1 class="upper-bar__title">D&D FOR DUMMIES</h1>
+        
+        
+        <div class="upper-bar__login">
+            <a class="upper-bar__login-logo-action" href="/src/login-popup.html">
+                <img class="upper-bar__login-logo-image" src="/assets/images/login.png" alt="Login">
+            </a>
+        </div>
+
+    </section>
+
+    <section class="lower-bar">
+        <nav class="main-menu">
+
+            <ul class="main-menu__options main-menu__options--general">
+
+                <li class="main-menu__link main-menu__link--glossary">
+                    <a class="main-menu__label main-menu__label--glossary" [routerLink]="routesURL.GLOSSARY.DEFAULT">Glossary</a>
+                    
+                    <ul class="main-menu__options main-menu__options--glossary">
+                        <li 
+                            *ngFor="let liItem of glossaryLiContents" class="main-menu__glossary-section">
+                            <a [routerLink]="liItem.route">{{liItem.text}}</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="main-menu__link"><a class="main-menu__label" [routerLink]="routesURL.CHARACTER.DEFAULT">Character Creator</a></li>
+
+                <li class="main-menu__link"><a class="main-menu__label" [routerLink]="routesURL.FORUM.DEFAULT">Forum</a></li>
+
+            </ul>
+
+        </nav>
+        
+        <div class="main-menu__search-bar">
+            <form  [formGroup]="searchForm" class="main-menu__search-bar-form"  (ngSubmit)="onSubmitForm(searchForm.value)">
+                <input class="main-menu__search-bar-input" type="search" formControlName="search" placeholder="Search...">
+                <button class="main-menu__search-button" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+            </form>
+        </div>
+
+    </section>
+    
+</header>
