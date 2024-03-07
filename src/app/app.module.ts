@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, CoreModule, SharedModule, HttpClientModule,FormsModule,ReactiveFormsModule],
+  imports: [BrowserModule,BrowserAnimationsModule, AppRoutingModule, CoreModule, SharedModule, HttpClientModule,FormsModule,ReactiveFormsModule],
   providers: [
     {
       provide: LocationStrategy,
