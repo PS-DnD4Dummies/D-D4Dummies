@@ -6,6 +6,7 @@
     position: relative;
     padding-top: 1em;
     width: 100%;
+    height: 60vh;
     background-color: #1C3C47;
 }
 
@@ -13,7 +14,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* Asegura que la imagen cubra todo el espacio disponible */
-    object-position: top;
+    object-position: center;
     transition: filter 0.5s ease;
 }
 
@@ -55,11 +56,28 @@
 
 .main-sections__image {
     width: 100%;
+    transition: filter 0.5s ease;
 }
 
-.main-footer {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+.main-sections figure:hover .main-sections__image {
+    filter: blur(3px) brightness(0.6);
 }
 
+.main-sections__label {
+    visibility: hidden;
+    position: relative;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: visibility 0.5s ease, opacity 0.5s ease;
+    top: -50%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-sections figure:hover .main-sections__label {
+    visibility: visible;
+    opacity: 1;
+}
