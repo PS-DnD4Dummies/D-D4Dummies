@@ -1,1 +1,44 @@
-<p>profile works!</p>
+    
+    <main class="user-info">
+        <article class="user-box">
+            <figure class="user-box__profile">
+                <img 
+                    src="/src/images/omnicomteamx_logo.png"
+                    class="user-box__img"
+                >
+            </figure>
+
+            <h1 class="user-box__title">Account information</h1>
+
+            <section class="user-box__info">
+                <div class="user-box__portion">
+                    <label class="user-box__label">Username:</label>
+                    <p type="text" class="user-box__text user-box__text--username">Your name</p>
+                </div>
+                 
+                <div class="user-box__portion">
+                    <label class="user-box__label">Email:</label>
+                    <p type="text" class="user-box__text user-box__text--email">Your email</p>
+                </div>
+
+                <div class="user-box__portion">
+                    <label class="user-box__label">Birth date:</label>
+                    <p type="text" class="user-box__text user-box__text--birth-date">Your birth date</p>
+                </div>
+                
+            </section>
+
+        </article>
+
+        <h1 class="character-title">Your saved characters:</h1>
+
+        <article class="character-list"></article>
+        <form>
+            <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
+            
+            <input type="text" [(ngModel)]="newDisplayName" name="newDisplayName" placeholder="Nuevo nombre">
+            <input type="text" [(ngModel)]="newPhotoURL" name="newPhotoURL" placeholder="Nueva URL de foto">
+            
+            <button type="submit">update</button>
+        </form>
+    </main>
