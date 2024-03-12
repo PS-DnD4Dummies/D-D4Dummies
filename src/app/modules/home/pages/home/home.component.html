@@ -1,31 +1,16 @@
 <main class="main-page">
   <section class="banner">
-      <img class="banner__image" src="/src/assets/images/coastal-city.jpg">
+      <img class="banner__image" src="/assets/images/coastal-city.jpg">
       <p class="banner__hover-text">Welcome to Dungeons and Dragons for Dummies!</p>
   </section>
 
   <section class="main-sections">
       
-      <figure class="main-sections__glossary-banner">
-          <a href="/src/app/glossary/index.html">
-              <img class="main-sections__image" src="/src/assets/images/vertical-banner-glossary.jpg">
+      <figure *ngFor="let banner of banners" class="main-sections__glossary-banner">
+          <a [routerLink]="banner.routeLink">
+              <img class="main-sections__image" [src]="banner.imageSrc">
           </a>
-          <label class="main-sections__label">Glossary</label>
-      </figure>
-
-      <figure class="main-sections__character-creator-banner">
-          <a href="/src/app/character-creator/character-creator.html">
-              <img class="main-sections__image" src="/src/assets/images/vertical-banner-character-creator.jpg">
-          </a>
-          <label class="main-sections__label">Character Creator</label>
-      </figure>
-
-
-      <figure class="main-sections__forum-banner">
-          <a href="/src/app/forum/index.html">
-              <img class="main-sections__image" src="/src/assets/images/vertical-banner-forum.jpg">
-          </a>
-          <label class="main-sections__label">Forum</label>
+          <label class="main-sections__label">{{banner.bannerLabel}}</label>
       </figure>
 
   </section>
