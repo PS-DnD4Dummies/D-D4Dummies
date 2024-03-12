@@ -3,6 +3,7 @@ import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthS
 import { defaultProfilePhotoURL } from '@data/constanst/url';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { User as Usuario } from '@data/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +98,11 @@ export class AuthenticationFirebaseService {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         //const uid = user.uid;
+        /*const usuario : Usuario = {
+          uid: user.uid,
+          email: user.email!,
+          photoURL: user.photoURL!
+        }*/
         this.authStatusSub.next(user);
       } else {
         this.authStatusSub.next(null);

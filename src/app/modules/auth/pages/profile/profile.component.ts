@@ -14,6 +14,7 @@ export class ProfileComponent {
   newPhotoURL: string = '';
 
   auth!:any;
+  selectedFileUrl!: string;
 
   constructor(private authService: AuthenticationFirebaseService) {
   }
@@ -23,7 +24,19 @@ export class ProfileComponent {
     //Add 'implements OnInit' to the class.
     this.authService.signUp("aaaa@getMaxListeners.com", "ccccccccccc")
     this.authService.currentAuthStatus.subscribe(auth =>this.auth = auth);
-    console.log("auhhhth");
   }
+  updateProfile(): void {
+    // Llama a la función updateProfile del servicio con los parámetros necesarios
+    this.authService.updateProfile(this.auth, this.newDisplayName, this.newPhotoURL);
+  }
+  onFileSelected(event: { target: any; }): void {
+    const input = event.target;
+    const file = input.files[0];
 
+    if (file) {
+      // Obtener la URL de la imagen seleccionada
+      this.selectedFileUrl = URL.createObjectURL(file);
+    }
+  }
 }
+

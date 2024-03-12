@@ -30,14 +30,19 @@
 
         </article>
 
-        <h1 class="character-title">Your saved characters:</h1>
+        <h1 class="character-title">Update your information:</h1>
 
         <article class="character-list"></article>
-        <form>
+        <form (ngSubmit)="updateProfile()">
             <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
             
             <input type="text" [(ngModel)]="newDisplayName" name="newDisplayName" placeholder="Nuevo nombre">
-            <input type="text" [(ngModel)]="newPhotoURL" name="newPhotoURL" placeholder="Nueva URL de foto">
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  
+            <!-- Mostrar la URL de la imagen seleccionada -->
+            <div *ngIf="selectedFileUrl">
+              <input type="text" [(ngModel)]="newPhotoURL" name="newPhotoURL" placeholder="Nueva URL de foto" readonly>
+            </div>
             
             <button type="submit">update</button>
         </form>
