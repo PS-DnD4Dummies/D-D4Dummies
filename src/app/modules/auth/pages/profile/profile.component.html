@@ -13,17 +13,17 @@
             <section class="user-box__info">
                 <div class="user-box__portion">
                     <label class="user-box__label">Username:</label>
-                    <p type="text" class="user-box__text user-box__text--username">Your name</p>
+                    <p type="text" class="user-box__text user-box__text--username">{{ username }}</p>
                 </div>
                  
                 <div class="user-box__portion">
                     <label class="user-box__label">Email:</label>
-                    <p type="text" class="user-box__text user-box__text--email">Your email</p>
+                    <p type="text" class="user-box__text user-box__text--username">{{ email }}</p>
                 </div>
 
                 <div class="user-box__portion">
                     <label class="user-box__label">Birth date:</label>
-                    <p type="text" class="user-box__text user-box__text--birth-date">Your birth date</p>
+                    <p type="text" class="user-box__text user-box__text--username">{{ birthDate }}</p>
                 </div>
                 
             </section>
@@ -33,9 +33,7 @@
         <h1 class="character-title">Update your information:</h1>
 
         <article class="character-list"></article>
-        <form (ngSubmit)="updateProfile()">
-            <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
-            
+        <form (ngSubmit)="updateProfile()">       
             <input type="text" [(ngModel)]="newDisplayName" name="newDisplayName" placeholder="Nuevo nombre">
             <input type="file" (change)="onFileSelected($event)" accept="image/*">
   
@@ -46,4 +44,5 @@
             
             <button type="submit">update</button>
         </form>
+        <button type="submit">delete profile</button>
     </main>
