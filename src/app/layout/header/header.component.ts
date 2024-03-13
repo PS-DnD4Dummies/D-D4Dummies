@@ -3,6 +3,7 @@ import { ROUTES } from '@data/constanst/routes';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 import { LogInData } from '@data/interfaces';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
 
   routesURL = ROUTES;
   searchForm;
+
 
   glossaryLiContents = [
     {
@@ -51,6 +53,7 @@ export class HeaderComponent implements OnInit {
 
   currentUser!:any;
   visibilityPopUpLogIn=false;
+  validEmailPassword: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,7 +64,10 @@ export class HeaderComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
+    this.auth.currentAuthStatus.subscribe(result => {
+      console.log(result);
+      this.currentUser=result;
+    });
   }
 
   onSubmitForm(searchFormData:any){
@@ -78,9 +84,32 @@ export class HeaderComponent implements OnInit {
   }
 
   logIn(logInData:LogInData){
-    console.log(logInData);
-   this.auth.signIn(logInData.email,logInData.password)
+    this.auth.signIn(logInData.email,logInData.password).then(result => {
+      if(result===null){
+        this.validEmailPassword = false;
+
+      }else{
+        this.validEmailPassword = true;
+        this.visibilityPopUpLogIn = false;
+      }
+    });
   }
+
+  parsePhotoGoogleURL(url: string): string {
+    // Dividir la URL por el signo igual
+    const partes = url.split('=');
+    
+    // Verificar si se encontró el signo igual y la URL es válida
+    if (partes.length === 2 && partes[0] && partes[1]) {
+        // Modificar el tamaño del avatar a s1024
+        partes[1] = 's1024';
+        // Unir las partes nuevamente para formar la URL modificada
+        return partes.join('=');
+    } else {
+        // Si la URL no tiene el formato esperado, devolver la URL original
+        return url;
+    }
+}
 
   
 

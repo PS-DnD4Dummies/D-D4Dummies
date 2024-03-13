@@ -1,4 +1,9 @@
-<app-login *ngIf="visibilityPopUpLogIn" (closePopUpEmitter)="closePopUp($event)" (logInEmitter)="logIn($event)"></app-login>
+<app-login 
+    *ngIf="visibilityPopUpLogIn"
+    (closePopUpEmitter)="closePopUp($event)"
+    (logInEmitter)="logIn($event)"
+    [validEmailPassword]="validEmailPassword"  
+></app-login>
 <header class="main-container">
     <section class="upper-bar">
         <div class="upper-bar__main-logo">
@@ -12,8 +17,12 @@
         
         
         <div class="upper-bar__login">
-            <button class="upper-bar__login-logo-action" (click)="openPopUp()">
+            <button class="upper-bar__login-logo-action" (click)="openPopUp()" *ngIf="currentUser===undefined">
                 <img class="upper-bar__login-logo-image" src="/assets/images/login.png" alt="Login">
+            </button>
+            <button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined" [routerLink]="routesURL.AUTH.PROFILE">
+                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)" alt="Login">  
+                <!-- <img src="https://lh3.googleusercontent.com/a/ACg8ocIuC0UthtFqT8J_NcYvpBhhwI9qNETu-wZBSGDt_EgO-BU=s1024"> -->
             </button>
         </div>
 

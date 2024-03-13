@@ -4,7 +4,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
-  { path: 'perfil', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'signUp', component: RegisterComponent }
 ];
 
