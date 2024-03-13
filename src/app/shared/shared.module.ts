@@ -7,8 +7,11 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule
   ],
-  exports: [CommonModule,RouterModule]
+  exports: [
+    CommonModule,
+    RouterModule
+  ]
 })
 export class SharedModule { }
