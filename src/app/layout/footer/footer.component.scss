@@ -1,7 +1,8 @@
-footer{
+.main {
     display: grid;
     background-color: #646464;
     
+    grid-template-rows: 10em;
     grid-template-columns: 3fr 2fr 2fr;
     
     font-size: 75%;
@@ -33,17 +34,15 @@ footer{
 .follow-us__link-list{
     padding-left: .5em;
     padding-top: .5em;
-    margin-top: 0;
-    
     list-style: none;
     display: flex;
     flex-direction: column;
 }
 
-li i {
-    padding-right: 5px;
+.follow-us__icon {
+    position: relative;
+    top: 1.5px;
 }
-
 
 .follow-us__link {
     text-decoration: none;

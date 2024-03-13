@@ -1,0 +1,162 @@
+.background-signup{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1C3C47;
+    color: #c9c5c5;
+
+    height: 73.2vh;
+
+    font-size: 140%;
+}
+
+.main-signup{
+    display: grid;
+
+    grid-template-rows: 4em 17em 4em;
+    grid-template-columns:  30em 30em;
+
+    background-color: #1C3C47;
+    color: #c9c5c5;
+
+}
+
+.main-signup__title{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-column: 1;
+    grid-row: 1;
+
+    position: relative;
+
+    position: relative;
+    left: .8em;
+}
+
+.user-info{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    grid-column: 1;
+    grid-row: 2;
+
+    position: relative;
+    left: 6em;
+    top: 1em;
+
+}
+
+.parameter{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.parameter__label{
+    position: relative;
+    right: .5em;
+    top: .13em;
+    
+}
+
+.parameter__text{
+    background-color: #333;
+    color: #c9c5c5;
+
+    font-size: 100%;
+}
+
+.parameter__text--birth-date::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.parameter__age-warning{
+    position: relative;
+    top: .1em;
+}
+
+.user-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 2;
+
+    position: relative;
+    left: 3em;
+    top: .5em;
+
+}
+
+.user-profile__img{
+    width: 12em;
+    height: 12em;
+
+    border: .12em solid black;
+    border-radius: .5em;
+    box-shadow: .6em .6em .2em rgba(0,0,0,0.1);
+}
+
+.user-profile__button{
+    position: relative;
+    left: 9em;
+    bottom: 1em;
+
+    background-color: #333;
+    border: none;
+    border-radius: .3em;
+    box-shadow: .3em .3em .2em rgba(0,0,0,0.1);
+
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    color:#c9c5c5;
+    padding: .1em;
+
+    width: 5em;
+    height: 1.5em;
+}
+
+.user-profile__button:hover {
+    background-color: rgb(31, 30, 30)
+}
+
+.persistence{
+    display: flex;
+    justify-content: center;
+
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.persistence__button{
+    position: relative;
+    left: 2em;
+    bottom: 1em;
+
+    background-color: #333;
+    border: none;
+    border-radius: .1em;
+    box-shadow: .3em .3em .2em rgba(0,0,0,0.1);
+
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    color:#c9c5c5;
+    padding: .1em;
+
+    font-size: 1.5em;
+
+    width: 5em;
+    height: 1.5em;
+}
+
+.persistence__button:hover{
+    background-color: rgb(31, 30, 30)
+}

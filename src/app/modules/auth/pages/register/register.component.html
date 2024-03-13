@@ -1,1 +1,50 @@
-<p>register works!</p>
+<main class="background-signup">
+    <section class="main-signup">
+        <h1 class="main-signup__title">Sign up for the adventure!</h1>
+        <article class="user-info">
+            <section class="parameter parameter--email">
+                <label class="parameter__label">Email:</label>
+                <input type="text" class="parameter__text parameter__text--email">
+
+                <label class="parameter__label">Confirm Email:</label>
+                <input type="text" class="parameter__text parameter__text--confirm-email"> 
+            </section>
+
+            <section class="parameter parameter--username">
+                <label class="parameter__label">Username:</label>
+                <input type="text" class="parameter__text parameter__text--username"> 
+            </section>
+
+            <section class="parameter parameter--password">
+                <label class="parameter__label">Password:</label>
+                <input type="text" class="parameter__text parameter__text--password"> 
+
+                <label class="parameter__label">Confirm Password:</label>
+                <input type="text" class="parameter__text parameter__text--confirm-password"> 
+            </section>
+
+            <section class="parameter parameter--birth-date">
+                <label class="parameter__label">Birth date:</label>
+                <input type="date" class="parameter__text parameter__text--birth-date"> 
+
+                <p class="parameter__age-warning">*You must be +18 years old to sign up</p>
+            </section>
+
+        </article>
+
+        <figure class="user-profile">
+            <img 
+                src="/src/assets/images/omnicomteamx_logo.png"
+                class="user-profile__img"
+            >
+            <button type="button" class="user-profile__button">Upload</button>
+        </figure>
+
+        <section class="persistence">
+            <a class="persistence__action" href="/src/app/index.html">
+                <button type="button" class="persistence__button">Register</button>
+            </a>
+        </section>
+    </section>
+
+</main>
