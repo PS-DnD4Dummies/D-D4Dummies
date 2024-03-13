@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthRoutingModule } from '@modules/auth/auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -26,8 +27,10 @@ import {MatButtonModule} from '@angular/material/button';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatSidenavModule,
     MatButtonModule
   ],
-  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule]
+  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule,MatSidenavModule,MatButtonModule]
 })
 export class SharedModule { }

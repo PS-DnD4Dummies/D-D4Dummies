@@ -99,6 +99,22 @@
     position: relative;
 }
 
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+
+.mat-sidenav {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .main-menu__search-bar-input {
     padding: 0.625em 2.1875em 0.625em 0.9375em; /* 10px / 16px = 0.625em, 35px / 16px = 2.1875em, 15px / 16px = 0.9375em */
     border: none;

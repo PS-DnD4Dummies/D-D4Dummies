@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 import { LogInData } from '@data/interfaces';
 import { BehaviorSubject } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -63,6 +64,17 @@ export class HeaderComponent implements OnInit {
       search:""
     });
   }
+
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+
+  reason = '';
+
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
+  }
+
+
   ngOnInit(): void {
     this.auth.currentAuthStatus.subscribe(result => {
       console.log(result);
@@ -94,6 +106,8 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+
 
   parsePhotoGoogleURL(url: string): string {
     // Dividir la URL por el signo igual
