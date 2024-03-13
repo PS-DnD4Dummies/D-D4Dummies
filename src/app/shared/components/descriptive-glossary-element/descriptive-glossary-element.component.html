@@ -1,1 +1,10 @@
-<p>descriptive-glossary-element works!</p>
+<main class="glossary-element">
+  <div class="glossary-element-container">
+    <h1 class="glossary-element__name">{{ item.name }}</h1>
+    <div class="image-container">
+      <img class="glossary-element__image" [src]='myImages[item.name]? myImages[item.name] : defaultImage' alt="fotito">
+      <p class="glossary-element__description">Probando esta puta mierda</p>
+    </div>
+    <button class="glossary-element__button" (click)="seeMore(item)">SEE MORE</button>
+  </div>
+</main>

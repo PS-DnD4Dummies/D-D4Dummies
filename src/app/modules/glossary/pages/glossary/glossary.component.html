@@ -1,1 +1,78 @@
-<p>glossary works!</p>
+<body><main class="main-glossary">
+  <article class="glossary-sections">
+
+    <section class="section section--character">
+      <label id="section--character_label"><div class="blur-container">{{'INFORMATION RELATED TO\n YOUR CHARACTER'}}</div></label>
+      <article class="section__container">
+            <section class="section__zone section__zone--races">
+              <img src="/assets/glossary_icons/races.png" class="section__img section__img--races" (click)="goToSection('races')"alt=""/>
+              <label class="section__label section__label--races">RACES</label>
+            </section>
+
+            <section class="section__zone section__zone--classes">
+              <img src="/assets/glossary_icons/classes.png" class="section__img section__img--classes" (click)="goToSection('classes')" alt=""/>
+              <label class="section__label section__label--classes">CLASSES</label>
+            </section>
+
+            <section class="section__zone section__zone--alignments">
+              <img src="/assets/glossary_icons/alignments.png" class="section__img section__img--alignments" (click)="goToSection('alignments')" alt=""/>
+              <label class="section__label section__label--alignments">ALIGNMENTS</label>
+            </section>
+
+            <section class="section__zone section__zone--kyr">
+              <img src="/assets/glossary_icons/know_your_rolls.png" class="section__img section__img--kyr" (click)="goToSection('KnowYourRolls')" alt=""/>
+              <label class="section__label section__label--kyr">KNOW YOUR ROLLS</label>
+            </section>
+      </article>
+    </section>
+
+
+    <section class="section section--interaction">
+      <article class="section__container">
+            <section class="section__zone section__zone--weapons">
+              <img src="/assets/glossary_icons/weapons.png" class="section__img section__img--weapons" (click)="goToSection('weapons')" alt=""/>
+              <label class="section__label section__label--weapons">WEAPONS</label>
+            </section>
+
+            <section class="section__zone section__zone--spells">
+              <img src="/assets/glossary_icons/spells.png" class="section__img section__img--spells" (click)="goToSection('spells')" alt=""/>
+              <label class="section__label section__label--spells">SPELLS</label>
+            </section>
+
+            <section class="section__zone section__zone--combat-gear">
+              <img src="/assets/glossary_icons/gear.png" class="section__img section__img--combat-gear" (click)="goToSection('CombatGear')" alt=""/>
+              <label class="section__label section__label--combat-gear">COMBAT GEAR</label>
+            </section>
+
+            <section class="section__zone section__zone--combat">
+              <img src="/assets/glossary_icons/combat.png" class="section__img section__img--combat" (click)="goToSection('Combat')" alt=""/>
+              <label class="section__label section__label--combat">COMBAT</label>
+            </section>
+      </article>
+      <label id="section--interaction_label"><div class="blur-container">{{'INFORMATION RELATED TO\n THE INTERACTIONS'}}</div></label>
+    </section>
+
+
+    <section class="section section--adventure">
+      <label id="section--adventure_label"><div class="blur-container">{{'INFORMATION RELATED TO\n THE ADVENTURE'}}</div></label>
+      <article class="section__container">
+            <section class="section__zone section__zone--adventure">
+              <img src="/assets/glossary_icons/adventure.png" class="section__img section__img--adventure" (click)="goToSection('adventure')" alt=""/>
+              <label class="section__label section__label--adventure">ADVENTURE</label>
+            </section>
+
+            <section class="section__zone section__zone--tools">
+              <img src="/assets/glossary_icons/tools.png" class="section__img section__img--tools" (click)="goToSection('tools')" alt=""/>
+              <label class="section__label section__label--tools">TOOLS</label>
+            </section>
+
+            <section class="section__zone section__zone--adventuring-gear">
+              <img src="/assets/glossary_icons/adventuring-gear.png" class="section__img section__img--adventuring-gear" (click)="goToSection('AdventuringGear')" alt=""/>
+              <label class="section__label section__label--adventuring-gear">ADVENTURING GEAR</label>
+            </section>
+      </article>
+    </section>
+
+
+  </article>
+</main></body>
