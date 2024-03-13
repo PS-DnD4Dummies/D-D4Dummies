@@ -6,6 +6,11 @@ export interface User {
     photoURL:string
 }
 
+export interface LogInData {
+    email:string
+    password:string
+}
+
 export interface Character {
     name:string,
     class:Class,

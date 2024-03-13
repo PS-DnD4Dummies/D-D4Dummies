@@ -8,6 +8,10 @@ import { CoreModule } from '@core/core.module';
 import { LoginComponent } from './components/login-popup/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AuthRoutingModule } from '@modules/auth/auth-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 @NgModule({
@@ -19,7 +23,11 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
+    AuthRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule
   ],
-  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule]
+  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule]
 })
 export class SharedModule { }

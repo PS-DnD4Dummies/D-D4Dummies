@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
+import { LogInData } from '@data/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
   ]
 
   currentUser!:any;
-
+  visibilityPopUpLogIn=false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,5 +68,20 @@ export class HeaderComponent implements OnInit {
     /*POR IMPLEMENTAR*/
     console.log(searchFormData)
   }
+
+  closePopUp($event:any){
+    this.visibilityPopUpLogIn = false;
+  }
+
+  openPopUp(){
+    this.visibilityPopUpLogIn = true;
+  }
+
+  logIn(logInData:LogInData){
+    console.log(logInData);
+   this.auth.signIn(logInData.email,logInData.password)
+  }
+
+  
 
 }
