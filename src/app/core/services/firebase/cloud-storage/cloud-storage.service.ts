@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Storage, ref } from '@angular/fire/storage';
+import { Storage, ref, getDownloadURL } from '@angular/fire/storage';
 import { uploadBytes } from '@firebase/storage';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CloudStorageService {
 
   constructor(private cloudStorage:Storage) { }
@@ -29,5 +30,12 @@ export class CloudStorageService {
     });
   }
 
+  async takeProfilePhoto(fileRoute:string): Promise<string>{
 
+    const storageRef = ref(this.cloudStorage, fileRoute);
+
+    const downloadURL = await getDownloadURL(storageRef);
+    return downloadURL;
+  }
+  
 }
