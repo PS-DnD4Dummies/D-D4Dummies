@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {DescriptiveGlossaryComponent} from "@shared/components/descriptive-glossary/descriptive-glossary.component";
 
 const routes: Routes = [
   {
@@ -7,9 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/home/home.module').then(m=> m.HomeModule),
   },
   {
-    path:'glosario',
-    loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule) 
+    path:'glossary',
+    loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule)
   },
+  { path: 'descriptive-glossary/:section', component: DescriptiveGlossaryComponent },
   {
     path:'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m=> m.AuthModule)
