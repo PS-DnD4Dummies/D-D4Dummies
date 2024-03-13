@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ROUTES } from '@data/constanst/routes';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 
 
@@ -9,7 +11,7 @@ import { AuthenticationFirebaseService } from '@core/services/firebase/authentic
 })
 
 export class RegisterComponent {
-  constructor(private Firebase:FirebaseService) { }
+  constructor(private Firebase:FirebaseService, private router:Router) { }
   userEmail = '';
   userConfirmEmail = '';
   username = '';
@@ -17,6 +19,13 @@ export class RegisterComponent {
   userConfirmPassword = '';
   userBirthDate = '';
   selectedFile: File | null = null;
+
+  emailError: boolean = false;
+  confirmEmailError: boolean = false;
+  usernameError: boolean = false;
+  passwordError: boolean = false;
+  confirmPasswordError: boolean = false;
+  birthDateError: boolean = false;
 
   onFileSelected(event: any): void {
     if (event.target.files.length > 0) {
@@ -40,30 +49,66 @@ export class RegisterComponent {
     }
   }
 
-  registerUser() {
+  async registerUser() {
+
+    this.emailError = false;
+    this.confirmEmailError = false;
+    this.usernameError  = false;
+    this.passwordError = false;
+    this.confirmPasswordError = false;
+    this.birthDateError = false;
+
+    if (!this.checkForValidEmail(this.userEmail)) {
+      this.emailError = true;
+      alert('Please enter a valid email address.');
+      return;
+    }
+
     if (this.userEmail !== this.userConfirmEmail) {
+      this.confirmEmailError = true;
       alert('Emails do not match!');
       return;
     }
-  
+
+    if (!this.checkForValidUsername(this.username)) {
+      this.usernameError = true;
+      alert('Username must be between 4 and 20 characters long and can only contain letters, numbers, hyphens, and underscores.');
+      return;
+    }
+
+/*     if (!this.checkForValidPassword(this.userPassword)) {
+      this.passwordError = true;
+      alert('Password must be at least 8 characters long and include at least one letter, one number, and one special character.');
+      return;
+    } */
+
     if (this.userPassword !== this.userConfirmPassword) {
+      this.confirmPasswordError = true;
       alert('Passwords do not match!');
       return;
     }
 
     if (!this.isAdult(this.userBirthDate)) {
+      this.birthDateError = true;
       alert('You must be 18 years or older to sign up.');
       return;
     }
 
-    /* let successfulSignUp:boolean = this.Firebase.signUpProcess(this.userEmail, this.userPassword, this.selectedFile);
-
-    if(successfulSignUp){
-
-    } else {
-
+    try {
+      let successfulSignUp = await this.Firebase.signUpProcess(this.userEmail, this.username, this.userPassword, this.userBirthDate, this.selectedFile);
+  
+      if (successfulSignUp) {
+        // Inicia la sesión y redirige a la página principal
+        this.router.navigate([ROUTES.HOME.DEFAULT]); // Asegúrate de reemplazar '/main-page' con la ruta correcta
+      } else {
+        // Muestra un mensaje de error referente a que el servicio de autenticación ha fallado
+        alert('Authentication service failed. Please try again.');
+      }
+    } catch (error) {
+      console.error("SignUp process error: ", error);
+      alert('An error occurred during the sign up process. Please try again.');
     }
-    */
+  
   }
 
   isAdult(birthDate: string): boolean {
@@ -74,6 +119,22 @@ export class RegisterComponent {
 
     return birthDateObj <= adultDate;
   }
+
+  checkForValidEmail(email: string): boolean {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
+  checkForValidUsername(username: string): boolean {
+    const usernamePattern = /^[a-zA-Z0-9_-]{4,20}$/;
+    return usernamePattern.test(username);
+  }
+
+  checkForValidPassword(password: string): boolean {
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordPattern.test(password);
+  }
+
   
 }import { FirebaseService } from '@core/services/firebase/firebase.service';
 

@@ -19,7 +19,7 @@ export class FirebaseService {
   
 
 
-  async signUpProcess(email: string, password: string, photo: File | null): Promise<Boolean> {
+  async signUpProcess(email: string, username: string, password: string, birthdate: string, photo: File | null): Promise<Boolean> {
     const signUpCheck = await this.authService.signUp(email, password);
     if (signUpCheck === null) return false;
   
@@ -37,9 +37,12 @@ export class FirebaseService {
     const user: User = {
       uid: signUpCheck.uid,
       email: signUpCheck.email,
-      photoURL: profilePhotoURL
+      username: username,
+      birthdate: birthdate,
+      photoURL: profilePhotoURL !== null ? profilePhotoURL : defaultProfilePhotoURL
     };
   
+    console.log("Por ahora va bien");
     const createSchemaCheck = await this.firestoreService.addUser(user);
     if (!createSchemaCheck) return false;
   
@@ -53,6 +56,8 @@ export class FirebaseService {
     const user:User={
       uid: signInCheck.uid,
       email: signInCheck.email,
+      username: signInCheck.username,
+      birthdate: signInCheck.birthdate,
       photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
     }
 
