@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
+import { FirebaseService } from '@core/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,10 @@ import { ROUTES } from '@data/constanst/routes';
 })
 export class HomeComponent implements OnInit {
 
+  constructor(private firebaseService:FirebaseService) { }
+
+  routesURL = ROUTES;
+  
   banners= [
     {
       routeLink:ROUTES.GLOSSARY.DEFAULT,
@@ -23,9 +28,12 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor() { }
-
   ngOnInit(): void {
+  }
+
+  async getImageRoute(fileRoute:string): Promise<string>{
+
+    return this.firebaseService.getImageRoute(fileRoute);
   }
 
 }

@@ -16,9 +16,6 @@ export class FirebaseService {
     private cloudStorageService:CloudStorageService
   ) { }
 
-  
-
-
   async signUpProcess(email:string,password:string):Promise<Boolean>{
     const signUpCheck = await this.authService.signUp(email,password);
     if(signUpCheck===null)  return false;
@@ -50,6 +47,11 @@ export class FirebaseService {
     if(!createSchemaCheck) return false;
     
     return true;
+  }
+
+  async getImageRoute(fileRoute:string): Promise<string>{
+
+    return this.cloudStorageService.takeProfilePhoto(fileRoute);
   }
 
 

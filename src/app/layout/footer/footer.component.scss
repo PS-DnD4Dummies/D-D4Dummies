@@ -5,14 +5,20 @@
     grid-template-rows: 10em;
     grid-template-columns: 3fr 2fr 2fr;
     
-    font-size: 75%;
+    font-size: 85%;
 }
 
 .about-us {
     color: #333;
     grid-column: 1;
-    padding: 1em;
 
+    padding-left: 1em;
+}
+
+.about-us__label{
+    height: .5em;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -27,12 +33,19 @@
     color:#c9c5c5;
     background-color: #333;
     grid-column: 3;
-    padding: 1em;
+
+    padding-left: 1em;
 
 }
 
+.follow-us__label{
+    height: .5em;
+    display: flex;
+    align-items: center;
+}
+
 .follow-us__link-list{
-    padding-left: .5em;
+    padding-left: 1.2em;
     padding-top: .5em;
     list-style: none;
     display: flex;

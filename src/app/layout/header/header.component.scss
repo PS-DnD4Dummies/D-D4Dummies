@@ -7,13 +7,12 @@
 .main-container{
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 .upper-bar{
     display: grid;
-    grid-template-rows: 8vh;
-    grid-template-columns: 8% auto 8%;
+    grid-template-rows: 5em;
+    grid-template-columns: auto auto auto;
     background-color: #767272;
     align-items: center;
 }
@@ -22,7 +21,7 @@
     grid-column: 1;
     grid-row: 1;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
 }
 
 .upper-bar__login{
@@ -38,9 +37,8 @@
     height: 3.5em; 
 }
 
-.upper-bar__title{
-    position: relative;
-    right: 2em;
+.upper-bar__login-logo-action{
+    height: 100%;
 }
 
 .lower-bar {
@@ -50,7 +48,7 @@
     z-index: 1000;
     padding: 0.5em 1em; 
     background: #333;
-    height: 4vh;
+    height: 2.1em;
 }
 
 .main-menu .main-menu__options--general, .main-menu__options--glossary {
