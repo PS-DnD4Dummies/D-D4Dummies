@@ -49,9 +49,9 @@ export class FirebaseService {
     return true;
   }
 
-  async getImageRoute(fileRoute:string): Promise<string>{
-
-    return this.cloudStorageService.takeProfilePhoto(fileRoute);
+  async getImagesFromFile(imageRoute:string):  Promise<String[]>{
+    const urls = await this.cloudStorageService.getImagesFromFile(imageRoute);
+    return urls;
   }
 
 

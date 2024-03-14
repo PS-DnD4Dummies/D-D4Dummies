@@ -9,7 +9,11 @@ import { FirebaseService } from '@core/services/firebase/firebase.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private firebaseService:FirebaseService) { }
+  homeImages: String[];
+
+  constructor(private firebaseService:FirebaseService) { 
+    this.homeImages = [];
+  }
 
   routesURL = ROUTES;
   
@@ -29,11 +33,19 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.loadImages();
   }
 
-  async getImageRoute(fileRoute:string): Promise<string>{
+  async loadImages(){
+    this.homeImages = [];
 
-    return this.firebaseService.getImageRoute(fileRoute);
+    var url = this.firebaseService.getImagesFromFile("mainPagePhotos/");
+    await url.then((link) => {
+
+      var urls = link; 
+      this.homeImages = urls;
+      console.log(urls);
+      
+    })
   }
-
 }

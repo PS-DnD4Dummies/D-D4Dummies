@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
+import { FirebaseService } from '@core/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-header',
@@ -53,12 +54,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth:AuthenticationFirebaseService
+    private auth:AuthenticationFirebaseService,
+    private firebaseService:FirebaseService
   ){
     this.searchForm = this.formBuilder.group({
       search:""
     });
   }
+
   ngOnInit(): void {
     this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
   }

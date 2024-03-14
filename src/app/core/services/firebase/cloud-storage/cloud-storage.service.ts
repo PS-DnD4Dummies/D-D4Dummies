@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Storage, ref, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, listAll, getDownloadURL } from '@angular/fire/storage';
 import { uploadBytes } from '@firebase/storage';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CloudStorageService {
+  urls: String[];
 
-  constructor(private cloudStorage:Storage) { }
+  constructor(private cloudStorage:Storage) { 
+    this.urls = [];
+  }
 
   //https://blog.angular-university.io/angular-file-upload/
   //Solo aceptar ficheros jpeg, jpg, png en el frontend
@@ -30,12 +34,20 @@ export class CloudStorageService {
     });
   }
 
-  async takeProfilePhoto(fileRoute:string): Promise<string>{
+  async getImagesFromFile(imageRoute:string):  Promise<String[]>{
+    this.urls = [];
 
-    const storageRef = ref(this.cloudStorage, fileRoute);
+    const storageRef = ref(this.cloudStorage, imageRoute);
 
-    const downloadURL = await getDownloadURL(storageRef);
-    return downloadURL;
+    listAll(storageRef).then(async response => {
+      for(let item of response.items) {
+        const url = await getDownloadURL(item)
+        this.urls.push(url);
+      }
+    })
+
+    return this.urls;
+    
   }
   
 }

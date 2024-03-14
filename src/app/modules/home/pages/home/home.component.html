@@ -1,6 +1,6 @@
 <main class="main-page">
   <section class="banner">
-      <img class="banner__image" src="https://firebasestorage.googleapis.com/v0/b/dnd4dummies-ccc4c.appspot.com/o/mainPagePhotos%2Fcoastal-city.jpg?alt=media&token=e6510311-bb0d-4d4f-8afe-0449291894fa">
+      <img class="banner__image" [src]="homeImages[0]">
       <p class="banner__hover-text">Welcome to Dungeons and Dragons for Dummies!</p>
   </section>
 
@@ -8,8 +8,7 @@
       
       <figure class="main-sections-banner main-sections--glossary-banner">
           <a [routerLink]="routesURL.GLOSSARY.DEFAULT">
-              <!-- <img class="main-sections__image" [src]='getImageRoute("mainPagePhotos/vertical-banner-glossary.jpg")' HACE MIL SOLICITUDES SIN PARAR> -->
-              <img class="main-sections__image" src="https://firebasestorage.googleapis.com/v0/b/dnd4dummies-ccc4c.appspot.com/o/mainPagePhotos%2Fvertical-banner-glossary.jpg?alt=media&token=1efea876-b7a7-4010-a499-1fc4efa99af5">
+              <img class="main-sections__image" [src]="homeImages[3]">
           </a>
           <label class="main-sections__label">Glossary</label>
       </figure>
