@@ -57,14 +57,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5em 1em; 
-    background: #333;
+    // background: #333;
     height: 2.1em;
 }
 
-.main-menu {
+
 
 nav{
-	background-color: #333;
+	// background-color: #333;
 
     ul{
         list-style: none;
@@ -72,20 +72,10 @@ nav{
         padding: 0;
 
         button{
-            color: white;
+            color: black;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -98,36 +88,13 @@ nav{
     position: relative;
 }
 
-// .example-container {
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-// }
 
 
 
-// .mat-sidenav {
-//     display: flex;
-//     flex-direction: column;
-// }
 
-.example-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
 
-    mat-sidenav-content{
-        display: flex;
-        flex-direction: column;
-    }
-}
-.mat-drawer-container {
-    background-color: unset;
-}
+
+
 
 
 .main-menu__search-bar-input {
@@ -147,10 +114,3 @@ nav{
 	text-decoration: none;
 	padding: 15px 15px 15px 20px;
 }
-
-// #html{
-// 	margin: auto;
-// 	padding: 20px;
-// 	max-width: 900px;
-// 	background: white;
-// }

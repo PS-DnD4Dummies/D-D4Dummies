@@ -87,6 +87,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
+    //this.auth.signOut();
     this.loadImages();
   }
 
