@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {NgOptimizedImage} from "@angular/common";
+import {ModalService} from "@core/services/modal/modal.service";
 
 @Component({
   selector: 'app-descriptive-glossary-element',
@@ -12,7 +12,6 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './descriptive-glossary-element.component.scss'
 })
 export class DescriptiveElementComponent {
-  @Input() item: any; // Aquí deberías definir una interfaz para el elemento según tu estructura de datosmyImages: { [key: string]: string } = {
   myImages: { [key: string]: string } = {
     Barbarian: '/assets/glossary_icons/classes_icons/barbarian.png',
     Bard: '/assets/glossary_icons/classes_icons/bard.png',
@@ -38,14 +37,12 @@ export class DescriptiveElementComponent {
   };
   defaultImage: string = '/assets/glossary_icons/empty.png';
 
-  constructor(private  dndApiService: DndApiService) {
-  }
-  ngOnInit(): void {
-    //this.loadItems();
-  }
+  @Input() item: any;
+
+  constructor(private modalService: ModalService) {}
 
   seeMore(item: any): void {
-    // Implementa lo que desees hacer cuando se selecciona un elemento
+    this.modalService.openModal(item);
   }
 
 }
