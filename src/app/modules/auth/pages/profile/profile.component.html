@@ -3,7 +3,7 @@
         <article class="user-box">
             <figure class="user-box__profile">
                 <img 
-                    src="/src/images/omnicomteamx_logo.png"
+                    src={{profilePhotoURL}}
                     class="user-box__img"
                 >
             </figure>
@@ -34,13 +34,12 @@
 
         <article class="character-list"></article>
         <form (ngSubmit)="updateProfile()">       
-            <input type="text" [(ngModel)]="newDisplayName" name="newDisplayName" placeholder="Nuevo nombre">
+            <input type="text" [(ngModel)]="newUsername" name="newUsername" placeholder="Set a new username">
+            <input type="date" [(ngModel)]="newBirthDate" name="newBirthDate" placeholder="Set a birthdate">
+            <input type="text" [(ngModel)]="newEmail" name="newEmail" placeholder="Set a new email">
+            <input type="text" [(ngModel)]="newPassword" name="newPassword" placeholder="Set a new password">
             <input type="file" (change)="onFileSelected($event)" accept="image/*">
-  
-            <!-- Mostrar la URL de la imagen seleccionada -->
-            <div *ngIf="selectedFileUrl">
-              <input type="text" [(ngModel)]="newPhotoURL" name="newPhotoURL" placeholder="Nueva URL de foto" readonly>
-            </div>
+
             
             <button type="submit">update</button>
         </form>

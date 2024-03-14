@@ -68,5 +68,18 @@ export class FirebaseService {
     return true;
   }
 
+  async updateProfileInfo(user:User, changes : {[key:string]:any}, profilePhoto:File | null):Promise<Boolean>{
+
+    let profilePhotoURL : string = '';
+    if(profilePhoto != null){
+      profilePhotoURL = await this.cloudStorageService.uploadProfilePhoto(user.uid, profilePhoto);
+      changes["photoURL"] = profilePhotoURL;
+      
+    }
+    this.firestoreService.updateUser(user, changes);
+    //this.authService.updateProfile(user, profilePhotoURL);
+    return true;
+  }
+
 
 }
