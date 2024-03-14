@@ -11,7 +11,7 @@ import {ModalService} from "@core/services/modal/modal.service";
   templateUrl: './descriptive-glossary-element.component.html',
   styleUrl: './descriptive-glossary-element.component.scss'
 })
-export class DescriptiveElementComponent {
+export class DescriptiveGlossaryElementComponent {
   myImages: { [key: string]: string } = {
     Barbarian: '/assets/glossary_icons/classes_icons/barbarian.png',
     Bard: '/assets/glossary_icons/classes_icons/bard.png',

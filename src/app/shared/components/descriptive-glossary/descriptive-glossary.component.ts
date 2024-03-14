@@ -3,7 +3,7 @@ import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {ActivatedRoute} from "@angular/router";
 import {NgForOf, NgIf, UpperCasePipe} from "@angular/common";
 import {
-  DescriptiveElementComponent
+  DescriptiveGlossaryElementComponent
 } from "@shared/components/descriptive-glossary-element/descriptive-glossary-element.component";
 
 @Component({
@@ -13,11 +13,12 @@ import {
     NgIf,
     NgForOf,
     UpperCasePipe,
-    DescriptiveElementComponent
+    DescriptiveGlossaryElementComponent,
   ],
   templateUrl: './descriptive-glossary.component.html',
   styleUrl: './descriptive-glossary.component.scss'
 })
+
 export class DescriptiveGlossaryComponent implements OnInit {
   selectedSection?: string | null;
   @Input() items: any[]=[]; // Aquí deberías definir una interfaz para los elementos según tu estructura de datos
