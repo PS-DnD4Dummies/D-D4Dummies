@@ -5,19 +5,14 @@
     (logInGoogleEmitter)="logInWithGoogle()"
     [validEmailPassword]="validEmailPassword"  
 ></app-login>
-<mat-sidenav-container class="example-container" autosize (backdropClick)="close('backdrop')" [hasBackdrop]="true" >
-    <mat-sidenav #sidenav opened mode="side" position="end" (keydown.escape)="close('escape')" disableClose>
+<!-- <mat-sidenav-container class="example-container" (backdropClick)="close('backdrop')" [hasBackdrop]="true" autosize  >
+    <mat-sidenav #sidenav mode="over" position="end" (keydown.escape)="close('escape')" autoFocus="true">
         <mat-sidenav-content>
-            <button mat-button>Prueba</button>
-            <button mat-button>Prueba2</button>
+            <button mat-button [routerLink]="routesURL.AUTH.PROFILE">Profile</button>
+            <button mat-button (click)="signOut();sidenav.close()">Sign Out</button>
         </mat-sidenav-content>
-        
     </mat-sidenav>
-    <!-- <mat-sidenav-content class="mat-sidenav">
-        <button>Prueba</button>
-        <button>Prueba2</button>
-    </mat-sidenav-content> -->
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 <header class="main-container">
     <section class="upper-bar">
         <div class="upper-bar__main-logo">
@@ -28,12 +23,14 @@
         </div>
         
         <div class="upper-bar__login">
-            <button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
+            <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
                 <img class="upper-bar__login-logo-image" src="/assets/images/login.png">
             </button>
-            <button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [routerLink]="routesURL.AUTH.PROFILE" (click)="sidenav.open()">
+            <!-- <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
                 <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">  
-                <!-- <img src="https://lh3.googleusercontent.com/a/ACg8ocIuC0UthtFqT8J_NcYvpBhhwI9qNETu-wZBSGDt_EgO-BU=s1024"> -->
+            </button> -->
+            <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [routerLink]="routesURL.AUTH.PROFILE">
+                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">  
             </button>
         </div>
 

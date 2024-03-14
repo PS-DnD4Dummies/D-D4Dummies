@@ -5,6 +5,7 @@ import { AuthenticationFirebaseService } from '@core/services/firebase/authentic
 import { LogInData } from '@data/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -62,21 +63,22 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth:AuthenticationFirebaseService
+    private auth:AuthenticationFirebaseService,
+    private _snackBar: MatSnackBar
   ){
     this.searchForm = this.formBuilder.group({
       search:""
     });
   }
 
-  @ViewChild('sidenav') sidenav!: MatSidenav;
+  /*@ViewChild('sidenav') sidenav!: MatSidenav;
 
   reason = '';
 
   close(reason: string) {
     this.reason = reason;
     this.sidenav.close();
-  }
+  }*/
 
 
   ngOnInit(): void {
@@ -95,6 +97,12 @@ export class HeaderComponent implements OnInit {
     this.visibilityPopUpLogIn = !this.visibilityPopUpLogIn;
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{
+      duration:3000
+    });
+  }
+
 
   logIn(logInData:LogInData){
     this.auth.signIn(logInData.email,logInData.password).then(result => {
@@ -108,8 +116,17 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  signOut(){
+    this.auth.signOut().then(result => {
+      this.openSnackBar("Sign Out","Close")
+    })
+  }
+
   logInWithGoogle(){
-    this.auth.signInWithGoogle().then(result=>console.log(result));
+    this.auth.signInWithGoogle().then(result=>{
+      console.log(result)
+      this.visibilityPopUpLogIn = false;
+    });
     
   }
 
