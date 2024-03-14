@@ -1,11 +1,14 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ModalService } from "@core/services/modal/modal.service";
 import { Subscription } from "rxjs";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-section-card',
   standalone: true,
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './section-card.component.html',
   styleUrl: './section-card.component.scss'
 })
