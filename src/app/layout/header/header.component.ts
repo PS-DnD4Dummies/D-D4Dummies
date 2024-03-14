@@ -19,6 +19,10 @@ export class HeaderComponent implements OnInit {
 
   glossaryLiContents = [
     {
+      text:"Main Glossary",
+      route:"glossary"
+    },
+    {
       text:"Races",
       route:"glossary/races"
     },
@@ -93,6 +97,7 @@ export class HeaderComponent implements OnInit {
 
   openPopUp(){
     this.visibilityPopUpLogIn = true;
+    console.log("a")
   }
 
   logIn(logInData:LogInData){
