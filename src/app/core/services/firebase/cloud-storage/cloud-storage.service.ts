@@ -35,18 +35,18 @@ export class CloudStorageService {
   }
 
   async getImagesFromFile(imageRoute:string):  Promise<String[]>{
-    this.urls = [];
+    let urls: String[] = [];  
 
-    const storageRef = ref(this.cloudStorage, imageRoute);
+    const storageRef = await ref(this.cloudStorage, imageRoute);
 
-    listAll(storageRef).then(async response => {
+    await listAll(storageRef).then(async response => {
       for(let item of response.items) {
-        const url = await getDownloadURL(item)
-        this.urls.push(url);
+        const url = await getDownloadURL(item);
+        urls.push(url);
       }
     })
 
-    return this.urls;
+    return urls;
     
   }
   

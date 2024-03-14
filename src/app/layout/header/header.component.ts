@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
   routesURL = ROUTES;
   searchForm;
+  images: Map<String, String> = new Map();
 
   glossaryLiContents = [
     {
@@ -60,15 +61,36 @@ export class HeaderComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
       search:""
     });
+
   }
 
   ngOnInit(): void {
     this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
+    this.loadImages();
   }
 
   onSubmitForm(searchFormData:any){
     /*POR IMPLEMENTAR*/
     console.log(searchFormData)
+  }
+
+  async loadImages(){
+    this.images.clear();
+
+    var url = this.firebaseService.getImagesFromFile("miscPhotos/");
+    await url.then((links) => {
+      const regex = /%2F([^?]+)/;
+      var urls = links; 
+
+      for (let item of urls){
+        const match = item.match(regex);
+
+        if (match !== null){
+          this.images.set(decodeURIComponent(match[1]), item);
+        }
+      }
+      
+    })
   }
 
 }

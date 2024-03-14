@@ -1,6 +1,6 @@
 <main class="main-page">
   <section class="banner">
-      <img class="banner__image" [src]="homeImages[0]">
+      <img class="banner__image" [src]='images.get("coastal-city.jpg")'>
       <p class="banner__hover-text">Welcome to Dungeons and Dragons for Dummies!</p>
   </section>
 
@@ -8,7 +8,7 @@
       
       <figure class="main-sections-banner main-sections--glossary-banner">
           <a [routerLink]="routesURL.GLOSSARY.DEFAULT">
-              <img class="main-sections__image" [src]="homeImages[3]">
+              <img class="main-sections__image" [src]='images.get("vertical-banner-glossary.jpg")'>
           </a>
           <label class="main-sections__label">Glossary</label>
       </figure>

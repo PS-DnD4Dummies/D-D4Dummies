@@ -9,10 +9,9 @@ import { FirebaseService } from '@core/services/firebase/firebase.service';
 })
 export class HomeComponent implements OnInit {
 
-  homeImages: String[];
+  images: Map<String, String> = new Map();
 
   constructor(private firebaseService:FirebaseService) { 
-    this.homeImages = [];
   }
 
   routesURL = ROUTES;
@@ -37,14 +36,23 @@ export class HomeComponent implements OnInit {
   }
 
   async loadImages(){
-    this.homeImages = [];
+    
+    if (this.images.size > 0) {
+      return
+    }
 
     var url = this.firebaseService.getImagesFromFile("mainPagePhotos/");
-    await url.then((link) => {
+    await url.then((links) => {
+      const regex = /%2F([^?]+)/;
+      var urls = links; 
 
-      var urls = link; 
-      this.homeImages = urls;
-      console.log(urls);
+      for (let item of urls){
+        const match = item.match(regex);
+
+        if (match !== null){
+          this.images.set(decodeURIComponent(match[1]), item);
+        }
+      }
       
     })
   }
