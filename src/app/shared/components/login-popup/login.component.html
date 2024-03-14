@@ -32,7 +32,7 @@
             </section>
             <div class="confirmation_buttons">
                 <button class="confirmation__log-in-btn" type="submit">Log In</button>
-                <button class="confirmation__log-in-btn">Google</button>
+                <button class="confirmation__log-in-btn" (click)="logInWithGoogle()">Google</button>
             </div>
 
             <p *ngIf="!validEmailPassword" class="wrongEmailPassword_text">Your email and password are incorrect</p>

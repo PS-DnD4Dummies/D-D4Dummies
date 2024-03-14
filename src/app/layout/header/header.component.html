@@ -1,7 +1,8 @@
 <app-login 
     *ngIf="visibilityPopUpLogIn"
-    (closePopUpEmitter)="closePopUp($event)"
+    (closePopUpEmitter)="openClosePopUp()"
     (logInEmitter)="logIn($event)"
+    (logInGoogleEmitter)="logInWithGoogle()"
     [validEmailPassword]="validEmailPassword"  
 ></app-login>
 <mat-sidenav-container class="example-container" autosize (backdropClick)="close('backdrop')" [hasBackdrop]="true" >
@@ -27,7 +28,7 @@
         </div>
         
         <div class="upper-bar__login">
-            <button class="upper-bar__login-logo-action" (click)="openPopUp()" *ngIf="currentUser===undefined || currentUser===null">
+            <button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
                 <img class="upper-bar__login-logo-image" src="/assets/images/login.png">
             </button>
             <button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [routerLink]="routesURL.AUTH.PROFILE" (click)="sidenav.open()">

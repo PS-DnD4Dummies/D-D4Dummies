@@ -15,6 +15,7 @@ export class LoginComponent {
 
   @Output() closePopUpEmitter = new EventEmitter<boolean>();
   @Output() logInEmitter = new EventEmitter<LogInData>();
+  @Output() logInGoogleEmitter = new EventEmitter<any>();
 
   @Input() validEmailPassword!: boolean;
 
@@ -53,6 +54,10 @@ export class LoginComponent {
       };
       this.logInEmitter.emit(this.logInFormData);
     }
+  }
+
+  logInWithGoogle(){
+    this.logInGoogleEmitter.emit();
   }
 
 }

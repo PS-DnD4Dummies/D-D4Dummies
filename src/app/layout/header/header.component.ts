@@ -91,14 +91,10 @@ export class HeaderComponent implements OnInit {
     console.log(searchFormData)
   }
 
-  closePopUp($event:any){
-    this.visibilityPopUpLogIn = false;
+  openClosePopUp(){
+    this.visibilityPopUpLogIn = !this.visibilityPopUpLogIn;
   }
 
-  openPopUp(){
-    this.visibilityPopUpLogIn = true;
-    console.log("a")
-  }
 
   logIn(logInData:LogInData){
     this.auth.signIn(logInData.email,logInData.password).then(result => {
@@ -110,6 +106,11 @@ export class HeaderComponent implements OnInit {
         this.visibilityPopUpLogIn = false;
       }
     });
+  }
+
+  logInWithGoogle(){
+    this.auth.signInWithGoogle().then(result=>console.log(result));
+    
   }
 
 
