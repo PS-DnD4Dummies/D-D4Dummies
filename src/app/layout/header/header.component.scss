@@ -1,8 +1,4 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
+
 
 .main-container{
     display: flex;
@@ -60,47 +56,85 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
     padding: 0.5em 1em; 
     background: #333;
-    height: 1em;
+    height: 2.1em;
 }
+
+.main-menu {
 
 nav{
 	background-color: #333;
 
-    
+    ul{
+        list-style: none;
+        margin:0;
+        padding: 0;
+
+        button{
+            color: white;
+        }
+    }
 }
 
-.menu-horizontal{
-	list-style: none;
-    list-style: none;
-	display: flex;
-	justify-content: space-between;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* BARRA DE BÚSQUEDA */
+
+.main-menu__search-bar {
+    position: relative;
 }
 
-.menu-horizontal > li > a{
-	display: block;
-	padding: .408em;
-	color: white;
-	text-decoration: none;
+// .example-container {
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+// }
+
+
+
+// .mat-sidenav {
+//     display: flex;
+//     flex-direction: column;
+// }
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    mat-sidenav-content{
+        display: flex;
+        flex-direction: column;
+    }
+}
+.mat-drawer-container {
+    background-color: unset;
 }
 
-.menu-horizontal > li:hover{
-	background-color: red;
-}
 
-.menu-vertical{
-	position: absolute;
-	display: none;
-	list-style: none;
-	width: 200px;
-	background-color: rgba(0, 0, 0, .5);
-}
-
-.menu-horizontal li:hover .menu-vertical{
-	display: block;
+.main-menu__search-bar-input {
+    padding: 0.625em 2.1875em 0.625em 0.9375em; /* 10px / 16px = 0.625em, 35px / 16px = 2.1875em, 15px / 16px = 0.9375em */
+    border: none;
+    border-radius: 100px;
+    outline: none;
 }
 
 .menu-vertical li:hover{
@@ -114,10 +148,9 @@ nav{
 	padding: 15px 15px 15px 20px;
 }
 
-#html{
-	margin: auto;
-	padding: 20px;
-	max-width: 900px;
-	background: white;
-
-}
+// #html{
+// 	margin: auto;
+// 	padding: 20px;
+// 	max-width: 900px;
+// 	background: white;
+// }

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 import { LogInData } from '@data/interfaces';
 import { BehaviorSubject } from 'rxjs';
 import { FirebaseService } from '@core/services/firebase/firebase.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +21,10 @@ export class HeaderComponent implements OnInit {
 
 
   glossaryLiContents = [
+    {
+      text:"Main Glossary",
+      route:"glossary"
+    },
     {
       text:"Races",
       route:"glossary/races"
@@ -60,13 +66,24 @@ export class HeaderComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private auth:AuthenticationFirebaseService,
-    private firebaseService:FirebaseService
+    private firebaseService:FirebaseService,
+    private _snackBar: MatSnackBar
   ){
     this.searchForm = this.formBuilder.group({
       search:""
     });
 
   }
+
+  /*@ViewChild('sidenav') sidenav!: MatSidenav;
+
+  reason = '';
+
+  close(reason: string) {
+    this.reason = reason;
+    this.sidenav.close();
+  }*/
+
 
   ngOnInit(): void {
     this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
@@ -78,13 +95,16 @@ export class HeaderComponent implements OnInit {
     console.log(searchFormData)
   }
 
-  closePopUp($event:any){
-    this.visibilityPopUpLogIn = false;
+  openClosePopUp(){
+    this.visibilityPopUpLogIn = !this.visibilityPopUpLogIn;
   }
 
-  openPopUp(){
-    this.visibilityPopUpLogIn = true;
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{
+      duration:3000
+    });
   }
+
 
   logIn(logInData:LogInData){
     this.auth.signIn(logInData.email,logInData.password).then(result => {
@@ -97,6 +117,22 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  signOut(){
+    this.auth.signOut().then(result => {
+      this.openSnackBar("Sign Out","Close")
+    })
+  }
+
+  logInWithGoogle(){
+    this.auth.signInWithGoogle().then(result=>{
+      console.log(result)
+      this.visibilityPopUpLogIn = false;
+    });
+    
+  }
+
+
 
   parsePhotoGoogleURL(url: string): string {
     // Dividir la URL por el signo igual
