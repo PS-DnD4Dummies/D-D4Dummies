@@ -19,19 +19,33 @@ export class FirebaseService {
   
 
 
-  async signUpProcess(email:string,password:string):Promise<Boolean>{
-    const signUpCheck = await this.authService.signUp(email,password);
-    if(signUpCheck===null)  return false;
-
-    const user:User={
+  async signUpProcess(email: string, username: string, password: string, birthdate: string, photo: File | null): Promise<Boolean> {
+    const signUpCheck = await this.authService.signUp(email, password);
+    if (signUpCheck === null) return false;
+  
+    let profilePhotoURL:string = defaultProfilePhotoURL;
+  
+    if (photo !== null) {
+      try {
+        profilePhotoURL = await this.cloudStorageService.uploadProfilePhoto(signUpCheck.uid, photo); // ojo por si devuelve null
+      } catch (error) {
+        console.error("Error uploading file: ", error);
+        return false;
+      }
+    }
+  
+    const user: User = {
       uid: signUpCheck.uid,
       email: signUpCheck.email,
-      photoURL: signUpCheck.photoURL !== null ? signUpCheck.photoURL : defaultProfilePhotoURL
-    }
-
+      username: username,
+      birthdate: birthdate,
+      photoURL: profilePhotoURL !== null ? profilePhotoURL : defaultProfilePhotoURL
+    };
+  
+    console.log("Por ahora va bien");
     const createSchemaCheck = await this.firestoreService.addUser(user);
-    if(!createSchemaCheck) return false;
-    
+    if (!createSchemaCheck) return false;
+  
     return true;
   }
 
@@ -42,6 +56,8 @@ export class FirebaseService {
     const user:User={
       uid: signInCheck.uid,
       email: signInCheck.email,
+      username: signInCheck.username,
+      birthdate: signInCheck.birthdate,
       photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
     }
 

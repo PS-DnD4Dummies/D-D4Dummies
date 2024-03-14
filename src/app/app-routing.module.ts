@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ROUTES } from '@data/constanst/routes';
 
 const routes: Routes = [
   {
-    path:'',
+    path:ROUTES.HOME.DEFAULT,
     loadChildren: () => import('./modules/home/home.module').then(m=> m.HomeModule),
   },
   {
-    path:'glosario',
+    path:ROUTES.GLOSSARY.DEFAULT,
     loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule) 
   },
   {
-    path:'auth',
+    path:ROUTES.AUTH.DEFAULT,
     loadChildren: () => import('./modules/auth/auth.module').then(m=> m.AuthModule)
   }
   // {

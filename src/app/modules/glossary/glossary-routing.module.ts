@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { GlossaryComponent } from './pages/glossary/glossary.component';
 
 const routes: Routes = [
-  { path: '', component: GlossaryComponent }
+  { path: '', component: GlossaryComponent },
+  // { path: 'combat', component: GlossaryComponent }
 ];
 
 @NgModule({

@@ -6,9 +6,11 @@ import {FooterComponent} from "@layout/footer/footer.component";
 import {SharedModule} from "@shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,13 +20,13 @@ import { BrowserModule } from '@angular/platform-browser';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CoreModule, SharedModule],
+  imports: [BrowserModule,BrowserAnimationsModule, AppRoutingModule, CoreModule, SharedModule, HttpClientModule,FormsModule,ReactiveFormsModule],
   providers: [
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
-    
+
   ],
   bootstrap: [AppComponent],
   exports: []

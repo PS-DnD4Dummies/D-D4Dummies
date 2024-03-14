@@ -1,164 +1,95 @@
-body {
-    /* background: url(/src/images/horizontal-wallpaper.jpg) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.user-info{
+    background-color: #1C3C47;
+    padding: .5em;
+
+    color: #c9c5c5;
 }
 
-.login-container {
+.user-box{
+    display: grid;
+
+    grid-template-rows: auto auto;
+    grid-template-columns: 17em auto;
+
+    background-color: #333;
+
+    border-radius: .5em;
+    border: .15em solid #000;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);    
+
+}
+
+.user-box__profile{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 17em;
+    padding-top: 1.2em;
+    padding-bottom: 1.3em;
+
+    grid-row-start: 1;
+    grid-row-end:  3;
+
+}
+
+.user-box__img{
+    width: 10em;
+    height: 10em;
+
+    border: .12em solid black;
+    border-radius: .5em;
+    box-shadow: .8em .7em .5em rgba(0, 0, 0, 0.5);
+}
+
+.user-box__title{
     position: relative;
-    width: 440px;
-    height: 480px;
-    background: transparent;
-    border: 2px solid #000;
-    border-radius: 10px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 20px #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    
+    top: .8em;
+    right: .6em;
+
+    grid-row: 1;
+    grid-column:  2;
 }
 
-.login-container .login-form-box {
-    width: 100%;
-    padding: 40px;
-}
+.user-box__info{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-evenly;
 
-.login-container__close-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    background-color: #000;
-    font-size: 2em;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 10px;
-    cursor: pointer;
-    z-index: 1;
+    grid-row: 2;
+    grid-column:  2;
 
-}
-
-.login-container__close-icon a{
-    text-decoration: none;
-    /* Solución temporal */
-    position: absolute;
-    top: 10%;
-}
-
-.login-form-box__top-separator {
-    position: absolute;
-    top: 40px;
-    width: 80%;
-}
-.login-form-box h1 {
-    font-size: 2em;
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.login-section {
     position: relative;
-    width: 100%;
-    height: 50px;
-    border-bottom: 2px solid #000;
-    margin: 30px 0;
+    bottom: 2.2em;
+    left: 2em;
+
 }
 
-.login-section label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    font-size: 1em;
-    transform: translateY(-50%);
-    font-weight: 700;
-    pointer-events: none;
-    transition: 0.5s
-}
-
-.login-section input:focus~label,
-.login-section input:valid~label {
-    top: -5px;
-}
-
-.login-section input {
-    width: 90%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    font-weight: 700;
-    padding: 0px 45px 0px 5px;
-}
-
-.login-section__icon {
-    position: absolute;
-    font-size: 1.2em;
-    right: 8px;
-    top: 15px;
-    line-height: 57px;
-}
-
-.login-section__remember-forgot {
-    font-size: .9em;
-    font-weight: 700;
-    margin: -15px 0 15px;
+.user-box__portion{
     display: flex;
-    justify-content: space-between;
+
 }
 
-.login-section__remember-forgot label input {
-    accent-color: #000;
-    margin-right: 10px;
+.user-box__text{
+    position: relative;
+    left: 1em;
 }
 
-.login-section__remember-forgot a {
-    text-decoration: none;
-    color: #000;
+.decorative-line{
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+    margin-left: 7%;
+    margin-right: 7%;
+    height: .05em;
+
+    background-color: #333;
+    border: .005em solid #1f1e1e;
+    border-radius: .1em;
 }
 
-.login-section__remember-forgot a:hover {
-    text-decoration: underline;
-}
-
-.confirmation__log-in-btn {
-    width: 100%;
-    height: 45px;
-    background: #000;
-    color: white;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 700;
-}
-
-.confirmation__register {
-    font-size: .9em;
-    text-align: center;
-    font-weight: 600;
-    margin: 25px 0 10px;
-}
-
-.confirmation .confirmation__register-action {
-    color: #4d0404;
-    text-decoration: none;
-    font-weight: 800;
-}
-
-.confirmation__register-action:hover {
-    text-decoration: underline;
-}
-
-.login-form-box__bottom-separator {
-    position: absolute;
-    bottom: 40px;
-    width: 80%;
+.character-card{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+>>>>>>> registro
 }

@@ -1,42 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D&D For Dummies</title>
-  </head>
+<main class="main-page">
+  <section class="banner">
+      <img class="banner__image" src="/assets/images/coastal-city.jpg">
+      <p class="banner__hover-text">Welcome to Dungeons and Dragons for Dummies!</p>
+  </section>
 
-  <body>
-    <main>
-
-      <section class="banner_section">
-        <figure class="main_banner">
-          <img src="/assets/images/horizontal-wallpaper.jpg" alt="horizontal-wallpaper">
-          <figcaption>Title of the section</figcaption>
-        </figure>
-      </section>
-
-      <section class="main_content">
-        <figure class="character-creator-banner">
-          <a href="character-creator.html">
-            <img src="/assets/images/vertical-banner.jpg" alt="vertical-wallpaper">
+  <section class="main-sections">
+      
+      <figure *ngFor="let banner of banners" class="main-sections__glossary-banner">
+          <a [routerLink]="banner.routeLink">
+              <img class="main-sections__image" [src]="banner.imageSrc">
           </a>
-        </figure>
+          <label class="main-sections__label">{{banner.bannerLabel}}</label>
+      </figure>
 
-        <figure class="glossary-banner">
-          <a href="glossary-index.html">
-            <img src="/assets/images/vertical-banner.jpg" alt="vertical-wallpaper">
-          </a>
-        </figure>
+  </section>
 
-        <figure class="forum-banner">
-          <a href="forum.html">
-            <img src="/assets/images/vertical-banner.jpg" alt="vertical-wallpaper">
-          </a>
-        </figure>
-      </section>
-
-    </main>
-  </body>
-
-</html>
+</main>

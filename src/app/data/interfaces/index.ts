@@ -3,6 +3,8 @@ import { Alignment, Class, Race, Skill } from "@data/enums/enum";
 export interface User {
     uid:string,
     email:string,
+    username:string,
+    birthdate:string,
     photoURL:string
 }
 
