@@ -36,10 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   async loadImages(){
-    
-    if (this.images.size > 0) {
-      return
-    }
+    this.images.clear();
 
     var url = this.firebaseService.getImagesFromFile("mainPagePhotos/");
     await url.then((links) => {
