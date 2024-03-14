@@ -19,7 +19,24 @@
     <section class="lower-bar">
         <nav class="main-menu">
 
-            <ul class="main-menu__options main-menu__options--general">
+            <ul class="menu-horizontal">
+                <li>
+                    <a class="main-menu__label6" [routerLink]="routesURL.GLOSSARY.DEFAULT">Glossary</a>
+                    <ul class="menu-vertical">
+                        <li 
+                            *ngFor="let liItem of glossaryLiContents" class="main-menu__glossary-section">
+                            <a [routerLink]="liItem.route">{{liItem.text}}</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li><a class="main-menu__label" [routerLink]="routesURL.CHARACTER.DEFAULT">Character Creator</a></li>
+
+                <li><a class="main-menu__label" [routerLink]="routesURL.FORUM.DEFAULT">Forum</a></li>
+    
+            </ul>
+
+            <!-- <ul class="main-menu__options main-menu__options--general">
 
                 <li class="main-menu__link main-menu__link--glossary">
                     <a class="main-menu__label main-menu__label--glossary" [routerLink]="routesURL.GLOSSARY.DEFAULT">Glossary</a>
@@ -32,11 +49,11 @@
                     </ul>
                 </li>
 
-                <!-- <li class="main-menu__link"><a class="main-menu__label" [routerLink]="routesURL.CHARACTER.DEFAULT">Character Creator</a></li>
+                <li class="main-menu__link"><a class="main-menu__label" [routerLink]="routesURL.CHARACTER.DEFAULT">Character Creator</a></li>
 
-                <li class="main-menu__link"><a class="main-menu__label" [routerLink]="routesURL.FORUM.DEFAULT">Forum</a></li> -->
+                <li class="main-menu__link"><a class="main-menu__label" [routerLink]="routesURL.FORUM.DEFAULT">Forum</a></li>
 
-            </ul>
+            </ul> -->
 
         </nav>
 
