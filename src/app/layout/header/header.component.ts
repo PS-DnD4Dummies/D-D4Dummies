@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 import { LogInData } from '@data/interfaces';
 import { BehaviorSubject } from 'rxjs';
+import { FirebaseService } from '@core/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   routesURL = ROUTES;
   searchForm;
+  images: Map<String, String> = new Map();
 
 
   glossaryLiContents = [
@@ -57,17 +59,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth:AuthenticationFirebaseService
+    private auth:AuthenticationFirebaseService,
+    private firebaseService:FirebaseService
   ){
     this.searchForm = this.formBuilder.group({
       search:""
     });
+
   }
+
   ngOnInit(): void {
-    this.auth.currentAuthStatus.subscribe(result => {
-      console.log(result);
-      this.currentUser=result;
-    });
+    this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
+    this.loadImages();
   }
 
   onSubmitForm(searchFormData:any){
@@ -112,5 +115,24 @@ export class HeaderComponent implements OnInit {
 }
 
   
+
+  async loadImages(){
+    this.images.clear();
+
+    var url = this.firebaseService.getImagesFromFile("miscPhotos/");
+    await url.then((links) => {
+      const regex = /%2F([^?]+)/;
+      var urls = links; 
+
+      for (let item of urls){
+        const match = item.match(regex);
+
+        if (match !== null){
+          this.images.set(decodeURIComponent(match[1]), item);
+        }
+      }
+      
+    })
+  }
 
 }
