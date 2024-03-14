@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'; //para usar el form que cambia los
 import { FirestoreService } from '@core/services/firebase/firestore/firestore.service';
 import { FirebaseService } from '@core/services/firebase/firebase.service';
 import { CloudStorageService } from '@core/services/firebase/cloud-storage/cloud-storage.service';
+import { serverTimestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-profile',
@@ -103,12 +104,11 @@ export class ProfileComponent {
         return;
       }
     }
-
     if(Object.keys(changes).length){
-
+      
       this.firestoreService.readUser(this.auth.uid).then(user => {
         if (user) { // Asegura que user no es null
-          this.firebaseService.updateProfileInfo(user, changes, this.selectedFile)
+          this.firebaseService.updateProfileInfo(user, changes, this.selectedFile, this.auth)
         } else {
           // Maneja el caso de que user sea null, si es necesario
           console.log('No se encontró el usuario.');

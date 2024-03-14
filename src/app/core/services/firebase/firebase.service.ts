@@ -4,6 +4,7 @@ import { FirestoreService } from './firestore/firestore.service';
 import { CloudStorageService } from './cloud-storage/cloud-storage.service';
 import { User } from '@data/interfaces';
 import { defaultProfilePhotoURL } from '@data/constanst/url';
+import { UserCredential } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -68,8 +69,8 @@ export class FirebaseService {
     return true;
   }
 
-  async updateProfileInfo(user:User, changes : {[key:string]:any}, profilePhoto:File | null):Promise<Boolean>{
-
+    // no tengo bien claro cual es el tipo de el user_auth
+  async updateProfileInfo(user:User, changes : {[key:string]:any}, profilePhoto:File | null, user_auth: any):Promise<Boolean>{
     let profilePhotoURL : string = '';
     if(profilePhoto != null){
       profilePhotoURL = await this.cloudStorageService.uploadProfilePhoto(user.uid, profilePhoto);
@@ -77,7 +78,7 @@ export class FirebaseService {
       
     }
     this.firestoreService.updateUser(user, changes);
-    //this.authService.updateProfile(user, profilePhotoURL);
+    this.authService.updateProfile(user_auth, profilePhotoURL);
     return true;
   }
 
