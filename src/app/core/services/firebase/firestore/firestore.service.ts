@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Character, User } from '@data/interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,26 @@ export class FirestoreService {
         console.log("Error al actualizar en firestore. Error: "+error);
         return null;
       })
+  }
+
+  readRealTimeUser(uid: string): Observable<any> {
+    return new Observable((subscriber) => {
+      const unsubscribe = onSnapshot(doc(this.firestore, "users", uid),
+        (doc) => {
+          if (doc.exists()) {
+            subscriber.next(doc.data());
+          } else {
+            subscriber.error("User not found");
+          }
+        },
+        (error) => {
+          subscriber.error(error);
+        }
+      );
+
+      // Cleanup on unsubscribe
+      return () => unsubscribe();
+    });
   }
 
 

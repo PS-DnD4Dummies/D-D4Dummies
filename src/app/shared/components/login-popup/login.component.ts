@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent {
   routes = ROUTES;
 
@@ -61,3 +62,4 @@ export class LoginComponent {
   }
 
 }
+

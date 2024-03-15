@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile, updatePassword, updateEmail } from '@angular/fire/auth';
 import { defaultProfilePhotoURL } from '@data/constanst/url';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { User as Usuario } from '@data/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +98,11 @@ export class AuthenticationFirebaseService {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         //const uid = user.uid;
+        /*const usuario : Usuario = {
+          uid: user.uid,
+          email: user.email!,
+          photoURL: user.photoURL!
+        }*/
         this.authStatusSub.next(user);
       } else {
         this.authStatusSub.next(null);
@@ -130,7 +136,26 @@ export class AuthenticationFirebaseService {
     })
   }
 
+  async updatePassword(newPassword: string) {
+    const user = await this.currentUser;
+    if (user) {
+      user.updatePassword(newPassword).then(() => {
+        console.log('Contraseña actualizada con éxito.');
 
+      }).catch((error: any) => {
+        console.error('Error al actualizar la contraseña:', error);
+
+      });
+    } else {
+      console.log('No hay usuario autenticado.');
+
+    }
+  }
+
+  async updateEmail(newEmail: string){
+    const user = await this.currentUser;
+    updateEmail(user, newEmail);
+  }
 
 
 

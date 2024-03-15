@@ -1,40 +1,48 @@
-<main class="user-info">
-    <article class="user-box">
-        <figure class="user-box__profile">
-            <img 
-                src="/src/assets/images/omnicomteamx_logo.png"
-                class="user-box__img"
-            >
-        </figure>
 
-        <h1 class="user-box__title">Account information</h1>
+    <main class="user-info">
+        <article class="user-box">
+            <figure class="user-box__profile">
+                <img 
+                    src={{profilePhotoURL}}
+                    class="user-box__img"
+                >
+            </figure>
 
-        <section class="user-box__info">
-            <div class="user-box__portion">
-                <label class="user-box__label">Username:</label>
-                <p type="text" class="user-box__text user-box__text--username">Your name</p>
-            </div>
-             
-            <div class="user-box__portion">
-                <label class="user-box__label">Email:</label>
-                <p type="text" class="user-box__text user-box__text--email">Your email</p>
-            </div>
+            <h1 class="user-box__title">Account information</h1>
 
-            <div class="user-box__portion">
-                <label class="user-box__label">Birth date:</label>
-                <p type="text" class="user-box__text user-box__text--birth-date">Your birth date</p>
-            </div>
+            <section class="user-box__info">
+                <div class="user-box__portion">
+                    <label class="user-box__label">Username:</label>
+                    <p type="text" class="user-box__text user-box__text--username">{{ username }}</p>
+                </div>
+                 
+                <div class="user-box__portion">
+                    <label class="user-box__label">Email:</label>
+                    <p type="text" class="user-box__text user-box__text--username">{{ email }}</p>
+                </div>
+
+                <div class="user-box__portion">
+                    <label class="user-box__label">Birth date:</label>
+                    <p type="text" class="user-box__text user-box__text--username">{{ birthDate }}</p>
+                </div>
+                
+            </section>
+
+        </article>
+
+        <h1 class="character-title">Update your information:</h1>
+        <form (ngSubmit)="updateProfile()">       
+            <input type="text" [(ngModel)]="newUsername" name="newUsername" placeholder="Set a new username">
+            <input type="text" [(ngModel)]="newEmail" name="newEmail" placeholder="Set a new email">
+            <input type="text" [(ngModel)]="newPassword" name="newPassword" placeholder="Set a new password">
+            <input type="date" [(ngModel)]="newBirthDate" name="newBirthDate" placeholder="Set a birthdate">
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
             
-        </section>
-
-    </article>
-
-    <hr class="decorative-line">
-
-    <h1 class="character-title">Your saved characters:</h1>
-
-    <article class="character-list-container">
-        <ul class="character-list"></ul>
-    </article>
-
-</main>
+            
+            <button type="submit">update</button>
+        </form>
+        <button type="submit">delete profile</button>
+        
+        <!-- <h1 class="character-title">Your saved characters:</h1>
+        <article class="character-list"></article> -->
+    </main>
