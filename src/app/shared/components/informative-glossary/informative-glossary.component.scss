@@ -95,17 +95,6 @@
   align-items: center;
 }
 
-.information-section__image-container{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-column: 2;
-  grid-row: 1;
-
-  position: relative;
-  bottom: 1em;
-}
-
 .information-section__image{
   max-width: 25em;
   max-height: 30em;
