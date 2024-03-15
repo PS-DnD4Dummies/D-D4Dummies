@@ -34,6 +34,8 @@ export class FirebaseService {
         return false;
       }
     }
+
+    this.authService.updateProfile(signUpCheck, undefined, profilePhotoURL);
   
     const user: User = {
       uid: signUpCheck.uid,
@@ -54,11 +56,12 @@ export class FirebaseService {
     const signInCheck = await this.authService.signInWithGoogle();
     if(signInCheck===null)  return false;
 
+    console.log(signInCheck);
     const user:User={
       uid: signInCheck.uid,
       email: signInCheck.email,
-      username: signInCheck.username,
-      birthdate: signInCheck.birthdate,
+      username: signInCheck.displayName,
+      birthdate: "",
       photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
     }
 
@@ -69,18 +72,23 @@ export class FirebaseService {
     return true;
   }
 
-    // no tengo bien claro cual es el tipo de el user_auth
   async updateProfileInfo(user:User, changes : {[key:string]:any}, profilePhoto:File | null, user_auth: any):Promise<Boolean>{
-    let profilePhotoURL : string = '';
+
+    if("password" in changes){
+      console.log("contraseña");
+      this.authService.updatePassword(changes["password"]);
+      delete changes["password"];
+    }
+
+    let profilePhotoURL : any = undefined;
     if(profilePhoto != null){
       profilePhotoURL = await this.cloudStorageService.uploadProfilePhoto(user.uid, profilePhoto);
       changes["photoURL"] = profilePhotoURL;
       
-    }
+    } 
     this.firestoreService.updateUser(user, changes);
-    this.authService.updateProfile(user_auth, profilePhotoURL);
-    if("password" in changes) this.authService.updatePassword(changes["password"]);
-    if("email" in changes) this.authService.updateEmail(changes["email"]);
+    this.authService.updateProfile(user_auth, undefined, profilePhotoURL);
+    
     return true;
   }
 

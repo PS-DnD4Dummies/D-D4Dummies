@@ -18,7 +18,8 @@ export class RegisterComponent {
   userPassword = '';
   userConfirmPassword = '';
   userBirthDate = '';
-  selectedFile: File | null = null;
+  displayImage: string = '/assets/images/default.jpg';
+  selectedFile: any;
 
   emailError: boolean = false;
   confirmEmailError: boolean = false;
@@ -42,8 +43,9 @@ export class RegisterComponent {
         alert('File size must be less than 10MB.');
         return;
       }
-  
+      
       this.selectedFile = file;
+      this.displayImage = URL.createObjectURL(this.selectedFile);
     } else {
       this.selectedFile = null;
     }

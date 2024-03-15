@@ -61,7 +61,6 @@ export class AuthenticationFirebaseService {
       const user = userCredential.user;
 
       this.emailVerification(user);
-      await this.updateProfile(user,undefined,defaultProfilePhotoURL);
 
       return user;
     } catch (error) {
@@ -128,6 +127,7 @@ export class AuthenticationFirebaseService {
       displayName: displayName!=undefined? displayName:user.displayName,
       photoURL:photoURL!=undefined? photoURL:user.photoURL,
     }).then( () => {
+      //console.log(photoURL);
       console.log("El usuario ha modificado el perfil correctamenta");
       return true;
     }).catch(error=>{
@@ -137,9 +137,8 @@ export class AuthenticationFirebaseService {
   }
 
   async updatePassword(newPassword: string) {
-    const user = await this.currentUser;
-    if (user) {
-      user.updatePassword(newPassword).then(() => {
+    if (this.auth.currentUser) {
+      await updatePassword(this.auth.currentUser, newPassword).then(() => {
         console.log('Contraseña actualizada con éxito.');
 
       }).catch((error: any) => {
@@ -151,14 +150,6 @@ export class AuthenticationFirebaseService {
 
     }
   }
-
-  async updateEmail(newEmail: string){
-    const user = await this.currentUser;
-    updateEmail(user, newEmail);
-  }
-
-
-
 
 
 }

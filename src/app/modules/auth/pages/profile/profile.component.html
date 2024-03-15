@@ -3,7 +3,7 @@
         <article class="user-box">
             <figure class="user-box__profile">
                 <img 
-                    src={{profilePhotoURL}}
+                    [src]="parsePhotoGoogleURL(profilePhotoURL)"
                     class="user-box__img"
                 >
             </figure>
@@ -28,20 +28,46 @@
                 
             </section>
 
+            <button mat-button (click)="signOut()" class="sign-out-button">Sign Out</button>
         </article>
 
-        <h1 class="character-title">Update your information:</h1>
-        <form (ngSubmit)="updateProfile()">       
-            <input type="text" [(ngModel)]="newUsername" name="newUsername" placeholder="Set a new username">
-            <input type="text" [(ngModel)]="newEmail" name="newEmail" placeholder="Set a new email">
-            <input type="text" [(ngModel)]="newPassword" name="newPassword" placeholder="Set a new password">
-            <input type="date" [(ngModel)]="newBirthDate" name="newBirthDate" placeholder="Set a birthdate">
-            <input type="file" (change)="onFileSelected($event)" accept="image/*">
-            
-            
-            <button type="submit">update</button>
-        </form>
-        <button type="submit">delete profile</button>
+        
+
+        <h1 class="update-info-label">Update your information:</h1>
+        <section >
+            <form (ngSubmit)="updateProfile()" class="update-profile-form">
+
+                <section class="update-profile-info">
+                    <section class="parameter parameter--username">
+                        <label class="parameter__label">New Username:</label>
+                        <input type="text" [(ngModel)]="newUsername" [ngClass]="{'input-error': usernameError}" name="newUsername" placeholder="Set a new username" class="parameter__text">
+                    </section>
+        
+                    <section class="parameter parameter--password">
+                        <label class="parameter__label">New Password:</label>
+                        <input type="text" [(ngModel)]="newPassword" [ngClass]="{'input-error': passwordError}" name="newPassword" placeholder="Set a new password" class="parameter__text">
+                    </section>
+                    <section class="parameter parameter--birthdate">
+                        <label class="parameter__label">New Birthdate:</label>
+                        <input type="date" [(ngModel)]="newBirthDate" [ngClass]="{'input-error': birthdateError}" name="newBirthDate" placeholder="Set a birthdate" class="parameter__text">
+                    </section>
+                </section>
+    
+                <section class="update-profile-image">
+                    <label>New Profile Picture:</label>
+                    <img [src]="displayImage" class="user-profile__img">
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    
+                    <button mat-button type="submit" class="update-profile-button">Update Profile</button>
+                </section>
+    
+                
+    
+            </form>
+        </section>
+        
+
+        
         
         <!-- <h1 class="character-title">Your saved characters:</h1>
         <article class="character-list"></article> -->

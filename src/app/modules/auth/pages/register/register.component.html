@@ -35,17 +35,11 @@
 
         <figure class="user-profile">
             <img 
-                src="/src/assets/images/omnicomteamx_logo.png"
+                [src]="displayImage"
                 class="user-profile__img"
             >
 
             <input type="file" id="file-upload" accept="image/*" (change)="onFileSelected($event)">
-            
-            <!-- <input type="file" id="file-upload" accept="image/*" style="display: none;">
-
-            <label for="file-upload" class="user-profile__button" style="cursor: pointer;">
-                Upload image
-            </label> -->
 
         </figure>
 

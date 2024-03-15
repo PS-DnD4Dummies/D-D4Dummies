@@ -86,7 +86,11 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.auth.currentAuthStatus.subscribe(result => this.currentUser=result);
+    this.auth.currentAuthStatus.subscribe(result => {
+      this.currentUser=result;
+      //console.log(result);
+    });
+    
     //this.auth.signOut();
     this.loadImages();
   }
@@ -126,7 +130,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logInWithGoogle(){
-    this.auth.signInWithGoogle().then(result=>{
+    this.firebaseService.signInWithGoogleProcess().then(result=>{
       console.log(result)
       this.visibilityPopUpLogIn = false;
     });
@@ -139,6 +143,10 @@ export class HeaderComponent implements OnInit {
     // Dividir la URL por el signo igual
     const partes = url.split('=');
     
+    if(!url.includes("https://lh3.googleusercontent.com")){
+      return url;
+    }
+
     // Verificar si se encontró el signo igual y la URL es válida
     if (partes.length === 2 && partes[0] && partes[1]) {
         // Modificar el tamaño del avatar a s1024
@@ -149,7 +157,7 @@ export class HeaderComponent implements OnInit {
         // Si la URL no tiene el formato esperado, devolver la URL original
         return url;
     }
-}
+  }
 
   
 

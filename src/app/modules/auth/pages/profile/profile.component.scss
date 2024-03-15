@@ -9,7 +9,7 @@
     display: grid;
 
     grid-template-rows: auto auto;
-    grid-template-columns: 17em auto;
+    grid-template-columns: 17em auto 10em;
 
     background-color: #333;
 
@@ -54,7 +54,8 @@
 .user-box__info{
     display:flex;
     flex-direction: column;
-    justify-content:space-evenly;
+    padding: 1em;
+
 
     grid-row: 2;
     grid-column:  2;
@@ -72,8 +73,76 @@
 .user-box__text{
     position: relative;
     left: 1em;
+    top: -1em;
 }
 
+.sign-out-button{
+    align-self: flex-end;
+    grid-row: 2;
+    grid-column:  3;
+}
+
+
+.update-profile-form{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.update-profile-info{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    position: relative;
+    left: 1.5em;
+
+    grid-column: 1;
+
+    
+}
+
+.update-profile-image{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    grid-column: 2;
+}
+
+.user-profile__img{
+    width: 12em;
+    height: 12em;
+
+    border: .12em solid black;
+    border-radius: .5em;
+    box-shadow: .6em .6em .2em rgba(0,0,0,0.1);
+}
+
+.update-profile-button{
+    width: 12em;
+}
+
+
+.parameter{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0;
+    
+}
+
+.parameter__label{
+    position: relative;
+    right: .5em;
+    top: .13em;
+    
+}
+
+.parameter__text{
+    background-color: #333;
+    color: #c9c5c5;
+    width: 25em;
+    font-size: 100%;
+}
 
 // .character-card{
 //     display:flex;

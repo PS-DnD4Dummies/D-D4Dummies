@@ -5,6 +5,9 @@ import { FirestoreService } from '@core/services/firebase/firestore/firestore.se
 import { FirebaseService } from '@core/services/firebase/firebase.service';
 import { CloudStorageService } from '@core/services/firebase/cloud-storage/cloud-storage.service';
 import { serverTimestamp } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
+import { ROUTES } from '@data/constanst/routes';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +15,7 @@ import { serverTimestamp } from '@angular/fire/firestore';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+
   username: string = '';
   email: string = '';
   birthDate: string = '';
@@ -21,15 +25,20 @@ export class ProfileComponent {
   newEmail: string = '';
   newPassword: string = '';
   newBirthDate: string = '';
-  selectedFile: File | null = null;
+  selectedFile: any;
 
   auth: any;
+  displayImage: string = '/assets/images/default.jpg'; 
+  usernameError: any;
+  passwordError: any;
+  birthdateError: any;
 
 
   constructor(
     private authService: AuthenticationFirebaseService, 
     private firestoreService : FirestoreService, 
-    private firebaseService : FirebaseService) {
+    private firebaseService : FirebaseService,
+    private router : Router) {
   }
 
   ngOnInit(): void {
@@ -38,21 +47,7 @@ export class ProfileComponent {
       if (auth) {
         // Usuario está iniciado sesión.
         this.auth = auth;
-        console.log("El UID del usuario es: " + auth.uid);
-    //     this.firestoreService.readUser(auth.uid).then(user => {
-    //       if (user) { // Asegura que user no es null
-
-    //       } else {
-    //         // Maneja el caso de que user sea null, si es necesario
-    //         console.log('No se encontró el usuario.');
-    //       }
-    //     });
-        
-    //   } else {
-    //     // No hay usuario iniciado sesión.
-    //     console.log("No hay usuario iniciado sesión.");
-    //   }
-    // });
+        //console.log("El UID del usuario es: " + auth.uid);
       this.firestoreService.readRealTimeUser(auth.uid).subscribe(user => {
         this.email = user.email;
         this.username = user.username;
@@ -63,20 +58,15 @@ export class ProfileComponent {
       }})
     }
   
+  signOut() {
+    this.authService.signOut();
+    this.router.navigate([ROUTES.HOME.DEFAULT]);
+  }
   
 
   updateProfile(): void {
     let changes : {[key:string]:any} = {};
 
-    if(this.newEmail != ''){
-      if (this.checkForValidEmail(this.newEmail)) {
-        changes["email"] = this.newEmail;
-      } else {
-        //this.emailError = true;
-        alert('Please enter a valid email address.');
-        return;
-      }
-    }
 
     if(this.newUsername != ''){
       if (this.checkForValidUsername(this.newUsername)) {
@@ -108,6 +98,13 @@ export class ProfileComponent {
         return;
       }
     }
+
+    if(this.selectedFile){
+      changes["photoURL"] = "";
+    }
+
+    //console.log(changes);
+
     if(Object.keys(changes).length){
       
       this.firestoreService.readUser(this.auth.uid).then(user => {
@@ -120,16 +117,6 @@ export class ProfileComponent {
       });
     } 
 
-/*     // Llama a la función updateProfile del servicio con los parámetros necesarios
-    this.firestoreService.readUser(this.auth.uid).then(user => {
-      if (user) { // Asegura que user no es null
-        this.firebaseService.updateProfileInfo(user, );
-      } else {
-        // Maneja el caso de que user sea null, si es necesario
-        console.log('No se encontró el usuario.');
-      }
-    }); */
-
   }
 
   isAdult(birthDate: string): boolean {
@@ -139,11 +126,6 @@ export class ProfileComponent {
     const adultDate = new Date(today.setFullYear(adultYear));
 
     return birthDateObj <= adultDate;
-  }
-
-  checkForValidEmail(email: string): boolean {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
   }
 
   checkForValidUsername(username: string): boolean {
@@ -174,8 +156,29 @@ export class ProfileComponent {
       }
   
       this.selectedFile = file;
+      this.displayImage = URL.createObjectURL(this.selectedFile);
     } else {
       this.selectedFile = null;
+    }
+  }
+
+  parsePhotoGoogleURL(url: string): string {
+    // Dividir la URL por el signo igual
+    const partes = url.split('=');
+    
+    if(!url.includes("https://lh3.googleusercontent.com")){
+      return url;
+    }
+
+    // Verificar si se encontró el signo igual y la URL es válida
+    if (partes.length === 2 && partes[0] && partes[1]) {
+        // Modificar el tamaño del avatar a s1024
+        partes[1] = 's1024';
+        // Unir las partes nuevamente para formar la URL modificada
+        return partes.join('=');
+    } else {
+        // Si la URL no tiene el formato esperado, devolver la URL original
+        return url;
     }
   }
 
