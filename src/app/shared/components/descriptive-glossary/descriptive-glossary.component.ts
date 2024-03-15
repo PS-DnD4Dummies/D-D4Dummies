@@ -2,9 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {ActivatedRoute} from "@angular/router";
 import {NgForOf, NgIf, UpperCasePipe, Location} from "@angular/common";
-import {
-  DescriptiveGlossaryElementComponent
-} from "@shared/components/descriptive-glossary-element/descriptive-glossary-element.component";
+import { DescriptiveGlossaryElementComponent } from "@shared/components/descriptive-glossary-element/descriptive-glossary-element.component";
 
 @Component({
   selector: 'app-descriptive-glossary',
@@ -21,7 +19,7 @@ import {
 
 export class DescriptiveGlossaryComponent implements OnInit {
   selectedSection?: string | null;
-  @Input() items: any[]=[]; // Aquí deberías definir una interfaz para los elementos según tu estructura de datos
+  @Input() items: any[]=[];
   textDescription: string = "";
 
   constructor(private route: ActivatedRoute, private dndApiService: DndApiService, private location: Location) { }
@@ -56,9 +54,6 @@ export class DescriptiveGlossaryComponent implements OnInit {
           this.items = data.results;
         });
         break;
-      case 'KnowYourRolls':
-        // Fire
-        break;
       case 'weapons':
         this.dndApiService.getWeapons().subscribe((data: any) => {
           this.items = data.equipment;
@@ -73,12 +68,6 @@ export class DescriptiveGlossaryComponent implements OnInit {
         this.dndApiService.getCombatGear().subscribe((data: any) => {
           this.items = data.equipment;
         });
-        break;
-      case 'combat':
-        // Fire
-        break;
-      case 'adventure':
-        // Fire
         break;
       case 'tools':
         this.dndApiService.getTools().subscribe((data: any) => {

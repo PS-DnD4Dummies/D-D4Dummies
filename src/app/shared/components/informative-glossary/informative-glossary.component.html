@@ -1,1 +1,24 @@
-<p>informative-glossary works!</p>
+<main class="main-page">
+
+  <button class="back-button" (click)="goBack()"></button>
+  <section class="banner">
+    <img class="banner__image" src="./assets/backgrounds/desert-city.jpg" alt="">
+    <h1 class="banner__title">{{ selectedSection }}</h1>
+    <hr class="banner__separator">
+  </section>
+
+  <section class="information-section-container">
+    <section class="information-section">
+      <h1 class="information-section__title">Title</h1>
+      <div class="information-section__content">
+        <div class="information-section__text-container">
+          <p class="information-section__text">Qui cillum sit esse adipisicing culpa anim.</p>
+        </div>
+        <div class="information-section__image-container">
+          <img class="information-section__image" src="/src/assets/images/image.png" alt="">
+        </div>
+      </div>
+    </section>
+  </section>
+
+</main>
