@@ -65,6 +65,7 @@ export class DescriptiveGlossaryComponent implements OnInit {
         });
         break;
       case 'CombatGear':
+        this.selectedSection = "Combat Gear"
         this.dndApiService.getCombatGear().subscribe((data: any) => {
           this.items = data.equipment;
         });
@@ -75,6 +76,7 @@ export class DescriptiveGlossaryComponent implements OnInit {
         });
         break;
       case 'AdventuringGear':
+        this.selectedSection = "Adventuring Gear"
         this.dndApiService.getAdventuringGear().subscribe((data: any) => {
           this.items = data.equipment;
         });

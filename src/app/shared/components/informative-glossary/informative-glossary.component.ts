@@ -29,6 +29,7 @@ export class InformativeGlossaryComponent {
   loadItems(): void {
     switch (this.selectedSection) {
       case 'KnowYourRolls':
+        this.selectedSection = "Know Your Roles";
         // Fire
         break;
       case 'combat':
