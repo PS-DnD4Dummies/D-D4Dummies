@@ -13,9 +13,9 @@ const routes: Routes = [
     path:'glossary',
     loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule)
   },
+  { path: 'glossary/info/:section', component: InformativeGlossaryComponent },
+  { path: 'glossary/:section/:itemIndex', component: SectionCardComponent },
   { path: 'glossary/:section', component: DescriptiveGlossaryComponent },
-  { path: 'glossary/:section/:itemIndex', component: SectionCardComponent,},
-  { path: 'glossary/info/:section', component: InformativeGlossaryComponent,},
   {
     path:'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m=> m.AuthModule)
