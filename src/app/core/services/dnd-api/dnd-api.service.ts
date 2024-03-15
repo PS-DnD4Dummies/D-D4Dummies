@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { RaceInfo } from '../../../shared/components/index';
+import { RaceInfo } from '@shared/components';
 
 
 @Injectable({
