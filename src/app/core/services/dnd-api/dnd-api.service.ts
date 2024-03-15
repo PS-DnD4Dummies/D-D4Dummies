@@ -16,7 +16,6 @@ export class DndApiService {
     return this.http.get(`${this.baseUrl}/races`);
   }
   getRace(raceIndex: any): Observable<RaceInfo> {
-    console.log('Requesting race info from URL:', raceIndex);
     return this.http.get<RaceInfo>(`${this.baseUrl}/races/${raceIndex}`);
   }
 
@@ -26,11 +25,6 @@ export class DndApiService {
   getAlignments(): Observable<any> {
     return this.http.get(`${this.baseUrl}/alignments`)
   }
-  // Base de Datos FireBase
-  getKnowYourRolls(): Observable<any> | null {
-    return null
-  }
-
 
   getWeapons(): Observable<any> {
     return this.http.get(`${this.baseUrl}/equipment-categories/weapon`)
@@ -41,16 +35,7 @@ export class DndApiService {
   getCombatGear(): Observable<any> {
     return this.http.get(`${this.baseUrl}/equipment-categories/armor`)
   }
-  // Base de Datos FireBase
-  getCombat(): Observable<any> | null {
-    return null
-  }
 
-
-  // Base de Datos FireBase
-  getAdventure(): Observable<any> | null {
-    return null
-  }
   getTools(): Observable<any> {
     return this.http.get(`${this.baseUrl}/equipment-categories/tools`)
   }

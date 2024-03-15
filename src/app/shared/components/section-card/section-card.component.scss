@@ -19,39 +19,37 @@
 
 .banner__title {
   position: absolute;
-  top: 20%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translateX(-50%); /* Ajusta el centrado */
-  text-align: center; /* Centra horizontalmente */
-  color: white; /* Color del texto */
-  font-size: 3em; /* Tamaño de fuente */
-  font-weight: bold; /* Negrita */
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
   text-transform: uppercase;
 }
 
 .banner__separator {
-  width: 98%; /* Ancho del separador */
-  border: 1px solid white; /* Estilo del separador */
-  opacity: 0.5; /* Opacidad del separador */
+  width: 98%;
+  border: 1px solid white;
+  opacity: 0.5;
 }
 
 
-/* Estilo base del botón */
 .back-button {
   background-color: var(--paleta-dorado);
   color: var(--paleta-rojo_oscuro1);
-  border: none; /* Sin borde */
-  padding: 10px 20px; /* Padding */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  border-radius: 5px; /* Bordes redondeados */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
   margin-top: 1em;
   margin-left: 1em;
 }
 
-/* Icono de flecha */
 .back-button::before {
-  content: '\2190'; /* Código de la flecha hacia la izquierda */
-  margin-right: 5px; /* Espacio entre el icono y el texto */
+  content: '\2190';
+  margin-right: 5px;
 }
 
 
@@ -122,6 +120,6 @@
   transition: max-height 0.5s ease, padding 0.5s ease;
 
   &.open {
-    max-height: 400px; // Ajusta la altura máxima para el estado abierto
+    max-height: 400px;
   }
 }

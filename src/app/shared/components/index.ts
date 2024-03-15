@@ -1,4 +1,3 @@
-// types.ts
 export interface Field {
   key: string;
   label: string;
@@ -13,5 +12,4 @@ export interface RaceInfo {
 
 export interface ClassInfo {
   name: string;
-  // Otros campos específicos de la clase
 }

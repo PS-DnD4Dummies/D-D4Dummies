@@ -34,25 +34,20 @@ export class SectionCardComponent {
   }
 
   toggleFeature(featureIndex: number) {
-    // Si aún no se ha inicializado el estado del desplegable, lo inicializamos como false
     if (this.featureStates.length <= featureIndex) {
       this.featureStates[featureIndex] = false;
     }
-    // Cambiamos el estado del desplegable correspondiente
     this.featureStates[featureIndex] = !this.featureStates[featureIndex];
   }
 
   ngOnInit(): void {
-    console.log('Initializing SectionCardComponent');
+
     this.route.paramMap.subscribe(params => {
-      console.log('Received params:', params);
       this.itemIndex = params.get('itemIndex');
       this.section = params.get('section');
-      console.log('Item index:', this.itemIndex)
-      // Aquí puedes determinar la sección actual y cargar la información correspondiente
+
       if (this.section?.includes('races')) {
         console.log('Loading race data for:', this.itemIndex);
-        // Cargar información de razas
         this.dndApiService.getRace(this.itemIndex).subscribe((data: RaceInfo) => {
           console.log('Received race data:', data);
           this.itemInfo = data;
@@ -63,9 +58,12 @@ export class SectionCardComponent {
             { key: 'language_desc', label: 'Languages' }
           ];
         });
+
       } else if (this.itemIndex?.startsWith('classes')) {
         // Cargar información de clases
       }
+
+
     });
   }
 
