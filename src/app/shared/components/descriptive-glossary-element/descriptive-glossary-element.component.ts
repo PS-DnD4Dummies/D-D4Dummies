@@ -67,7 +67,7 @@ export class DescriptiveGlossaryElementComponent {
 
   seeMore(item: any): void {
     const section = this.route.snapshot.params['section'];
-    const url = `/${section}/${item.index}`;
+    const url = `/glossary/${section}/${item.index}`;
     this.router.navigate([url], { relativeTo: this.route });
   }
 

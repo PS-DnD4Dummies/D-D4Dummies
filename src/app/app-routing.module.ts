@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule)
   },
   { path: 'glossary/:section', component: DescriptiveGlossaryComponent },
-  { path: ':section/:itemIndex', component: SectionCardComponent,},
+  { path: 'glossary/:section/:itemIndex', component: SectionCardComponent,},
   { path: 'glossary/info/:section', component: InformativeGlossaryComponent,},
   {
     path:'auth',
