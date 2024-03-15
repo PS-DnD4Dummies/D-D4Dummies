@@ -1,15 +1,16 @@
 
-
 .main-container{
     display: flex;
     flex-direction: column;
+
+    color: #333;
 }
 
 .upper-bar{
     display: grid;
     grid-template-rows: 3em;
-    grid-template-columns: auto auto auto;
-    background-color: #767272;
+    grid-template-columns: 16em auto auto;
+    background-color: #c9c5c5;
     align-items: center;
 }
 
@@ -28,6 +29,9 @@
 
 .upper-bar__title{
     font-size: 1.2em;
+    
+    // text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
+    //          .5px .5px #fff, -.5px -.5px #fff, .5px -.5px #fff, -.5px .5px #fff;
 }
 
 .upper-bar__login{
@@ -61,8 +65,6 @@
     height: 2.1em;
 }
 
-
-
 nav{
 	// background-color: #333;
 
@@ -72,30 +74,15 @@ nav{
         padding: 0;
 
         button{
-            color: black;
         }
     }
 }
-
-
-
-
-
 
 /* BARRA DE BÚSQUEDA */
 
 .main-menu__search-bar {
     position: relative;
 }
-
-
-
-
-
-
-
-
-
 
 .main-menu__search-bar-input {
     padding: 0.625em 2.1875em 0.625em 0.9375em; /* 10px / 16px = 0.625em, 35px / 16px = 2.1875em, 15px / 16px = 0.9375em */
