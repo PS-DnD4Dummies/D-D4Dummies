@@ -29,8 +29,7 @@ export class ProfileComponent {
   constructor(
     private authService: AuthenticationFirebaseService, 
     private firestoreService : FirestoreService, 
-    private firebaseService : FirebaseService,
-    private cloudStorage: CloudStorageService) {
+    private firebaseService : FirebaseService) {
   }
 
   ngOnInit(): void {
@@ -40,25 +39,30 @@ export class ProfileComponent {
         // Usuario está iniciado sesión.
         this.auth = auth;
         console.log("El UID del usuario es: " + auth.uid);
-        this.firestoreService.readUser(auth.uid).then(user => {
-          if (user) { // Asegura que user no es null
-            this.email = user.email;
-            this.username = user.username;
-            this.birthDate = user.birthdate;
-            this.profilePhotoURL = user.photoURL;
-          } else {
-            // Maneja el caso de que user sea null, si es necesario
-            console.log('No se encontró el usuario.');
-          }
-        });
-        
-      } else {
-        // No hay usuario iniciado sesión.
-        console.log("No hay usuario iniciado sesión.");
-      }
-    });
+    //     this.firestoreService.readUser(auth.uid).then(user => {
+    //       if (user) { // Asegura que user no es null
 
-  }
+    //       } else {
+    //         // Maneja el caso de que user sea null, si es necesario
+    //         console.log('No se encontró el usuario.');
+    //       }
+    //     });
+        
+    //   } else {
+    //     // No hay usuario iniciado sesión.
+    //     console.log("No hay usuario iniciado sesión.");
+    //   }
+    // });
+      this.firestoreService.readRealTimeUser(auth.uid).subscribe(user => {
+        this.email = user.email;
+        this.username = user.username;
+        this.birthDate = user.birthdate;
+        this.profilePhotoURL = user.photoURL;
+      });
+
+      }})
+    }
+  
   
 
   updateProfile(): void {

@@ -79,8 +79,11 @@ export class FirebaseService {
     }
     this.firestoreService.updateUser(user, changes);
     this.authService.updateProfile(user_auth, profilePhotoURL);
+    if("password" in changes) this.authService.updatePassword(changes["password"]);
+    if("email" in changes) this.authService.updateEmail(changes["email"]);
     return true;
   }
+  
 
 
 }

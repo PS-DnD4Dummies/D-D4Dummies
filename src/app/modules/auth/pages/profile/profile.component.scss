@@ -45,7 +45,7 @@
 .user-box__title{
     position: relative;
     top: .8em;
-    right: .6em;
+    left: 1.2em;
 
     grid-row: 1;
     grid-column:  2;
@@ -60,7 +60,6 @@
     grid-column:  2;
 
     position: relative;
-    bottom: 2.2em;
     left: 2em;
 
 }
@@ -75,20 +74,9 @@
     left: 1em;
 }
 
-.decorative-line{
-    margin-top: 1.5%;
-    margin-bottom: 1%;
-    margin-left: 7%;
-    margin-right: 7%;
-    height: .05em;
 
-    background-color: #333;
-    border: .005em solid #1f1e1e;
-    border-radius: .1em;
-}
-
-.character-card{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-}
+// .character-card{
+//     display:flex;
+//     flex-direction: column;
+//     justify-content: center;
+// }

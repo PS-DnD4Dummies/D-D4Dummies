@@ -31,17 +31,18 @@
         </article>
 
         <h1 class="character-title">Update your information:</h1>
-
-        <article class="character-list"></article>
         <form (ngSubmit)="updateProfile()">       
             <input type="text" [(ngModel)]="newUsername" name="newUsername" placeholder="Set a new username">
-            <input type="date" [(ngModel)]="newBirthDate" name="newBirthDate" placeholder="Set a birthdate">
             <input type="text" [(ngModel)]="newEmail" name="newEmail" placeholder="Set a new email">
             <input type="text" [(ngModel)]="newPassword" name="newPassword" placeholder="Set a new password">
+            <input type="date" [(ngModel)]="newBirthDate" name="newBirthDate" placeholder="Set a birthdate">
             <input type="file" (change)="onFileSelected($event)" accept="image/*">
-
+            
             
             <button type="submit">update</button>
         </form>
         <button type="submit">delete profile</button>
+        
+        <!-- <h1 class="character-title">Your saved characters:</h1>
+        <article class="character-list"></article> -->
     </main>
