@@ -14,7 +14,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrl: './descriptive-glossary-element.component.scss'
 })
 export class DescriptiveGlossaryElementComponent {
-  myImages: { [key: string]: string } = {
+  itemImages: { [key: string]: string } = {
     Barbarian: '/assets/glossary_icons/classes_icons/barbarian.png',
     Bard: '/assets/glossary_icons/classes_icons/bard.png',
     Cleric: '/assets/glossary_icons/classes_icons/cleric.png',
@@ -35,24 +35,40 @@ export class DescriptiveGlossaryElementComponent {
     'Half-Orc': '/assets/glossary_icons/races_icons/halforc.png',
     Halfling: '/assets/glossary_icons/races_icons/halfling.png',
     Human: '/assets/glossary_icons/races_icons/human.png',
-    Tiefling:'/assets/glossary_icons/races_icons/tiefling.png'
+    Tiefling:'/assets/glossary_icons/races_icons/tiefling.png',
+    'Chaotic Evil': '/assets/glossary_icons/alignments_icons/chaotic-evil.png',
+    'Chaotic Good': '/assets/glossary_icons/alignments_icons/chaotic-good.png',
+    'Chaotic Neutral': '/assets/glossary_icons/alignments_icons/chaotic-neutral.png',
+    'Lawful Evil': '/assets/glossary_icons/alignments_icons/lawful-evil.png',
+    'Lawful Good': '/assets/glossary_icons/alignments_icons/lawful-good.png',
+    'Lawful Neutral': '/assets/glossary_icons/alignments_icons/lawful-neutral.png',
+    'Neutral': '/assets/glossary_icons/alignments_icons/neutral.png',
+    'Neutral Evil': '/assets/glossary_icons/alignments_icons/neutral-evil.png',
+    'Neutral Good': '/assets/glossary_icons/alignments_icons/neutral-good.png',
   };
-  defaultImage: string = '/assets/glossary_icons/empty.png';
+  defaultItemImage: string = '/assets/glossary_icons/empty.png';
+  sectionImages: { [key: string]: string } = {
+    'weapons': '/assets/glossary_icons/weapons.png',
+    'spells': '/assets/glossary_icons/spells.png',
+    'CombatGear': '/assets/glossary_icons/gear.png',
+    'tools': '/assets/glossary_icons/tools.png',
+    'AdventuringGear': '/assets/glossary_icons/adventuring-gear.png',
+  };
+  defaultSectionImage: string = '/assets/glossary_icons/default.png';
 
   @Input() item: any;
+  section: string = "";
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const section = this.route.snapshot.params['section'];
-    const itemIndex = this.route.snapshot.params['itemIndex'];
-    // ...
+    this.section = this.route.snapshot.params['section'];
   }
 
   seeMore(item: any): void {
-    const section = this.route.snapshot.params['section']; // Obtiene la sección de la ruta actual
-    const url = `/${section}/${item.index}`; // Construye la URL con la sección y el índice
-    this.router.navigate([url], { relativeTo: this.route }); // Navega a la nueva URL
+    const section = this.route.snapshot.params['section'];
+    const url = `/${section}/${item.index}`;
+    this.router.navigate([url], { relativeTo: this.route });
   }
 
 }
