@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {ActivatedRoute} from "@angular/router";
-import {NgForOf, NgIf, UpperCasePipe} from "@angular/common";
+import {NgForOf, NgIf, UpperCasePipe, Location} from "@angular/common";
 import {
   DescriptiveGlossaryElementComponent
 } from "@shared/components/descriptive-glossary-element/descriptive-glossary-element.component";
@@ -24,7 +24,11 @@ export class DescriptiveGlossaryComponent implements OnInit {
   @Input() items: any[]=[]; // Aquí deberías definir una interfaz para los elementos según tu estructura de datos
   textDescription: string = "";
 
-  constructor(private route: ActivatedRoute, private dndApiService: DndApiService) { }
+  constructor(private route: ActivatedRoute, private dndApiService: DndApiService, private location: Location) { }
+
+  goBack(): void {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

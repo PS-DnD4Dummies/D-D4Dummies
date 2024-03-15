@@ -12,6 +12,6 @@ export class GlossaryComponent implements OnInit {
   ngOnInit(): void {}
 
   goToSection(section: string): void {
-    this.router.navigate(['/descriptive-glossary', section]);
+    this.router.navigate(['/glossary', section]);
   }
 }

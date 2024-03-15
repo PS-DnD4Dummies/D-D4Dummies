@@ -1,12 +1,14 @@
-import {Component, Input} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
-import {ModalService} from "@core/services/modal/modal.service";
+import { Component,Input } from '@angular/core';
+import { NgOptimizedImage } from "@angular/common";
+import { SectionCardComponent } from "@shared/components/section-card/section-card.component";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-descriptive-glossary-element',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    SectionCardComponent
   ],
   templateUrl: './descriptive-glossary-element.component.html',
   styleUrl: './descriptive-glossary-element.component.scss'
@@ -39,10 +41,18 @@ export class DescriptiveGlossaryElementComponent {
 
   @Input() item: any;
 
-  constructor(private modalService: ModalService) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    const section = this.route.snapshot.params['section'];
+    const itemIndex = this.route.snapshot.params['itemIndex'];
+    // ...
+  }
 
   seeMore(item: any): void {
-    this.modalService.openModal(item);
+    const section = this.route.snapshot.params['section']; // Obtiene la sección de la ruta actual
+    const url = `/${section}/${item.index}`; // Construye la URL con la sección y el índice
+    this.router.navigate([url], { relativeTo: this.route }); // Navega a la nueva URL
   }
 
 }

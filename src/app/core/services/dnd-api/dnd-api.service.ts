@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RaceInfo } from '../../../shared/components/index';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,11 @@ export class DndApiService {
   getRaces(): Observable<any> {
     return this.http.get(`${this.baseUrl}/races`);
   }
+  getRace(raceIndex: any): Observable<RaceInfo> {
+    console.log('Requesting race info from URL:', raceIndex);
+    return this.http.get<RaceInfo>(`${this.baseUrl}/races/${raceIndex}`);
+  }
+
   getClasses(): Observable<any> {
     return this.http.get(`${this.baseUrl}/classes`);
   }

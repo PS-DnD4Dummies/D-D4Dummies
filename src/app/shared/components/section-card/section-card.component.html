@@ -1,54 +1,25 @@
-<main class="main-card">
-  <header class="card-header">
-    <h1 class="card-header__label">{{ content.name }}</h1>
-    <div class="card-header__close">
-      <a class="close-link" (click)="closeModal()">X</a>
-    </div>
-
-  </header>
-
-  <section class="card-content">
-
-    <div class="card-content__image-container">
-      <img class="card-content__image" ngSrc="/assets/images/horizontal-wallpaper.jpg" alt="" height="506" width="1199">
-    </div>
-    <hr class="card-content__separator">
-
-    <section class="card-content__features-section">
-
-      <h2 class="card-content__features-label">Features</h2>
-
-      <ul class="card-content__list">
-        <li class="card-content__feature">
-
-          <section class="feature">
-            <input type="radio" name="accordion" class="feature__accordion" id="first">
-            <label for="first" class="feature__name">Lorem ipsum</label>
-            <section class="feature__description-container">
-              <p class="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultricies integer quis auctor elit sed vulputate mi. Viverra vitae congue eu consequat ac felis donec et. Tristique senectus et netus et malesuada fames ac. Lorem donec massa sapien faucibus et molestie ac feugiat. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Id aliquet lectus proin nibh nisl condimentum. Eu mi bibendum neque egestas congue quisque egestas diam in. Erat velit scelerisque in dictum non consectetur a. Viverra suspendisse potenti nullam ac. Tortor consequat id porta nibh venenatis cras sed felis. Et tortor consequat id porta nibh venenatis cras sed. Integer quis auctor elit sed vulputate mi. Eu sem integer vitae justo eget magna fermentum iaculis. Massa placerat duis ultricies lacus sed turpis tincidunt id aliquet. Aliquet enim tortor at auctor urna nunc id. Vestibulum lectus mauris ultrices eros in cursus turpis.</p>
-            </section>
-          </section>
-
-        </li>
-
-        <li class="card-content__feature">
-
-          <section class="feature">
-            <input type="radio" name="accordion" class="feature__accordion" id="second">
-            <label for="second" class="feature__name">Lorem ipsum</label>
-            <section class="feature__description-container">
-              <p class="feature__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultricies integer quis auctor elit sed vulputate mi. Viverra vitae congue eu consequat ac felis donec et. Tristique senectus et netus et malesuada fames ac. Lorem donec massa sapien faucibus et molestie ac feugiat. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Id aliquet lectus proin nibh nisl condimentum. Eu mi bibendum neque egestas congue quisque egestas diam in. Erat velit scelerisque in dictum non consectetur a. Viverra suspendisse potenti nullam ac. Tortor consequat id porta nibh venenatis cras sed felis. Et tortor consequat id porta nibh venenatis cras sed. Integer quis auctor elit sed vulputate mi. Eu sem integer vitae justo eget magna fermentum iaculis. Massa placerat duis ultricies lacus sed turpis tincidunt id aliquet. Aliquet enim tortor at auctor urna nunc id. Vestibulum lectus mauris ultrices eros in cursus turpis.</p>
-            </section>
-          </section>
-
-        </li>
-      </ul>
-
-    </section>
-
-    <hr class="card-content__separator">
-
+<main class="main-page" >
+  <button class="back-button" (click)="goBack()"></button>
+  <section class="banner">
+    <img class="banner__image" src="./assets/backgrounds/ruins.png" alt="">
+    <h1 class="banner__title">{{ itemIndex }}</h1>
+    <hr class="banner__separator">
   </section>
 
-  <footer class="decorative-lower-bar"></footer>
+  <section class="card-content">
+    <section class="card-content__features-section">
+      <h2 class="card-content__features-label">Features</h2>
+      <ul class="card-content__list">
+        <li class="card-content__feature" *ngFor="let field of fields; let i = index">
+          <section class="feature">
+            <input type="checkbox" class="feature__accordion" id="{{'feature-' + i}}" (change)="toggleFeature(i)">
+            <label for="{{'feature-' + i}}" class="feature__name">{{ field.label }}</label>
+            <section class="feature__description-container" [class.open]="featureStates[i]">
+              <p class="feature__description">{{ itemInfo[field.key] }}</p>
+            </section>
+          </section>
+        </li>
+      </ul>
+    </section>
+  </section>
 </main>

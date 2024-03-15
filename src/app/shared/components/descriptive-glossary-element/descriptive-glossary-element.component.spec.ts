@@ -11,7 +11,7 @@ describe('DescriptiveGlossaryElementComponent', () => {
       imports: [DescriptiveGlossaryElementComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(DescriptiveGlossaryElementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

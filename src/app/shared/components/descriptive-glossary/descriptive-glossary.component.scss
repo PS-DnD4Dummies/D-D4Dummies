@@ -75,3 +75,21 @@
       list-style: none;
     }
 }
+
+/* Estilo base del botón */
+.back-button {
+  background-color: var(--paleta-dorado);
+  color: var(--paleta-rojo_oscuro1);
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Padding */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+/* Icono de flecha */
+.back-button::before {
+  content: '\2190'; /* Código de la flecha hacia la izquierda */
+  margin-right: 5px; /* Espacio entre el icono y el texto */
+}

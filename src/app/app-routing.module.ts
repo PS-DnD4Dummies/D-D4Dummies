@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {DescriptiveGlossaryComponent} from "@shared/components/descriptive-glossary/descriptive-glossary.component";
+import {SectionCardComponent} from "@shared/components/section-card/section-card.component";
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
     path:'glossary',
     loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule)
   },
-  { path: 'descriptive-glossary/:section', component: DescriptiveGlossaryComponent },
+  { path: 'glossary/:section', component: DescriptiveGlossaryComponent },
+  { path: ':section/:itemIndex', component: SectionCardComponent, },
   {
     path:'auth',
     loadChildren: () => import('./modules/auth/auth.module').then(m=> m.AuthModule)
