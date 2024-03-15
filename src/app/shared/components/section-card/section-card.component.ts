@@ -140,10 +140,10 @@ export class SectionCardComponent {
           this.itemInfo = data;
           this.itemInfo.gearCategoryAsString = this.getGearCategoryNames(data.gear_category);
           this.fields = [
-            {key: 'gearCategoryAsString', label: 'Gear Category'},
-            {key: 'desc', label: 'Description'},
-            {key: 'weight', label: 'Weight'},
-          ];
+            {key: 'gearCategoryAsString', label: 'Gear Category', value: this.itemInfo.gearCategoryAsString },
+            {key: 'desc', label: 'Description', value: this.itemInfo.desc && this.itemInfo.desc.length > 0 ? this.itemInfo.desc : null },
+            {key: 'weight', label: 'Weight', value: this.itemInfo.weight },
+          ].filter(field => field.value !== undefined && field.value !== null);
         });
       }
 
