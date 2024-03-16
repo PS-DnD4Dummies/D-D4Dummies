@@ -58,12 +58,25 @@
   top: 50%;
   left: 65%;
   transform: translate(-50%, -50%);
-  background-color: #333;
+  //background-color: #333;
   border-radius: 20%;
   box-shadow: .5em .5em .1em rgba(0,0,0,0.5);
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.2s ease, opacity 0.2s ease;
+
+  background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+  background-size: 200% auto;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 .glossary-element__description p {
@@ -73,13 +86,13 @@
 }
 
 .glossary-element__button {
-    background-color: #a47700;
+    background-color: var(--paleta-rojo_oscuro1);
     color: white;
     font-weight: 700;
     border-radius: 6px;
     position: relative;
-    bottom: 15.5em;
-    left: 5.5em;
+    bottom: 12.0em;
+    left: 7.0em;
     box-shadow: .3em .3em .1em rgba(0,0,0,0.5);
     border-color: black;
     cursor: pointer;
@@ -106,6 +119,6 @@
 }
 
 .glossary-element__button:hover{
-  background-color: rgb(255, 187, 0)
+  background-color: var(--paleta-rojo2)
 }
 
