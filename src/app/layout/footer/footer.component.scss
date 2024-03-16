@@ -2,15 +2,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background-color: #c9c5c5;
     
     font-size: 75%;
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    font-family: 'DRAGON HUNTER', sans-serif;
+    color: var(--paleta-rojo_oscuro2)
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 .follow-us {
-    color:#333;
-
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,8 +1,16 @@
 .user-info{
-    background-color: #1C3C47;
-    padding: .5em;
+    background-image: url('src/assets/images/dice_background_red.png');
+    background-repeat: repeat;
+    background-size: 50em;
 
-    color: #c9c5c5;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding: 2em;
+
+    height: 78vh;
+
+    font-family: 'Ringbearer', sans-serif;
+    color: var(--paleta-beige);
 }
 
 .user-box{
@@ -14,7 +22,7 @@
     background-color: #333;
 
     border-radius: .5em;
-    border: .15em solid #000;
+    border: .15em solid #ffaa00;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);    
 
 }
@@ -37,7 +45,7 @@
     width: 10em;
     height: 10em;
 
-    border: .12em solid black;
+    border: .15em solid #ffaa00;
     border-radius: .5em;
     box-shadow: .8em .7em .5em rgba(0, 0, 0, 0.5);
 }
@@ -80,17 +88,37 @@
     align-self: flex-end;
     grid-row: 2;
     grid-column:  3;
+
+    border-radius: .5em 0 .3em 0;
+
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    font-family: 'Ringbearer', sans-serif;
+
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 
 .update-profile-form{
     display: grid;
     grid-template-columns: auto auto;
+    column-gap: 1em;
 }
 
 .update-profile-info{
     display:flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
     
     position: relative;
@@ -104,6 +132,7 @@
 .update-profile-image{
     display:flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 
     grid-column: 2;
@@ -113,13 +142,31 @@
     width: 12em;
     height: 12em;
 
-    border: .12em solid black;
+    border: .2em solid #ffaa00;
     border-radius: .5em;
-    box-shadow: .6em .6em .2em rgba(0,0,0,0.1);
+    box-shadow: .6em .6em .2em rgba(0,0,0,0.5);
 }
 
 .update-profile-button{
     width: 12em;
+
+    margin-top: 2em;
+    
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    font-family: 'Ringbearer', sans-serif;
+
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 
@@ -133,8 +180,13 @@
 .parameter__label{
     position: relative;
     right: .5em;
-    top: .13em;
+    bottom: .2em;
     
+}
+
+.update-profile-image__label{
+    position: relative;
+    bottom: .4em;
 }
 
 .parameter__text{
@@ -142,6 +194,10 @@
     color: #c9c5c5;
     width: 25em;
     font-size: 100%;
+}
+
+.parameter__text::-webkit-calendar-picker-indicator {
+    display: none;
 }
 
 // .character-card{

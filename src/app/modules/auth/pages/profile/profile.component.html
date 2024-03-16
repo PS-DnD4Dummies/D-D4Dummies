@@ -40,21 +40,21 @@
                 <section class="update-profile-info">
                     <section class="parameter parameter--username">
                         <label class="parameter__label">New Username:</label>
-                        <input type="text" [(ngModel)]="newUsername" [ngClass]="{'input-error': usernameError}" name="newUsername" placeholder="Set a new username" class="parameter__text">
+                        <input type="text" [(ngModel)]="newUsername" [ngClass]="{'input-error': usernameError}" name="newUsername" class="parameter__text">
                     </section>
         
                     <section class="parameter parameter--password">
                         <label class="parameter__label">New Password:</label>
-                        <input type="text" [(ngModel)]="newPassword" [ngClass]="{'input-error': passwordError}" name="newPassword" placeholder="Set a new password" class="parameter__text">
+                        <input type="text" [(ngModel)]="newPassword" [ngClass]="{'input-error': passwordError}" name="newPassword" class="parameter__text">
                     </section>
                     <section class="parameter parameter--birthdate">
                         <label class="parameter__label">New Birthdate:</label>
-                        <input type="date" [(ngModel)]="newBirthDate" [ngClass]="{'input-error': birthdateError}" name="newBirthDate" placeholder="Set a birthdate" class="parameter__text">
+                        <input type="date" [(ngModel)]="newBirthDate" [ngClass]="{'input-error': birthdateError}" name="newBirthDate" class="parameter__text">
                     </section>
                 </section>
     
                 <section class="update-profile-image">
-                    <label>New Profile Picture:</label>
+                    <label class="update-profile-image__label">New Profile Picture:</label>
                     <img [src]="displayImage" class="user-profile__img">
                     <input type="file" (change)="onFileSelected($event)" accept="image/*">
     
