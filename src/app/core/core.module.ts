@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { firebaseConf } from '@data/constanst/environment';
 import { FirestoreService } from './services/firebase/firestore/firestore.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -27,7 +28,8 @@ import { FirestoreService } from './services/firebase/firestore/firestore.servic
     ScreenTrackingService,
     UserTrackingService,
     AuthenticationFirebaseService,
-    FirestoreService
+    FirestoreService,
+    HttpClientModule
   ],
   exports: []
   

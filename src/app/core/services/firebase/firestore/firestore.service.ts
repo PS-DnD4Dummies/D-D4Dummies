@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
-import { Character, User } from '@data/interfaces';
+import { BaseClass, Character, InformativeGlossarySection, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -179,6 +179,36 @@ export class FirestoreService {
       })
   }
 
+  async readGlossarySection(section:string): Promise<InformativeGlossarySection|null>{
+    return await getDoc(doc(this.firestore,"glossarySections",section))
+      .then( (docSnap) => {
+        if (docSnap.exists()) {
+          console.log("Lectura en firestore de manera correcta");
+          return docSnap.data() as InformativeGlossarySection;
+        } else {
+          console.log("Lectura en firestore de manera incorrecta");
+          return null;
+        }
+      }).catch(error=>{
+        console.log("Error al actualizar en firestore. Error: "+error);
+        return null;
+      })
+  }
 
+  async readClass(className:string): Promise<BaseClass|null>{
+    return await getDoc(doc(this.firestore,"classes",className))
+      .then( (docSnap) => {
+        if (docSnap.exists()) {
+          console.log("Lectura en firestore de manera correcta");
+          return docSnap.data() as BaseClass;
+        } else {
+          console.log("Lectura en firestore de manera incorrecta");
+          return null;
+        }
+      }).catch(error=>{
+        console.log("Error al actualizar en firestore. Error: "+error);
+        return null;
+      })
+  }
 
 }

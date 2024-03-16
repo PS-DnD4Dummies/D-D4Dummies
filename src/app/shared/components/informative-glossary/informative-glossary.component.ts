@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
+import { FirestoreService } from '@core/services/firebase/firestore/firestore.service';
 
 @Component({
   selector: 'app-informative-glossary',
@@ -12,8 +13,10 @@ import {Location} from "@angular/common";
 export class InformativeGlossaryComponent {
   selectedSection?: string | null;
   @Input() items: any[]=[]
+  sectionTitle?: string | null;
+  sectionContent?: string | null;
 
-  constructor(private route: ActivatedRoute, private location: Location) { }
+  constructor(private route: ActivatedRoute, private location: Location, private firestoreService:FirestoreService) { }
 
   goBack(): void {
     this.location.back();
@@ -26,21 +29,20 @@ export class InformativeGlossaryComponent {
     });
   }
 
-  loadItems(): void {
-    switch (this.selectedSection) {
-      case 'KnowYourRolls':
-        this.selectedSection = "Know Your Roles";
-        // Fire
-        break;
-      case 'combat':
-        // Fire
-        break;
-      case 'adventure':
-        // Fire
-        break;
-      default:
-        this.items = [];
-    }
+  async loadItems(): Promise<void> {
+    
+    this.firestoreService.readGlossarySection((this.selectedSection ?? 'defaultValue').toLowerCase()).then(section => {
+      if (section !== null) {
+        this.selectedSection = section.title;
+        this.sectionTitle = section.title;
+        this.sectionContent = section.description;
+      } else {
+        this.selectedSection = '404 ERROR: Section not found';
+        this.sectionTitle = 'Section not found';
+        this.sectionContent = 'Missing content.';
+      }
+    })
+
   }
 
 }

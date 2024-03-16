@@ -15,7 +15,7 @@
             <input type="checkbox" class="feature__accordion" id="{{'feature-' + i}}" (change)="toggleFeature(i)">
             <label for="{{'feature-' + i}}" class="feature__name">{{ field.label }}</label>
             <section class="feature__description-container" [class.open]="featureStates[i]">
-              <p class="feature__description">{{ itemInfo[field.key] }}</p>
+              <p class="feature__description" >{{ field.value }}</p>
             </section>
           </section>
         </li>
