@@ -1,5 +1,3 @@
-
-
 .main-container{
     display: flex;
     flex-direction: column;
@@ -9,8 +7,21 @@
     display: grid;
     grid-template-rows: 3em;
     grid-template-columns: auto auto auto;
-    background-color: #767272;
+    //background-color: #767272;
     align-items: center;
+    justify-content: space-between;
+
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 .upper-bar__main-logo{
@@ -28,6 +39,8 @@
 
 .upper-bar__title{
     font-size: 1.2em;
+    font-family: 'Ringbearer', sans-serif;
+    color: var(--paleta-rojo1);
 }
 
 .upper-bar__login{
@@ -38,9 +51,9 @@
 }
 
 .upper-bar img {
-    padding: 1em; 
+    padding: 1em;
     width: 3em;
-    height: 3.5em; 
+    height: 3.5em;
 }
 
 .upper-bar__login-logo-action{
@@ -56,7 +69,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5em 1em; 
+    padding: 0.5em 1em;
     // background: #333;
     height: 2.1em;
 }
@@ -72,7 +85,8 @@ nav{
         padding: 0;
 
         button{
-            color: black;
+            color: var(--paleta-rojo2);
+            font-family: 'DRAGON HUNTER', sans-serif;
         }
     }
 }
