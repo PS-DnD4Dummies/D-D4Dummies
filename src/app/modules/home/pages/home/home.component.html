@@ -5,7 +5,14 @@
   </section>
 
   <section class="main-sections">
-      
+
+      <figure class="main-sections__character-creator-banner">
+          <a href="/src/app/character-creator/character-creator.html">
+              <img class="main-sections__image" [src]='images.get("vertical-banner-character-creator.jpg")'>
+          </a>
+          <label class="main-sections__label">Character Creator</label>
+      </figure>
+
       <figure class="main-sections-banner main-sections--glossary-banner">
           <a [routerLink]="routesURL.GLOSSARY.DEFAULT">
               <img class="main-sections__image" [src]='images.get("vertical-banner-glossary.jpg")'>
@@ -13,20 +20,12 @@
           <label class="main-sections__label">Glossary</label>
       </figure>
 
-      <!-- <figure class="main-sections__character-creator-banner">
-          <a href="/src/app/character-creator/character-creator.html">
-              <img class="main-sections__image" src="/src/assets/images/vertical-banner-character-creator.jpg">
-          </a>
-          <label class="main-sections__label">Character Creator</label>
-      </figure>
-
-
       <figure class="main-sections__forum-banner">
           <a href="/src/app/forum/index.html">
-              <img class="main-sections__image" src="/src/assets/images/vertical-banner-forum.jpg">
+              <img class="main-sections__image" [src]='images.get("vertical-banner-forum.jpg")'>
           </a>
           <label class="main-sections__label">Forum</label>
-      </figure> -->
+      </figure>
 
   </section>
 

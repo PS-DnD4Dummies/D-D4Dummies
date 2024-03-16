@@ -1,38 +1,15 @@
 .main {
-    display: grid;
-    background-color: #c9c5c5;
-    
-    grid-template-rows: 6em;
-    grid-template-columns: 2.2fr 3fr 2fr;
-    
-    font-size: 75%;
-}
-
-.about-us {
-    color: #333;
-    grid-column: 1;
-
-    padding-left: 1em;
-}
-
-
-.about-us__text-container{
-    border-left: .15em solid;
-    padding-left: 1em;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
-    height: 5em;
-
-    position: relative;
-    top: .6em
+    background-color: #c9c5c5;
+    
+    font-size: 75%;
 }
 
 .follow-us {
     color:#333;
-    grid-column: 2;
 
     display: flex;
     align-items: center;
@@ -43,19 +20,28 @@
 
 .follow-us__label{
     position: relative;
-    left: 1em;
-    top: .2em
 }
-
 
 .follow-us__link-list{
     display: flex;
     align-self: center;
     justify-content: space-between;
-    width: 50%;
 
     position: relative;
     bottom: 1em;
+    right: 1em;
+
+    list-style-type: none;
+
+    width: 30em;
+}
+
+.follow-us__img{
+    max-width: 1em;
+    padding-right: .5em;
+
+    position: relative;
+    top: .1em;
 }
 
 .follow-us__link {
