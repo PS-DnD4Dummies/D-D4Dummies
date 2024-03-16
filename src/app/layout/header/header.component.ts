@@ -188,8 +188,14 @@ export class HeaderComponent implements OnInit {
           this.images.set(decodeURIComponent(match[1]), item);
         }
       }
+      const textoConSaltosDeLinea = "Este es un texto\ncon varios\nsaltos de línea.";
+
+
+      console.log(textoConSaltosDeLinea.replace(/\n/g, "<br>"));
 
     })
   }
+
+
 
 }
