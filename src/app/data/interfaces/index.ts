@@ -3,7 +3,14 @@ import { Alignment, Class, Race, Skill } from "@data/enums/enum";
 export interface User {
     uid:string,
     email:string,
+    username:string,
+    birthdate:string,
     photoURL:string
+}
+
+export interface LogInData {
+    email:string
+    password:string
 }
 
 export interface Character {

@@ -1,0 +1,151 @@
+.user-info{
+    background-color: #1C3C47;
+    padding: .5em;
+
+    color: #c9c5c5;
+}
+
+.user-box{
+    display: grid;
+
+    grid-template-rows: auto auto;
+    grid-template-columns: 17em auto 10em;
+
+    background-color: #333;
+
+    border-radius: .5em;
+    border: .15em solid #000;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);    
+
+}
+
+.user-box__profile{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 17em;
+    padding-top: 1.2em;
+    padding-bottom: 1.3em;
+
+    grid-row-start: 1;
+    grid-row-end:  3;
+
+}
+
+.user-box__img{
+    width: 10em;
+    height: 10em;
+
+    border: .12em solid black;
+    border-radius: .5em;
+    box-shadow: .8em .7em .5em rgba(0, 0, 0, 0.5);
+}
+
+.user-box__title{
+    position: relative;
+    top: .8em;
+    left: 1.2em;
+
+    grid-row: 1;
+    grid-column:  2;
+}
+
+.user-box__info{
+    display:flex;
+    flex-direction: column;
+    padding: 1em;
+
+
+    grid-row: 2;
+    grid-column:  2;
+
+    position: relative;
+    left: 2em;
+
+}
+
+.user-box__portion{
+    display: flex;
+
+}
+
+.user-box__text{
+    position: relative;
+    left: 1em;
+    top: -1em;
+}
+
+.sign-out-button{
+    align-self: flex-end;
+    grid-row: 2;
+    grid-column:  3;
+}
+
+
+.update-profile-form{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.update-profile-info{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    position: relative;
+    left: 1.5em;
+
+    grid-column: 1;
+
+    
+}
+
+.update-profile-image{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    grid-column: 2;
+}
+
+.user-profile__img{
+    width: 12em;
+    height: 12em;
+
+    border: .12em solid black;
+    border-radius: .5em;
+    box-shadow: .6em .6em .2em rgba(0,0,0,0.1);
+}
+
+.update-profile-button{
+    width: 12em;
+}
+
+
+.parameter{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0;
+    
+}
+
+.parameter__label{
+    position: relative;
+    right: .5em;
+    top: .13em;
+    
+}
+
+.parameter__text{
+    background-color: #333;
+    color: #c9c5c5;
+    width: 25em;
+    font-size: 100%;
+}
+
+// .character-card{
+//     display:flex;
+//     flex-direction: column;
+//     justify-content: center;
+// }

@@ -1,33 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DescriptiveGlossaryComponent} from "@shared/components/descriptive-glossary/descriptive-glossary.component";
-import {SectionCardComponent} from "@shared/components/section-card/section-card.component";
-import {InformativeGlossaryComponent} from "@shared/components/informative-glossary/informative-glossary.component";
+import { ROUTES } from '@data/constanst/routes';
+
 
 const routes: Routes = [
   {
-    path:'',
+    path:ROUTES.HOME.DEFAULT,
     loadChildren: () => import('./modules/home/home.module').then(m=> m.HomeModule),
   },
   {
-    path:'glossary',
+    path:ROUTES.GLOSSARY.DEFAULT,
     loadChildren: () => import('./modules/glossary/glossary.module').then(m=> m.GlossaryModule)
   },
-  { path: 'glossary/info/:section', component: InformativeGlossaryComponent },
-  { path: 'glossary/:section/:itemIndex', component: SectionCardComponent },
-  { path: 'glossary/:section', component: DescriptiveGlossaryComponent },
   {
-    path:'auth',
+    path:ROUTES.AUTH.DEFAULT,
     loadChildren: () => import('./modules/auth/auth.module').then(m=> m.AuthModule)
-  }
+  },
   // {
   //   path:'creador-personaje',
-  //   loadChildren:() => import('./modules/caracter-creator/caracter.module').then(m => m.caracter)
+  //   loadChildren:() => import('./modules/character-creator/character.module').then(m => m.character)
   // }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { useHash: false })],
+	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

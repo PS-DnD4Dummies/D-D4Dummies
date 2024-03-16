@@ -10,6 +10,7 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,9 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {
@@ -37,4 +40,4 @@ import {HttpClientModule} from "@angular/common/http";
   bootstrap: [AppComponent],
   exports: []
 })
-export class AppModule { }
+export class AppModule {}

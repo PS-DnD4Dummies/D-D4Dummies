@@ -4,6 +4,7 @@ import { FirestoreService } from './firestore/firestore.service';
 import { CloudStorageService } from './cloud-storage/cloud-storage.service';
 import { User } from '@data/interfaces';
 import { defaultProfilePhotoURL } from '@data/constanst/url';
+import { UserCredential } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +20,35 @@ export class FirebaseService {
   
 
 
-  async signUpProcess(email:string,password:string):Promise<Boolean>{
-    const signUpCheck = await this.authService.signUp(email,password);
-    if(signUpCheck===null)  return false;
-
-    const user:User={
-      uid: signUpCheck.uid,
-      email: signUpCheck.email,
-      photoURL: signUpCheck.photoURL !== null ? signUpCheck.photoURL : defaultProfilePhotoURL
+  async signUpProcess(email: string, username: string, password: string, birthdate: string, photo: File | null): Promise<Boolean> {
+    const signUpCheck = await this.authService.signUp(email, password);
+    if (signUpCheck === null) return false;
+  
+    let profilePhotoURL:string = defaultProfilePhotoURL;
+  
+    if (photo !== null) {
+      try {
+        profilePhotoURL = await this.cloudStorageService.uploadProfilePhoto(signUpCheck.uid, photo); // ojo por si devuelve null
+      } catch (error) {
+        console.error("Error uploading file: ", error);
+        return false;
+      }
     }
 
+    this.authService.updateProfile(signUpCheck, undefined, profilePhotoURL);
+  
+    const user: User = {
+      uid: signUpCheck.uid,
+      email: signUpCheck.email,
+      username: username,
+      birthdate: birthdate,
+      photoURL: profilePhotoURL !== null ? profilePhotoURL : defaultProfilePhotoURL
+    };
+  
+    console.log("Por ahora va bien");
     const createSchemaCheck = await this.firestoreService.addUser(user);
-    if(!createSchemaCheck) return false;
-    
+    if (!createSchemaCheck) return false;
+  
     return true;
   }
 
@@ -39,9 +56,12 @@ export class FirebaseService {
     const signInCheck = await this.authService.signInWithGoogle();
     if(signInCheck===null)  return false;
 
+    console.log(signInCheck);
     const user:User={
       uid: signInCheck.uid,
       email: signInCheck.email,
+      username: signInCheck.displayName,
+      birthdate: "",
       photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
     }
 
@@ -51,6 +71,32 @@ export class FirebaseService {
     
     return true;
   }
+
+  async updateProfileInfo(user:User, changes : {[key:string]:any}, profilePhoto:File | null, user_auth: any):Promise<Boolean>{
+
+    if("password" in changes){
+      console.log("contraseña");
+      this.authService.updatePassword(changes["password"]);
+      delete changes["password"];
+    }
+
+    let profilePhotoURL : any = undefined;
+    if(profilePhoto != null){
+      profilePhotoURL = await this.cloudStorageService.uploadProfilePhoto(user.uid, profilePhoto);
+      changes["photoURL"] = profilePhotoURL;
+      
+    } 
+    this.firestoreService.updateUser(user, changes);
+    this.authService.updateProfile(user_auth, undefined, profilePhotoURL);
+    
+    return true;
+  }
+
+  async getImagesFromFile(imageRoute:string):  Promise<String[]>{
+    const urls = await this.cloudStorageService.getImagesFromFile(imageRoute);
+    return urls;
+  }
+  
 
 
 }
