@@ -11,7 +11,7 @@ import {
   SpellInfo,
   ToolInfo,
   WeaponInfo
-} from "../index";
+} from "@data/interfaces/api_parameters";
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 
 
