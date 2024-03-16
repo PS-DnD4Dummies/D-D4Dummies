@@ -1,6 +1,8 @@
 .main-container{
     display: flex;
     flex-direction: column;
+
+    color: #333;
 }
 
 .upper-bar{
@@ -41,6 +43,9 @@
     font-size: 1.2em;
     font-family: 'Ringbearer', sans-serif;
     color: var(--paleta-rojo1);
+    
+    // text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
+    //          .5px .5px #fff, -.5px -.5px #fff, .5px -.5px #fff, -.5px .5px #fff;
 }
 
 .upper-bar__login{
@@ -61,8 +66,10 @@
 }
 
 .upper-bar__login-logo-image{
-    max-width: 3em;
-    max-height: 3em;
+    max-width: 2em;
+    max-height: 2em;
+
+    border-radius: .1em;
 }
 
 .lower-bar {
@@ -73,8 +80,6 @@
     // background: #333;
     height: 2.1em;
 }
-
-
 
 nav{
 	// background-color: #333;
@@ -91,25 +96,11 @@ nav{
     }
 }
 
-
-
-
-
-
 /* BARRA DE BÚSQUEDA */
 
 .main-menu__search-bar {
     position: relative;
 }
-
-
-
-
-
-
-
-
-
 
 .main-menu__search-bar-input {
     padding: 0.625em 2.1875em 0.625em 0.9375em; /* 10px / 16px = 0.625em, 35px / 16px = 2.1875em, 15px / 16px = 0.9375em */
