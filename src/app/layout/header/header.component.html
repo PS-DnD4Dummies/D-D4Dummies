@@ -45,7 +45,7 @@
                 <img class="upper-bar__login-logo-image" [src]='images.get("login.png")' alt="Login">
             </button> -->
             <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
-                <img class="upper-bar__login-logo-image" src="/assets/images/login.png">
+                <img class="upper-bar__login-logo-image" [src]='images.get("usuario.png")'>
             </button>
             <!-- <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
                 <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">  
