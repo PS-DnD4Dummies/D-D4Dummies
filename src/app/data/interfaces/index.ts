@@ -34,3 +34,21 @@ export interface AbilityScore {
     Strength:number,
     Wisdom:number
 }
+
+
+export interface BaseClass {
+    name: string;
+    description: string;
+    hit_die: string;
+    proficiency_choices: string;
+    proficiencies: string;
+    saving_throws: string;
+    starting_equipment: string;
+    starting_equipment_options: string;
+    subclasses: string;
+    spellcasting_ability?: string;
+    cantrips?: string;
+    spell_slots?: string;
+    spells_known_of_1st_level_and_higher?: string;
+    spellcasting_focus?: string;
+}

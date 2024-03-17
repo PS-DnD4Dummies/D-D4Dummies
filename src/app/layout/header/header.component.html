@@ -1,9 +1,9 @@
-<app-login 
+<app-login
     *ngIf="visibilityPopUpLogIn"
     (closePopUpEmitter)="openClosePopUp()"
     (logInEmitter)="logIn($event)"
     (logInGoogleEmitter)="logInWithGoogle()"
-    [validEmailPassword]="validEmailPassword"  
+    [validEmailPassword]="validEmailPassword"
 ></app-login>
 
 <header class="main-container">
@@ -17,48 +17,48 @@
 
         <section class="lower-bar">
             <nav class="main-menu">
-    
+
                 <ul class="main-menu__options main-menu__options--general">
-    
+
                     <li class="main-menu__link main-menu__link--glossary">
                         <button mat-button [matMenuTriggerFor]="menu">Glossary</button>
                         <mat-menu #menu="matMenu">
                             <button mat-menu-item *ngFor="let buttonItem of glossaryLiContents" [routerLink]="buttonItem.route">{{buttonItem.text}}</button>
                         </mat-menu>
-                        
+
                         <button mat-button [routerLink]="routesURL.CHARACTER.DEFAULT">Character Creator</button>
-    
+
                         <button mat-button [routerLink]="routesURL.FORUM.DEFAULT">Forum</button>
-                        
-    
+
+
                     </li>
-    
-    
+
+
                 </ul>
-    
+
             </nav>
-    
+
         </section>
-        
+
         <div class="upper-bar__login">
             <!-- <button  mat-buttonclass="upper-bar__login-logo-action" [routerLink]="" *ngIf="currentUser===undefined || currentUser===null">
                 <img class="upper-bar__login-logo-image" [src]='images.get("login.png")' alt="Login">
             </button> -->
             <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
-                <img class="upper-bar__login-logo-image" src="/assets/images/login.png">
+                <img class="upper-bar__login-logo-image" [src]='images.get("usuario.png")'>
             </button>
             <!-- <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
-                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">  
+                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
             </button> -->
             <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [routerLink]="routesURL.AUTH.PROFILE">
-                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">  
+                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
             </button>
         </div>
 
     </section>
 
-    
-    
+
+
 </header>
 
 <!-- <main class="main-container">
@@ -68,11 +68,11 @@
                 <img class="upper-bar_main-logo-image" src="/src/assets/images/logo.png" alt="Logo">
             </a>
         </div>
-        
+
 
         <h1 class="upper-bar__title">D&D FOR DUMMIES</h1>
-        
-        
+
+
         <div class="upper-bar__login">
             <img class="upper-bar__login-logo-image" src="/src/assets/images/login.png" alt="Login">
         </div>
@@ -86,7 +86,7 @@
 
                 <li class="main-menu__link main-menu__link--glossary">
                     <a class="main-menu__label main-menu__label--glossary" href="/src/app/glossary/index.html">Glossary &#x25BE</a>
-                    
+
                     <ul class="main-menu__options main-menu__options--glossary">
                         <li class="main-menu__glossary-section"><a href="/src/app/glossary/character-related/races/races.html">Races</a></li>
                         <li class="main-menu__glossary-section"><a href="/src/app/glossary/character-related/classes/classes.html">Classes</a></li>
@@ -109,7 +109,7 @@
             </ul>
 
         </nav>
-        
+
         <div class="main-menu__search-bar">
             <form class="main-menu__search-bar-form" action="" method="">
                 <input class="main-menu__search-bar-input" type="search" name="query" placeholder="Search...">

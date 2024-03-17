@@ -1,16 +1,29 @@
-
-
 .main-container{
     display: flex;
     flex-direction: column;
+
+    color: #333;
 }
 
 .upper-bar{
     display: grid;
     grid-template-rows: 3em;
     grid-template-columns: auto auto auto;
-    background-color: #767272;
+    //background-color: #767272;
     align-items: center;
+    justify-content: space-between;
+
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 .upper-bar__main-logo{
@@ -28,6 +41,11 @@
 
 .upper-bar__title{
     font-size: 1.2em;
+    font-family: 'Ringbearer', sans-serif;
+    color: var(--paleta-rojo1);
+    
+    // text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff,
+    //          .5px .5px #fff, -.5px -.5px #fff, .5px -.5px #fff, -.5px .5px #fff;
 }
 
 .upper-bar__login{
@@ -38,9 +56,9 @@
 }
 
 .upper-bar img {
-    padding: 1em; 
+    padding: 1em;
     width: 3em;
-    height: 3.5em; 
+    height: 3.5em;
 }
 
 .upper-bar__login-logo-action{
@@ -48,20 +66,20 @@
 }
 
 .upper-bar__login-logo-image{
-    max-width: 3em;
-    max-height: 3em;
+    max-width: 2em;
+    max-height: 2em;
+
+    border-radius: .1em;
 }
 
 .lower-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5em 1em; 
+    padding: 0.5em 1em;
     // background: #333;
     height: 2.1em;
 }
-
-
 
 nav{
 	// background-color: #333;
@@ -72,30 +90,17 @@ nav{
         padding: 0;
 
         button{
-            color: black;
+            color: var(--paleta-rojo2);
+            font-family: 'DRAGON HUNTER', sans-serif;
         }
     }
 }
-
-
-
-
-
 
 /* BARRA DE BÚSQUEDA */
 
 .main-menu__search-bar {
     position: relative;
 }
-
-
-
-
-
-
-
-
-
 
 .main-menu__search-bar-input {
     padding: 0.625em 2.1875em 0.625em 0.9375em; /* 10px / 16px = 0.625em, 35px / 16px = 2.1875em, 15px / 16px = 0.9375em */

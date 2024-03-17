@@ -58,7 +58,7 @@ $theme: mat.define-light-theme((
 @include mat.all-component-themes($theme);
 
 html,body{
-    margin:0;
+    margin:0 !important;;
     font-family: 'Arial', sans-serif;
 }
 
@@ -66,4 +66,18 @@ html,body{
     background: transparent !important;
 }
 
+:root {
+  --paleta-azul1: #1C3C47;
+  --paleta-azul2: #183942;
+  --paleta-dorado: #f59e4e;
+  --paleta-dorado2:#a47700;
+  --paleta-beige: #F1DBD2;
+  --paleta-rojo1: #821F1A;
+  --paleta-rojo2: #590700;
+  --paleta-rojo_oscuro1: #2C0506;
+  --paleta-rojo_oscuro2: #1E0908;
+}
 
+html body {
+  margin: 0 !important;
+}

@@ -34,8 +34,12 @@ export class HeaderComponent implements OnInit {
       route:"glossary/classes"
     },
     {
+      text:"Alignments",
+      route:"glossary/alignments"
+    },
+    {
       text:"Know your rolls",
-      route:"glossary/know-your-rolls"
+      route:"glossary/info/KnowYourRolls"
     },
     {
       text:"Weapons",
@@ -46,16 +50,24 @@ export class HeaderComponent implements OnInit {
       route:"glossary/spells"
     },
     {
-      text:"Objects",
-      route:"glossary/objects"
-    },
-    {
-      text:"Adventure",
-      route:"glossary/adventure"
+      text:"Combat Gear",
+      route:"glossary/CombatGear"
     },
     {
       text:"Combat",
-      route:"glossary/combat"
+      route:"glossary/info/combat"
+    },
+    {
+      text:"Adventure",
+      route:"glossary/info/adventure"
+    },
+    {
+      text:"Tools",
+      route:"glossary/tools"
+    },
+    {
+      text:"Adventuring Gear",
+      route:"glossary/AdventuringGear"
     }
   ]
 
@@ -90,7 +102,7 @@ export class HeaderComponent implements OnInit {
       this.currentUser=result;
       //console.log(result);
     });
-    
+
     //this.auth.signOut();
     this.loadImages();
   }
@@ -134,7 +146,7 @@ export class HeaderComponent implements OnInit {
       console.log(result)
       this.visibilityPopUpLogIn = false;
     });
-    
+
   }
 
 
@@ -142,7 +154,7 @@ export class HeaderComponent implements OnInit {
   parsePhotoGoogleURL(url: string): string {
     // Dividir la URL por el signo igual
     const partes = url.split('=');
-    
+
     if(!url.includes("https://lh3.googleusercontent.com")){
       return url;
     }
@@ -159,7 +171,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  
+
 
   async loadImages(){
     this.images.clear();
@@ -167,7 +179,7 @@ export class HeaderComponent implements OnInit {
     var url = this.firebaseService.getImagesFromFile("miscPhotos/");
     await url.then((links) => {
       const regex = /%2F([^?]+)/;
-      var urls = links; 
+      var urls = links;
 
       for (let item of urls){
         const match = item.match(regex);
@@ -176,7 +188,7 @@ export class HeaderComponent implements OnInit {
           this.images.set(decodeURIComponent(match[1]), item);
         }
       }
-      
+
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DndApiService } from '@core/services/dnd-api/dnd-api.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-glossary',
@@ -7,22 +7,16 @@ import { DndApiService } from '@core/services/dnd-api/dnd-api.service';
   styleUrls: ['./glossary.component.scss']
 })
 export class GlossaryComponent implements OnInit {
-  classes: any[] = [];
+  constructor(private router: Router) {}
 
-  constructor(private dndApiService: DndApiService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.loadClasses();
+  goToSection(section: string): void {
+    this.router.navigate(['/glossary', section]);
   }
 
-  loadClasses(): void {
-    this.dndApiService.getClasses().subscribe(
-      (data: any) => {
-        this.classes = data.results;
-      },
-      (error: any) => {
-        console.error('Error loading classes:', error);
-      }
-    );
-  }
+  goToInfo(section: string): void {
+  this.router.navigate(['/glossary/info', section]);
+}
+
 }
