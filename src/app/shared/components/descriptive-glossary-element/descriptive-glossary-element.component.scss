@@ -1,6 +1,8 @@
 * {
   margin: 0;
   padding: 0;
+
+  font-family: 'Ringbearer', sans-serif;
 }
 .glossary-element-container{
   height: auto;
@@ -91,8 +93,8 @@
     font-weight: 700;
     border-radius: 6px;
     position: relative;
-    bottom: 12.0em;
-    left: 7.0em;
+    bottom: 9.5em;
+    left: 4em;
     box-shadow: .3em .3em .1em rgba(0,0,0,0.5);
     border-color: black;
     cursor: pointer;
@@ -102,6 +104,8 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.2s ease, opacity 0.2s ease;
+
+    font-size: 110%;
 }
 
 .glossary-element-container:hover .glossary-element__image {

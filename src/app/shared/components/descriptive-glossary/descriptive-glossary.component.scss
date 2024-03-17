@@ -1,5 +1,8 @@
 .main-page {
-  background-color: var(--paleta-azul1);
+  background-image: url('src/assets/images/dice_background_red.png');
+  background-repeat: repeat;
+  background-size: 50em;
+
 }
 
 .banner {
@@ -27,11 +30,17 @@
   font-size: 3em;
   font-weight: bold;
   text-transform: uppercase;
+  
+  font-family: 'Ringbearer', sans-serif;
+  color: var(--paleta-beige);
+
+  text-shadow: 3px 0 #000000, -3px 0 #000000, 0 3px #000000, 0 -3px #000000,
+  2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
 }
 
 .banner__text {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -42,6 +51,11 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.5s ease, opacity 0.5s ease;
+
+  color: var(--paleta-beige);
+
+  
+  
 }
 
 .banner:hover .banner__text{

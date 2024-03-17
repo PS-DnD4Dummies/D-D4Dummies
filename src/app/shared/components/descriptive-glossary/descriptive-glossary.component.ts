@@ -40,13 +40,13 @@ export class DescriptiveGlossaryComponent implements OnInit {
       case 'races':
         this.dndApiService.getRaces().subscribe((data: any) => {
           this.items = data.results;
-          this.textDescription= "Aqui un poco texto paranoia de que son las razas ";
+          this.textDescription= "Civilized and savages, including humans and a tremendous variety of other species. They have language and culture, few if any innate magical abilities.";
         });
         break;
       case 'classes':
         this.dndApiService.getClasses().subscribe((data: any) => {
           this.items = data.results;
-          this.textDescription= "Aqui un poco texto paranoia de que son las clases y taituca ";
+          this.textDescription= "By swords, sorcerery, pure evil or something else entirely! Your choices have never been greater.";
         });
         break;
       case 'alignments':
