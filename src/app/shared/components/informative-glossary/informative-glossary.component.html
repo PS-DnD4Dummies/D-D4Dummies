@@ -13,7 +13,11 @@
       <h1 class="information-section__title">{{ sectionTitle }}</h1>
       <div class="information-section__content">
         <div class="information-section__text-container">
-          <p class="information-section__text">{{ sectionContent }}</p>
+          <section class="information-section__field" *ngFor="let field of fields; let i = index">
+            <h2 class="information-section__field-title">{{ field.title }}</h2>
+            <p class="information-section__field-content">{{ field.value }}</p>
+          </section>
+          
         </div>
       </div>
     </section>

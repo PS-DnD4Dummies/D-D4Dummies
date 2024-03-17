@@ -35,10 +35,6 @@ export interface AbilityScore {
     Wisdom:number
 }
 
-export interface InformativeGlossarySection {
-    title:string,
-    description:string
-}
 
 export interface BaseClass {
     name: string;
