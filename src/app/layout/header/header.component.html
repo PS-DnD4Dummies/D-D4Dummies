@@ -20,7 +20,7 @@
 
                     <li class="main-menu__link main-menu__link--glossary">
                         <button mat-button [matMenuTriggerFor]="menu">Glossary</button>
-                        <mat-menu #menu="matMenu">
+                        <mat-menu class="main-menu__link--mat-menu" #menu="matMenu">
                             <button mat-menu-item *ngFor="let buttonItem of glossaryLiContents" [routerLink]="buttonItem.route">{{buttonItem.text}}</button>
                         </mat-menu>
 

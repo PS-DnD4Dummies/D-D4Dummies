@@ -8,7 +8,10 @@
 .glossary-sections{
   display: flex;
   flex-direction: column;
-  background-color: #1C3C47;
+
+  background-image: url('src/assets/images/dice_background_red.png');
+  background-repeat: repeat;
+  background-size: 50em;
 }
 
 .section {
@@ -53,9 +56,12 @@
 
 .section__label {
   font-size: 1.5em;
-  color: white;
+  color: var(--paleta-dorado);
   font-weight: 700;
   text-align: center;
+
+  
+  font-family: 'Ringbearer', sans-serif;
 }
 
 .section__zone .section__img:hover {
@@ -94,6 +100,8 @@
     1px -1px 0 #2C0506,
     -1px  1px 0 #2C0506,
     1px  1px 0 #2C0506;
+
+
 }
 
 .section--interaction {

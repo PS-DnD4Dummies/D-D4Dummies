@@ -1,5 +1,7 @@
 .main-page {
-  background-color: var(--paleta-azul1);
+  background-image: url('src/assets/images/dice_background_green-blue.png');
+  background-repeat: repeat;
+  background-size: 50em;
 }
 
 .back-button {
@@ -39,10 +41,15 @@
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  color: white;
   font-size: 3em;
   font-weight: bold;
   text-transform: uppercase;
+
+  font-family: 'Ringbearer', sans-serif;
+  color: var(--paleta-beige);
+
+  text-shadow: 3px 0 #000000, -3px 0 #000000, 0 3px #000000, 0 -3px #000000,
+  2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
 }
 
 .banner__separator {

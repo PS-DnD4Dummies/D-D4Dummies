@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit {
     this.loadImages();
 
     // this.cleanStorage();
+
   }
 
   async loadImages(){
@@ -49,10 +50,6 @@ export class HomeComponent implements OnInit {
     const urlForum = sessionStorage.getItem('vertical-banner-forum.jpg');
 
     if (urlMainBanner && urlCharacterCreator && urlGlossary && urlForum) {
-
-      var image = document.querySelector('.banner__image') as HTMLImageElement;
-      image.src = urlMainBanner;
-
       image = document.querySelector('.character-creator-img') as HTMLImageElement;
       image.src = urlCharacterCreator;
 
@@ -66,6 +63,9 @@ export class HomeComponent implements OnInit {
       !this.insurance ? await this.takeImagesFromCloudService(): console.log("ERROR: Casi se ejecuta un segundo intento de acceder al Cloud.");
       this.insurance = true;
     }
+
+    var image = document.querySelector('.banner__image') as HTMLImageElement;
+    console.log(image);
 
   }
 
