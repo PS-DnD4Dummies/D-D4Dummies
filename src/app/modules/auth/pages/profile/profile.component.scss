@@ -3,9 +3,9 @@
     background-repeat: repeat;
     background-size: 50em;
 
-    padding-left: 4em;
-    padding-right: 4em;
-    padding: 2em;
+    padding-left: 20em;
+    padding-right: 20em;
+    padding-top: 2em;
 
     height: 78vh;
 
@@ -29,7 +29,7 @@
 
     border-radius: .5em;
     border: .15em solid #ffaa00;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);    
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
 
 }
 
@@ -124,15 +124,14 @@
 .update-profile-info{
     display:flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    
+    justify-content: flex-start;
+
     position: relative;
     left: 1.5em;
 
     grid-column: 1;
 
-    
+
 }
 
 .update-profile-image{
@@ -157,7 +156,7 @@
     width: 12em;
 
     margin-top: 2em;
-    
+
     background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
     background-size: 200% auto;
     animation: shimmer 2s infinite linear;
@@ -180,14 +179,14 @@
     display: flex;
     flex-direction: column;
     padding: 0.5em 0;
-    
+
 }
 
 .parameter__label{
     position: relative;
     right: .5em;
     bottom: .2em;
-    
+
 }
 
 .update-profile-image__label{
