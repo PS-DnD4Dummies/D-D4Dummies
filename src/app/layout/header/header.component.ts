@@ -75,6 +75,9 @@ export class HeaderComponent implements OnInit {
   visibilityPopUpLogIn=false;
   validEmailPassword: boolean = true;
 
+  urlLogo!:string;
+  urlProfile!:string;
+
   constructor(
     private formBuilder: FormBuilder,
     private auth:AuthenticationFirebaseService,
@@ -180,11 +183,11 @@ export class HeaderComponent implements OnInit {
 
     if (urlLogo && urlProfile) {
 
-      var image = document.querySelector('.upper-bar_main-logo-image') as HTMLImageElement;
-      image.src = urlLogo;
+      //var image = document.querySelector('.upper-bar_main-logo-image') as HTMLImageElement;
+      this.urlLogo = urlLogo;
 
-      image = document.querySelector('.upper-bar__login-logo-image') as HTMLImageElement;
-      image.src = urlProfile; // Esto no carga por cosas raras que hicieron
+      //var image = document.querySelector('.upper-bar__login-logo-image') as HTMLImageElement;
+      this.urlProfile = urlProfile; // Esto no carga por cosas raras que hicieron
       
     } else {
       !this.insurance ? await this.takeImagesFromCloudService(): console.log("ERROR: Casi se ejecuta un segundo intento de acceder al Cloud.");
