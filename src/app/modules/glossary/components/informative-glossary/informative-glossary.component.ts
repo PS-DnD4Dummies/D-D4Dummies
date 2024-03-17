@@ -6,10 +6,6 @@ import { CloudStorageService } from '@core/services/firebase/cloud-storage/cloud
 
 @Component({
   selector: 'app-informative-glossary',
-  standalone: true,
-  imports: [
-    NgForOf
-  ],
   templateUrl: './informative-glossary.component.html',
   styleUrl: './informative-glossary.component.scss'
 })

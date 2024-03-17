@@ -1,15 +1,10 @@
 import { Component,Input } from '@angular/core';
 import { NgOptimizedImage } from "@angular/common";
-import { SectionCardComponent } from "@shared/components/section-card/section-card.component";
+import { SectionCardComponent } from "@modules/glossary/components/section-card/section-card.component";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-descriptive-glossary-element',
-  standalone: true,
-  imports: [
-    NgOptimizedImage,
-    SectionCardComponent
-  ],
   templateUrl: './descriptive-glossary-element.component.html',
   styleUrl: './descriptive-glossary-element.component.scss'
 })

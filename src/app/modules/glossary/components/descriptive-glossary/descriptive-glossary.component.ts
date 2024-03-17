@@ -2,17 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {ActivatedRoute} from "@angular/router";
 import {NgForOf, NgIf, UpperCasePipe, Location} from "@angular/common";
-import { DescriptiveGlossaryElementComponent } from "@shared/components/descriptive-glossary-element/descriptive-glossary-element.component";
+import { DescriptiveGlossaryElementComponent } from "@modules/glossary/components/descriptive-glossary-element/descriptive-glossary-element.component";
 
 @Component({
   selector: 'app-descriptive-glossary',
-  standalone: true,
-  imports: [
-    NgIf,
-    NgForOf,
-    UpperCasePipe,
-    DescriptiveGlossaryElementComponent,
-  ],
   templateUrl: './descriptive-glossary.component.html',
   styleUrl: './descriptive-glossary.component.scss'
 })

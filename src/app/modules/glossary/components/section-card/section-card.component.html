@@ -1,0 +1,25 @@
+<main class="main-page" >
+  <button class="back-button" (click)="goBack()"></button>
+  <section class="banner">
+    <img class="banner__image" src="./assets/backgrounds/ruins.png" alt="">
+    <h1 class="banner__title">{{ itemIndex }}</h1>
+    <hr class="banner__separator">
+  </section>
+
+  <section class="card-content">
+    <section class="card-content__features-section">
+      <h2 class="card-content__features-label">Features</h2>
+      <ul class="card-content__list">
+        <li class="card-content__feature" *ngFor="let field of fields; let i = index">
+          <section class="feature">
+            <input type="checkbox" class="feature__accordion" id="{{'feature-' + i}}" (change)="toggleFeature(i)">
+            <label for="{{'feature-' + i}}" class="feature__name">{{ field.label }}</label>
+            <section class="feature__description-container" [class.open]="featureStates[i]">
+              <p class="feature__description" [innerHTML]="formatNewLines(itemInfo[field.key])"></p>
+            </section>
+          </section>
+        </li>
+      </ul>
+    </section>
+  </section>
+</main>
