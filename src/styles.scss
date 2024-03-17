@@ -66,6 +66,37 @@ html,body{
     background: transparent !important;
 }
 
+.main-menu__link--mat-menu button{
+  color:var(--paleta-rojo2);
+
+}
+
+.mat-mdc-menu-content{
+  background: linear-gradient(
+    to right,
+    #ffd700,
+    #ffbf00,
+    #ffaa00,
+    #ffbf00,
+    #ffd700);
+    background-size: 200% auto;
+    //animation: shimmer 2s infinite linear;
+}
+
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+.mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text{
+  font-family: "DRAGON HUNTER", sans-serif !important;
+}
+
 :root {
   --paleta-azul1: #1C3C47;
   --paleta-azul2: #183942;
