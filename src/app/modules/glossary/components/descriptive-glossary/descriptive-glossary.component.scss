@@ -1,0 +1,108 @@
+.main-page {
+  background-image: url('src/assets/images/dice_background_red.png');
+  background-repeat: repeat;
+  background-size: 50em;
+
+}
+
+.banner {
+  position: relative;
+  padding-top: 1em;
+  width: 100%;
+  height: 50%;
+}
+
+.banner__image {
+  width: 100%;
+  height: 20em;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+  filter: blur(3px) brightness(0.6);
+}
+
+.banner__title {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  
+  font-family: 'Ringbearer', sans-serif;
+  color: var(--paleta-beige);
+
+  text-shadow: 3px 0 #000000, -3px 0 #000000, 0 3px #000000, 0 -3px #000000,
+  2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
+}
+
+.banner__text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s ease, opacity 0.5s ease;
+
+  color: var(--paleta-beige);
+  font-family: 'Ringbearer', sans-serif;
+  font-size: 110%;
+  
+  
+}
+
+.banner:hover .banner__text{
+  visibility: visible;
+  opacity: 1;
+}
+
+.banner__separator {
+  width: 98%;
+  border: 1px solid white;
+  opacity: 0.5;
+}
+
+.elements-section {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4em;
+
+    &__list {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      column-gap: 6em;
+      row-gap: 3em;
+    }
+
+    &__entry {
+      list-style: none;
+    }
+}
+
+.back-button {
+  background-color: var(--paleta-dorado);
+  color: var(--paleta-rojo_oscuro1);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.back-button::before {
+  content: '\2190';
+  margin-right: 5px;
+}

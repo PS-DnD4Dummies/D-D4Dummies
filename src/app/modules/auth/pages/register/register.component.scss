@@ -1,38 +1,44 @@
 .background-signup{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1C3C47;
-    color: #c9c5c5;
+    background-image: url('src/assets/images/dice_background_red.png');
+    background-repeat: repeat;
+    background-size: 30em;
 
-    height: 73.2vh;
+    height: 67.95vh;
 
     font-size: 140%;
-}
 
-.main-signup{
     display: grid;
 
     grid-template-rows: 4em 17em 4em;
-    grid-template-columns:  30em 30em;
+    grid-template-columns:  2fr 1fr;
+    column-gap: 2em;
 
-    background-color: #1C3C47;
-    color: #c9c5c5;
+    color: var(--paleta-beige);
+    font-family: 'Ringbearer', sans-serif;
 
+    justify-self: center;
+    align-self: center;
+
+    padding: 2em;
+    padding-left: 5em;
+    padding-top: 5em;
+}
+
+@media screen and (max-width: 1000px), (max-height: 800px) {
+    .background-signup {
+        padding-bottom:13em;
+    }
 }
 
 .main-signup__title{
-    display:flex;
-    align-items: center;
-    justify-content: center;
 
     grid-column: 1;
     grid-row: 1;
 
     position: relative;
+    bottom: .8em;
 
-    position: relative;
-    left: .8em;
+    font-size: 170%;
 }
 
 .user-info{
@@ -44,8 +50,6 @@
     grid-row: 2;
 
     position: relative;
-    left: 6em;
-    top: 1em;
 
 }
 
@@ -59,14 +63,27 @@
     position: relative;
     right: .5em;
     top: .13em;
+
+    font-size: 90%;
     
 }
 
 .parameter__text{
-    background-color: #333;
     color: #c9c5c5;
 
     font-size: 100%;
+    background: linear-gradient(to right, #2e2e2e, #333, #292929, #303030, #2e2e2e);
+    background-size: 200% auto;
+    animation: shimmer 10s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 .parameter__text--birth-date::-webkit-calendar-picker-indicator {
@@ -88,9 +105,6 @@
     grid-row-end: 3;
     grid-column: 2;
 
-    position: relative;
-    left: 3em;
-    top: .5em;
 
 }
 
@@ -98,33 +112,9 @@
     width: 12em;
     height: 12em;
 
-    border: .12em solid black;
+    border: .2em solid #ffaa00;
     border-radius: .5em;
-    box-shadow: .6em .6em .2em rgba(0,0,0,0.1);
-}
-
-.user-profile__button{
-    position: relative;
-    left: 9em;
-    bottom: 1em;
-
-    background-color: #333;
-    border: none;
-    border-radius: .3em;
-    box-shadow: .3em .3em .2em rgba(0,0,0,0.1);
-
-    transition-duration: 0.4s;
-    cursor: pointer;
-
-    color:#c9c5c5;
-    padding: .1em;
-
-    width: 5em;
-    height: 1.5em;
-}
-
-.user-profile__button:hover {
-    background-color: rgb(31, 30, 30)
+    box-shadow: .6em .6em .2em rgba(0,0,0,0.5);
 }
 
 .persistence{
@@ -133,12 +123,13 @@
 
     grid-column: 2;
     grid-row: 3;
+
+    position: relative;
+    bottom: .5em;
 }
 
 .persistence__button{
     position: relative;
-    left: 2em;
-    bottom: 1em;
 
     background-color: #333;
     border: none;
@@ -148,17 +139,32 @@
     transition-duration: 0.4s;
     cursor: pointer;
 
-    color:#c9c5c5;
+    color:#333;
     padding: .1em;
 
     font-size: 1.5em;
 
     width: 5em;
     height: 1.5em;
+    
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    font-family: 'Ringbearer', sans-serif;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
 }
 
 .persistence__button:hover{
-    background-color: rgb(31, 30, 30)
+    background-color: rgb(0, 0, 0)
 }
 
 .input-error {

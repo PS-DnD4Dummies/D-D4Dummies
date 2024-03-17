@@ -93,7 +93,7 @@ export class FirebaseService {
   }
 
   async getImagesFromFile(imageRoute:string):  Promise<String[]>{
-    const urls = await this.cloudStorageService.getImagesFromFile(imageRoute);
+    const urls = await this.cloudStorageService.getImagesFromRoute(imageRoute);
     return urls;
   }
   

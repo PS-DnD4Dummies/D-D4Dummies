@@ -1,0 +1,109 @@
+.main-page {
+  background-image: url('src/assets/images/dice_background_green-blue.png');
+  background-repeat: repeat;
+  background-size: 50em;
+}
+
+.back-button {
+  background-color: var(--paleta-dorado);
+  color: var(--paleta-rojo_oscuro1);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.back-button::before {
+  content: '\2190';
+  margin-right: 5px;
+}
+
+.banner {
+  position: relative;
+  padding-top: 1em;
+  width: 100%;
+  height: 50%;
+}
+
+.banner__image {
+  width: 100%;
+  height: 20em;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+  filter: blur(3px) brightness(0.6);
+}
+
+.banner__title {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 3em;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  font-family: 'Ringbearer', sans-serif;
+  color: var(--paleta-beige);
+
+  text-shadow: 3px 0 #000000, -3px 0 #000000, 0 3px #000000, 0 -3px #000000,
+  2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
+}
+
+.banner__separator {
+  width: 98%;
+  border: 1px solid white;
+  opacity: 0.5;
+}
+
+.information-section-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10em;
+}
+
+.information-section__text-container{
+  background-color: var(--paleta-azul1);
+  color: var(--paleta-beige);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  column-gap: 3em;
+  padding: 2em;
+
+  text-align: justify;
+
+  border-radius: 1em;
+  border: .1em solid black;
+  box-shadow: 1em 1em 1em rgba(0, 0, 0, 1);
+}
+
+.information-section__figure{
+  grid-column-start: 1;
+  grid-column-end: 3;
+
+  grid-row: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.information-section__image{
+  max-width: 50em;
+
+  border-radius: 1em;
+  border: .1em solid black;
+  box-shadow: 1em 1em 1em rgba(0, 0, 0, 1);
+}
+
+.information-section__field-title{
+  font-family: 'Ringbearer', sans-serif;
+
+}
