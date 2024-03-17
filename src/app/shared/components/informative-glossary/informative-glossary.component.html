@@ -11,14 +11,15 @@
   <section class="information-section-container">
     <section class="information-section">
       <h1 class="information-section__title">{{ sectionTitle }}</h1>
-      <div class="information-section__content">
-        <div class="information-section__text-container">
-          <section class="information-section__field" *ngFor="let field of fields; let i = index">
-            <h2 class="information-section__field-title">{{ field.title }}</h2>
-            <p class="information-section__field-content">{{ field.value }}</p>
-          </section>
+      <div class="information-section__text-container">
+        <section class="information-section__field" *ngFor="let field of fields; let i = index">
+          <h2 class="information-section__field-title">{{ field.title }}</h2>
+          <p class="information-section__field-content">{{ field.value }}</p>
+        </section>
+
+        <figure class="information-section__figure">
           <img class="information-section__image" [src]="sectionImageURL" alt="">
-        </div>
+        </figure>
       </div>
     </section>
   </section>
