@@ -22,7 +22,12 @@
     padding: 2em;
     padding-left: 5em;
     padding-top: 5em;
-    padding-bottom: 10em;
+}
+
+@media screen and (max-width: 1000px), (max-height: 800px) {
+    .background-signup {
+        padding-bottom:13em;
+    }
 }
 
 .main-signup__title{

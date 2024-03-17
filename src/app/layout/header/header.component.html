@@ -10,7 +10,7 @@
     <section class="upper-bar">
         <div class="upper-bar__main-logo">
             <a class="upper-bar__main-logo-action" [routerLink]="routesURL.HOME.DEFAULT">
-                <img class="upper-bar_main-logo-image" [src]='images.get("logo.png")' alt="Logo">
+                <img class="upper-bar_main-logo-image" src=>
             </a>
             <h1 class="upper-bar__title">D&D FOR DUMMIES</h1>
 
@@ -42,13 +42,13 @@
                 <img class="upper-bar__login-logo-image" [src]='images.get("login.png")' alt="Login">
             </button> -->
             <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
-                <img class="upper-bar__login-logo-image" [src]='images.get("usuario.png")'>
+                <img class="upper-bar__login-logo-image" src="/assets/images/usuario.png">
             </button>
             <!-- <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
                 <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
             </button> -->
             <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [routerLink]="routesURL.AUTH.PROFILE">
-                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
+                <img class="upper-bar__login-logo-image_login" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
             </button>
         </div>
 

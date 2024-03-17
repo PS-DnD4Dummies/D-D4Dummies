@@ -6,12 +6,17 @@
     padding-left: 4em;
     padding-right: 4em;
     padding: 2em;
-    padding-bottom: 10em;
 
     height: 78vh;
 
     font-family: 'Ringbearer', sans-serif;
     color: var(--paleta-beige);
+}
+
+@media screen and (max-width: 1000px), (max-height: 780px) {
+    .user-info {
+        padding-bottom:20em;
+    }
 }
 
 .user-box{
