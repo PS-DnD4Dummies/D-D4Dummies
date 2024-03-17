@@ -75,26 +75,23 @@ export class SectionCardComponent {
       } else if (this.section?.includes('classes')) {
         this.firestoreService.readClass((this.itemIndex ?? 'defaultValue').toLowerCase()).then(baseClass => {
           this.itemInfo = baseClass;
-          if (baseClass !== null) {
-            this.fields = [
-              { key: 'description', label: 'Class Description', value: this.itemInfo.description },
-              { key: 'hit_die', label: 'Hit Die', value: this.itemInfo.hit_die  },
-              { key: 'proficiencies', label: 'Proficiency', value: this.formatNewLines(this.itemInfo.proficiencies) },
-              { key: 'proficiency_choices', label: 'Proficiency Choices', value: this.formatNewLines(this.itemInfo.proficiency_choices)  },
-              { key: 'saving_throws', label: 'Saving Throws', value: this.itemInfo.saving_throws  },
-              { key: 'starting_equipment', label: 'Starting Equipment', value: this.formatNewLines(this.itemInfo.starting_equipment)  },
-              { key: 'starting_equipment_options', label: 'Starting Equipment Options', value: this.formatNewLines(this.itemInfo.starting_equipment_options)  },
-              { key: 'subclasses', label: 'Subclasses', value: this.itemInfo.subclasses  },
+          this.fields = [
+            { key: 'description', label: 'Class Description', value: this.itemInfo.description },
+            { key: 'hit_die', label: 'Hit Die', value: this.itemInfo.hit_die  },
+            { key: 'proficiencies', label: 'Proficiency', value: this.itemInfo.proficiencies },
+            { key: 'proficiency_choices', label: 'Proficiency Choices', value: this.itemInfo.proficiency_choices },
+            { key: 'saving_throws', label: 'Saving Throws', value: this.itemInfo.saving_throws  },
+            { key: 'starting_equipment', label: 'Starting Equipment', value: this.itemInfo.starting_equipment  },
+            { key: 'starting_equipment_options', label: 'Starting Equipment Options', value: this.itemInfo.starting_equipment_options  },
+            { key: 'subclasses', label: 'Subclasses', value: this.itemInfo.subclasses  },
 
-              {key: 'spellcasting_ability', label: 'Spellcasting Ability', value: this.itemInfo.spellcasting_ability && this.itemInfo.spellcasting_ability.length > 0 ? this.itemInfo.spellcasting_ability : null },
-              {key: 'cantrips', label: 'Cantrips', value: this.itemInfo.cantrips && this.itemInfo.cantrips.length > 0 ? this.itemInfo.cantrips : null },
-              {key: 'spell_slots', label: 'Spell Slots', value: this.itemInfo.spell_slots && this.itemInfo.spell_slots.length > 0 ? this.itemInfo.spell_slots : null },
-              {key: 'spells_known_of_1st_level_and_higher', label: 'Spells known of 1st level and higher', value: this.itemInfo.spells_known_of_1st_level_and_higher && this.itemInfo.spells_known_of_1st_level_and_higher.length > 0 ? this.itemInfo.spells_known_of_1st_level_and_higher : null },
-              {key: 'spellcasting_focus', label: 'Spellcasting Focus', value: this.itemInfo.spellcasting_focus && this.itemInfo.spellcasting_focus.length > 0 ? this.itemInfo.spellcasting_focus : null },
+            {key: 'spellcasting_ability', label: 'Spellcasting Ability', value: this.itemInfo.spellcasting_ability && this.itemInfo.spellcasting_ability.length > 0 ? this.itemInfo.spellcasting_ability : null },
+            {key: 'cantrips', label: 'Cantrips', value: this.itemInfo.cantrips && this.itemInfo.cantrips.length > 0 ? this.itemInfo.cantrips : null },
+            {key: 'spell_slots', label: 'Spell Slots', value: this.itemInfo.spell_slots && this.itemInfo.spell_slots.length > 0 ? this.itemInfo.spell_slots : null },
+            {key: 'spells_known_of_1st_level_and_higher', label: 'Spells known of 1st level and higher', value: this.itemInfo.spells_known_of_1st_level_and_higher && this.itemInfo.spells_known_of_1st_level_and_higher.length > 0 ? this.itemInfo.spells_known_of_1st_level_and_higher : null },
+            {key: 'spellcasting_focus', label: 'Spellcasting Focus', value: this.itemInfo.spellcasting_focus && this.itemInfo.spellcasting_focus.length > 0 ? this.itemInfo.spellcasting_focus : null },
 
-            ].filter(field => field.value !== undefined && field.value !== null);
-
-          } 
+          ].filter(field => field.value !== undefined && field.value !== null);
         });
 
 
@@ -184,8 +181,7 @@ export class SectionCardComponent {
   }
 
   formatNewLines(text: string): string {
-    return text.replace(/\n/g, '<br>');
+    return text.replace(/\\n/g, '<br>');
   }
-  
 
 }
