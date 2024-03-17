@@ -30,6 +30,8 @@ export class InformativeGlossaryComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.selectedSection = params.get('section');
+      
+
       this.loadItems();
     });
   }
@@ -39,6 +41,7 @@ export class InformativeGlossaryComponent {
     const sectionData = await this.firestoreService.readGlossarySection((this.selectedSection ?? 'defaultValue').toLowerCase());
     if (sectionData) {
       console.log(sectionData)
+      this.selectedSection = this.splitCamelCase(this.selectedSection ?? "default");
       this.fields = sectionData;
     } else {
 
@@ -46,5 +49,9 @@ export class InformativeGlossaryComponent {
     }
   }
 
-
+  splitCamelCase(text: string): string {
+    return text.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+  }
 }
+
+
