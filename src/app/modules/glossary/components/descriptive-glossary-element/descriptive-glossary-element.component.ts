@@ -1,5 +1,4 @@
 import { Component,Input } from '@angular/core';
-import { NgOptimizedImage } from "@angular/common";
 import { SectionCardComponent } from "@modules/glossary/components/section-card/section-card.component";
 import {ActivatedRoute, Router} from "@angular/router";
 

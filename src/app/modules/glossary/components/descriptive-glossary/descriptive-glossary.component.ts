@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {ActivatedRoute} from "@angular/router";
-import {NgForOf, NgIf, UpperCasePipe, Location} from "@angular/common";
+import { Location} from "@angular/common";
 import { DescriptiveGlossaryElementComponent } from "@modules/glossary/components/descriptive-glossary-element/descriptive-glossary-element.component";
 
 @Component({
