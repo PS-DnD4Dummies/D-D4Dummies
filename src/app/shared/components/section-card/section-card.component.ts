@@ -136,13 +136,15 @@ export class SectionCardComponent {
         this.dndApiService.getArmor(this.itemIndex).subscribe((data: ArmorInfo) => {
           this.itemInfo = data;
           this.fields = [
-            {key: 'armor_category', label: 'Armor Category', value: this.itemInfo.armor_category},
-            {key: 'stealth_disadvantage', label: 'Stealth Disadvantage', value: this.itemInfo.stealth_disadvantage},
-            {key: 'weight', label: 'Weight', value: this.itemInfo.weight},
+            {key: 'armor_category', label: 'Armor Category', value: this.itemInfo.armor_category && this.itemInfo.armor_category.length > 0 ? this.itemInfo.armor_category : null },
+            {key: 'stealth_disadvantage', label: 'Stealth Disadvantage', value: this.itemInfo.stealth_disadvantage && this.itemInfo.stealth_disadvantage.length > 0 ? this.itemInfo.stealth_disadvantage : null },
+            {key: 'weight', label: 'Weight', value: this.itemInfo.weight && this.itemInfo.weight.length > 0 ? this.itemInfo.weight : null },
             {key: 'desc', label: 'Description', value: this.itemInfo.desc && this.itemInfo.desc.length > 0 ? this.itemInfo.desc : null },
           ].filter(field => field.value !== undefined && field.value !== null);
         });
 
+        console.log(this.itemIndex)
+        console.log(this.fields)
 
       } else if (this.section?.includes('tools')) {
         this.dndApiService.getTool(this.itemIndex).subscribe((data: ToolInfo) => {
@@ -180,8 +182,11 @@ export class SectionCardComponent {
     return gearCategory.name;
   }
 
-  formatNewLines(text: string): string {
-    return text.replace(/\\n/g, '<br> - ');
+  formatLabel(text:any):string {
+    return String(text).replace(/-/g, ' ');
+  }
+  formatNewLines(text: any): string {
+    return String(text).replace(/\\n/g, '<br> - ');
   }
 
 }
