@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile, updatePassword, updateEmail } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile, updatePassword, updateEmail, deleteUser } from '@angular/fire/auth';
 import { defaultProfilePhotoURL } from '@data/constanst/url';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -120,6 +120,16 @@ export class AuthenticationFirebaseService {
     }
   }
 
+  async deleteUser(): Promise<User|any>{
+      const user = this.auth.currentUser;
+      await deleteUser(user!).then(()=>{
+        console.log("Cuenta borrada correctamente");
+        return user;
+      }).catch((error)=>{
+        console.log("Error al eliminar una cuenta en authentication. Error: "+ error)
+        return null;
+      })
+  }
 
   //https://firebase.google.com/docs/auth/web/manage-users?hl=es-419
   async updateProfile(user:User,displayName?:string,photoURL?:string): Promise<boolean>{

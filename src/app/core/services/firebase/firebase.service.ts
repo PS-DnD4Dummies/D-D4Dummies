@@ -52,6 +52,24 @@ export class FirebaseService {
     return true;
   }
 
+  //Pendiente
+  async deleteUserProcess():Promise<Boolean>{
+    const deleteUserCheck = await this.authService.deleteUser().then(async (deleteUserCheck)=>{
+      if(deleteUserCheck==null) return false;
+      const user:User = {
+        uid: deleteUserCheck.uid,
+        email: deleteUserCheck.email,
+        username: deleteUserCheck.displayName,
+        birthdate: '',
+        photoURL: ''
+      }
+      console.log("hola");
+      const deleteUserDataCheck = await this.firestoreService.deleteUser(user);
+      return deleteUserDataCheck;
+    });
+    return false;
+  }
+
   async signInWithGoogleProcess():Promise<Boolean>{
     const signInCheck = await this.authService.signInWithGoogle();
     if(signInCheck===null)  return false;

@@ -62,6 +62,15 @@ export class ProfileComponent {
     this.authService.signOut();
     this.router.navigate([ROUTES.HOME.DEFAULT]);
   }
+
+  async deleteProfile(){
+    const checkDeleteProfile = await this.firebaseService.deleteUserProcess();
+    if(checkDeleteProfile) {
+      this.router.navigate([ROUTES.HOME.DEFAULT]);
+    }else{
+      alert("No se ha podido eliminar la cuenta");
+    }
+  }
   
 
   updateProfile(): void {
