@@ -157,8 +157,6 @@ The following tools were utilized in the development of our website:
 
 - **Other AIs for image creation:** Additional AI models utilized for image creation purposes.
 
-
-
 ## Authors
 
 - [Sara Expósito Suárez](https://github.com/SaraE5)
@@ -166,3 +164,8 @@ The following tools were utilized in the development of our website:
 - [Juan José Quesada Acosta](https://github.com/jj-quesada)
 - [Juan Pereiro González](https://github.com/jpereiro1)
 - [Adrian Ojeda Núñez](https://github.com/aojedanu)
+
+## License
+
+This project is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+You can find the full text of the license in the [LICENSE](LICENSE) file.
