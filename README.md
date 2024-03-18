@@ -166,5 +166,3 @@ The following tools were utilized in the development of our website:
 - [Juan José Quesada Acosta](https://github.com/jj-quesada)
 - [Juan Pereiro González](https://github.com/jpereiro1)
 - [Adrian Ojeda Núñez](https://github.com/aojedanu)
-
-```
