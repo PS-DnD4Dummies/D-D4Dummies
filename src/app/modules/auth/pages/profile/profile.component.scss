@@ -210,3 +210,13 @@
 //     flex-direction: column;
 //     justify-content: center;
 // }
+.not-authenticated-message {
+    background-color: #ff2400; /* Rojo escarlata */
+    text-align: center; /* Para centrar el texto */
+    padding: 10px; /* Añadir espacio alrededor del texto */
+  }
+  
+.not-authenticated-message a {
+    color: white; /* Color del texto del enlace */
+    text-decoration: none; /* Eliminar subrayado del enlace */
+  }

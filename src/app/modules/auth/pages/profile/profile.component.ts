@@ -16,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent {
 
+  isAuthenticated: Boolean = false;
   username: string = '';
   email: string = '';
   birthDate: string = '';
@@ -44,6 +45,7 @@ export class ProfileComponent {
   ngOnInit(): void {
 
      this.authService.currentAuthStatus.subscribe(auth => {
+     this.isAuthenticated = !!auth; //mira si el usuario esta autenticado
       if (auth) {
         // Usuario está iniciado sesión.
         this.auth = auth;

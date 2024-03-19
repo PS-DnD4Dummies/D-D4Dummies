@@ -1,4 +1,5 @@
 
+<div *ngIf="isAuthenticated; else notAuthenticated">
     <main class="user-info">
         <article class="user-box">
             <figure class="user-box__profile">
@@ -64,11 +65,17 @@
                 
     
             </form>
-        </section>
-        
-
-        
-        
+        </section>  
         <!-- <h1 class="character-title">Your saved characters:</h1>
         <article class="character-list"></article> -->
     </main>
+    <router-outlet></router-outlet>
+    </div>  
+    <ng-template #notAuthenticated>
+        <!-- Mostrar contenido para usuarios no autenticados -->
+        <!-- Por ejemplo, mostrar un mensaje para iniciar sesión -->
+        <div class="not-authenticated-message">
+        <p>Por favor, <a [routerLink]="['/signUp']">registrate</a> para crear una cuenta.</p>
+        </div>
+      </ng-template>
+      

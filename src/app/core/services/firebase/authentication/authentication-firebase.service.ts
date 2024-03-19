@@ -15,6 +15,10 @@ export class AuthenticationFirebaseService {
     this.authStatusListener();
   }
 
+  isAuthenticated(): boolean { //saber si esta autenticado
+    return this.auth.currentUser !== null;
+  }
+
   currentUser!:any ;
   private authStatusSub = new BehaviorSubject(this.currentUser);
   currentAuthStatus = this.authStatusSub.asObservable();
