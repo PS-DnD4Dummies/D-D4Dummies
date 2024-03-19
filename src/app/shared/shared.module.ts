@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
+import { BrowserModule } from '@angular/platform-browser';
+import { CoreModule } from '@core/core.module';
 import { LoginComponent } from './components/login-popup/login.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,7 +24,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   imports: [
     MatIconModule,
     CommonModule,
-    RouterModule,
     MatFormFieldModule,
     MatInputModule,
     AuthRoutingModule,
@@ -33,21 +35,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatMenuModule,
     MatSnackBarModule
   ],
-
-  exports: [
-    CommonModule,
-    RouterModule,
-    MatIconModule,
-    CommonModule,
-    LoginComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,ReactiveFormsModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatSnackBarModule
-  ]
+  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule,MatSidenavModule,MatButtonModule,MatMenuModule,MatSnackBarModule]
 })
 export class SharedModule { }

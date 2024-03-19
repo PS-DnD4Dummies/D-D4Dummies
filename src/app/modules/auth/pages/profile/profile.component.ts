@@ -18,7 +18,7 @@ export class ProfileComponent {
 
   username: string = '';
   email: string = '';
-  birthDate: string = '';
+  birthDate!: Date;
   profilePhotoURL: string = '';
 
   newUsername: string = '';
@@ -51,8 +51,9 @@ export class ProfileComponent {
       this.firestoreService.readRealTimeUser(auth.uid).subscribe(user => {
         this.email = user.email;
         this.username = user.username;
-        this.birthDate = user.birthdate;
+        this.birthDate = new Date(user.birthdate.seconds*1000);
         this.profilePhotoURL = user.photoURL;
+        console.log(user)
       });
 
       }})

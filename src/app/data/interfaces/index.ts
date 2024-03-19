@@ -4,7 +4,7 @@ export interface User {
     uid:string,
     email:string,
     username:string,
-    birthdate:string,
+    birthdate:Date,
     photoURL:string
 }
 

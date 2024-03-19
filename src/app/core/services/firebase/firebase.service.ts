@@ -20,9 +20,11 @@ export class FirebaseService {
   
 
 
-  async signUpProcess(email: string, username: string, password: string, birthdate: string, photo: File | null): Promise<Boolean> {
+  async signUpProcess(email: string, username: string, password: string, birthdate: Date, photo: File | null): Promise<Boolean> {
     const signUpCheck = await this.authService.signUp(email, password);
     if (signUpCheck === null) return false;
+
+    console.log(signUpCheck);
   
     let profilePhotoURL:string = defaultProfilePhotoURL;
   
@@ -61,7 +63,7 @@ export class FirebaseService {
       uid: signInCheck.uid,
       email: signInCheck.email,
       username: signInCheck.displayName,
-      birthdate: "",
+      birthdate: signInCheck.birthDate,
       photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
     }
 

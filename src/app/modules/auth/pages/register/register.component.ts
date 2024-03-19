@@ -17,7 +17,7 @@ export class RegisterComponent {
   username = '';
   userPassword = '';
   userConfirmPassword = '';
-  userBirthDate = '';
+  userBirthDate!:Date;
   displayImage: string = '/assets/images/default.jpg';
   selectedFile: any;
 
@@ -52,6 +52,8 @@ export class RegisterComponent {
   }
 
   async registerUser() {
+
+    this.userBirthDate = new Date(this.userBirthDate);
 
     this.emailError = false;
     this.confirmEmailError = false;
@@ -92,6 +94,7 @@ export class RegisterComponent {
 
     if (!this.isAdult(this.userBirthDate)) {
       this.birthDateError = true;
+      console.log(this.userBirthDate);
       alert('You must be 18 years or older to sign up.');
       return;
     }
@@ -113,13 +116,12 @@ export class RegisterComponent {
   
   }
 
-  isAdult(birthDate: string): boolean {
-    const birthDateObj = new Date(birthDate);
+  isAdult(birthDate: Date): boolean {
     const today = new Date();
     const adultYear = today.getFullYear() - 18;
     const adultDate = new Date(today.setFullYear(adultYear));
-
-    return birthDateObj <= adultDate;
+    console.log(adultDate,birthDate)
+    return (birthDate <= adultDate);
   }
 
   checkForValidEmail(email: string): boolean {
