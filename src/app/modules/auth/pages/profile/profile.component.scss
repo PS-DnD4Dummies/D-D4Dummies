@@ -210,3 +210,14 @@
 //     flex-direction: column;
 //     justify-content: center;
 // }
+.not-authenticated-message {
+    font-family: 'Ringbearer', sans-serif;
+    background: linear-gradient(to right, #c28534, #cf882c, #d8501f, #e14516, #f72a01);
+    text-align: center; /* Para centrar el texto */
+    padding: 10px; /* Añadir espacio alrededor del texto */
+  }
+  
+.not-authenticated-message a {
+    color: rgb(244, 238, 241); /* Color del texto del enlace */
+    text-decoration: none; /* Eliminar subrayado del enlace */
+  }
