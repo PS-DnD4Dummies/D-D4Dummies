@@ -212,12 +212,21 @@
 // }
 .not-authenticated-message {
     font-family: 'Ringbearer', sans-serif;
-    background: linear-gradient(to right, #c28534, #cf882c, #d8501f, #e14516, #f72a01);
+    background: linear-gradient(to right, #a6a1a1, #c9c5c5, #bab6b6, #b0adad, #a6a1a1);
+    background-size: 200% auto;
+    animation: shimmer 10s infinite linear;
+
     text-align: center; /* Para centrar el texto */
     padding: 10px; /* Añadir espacio alrededor del texto */
+
+    height: 80vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
 .not-authenticated-message a {
-    color: rgb(244, 238, 241); /* Color del texto del enlace */
+    color: rgb(67, 7, 7); /* Color del texto del enlace */
     text-decoration: none; /* Eliminar subrayado del enlace */
   }
