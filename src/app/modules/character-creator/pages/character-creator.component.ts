@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { OnInit } from "@angular/core";
 
 @Component({
     selector: 'character-creator',
@@ -7,8 +8,41 @@ import { Component } from "@angular/core";
 
 })
 
-export class CharacterCreatorComponent{
+export class CharacterCreatorComponent implements OnInit{
+    race: string = "";
+    class: string = "";
+    alignment: string = "";
+    background: string = "";
+    
+    name: string = "";
+
     constructor(){
+    }
+
+    ngOnInit(){}
+
+    calculateStats(){
         
     }
+
+    calculatePassivePerception(){
+        
+    }
+    
+    showSkills(){
+        
+    }
+    
+    showProficiencies(){
+        
+    }
+    
+    showTraits(){
+        
+    }
+
+    showCombat(){
+
+    }
+    
 }
