@@ -19,9 +19,9 @@ export interface Character {
     race:Race,
     alignment:Alignment,
     backgroud:Background, 
-
-    skills:Skill,
-    abilityScore:AbilityScore,
+    skills:[Skill, Skill],
+    proficiencies:[string, string, string, string],
+    lore_sections:[string, string, string, string]
 
 }
 
