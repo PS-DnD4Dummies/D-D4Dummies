@@ -44,7 +44,7 @@
             <figure class="dice">
                 <img 
                 src="/assets/images/logo.png"
-                class="dice__img" 
+                class="dice__img"
                 (click)="zaWarudo()"
                 />
             </figure>
@@ -205,39 +205,40 @@
                 <div class="modificer-container">
                     <section class="modifier modifier--strength">
                         <p class="modifier__caption">Strength</p>
-                        <p class="modifier__value modifier__value--strength">+0</p>
+                        <p class="modifier__value modifier__value--strength">{{ modifyerParse(savingThrows.get('Strength')) }}</p>
     
                     </section>
+                    
+                    <section class="modifier modifier--dexterity">
+                        <p class="modifier__caption">Dexterity</p>
+                        <p class="modifier__value modifier__value--dexterity">{{ modifyerParse(savingThrows.get('Dexterity')) }}</p>
     
+                    </section>
+
+                    <section class="modifier modifier--constitution">
+                        <p class="modifier__caption">Constitution</p>
+                        <p class="modifier__value modifier__value--constitution">{{ modifyerParse(savingThrows.get('Constitution')) }}</p>
+    
+                    </section>
+
+                    <section class="modifier modifier--intelligence">
+                        <p class="modifier__caption">Intelligence</p>
+                        <p class="modifier__value modifier__value--intelligence">{{ modifyerParse(savingThrows.get('Intelligence')) }}</p>
+    
+                    </section>
+                        
                     <section class="modifier modifier--wisdom">
                         <p class="modifier__caption">Wisdom</p>
-                        <p class="modifier__value modifier__value--wisdom">+0</p>
+                        <p class="modifier__value modifier__value--wisdom">{{ modifyerParse(savingThrows.get('Wisdom')) }}</p>
     
                     </section>
     
                     <section class="modifier modifier--charisma">
                         <p class="modifier__caption">Charisma</p>
-                        <p class="modifier__value modifier__value--charisma">+0</p>
+                        <p class="modifier__value modifier__value--charisma">{{ modifyerParse(savingThrows.get('Charisma')) }}</p>
     
                     </section>
     
-                    <section class="modifier modifier--intelligence">
-                        <p class="modifier__caption">Intelligence</p>
-                        <p class="modifier__value modifier__value--intelligence">+0</p>
-    
-                    </section>
-    
-                    <section class="modifier modifier--constitution">
-                        <p class="modifier__caption">Constitution</p>
-                        <p class="modifier__value modifier__value--constitution">+0</p>
-    
-                    </section>
-    
-                    <section class="modifier modifier--dexterity">
-                        <p class="modifier__caption">Dexterity</p>
-                        <p class="modifier__value modifier__value--dexterity">+0</p>
-    
-                    </section>
                 </div>
             </article>
         </div>
@@ -249,60 +250,60 @@
             
                   <section class="stat stat--strength">
                     <p class="stat__caption stat__caption--strength">Strength</p>
-                    <p class="stat__mod-value stat__mod-value--strength">+0</p>
+                    <p class="stat__mod-value stat__mod-value--strength">{{ modifyerParse(modifiers.get('Strength')) }}</p>
               
                     <div class="stat__value-container">
-                      <p class="stat__value stat__value--strength">0</p>
+                      <p class="stat__value stat__value--strength">{{ stats.get('Strength') }}</p>
                     </div>
               
                   </section>
                   
                   <section class="stat stat--wisdom">
                     <p class="stat__caption stat__caption--wisdom">Wisdom</p>
-                    <p class="stat__mod-value stat__mod-value--wisdom">+0</p>
+                    <p class="stat__mod-value stat__mod-value--wisdom">{{ modifyerParse(modifiers.get('Wisdom')) }}</p>
               
                     <div class="stat__value-container">
-                      <p class="stat__value stat__value--wisdom">0</p>
+                      <p class="stat__value stat__value--wisdom">{{ stats.get('Wisdom') }}</p>
                     </div>
               
                   </section>
               
                   <section class="stat stat--charisma">
                     <p class="stat__caption stat__caption--charisma">Charisma</p>
-                    <p class="stat__mod-value stat__mod-value--charisma">+0</p>
+                    <p class="stat__mod-value stat__mod-value--charisma">{{ modifyerParse(modifiers.get('Charisma')) }}</p>
               
                     <div class="stat__value-container">
-                      <p class="stat__value stat__value--charisma">0</p>
+                      <p class="stat__value stat__value--charisma">{{ stats.get('Charisma') }}</p>
                     </div>
               
                   </section>
                   
                   <section class="stat stat--intelligence">
                     <p class="stat__caption stat__caption--intelligence">Intelligence</p>
-                    <p class="stat__mod-value stat__mod-value--intelligence">+0</p>
+                    <p class="stat__mod-value stat__mod-value--intelligence">{{ modifyerParse(modifiers.get('Intelligence')) }}</p>
               
                     <div class="stat__value-container">
-                      <p class="stat__value stat__value--intelligence">0</p>
+                      <p class="stat__value stat__value--intelligence">{{ stats.get('Intelligence') }}</p>
                     </div>
               
                   </section>
                   
                   <section class="stat stat--constitution">
                     <p class="stat__caption stat__caption--constitution">Constitution</p>
-                    <p class="stat__mod-value stat__mod-value--constitution">+0</p>
+                    <p class="stat__mod-value stat__mod-value--constitution">{{ modifyerParse(modifiers.get('Constitution')) }}</p>
               
                     <div class="stat__value-container">
-                      <p class="stat__value stat__value--constitution">0</p>
+                      <p class="stat__value stat__value--constitution">{{ stats.get('Constitution') }}</p>
                     </div>
               
                   </section>
                   
                   <section class="stat stat--dexterity">
                     <p class="stat__caption stat__caption--dexterity">Dexterity</p>
-                    <p class="stat__mod-value stat__mod-value--dexterity">+0</p>
+                    <p class="stat__mod-value stat__mod-value--dexterity">{{ modifyerParse(modifiers.get('Dexterity')) }}</p>
               
                     <div class="stat__value-container">
-                      <p class="stat__value stat__value--dexterity">0</p>
+                      <p class="stat__value stat__value--dexterity">{{ stats.get('Dexterity') }}</p>
                     </div>
               
                   </section>
@@ -312,7 +313,7 @@
 
             <section class="passive-perception">
                 <p class="passive-perception__place-name character-creator__label">Passive perception</p>
-                <p class="passive-perception__value">0</p>
+                <p class="passive-perception__value">{{ passivePerception }}</p>
 
             </section>
         </div>
@@ -371,31 +372,31 @@
 
             <section class="character-element character-element--hit-points">
                 <p class="character-element__name">HIT POINTS</p>
-                <p class="character-element__value character-element__value--hit-points">0</p>
+                <p class="character-element__value character-element__value--hit-points">{{ hitPoints }}</p>
 
             </section>
 
             <section class="character-element character-element--armor-class">
                 <p class="character-element__name">ARMOR CLASS</p>
-                <p class="character-element__value character-element__value--armor-class">0</p>
+                <p class="character-element__value character-element__value--armor-class">{{ armorClass }}</p>
 
             </section>
 
             <section class="character-element character-element--initiative">
                 <p class="character-element__name">INITIATIVE</p>
-                <p class="character-element__value character-element__value--initiative">0</p>
+                <p class="character-element__value character-element__value--initiative">{{ initiative }}</p>
 
             </section>
 
             <section class="character-element character-element--speed">
                 <p class="character-element__name">SPEED</p>
-                <p class="character-element__value character-element__value--speed">0</p>
+                <p class="character-element__value character-element__value--speed">{{ speed }}</p>
 
             </section>
 
             <section class="character-element character-element--hit-dice">
                 <p class="character-element__name">HIT DICE</p>
-                <p class="character-element__value character-element__value--hit-dice">0</p>
+                <p class="character-element__value character-element__value--hit-dice">{{ hitDice }}</p>
 
             </section>
 
