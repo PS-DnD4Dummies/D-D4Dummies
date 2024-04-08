@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 import { FirebaseService } from '@core/services/firebase/firebase.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HomeComponent } from '@modules/home/pages/home/home.component';
+import { HomeModule } from '@modules/home/home.module';
 
 @Component({
   selector: 'app-header',
@@ -73,6 +75,7 @@ export class HeaderComponent implements OnInit {
 
   currentUser!:any;
   visibilityPopUpLogIn=false;
+  visibilityMatMenuPopUp=false;
   validEmailPassword: boolean = true;
 
   urlLogo!:string;
@@ -122,7 +125,9 @@ export class HeaderComponent implements OnInit {
   openClosePopUp(){
     this.visibilityPopUpLogIn = !this.visibilityPopUpLogIn;
   }
-
+  openCloseMatMenu(){
+    this.visibilityMatMenuPopUp = !this.visibilityMatMenuPopUp;
+  }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action,{
       duration:3000

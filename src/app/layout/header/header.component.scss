@@ -118,3 +118,27 @@ nav{
 .main-menu__link--mat-menu{
     background-color: #333;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////
+.boton_perfil,
+.boton_Log_in,
+.boton_Log_out {
+    font-size: 1.2em;
+    font-family: 'Ringbearer', sans-serif;
+    background-color: rgb(129, 3, 3);
+    color: rgb(6, 6, 6);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    margin-bottom: 5px;
+    margin-left: 20px;
+}
+
+.boton_perfil:hover,
+.boton_Log_in:hover,
+.boton_Log_out:hover {
+  background-color: darkred;
+  cursor: pointer;
+}

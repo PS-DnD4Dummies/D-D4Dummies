@@ -19,8 +19,8 @@
                 <ul class="main-menu__options main-menu__options--general">
 
                     <li class="main-menu__link main-menu__link--glossary">
-                        <button mat-button [matMenuTriggerFor]="menu">Glossary</button>
-                        <mat-menu class="main-menu__link--mat-menu" #menu="matMenu">
+                        <button mat-button [matMenuTriggerFor]="perfil">Glossary</button>
+                        <mat-menu class="main-menu__link--mat-menu" #perfil="matMenu">
                             <button mat-menu-item *ngFor="let buttonItem of glossaryLiContents" [routerLink]="buttonItem.route">{{buttonItem.text}}</button>
                         </mat-menu>
 
@@ -41,14 +41,27 @@
             <!-- <button  mat-buttonclass="upper-bar__login-logo-action" [routerLink]="" *ngIf="currentUser===undefined || currentUser===null">
                 <img class="upper-bar__login-logo-image" [src]='images.get("login.png")' alt="Login">
             </button> -->
-            <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
+            <button *ngIf="currentUser ==undefined && currentUser ==null" mat-button [matMenuTriggerFor]="menu">
                 <img class="upper-bar__login-logo-image" [src]="urlProfile">
+            
+              <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
+                <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
+                <button class = "boton_Log_in" (click)="openClosePopUp()">Log In</button>
+                <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()" >Log Out</button>
+              </mat-menu>
             </button>
-            <!-- <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
+            <!-- ESTE ES EL QUE FURULA -> <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
+                <img class="upper-bar__login-logo-image" [src]="urlProfile">
+            </button> HATA AQUI!!!!!
+            <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
                 <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
             </button> -->
-            <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [routerLink]="routesURL.AUTH.PROFILE">
+            <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [matMenuTriggerFor]="menu">
                 <img class="upper-bar__login-logo-image_login" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
+                <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
+                    <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()" >Log Out</button>
+                    <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
+                </mat-menu>
             </button>
         </div>
 
