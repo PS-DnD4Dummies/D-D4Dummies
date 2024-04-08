@@ -13,28 +13,28 @@
             <section class="property property--race">
                 <label class="property__type-label">Race</label>
                 <select class="property__selector" [(ngModel)]="race">
-                    <option class="property__option property__option--race-1" value="default">Pick A Race!</option>
+                    <option class="property__option property__option--race-1" value="default" *ngFor="let i of enumRace" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
 
             <section class="property property--class">
                 <label class="property__type-label">Class</label>
                 <select class="property__selector" [(ngModel)]="class">
-                    <option class="property__option property__option--class-1" value="default">Pick A Class!</option>
+                    <option class="property__option property__option--class-1" value="default" *ngFor="let i of enumClass" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
 
             <section class="property property--alignment">
                 <label class="property__type-label">Alignment</label>
                 <select class="property__selector" [(ngModel)]="alignment">
-                    <option class="property__option property__option--alignment-1" value="default">Pick An Alignment!</option>
+                    <option class="property__option property__option--alignment-1" value="default" *ngFor="let i of enumAlignment" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
 
             <section class="property property--background">
                 <label class="property__type-label">Background</label>
                 <select class="property__selector" [(ngModel)]="background">
-                    <option class="property__option property__option--background-1" value="default">Pick A Background!</option>
+                    <option class="property__option property__option--background-1" value="default" *ngFor="let i of enumBackground" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
         </article>
@@ -45,6 +45,7 @@
                 <img 
                 src="/assets/images/logo.png"
                 class="dice__img" 
+                (click)="zaWarudo()"
                 />
             </figure>
         </article>
