@@ -42,7 +42,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  async loadImages(){
+  async loadImages(){ // Si se acaba haciendo lo de las imagenes por real time database todo esto de aquí para abajo (y en footer y header)
+                      // hay que quitarlo y hacerlo con los servicios que hicieron. O si no, se quita igual y carga de forma local las imágenes y ya está.
     
     const urlMainBanner = sessionStorage.getItem('mainpagebanner1.jpeg');
     const urlCharacterCreator = sessionStorage.getItem('vertical-banner-character-creator.jpg');
