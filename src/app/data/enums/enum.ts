@@ -38,6 +38,22 @@ export enum Alignment {
     Neutral_good = "neutral-good"
 }
 
+export enum Background {
+    Acolyte = "Acolyte",
+    Charlatan = "Charlatan",
+    Criminal = "Criminal",
+    Entertainer = "Entertainer",
+    Folk_hero = "Folk Hero",
+    Guild_artisan = "Guild Artisan",
+    Hermit = "Hermit",
+    Noble = "Noble",
+    Outlander = "Outlander",
+    Sage = "Sage",
+    Sailor = "Sailor",
+    Soldier = "Soldier",
+    Urchin = "Urchin" 
+}
+
 export enum Skill {
     Acrobatics = "acrobatics",
     Animal_handling = "animal-handling",
@@ -67,6 +83,8 @@ export enum AbilityScore {
     Strength = "str",
     Wisdom = "wis"
 }
+
+
 
 
 

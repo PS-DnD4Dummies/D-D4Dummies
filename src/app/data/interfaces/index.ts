@@ -1,4 +1,4 @@
-import { Alignment, Class, Race, Skill } from "@data/enums/enum";
+import { Alignment, Class, Race, Skill, Background } from "@data/enums/enum";
 
 export interface User {
     uid:string,
@@ -17,13 +17,12 @@ export interface Character {
     name:string,
     class:Class,
     race:Race,
-    subrace:string, //posible enum
     alignment:Alignment,
-    backgroud:string, //posible enum (solo tiene un valor en la api)
-    skills:Skill,
-    abilityScore:AbilityScore,
-    //proficiencies
-    //
+    backgroud:Background, 
+    skills:[Skill, Skill],
+    proficiencies:[string, string, string, string],
+    lore_sections:[string, string, string, string]
+
 }
 
 export interface AbilityScore {
@@ -34,6 +33,7 @@ export interface AbilityScore {
     Strength:number,
     Wisdom:number
 }
+
 
 
 export interface BaseClass {
