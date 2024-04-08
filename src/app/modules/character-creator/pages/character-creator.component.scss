@@ -1,9 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+
+}
+
 .background-character-creator{
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background-color: #1C3C47;
+    background-image: url('src/assets/images/dice_background_red.png');
+    background-repeat: repeat;
+    background-size: 30em;
+
     color: #c9c5c5;
 
     padding-right: 8em;
@@ -12,9 +22,7 @@
 
 .character-creator{
     display: grid;
-
-    grid-template-columns: 25em 25em 25em ;
-    grid-template-rows: auto auto auto auto auto ;
+    grid-template-columns: 1fr 1fr;
 }
 
 .character-creator__label{
@@ -36,9 +44,6 @@
 }
 
 .character-profile{
-    grid-column: 1;
-    grid-row: 1;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,8 +51,8 @@
 }
 
 .character-profile__img{
-    max-width: 13em;
-    max-height: 17em;
+    max-width: 12em;
+    max-height: 15em;
 
     border: .05em solid black;
 
@@ -62,9 +67,6 @@
 }
 
 .user-options{
-    grid-column: 2;
-    grid-row: 1;
-
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: 7em 4em 4em;
@@ -80,7 +82,6 @@
     grid-column-end: 3;
     grid-row: 1; 
 
-    width: 25em;
 }
 
 .character-name__name-value{
@@ -98,6 +99,8 @@
 .property{
     display: flex;
     flex-direction: column;
+    align-self: center;
+    justify-self: center;
 
     width: 11em;
     position: relative;
@@ -109,10 +112,6 @@
     right: .7em;
     bottom: .05em;
     
-}
-
-.property__type-label:hover{
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
 }
 
 .property__selector{
@@ -129,7 +128,6 @@
 .dice-place{
     background-color: #292828;
 
-    margin: 1em;
     width: 19em;
     height: 15.5em;
 
@@ -138,11 +136,11 @@
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
 
     color: #c9c5c5;
+    
+    align-self: center;
+    justify-self: center;
 
-    grid-column: 3;
-    grid-row: 1; 
-
-    margin-left: 5em;
+    margin: 2em;
 }
 
 .dice-place__place-name{
@@ -170,8 +168,6 @@
     border-radius: .4em;
     border: .1em solid #000;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
-    grid-column: 1;
-    grid-row: 2; 
 
     display: flex;
     flex-direction: column;
@@ -183,8 +179,8 @@
     padding-left: .2em;
     padding-right: .2em;
 
-    position: relative;
-    left: 7.5em;
+    align-self: center;
+    justify-self: center;
 }
 
 .skills__place-name{
@@ -214,9 +210,6 @@
 }
 
 .basic-character-stats{
-    grid-column: 2;
-    grid-row: 2; 
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -297,9 +290,6 @@
 }
 
 .character-stats{
-    grid-column: 3;
-    grid-row: 2;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -449,9 +439,6 @@
 
     height: 3em;
     margin-top: 1em;
-
-    grid-column: 3;
-    grid-row: 2;
 }
 
 .passive-perception__place-name{
@@ -478,10 +465,6 @@
 }
 
 .proficiencies{
-    grid-column: 1;
-    grid-row: 3;
-
-    margin-top: 3.5em;
     background-color: #292828;
 
     border-radius: .4em;
@@ -493,11 +476,13 @@
     padding: .5em;
 
     position: relative;
-    left: 7.2em;
 
     display: flex;
     flex-direction: column ;
     justify-content: space-between;
+
+    justify-self: center;
+    align-self: center;
     
 }
 
@@ -533,12 +518,15 @@
 }
 
 .traits{
-    grid-column: 2;
-    grid-row: 3;
-
     display: flex;
     justify-content: center;
     align-items: center;
+
+    justify-self: center;
+    align-self: center;
+
+    position: relative;
+    bottom: 3.5em;
 }
 
 .traits__container{
@@ -552,9 +540,6 @@
     width: 13em;
     height: 13em;
     padding: .5em;
-
-    position: relative;
-    bottom: 3.5em;
 
     display: flex;
     align-items: center;
@@ -577,12 +562,12 @@
 }
 
 .combat{
-    grid-column: 3;
-    grid-row: 3;
-
     display: grid;
     justify-content: center;
     align-items: center;
+
+    justify-self: center;
+    align-self: center;
 
     grid-template-columns: 10em 10em;
     grid-template-rows: auto auto auto;
@@ -596,6 +581,7 @@
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
 
     margin: 1em;
+    padding: 1em;
 }
 
 .combat__place-name{
@@ -655,7 +641,6 @@
 .lore{
     grid-column-start: 1;
     grid-column-end: 4;
-    grid-row: 4;
 
     margin-top: 1em;
     margin-left: 7em;
@@ -665,24 +650,23 @@
     flex-direction: column;
     justify-content: center;
 
+
+
 }
 
 .persistence{
     grid-column-start: 1;
     grid-column-end: 4;
-    grid-row: 5;
 
 
     display: flex;
     align-items: center;
     justify-self: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10em;
 
-    width: 50em;
     height: 15em;
 
-    position: relative;
-    left: 2em;
 }
 
 .persistence__button{
@@ -705,4 +689,188 @@
 
 .persistence__button:hover{
     background-color: rgb(31, 30, 30)
+}
+
+@media screen and (max-width: 1170px) {
+    .background-character-creator{
+        padding-right: 0;
+    }
+
+    .character-creator{
+        grid-template-columns: 25em 25em;
+        font-size: 80%;
+    }
+
+    .character-profile{
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .user-options{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row: 2;
+    }
+
+    .dice-place{
+        grid-column: 2;
+        grid-row: 1;
+
+        margin: 1em;
+
+        position: relative;
+        top: .8em;
+    }
+
+    .skills{
+        grid-column: 1;
+        grid-row: 4;
+
+        margin-top: 0;
+
+    }
+
+    .basic-character-stats{
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .character-stats{
+        grid-column: 2;
+        grid-row: 3;
+
+        margin: 2em;
+        position: relative;
+        top: 1em;
+    }
+
+    .proficiencies{
+        grid-column: 2;
+        grid-row: 5;
+    }
+
+    .traits{
+        grid-column: 1;
+        grid-row: 5;
+
+        bottom: 0;
+        height: 25em;
+    }
+
+    .combat{
+        grid-column: 2;
+        grid-row: 4;
+    }
+
+    .lore{
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        margin-left: 4em;
+    }
+
+    .persistence{
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        gap: 5em;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .background-character-creator{
+        padding-right: 0;
+    }
+
+    .character-creator{
+        grid-template-columns: 25em;
+        font-size: 75%;
+
+        grid-gap: 5em;
+    }
+
+    .character-profile{
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .user-options{
+        grid-column: auto;
+        grid-row: 3;
+
+        position: relative;
+        bottom: 1em;
+        right: .5em;
+
+    }
+
+    .character-name__name-value{
+        width: auto;
+    }
+
+    .dice-place{
+        grid-column: auto;
+        grid-row: 2;
+
+        margin: 1em;
+
+        position: relative;
+        top: .8em;
+    }
+
+    .skills{
+        grid-column: auto;
+        grid-row: 7;
+
+    }
+
+    .basic-character-stats{
+        grid-column: auto;
+        grid-row: 6;
+    }
+
+    .character-stats{
+        grid-column: auto;
+        grid-row: 4;
+
+        margin: 2em;
+        position: relative;
+        top: 1em;
+    }
+
+    .proficiencies{
+        grid-column: auto;
+        grid-row: 8;
+
+        height: 20em;
+    }
+
+    .traits{
+        grid-column: auto;
+        grid-row: 9;
+
+        height: 12em;
+    }
+
+    .combat{
+        grid-column: auto;
+        grid-row: 5;
+    }
+
+    .lore{
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .persistence{
+        grid-column: auto;
+        grid-row: auto;
+
+        gap: 5em;
+        font-size: 60%;
+
+        position: relative;
+        bottom: 4em;
+
+    }
 }

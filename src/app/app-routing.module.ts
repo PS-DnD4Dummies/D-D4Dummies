@@ -16,10 +16,10 @@ const routes: Routes = [
     path:ROUTES.AUTH.DEFAULT,
     loadChildren: () => import('./modules/auth/auth.module').then(m=> m.AuthModule)
   },
-  // {
-  //   path:'creador-personaje',
-  //   loadChildren:() => import('./modules/character-creator/character.module').then(m => m.character)
-  // }
+  {
+   path:ROUTES.CHARACTER.DEFAULT,
+   loadChildren:() => import('./modules/character-creator/character-creator.module').then(m => m.CharacterCreatorModule)
+  }
 ];
 
 @NgModule({
