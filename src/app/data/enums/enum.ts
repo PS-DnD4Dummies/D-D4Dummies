@@ -75,6 +75,7 @@ export enum Skill {
     Survival = "survival"
 }
 
+
 export enum AbilityScore {
     Charisma = "cha",
     Constitution = "con",

@@ -54,146 +54,121 @@
             <p class="skills__place-name character-creator__label">Skills</p>
 
             <section class="skill-type skill-type--acrobatics">
-                <input type="radio" class="skill-type__radio skill-type__radio--acrobatics">
-                <label class="skill-type__modifier skill-type__modifier--acrobatics">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Acrobatics</label><br>
+                <input type="checkbox" class="skill-type__radio acrobatics" disabled (click)="checkboxManager('acrobatics')">
+                <label class="skill-type__modifier skill-type__modifier--acrobatics"> {{ modifyerParse(skillsModifiers.get('acrobatics')) }}</label>
+                <label class="skill-type__separator"> - Acrobatics</label><br>
 
             </section>
 
             <section class="skill-type skill-type--AnimalHandling">
-                <input type="radio" class="skill-type__radio skill-type__radio--animal-handling">
-                <label class="skill-type__modifier skill-type__modifier--animal-handling">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Animal Handling</label><br>
+                <input type="checkbox" class="skill-type__radio animal-handling" disabled (change)="checkboxManager('animal-handling')">
+                <label class="skill-type__modifier skill-type__modifier--animal-handling"> {{ modifyerParse(skillsModifiers.get('animal-handling')) }}</label>
+                <label class="skill-type__separator"> - Animal Handling</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Arcana">
-                <input type="radio" class="skill-type__radio skill-type__radio--arcana">
-                <label class="skill-type__modifier skill-type__modifier--arcana">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Arcana</label><br>
+                <input type="checkbox" class="skill-type__radio arcana" disabled (click)="checkboxManager('arcana')">
+                <label class="skill-type__modifier skill-type__modifier--arcana"> {{ modifyerParse(skillsModifiers.get('arcana')) }}</label>
+                <label class="skill-type__separator"> - Arcana</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Athletics">
-                <input type="radio" class="skill-type__radio skill-type__radio--athletics">
-                <label class="skill-type__modifier skill-type__modifier--athletics">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Athletics</label><br>
-
+                <input type="checkbox" class="skill-type__radio athletics" disabled (click)="checkboxManager('athletics')">
+                <label class="skill-type__modifier skill-type__modifier--athletics"> {{ modifyerParse(skillsModifiers.get('athletics')) }}</label>
+                <label class="skill-type__separator"> - Athletics</label><br>
             </section>
 
             <section class="skill-type skill-type--Deception">
-                <input type="radio" class="skill-type__radio skill-type__radio--deception">
-                <label class="skill-type__modifier skill-type__modifier--deception">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Deception</label><br>
-
+                <input type="checkbox" class="skill-type__radio deception" disabled (click)="checkboxManager('deception')">
+                <label class="skill-type__modifier skill-type__modifier--deception"> {{ modifyerParse(skillsModifiers.get('deception')) }}</label>
+                <label class="skill-type__separator"> - Deception</label><br>
             </section>
 
             <section class="skill-type skill-type--History">
-                <input type="radio" class="skill-type__radio skill-type__radio--history">
-                <label class="skill-type__modifier skill-type__modifier--history">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">History</label><br>
-
+                <input type="checkbox" class="skill-type__radio history" disabled (click)="checkboxManager('history')">
+                <label class="skill-type__modifier skill-type__modifier--history"> {{ modifyerParse(skillsModifiers.get('history')) }}</label>
+                <label class="skill-type__separator"> - History</label><br>
             </section>
 
             <section class="skill-type skill-type--Insight">
-                <input type="radio" class="skill-type__radio skill-type__radio--insight">
-                <label class="skill-type__modifier skill-type__modifier--insight">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Insight</label><br>
-
+                <input type="checkbox" class="skill-type__radio insight" disabled (click)="checkboxManager('insight')">
+                <label class="skill-type__modifier skill-type__modifier--insight"> {{ modifyerParse(skillsModifiers.get('insight')) }}</label>
+                <label class="skill-type__separator"> - Insight</label><br>
             </section>
 
             <section class="skill-type skill-type--Intimidation">
-                <input type="radio" class="skill-type__radio skill-type__radio--intimidation">
-                <label class="skill-type__modifier skill-type__modifier--intimidation">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Intimidation</label><br>
-
+                <input type="checkbox" class="skill-type__radio intimidation" disabled (click)="checkboxManager('intimidation')">
+                <label class="skill-type__modifier skill-type__modifier--intimidation"> {{ modifyerParse(skillsModifiers.get('intimidation')) }}</label>
+                <label class="skill-type__separator"> - Intimidation</label><br>
             </section>
 
             <section class="skill-type skill-type--Investigation">
-                <input type="radio" class="skill-type__radio skill-type__radio--investigation">
-                <label class="skill-type__modifier skill-type__modifier--investigation">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Investigation</label><br>
-
+                <input type="checkbox" class="skill-type__radio investigation" disabled (click)="checkboxManager('investigation')">
+                <label class="skill-type__modifier skill-type__modifier--investigation"> {{ modifyerParse(skillsModifiers.get('investigation')) }}</label>
+                <label class="skill-type__separator"> - Investigation</label><br>
             </section>
 
             <section class="skill-type skill-type--Medicine">
-                <input type="radio" class="skill-type__radio skill-type__radio--medicine">
-                <label class="skill-type__modifier skill-type__modifier--medicine">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Medicine</label><br>
+                <input type="checkbox" class="skill-type__radio medicine" disabled (click)="checkboxManager('medicine')">
+                <label class="skill-type__modifier skill-type__modifier--medicine"> {{ modifyerParse(skillsModifiers.get('medicine')) }}</label>
+                <label class="skill-type__separator"> - Medicine</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Nature">
-                <input type="radio" class="skill-type__radio skill-type__radio--nature">
-                <label class="skill-type__modifier skill-type__modifier--nature">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Nature</label><br>
-
+                <input type="checkbox" class="skill-type__radio nature" disabled (click)="checkboxManager('nature')">
+                <label class="skill-type__modifier skill-type__modifier--nature"> {{ modifyerParse(skillsModifiers.get('nature')) }}</label>
+                <label class="skill-type__separator"> - Nature</label><br>
             </section>
 
             <section class="skill-type skill-type--Perception">
-                <input type="radio" class="skill-type__radio skill-type__radio--perception">
-                <label class="skill-type__modifier skill-type__modifier--perception">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Perception</label><br>
+                <input type="checkbox" class="skill-type__radio perception" disabled (click)="checkboxManager('perception')">
+                <label class="skill-type__modifier skill-type__modifier--perception"> {{ modifyerParse(skillsModifiers.get('perception')) }}</label>
+                <label class="skill-type__separator"> - Perception</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Performance">
-                <input type="radio" class="skill-type__radio skill-type__radio--performance">
-                <label class="skill-type__modifier skill-type__modifier--performance">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Performance</label><br>
+                <input type="checkbox" class="skill-type__radio performance" disabled (click)="checkboxManager('performance')">
+                <label class="skill-type__modifier skill-type__modifier--performance"> {{ modifyerParse(skillsModifiers.get('performance')) }}</label>
+                <label class="skill-type__separator"> - Performance</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Persuasion">
-                <input type="radio" class="skill-type__radio skill-type__radio--persuasion">
-                <label class="skill-type__modifier skill-type__modifier--persuasion">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Persuasion</label><br>
+                <input type="checkbox" class="skill-type__radio persuasion" disabled (click)="checkboxManager('persuasion')">
+                <label class="skill-type__modifier skill-type__modifier--persuasion"> {{ modifyerParse(skillsModifiers.get('persuasion')) }}</label>
+                <label class="skill-type__separator"> - Persuasion</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Religion">
-                <input type="radio" class="skill-type__radio skill-type__radio--religion">
-                <label class="skill-type__modifier skill-type__modifier--religion">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Religion</label><br>
+                <input type="checkbox" class="skill-type__radio religion" disabled (click)="checkboxManager('religion')">
+                <label class="skill-type__modifier skill-type__modifier--religion"> {{ modifyerParse(skillsModifiers.get('religion')) }}</label>
+                <label class="skill-type__separator"> - Religion</label><br>
 
             </section>
 
             <section class="skill-type skill-type--SleightOfHand">
-                <input type="radio" class="skill-type__radio skill-type__radio--sleight-of-hand">
-                <label class="skill-type__modifier skill-type__modifier--sleight-of-hand">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Sleight Of Hand</label><br>
+                <input type="checkbox" class="skill-type__radio sleight-of-hand" disabled (click)="checkboxManager('sleight-of-hand')">
+                <label class="skill-type__modifier skill-type__modifier--sleight-of-hand"> {{ modifyerParse(skillsModifiers.get('sleight-of-hand')) }}</label>
+                <label class="skill-type__separator"> - Sleight of Hand</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Stealth">
-                <input type="radio" class="skill-type__radio skill-type__radio--stealth">
-                <label class="skill-type__modifier skill-type__modifier--stealth">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Stealth</label><br>
+                <input type="checkbox" class="skill-type__radio stealth" disabled (click)="checkboxManager('stealth')">
+                <label class="skill-type__modifier skill-type__modifier--stealth"> {{ modifyerParse(skillsModifiers.get('stealth')) }}</label>
+                <label class="skill-type__separator"> - Stealth</label><br>
 
             </section>
 
             <section class="skill-type skill-type--Survival">
-                <input type="radio" class="skill-type__radio skill-type__radio--survival">
-                <label class="skill-type__modifier skill-type__modifier--survival">0</label>
-                <label class="skill-type__separator">-</label>
-                <label class="skill-type__name">Survival</label><br>
+                <input type="checkbox" class="skill-type__radio survival" disabled (click)="checkboxManager('survival')">
+                <label class="skill-type__modifier skill-type__modifier--survival"> {{ modifyerParse(skillsModifiers.get('survival')) }}</label>
+                <label class="skill-type__separator"> - Survival</label><br>
 
             </section>
 

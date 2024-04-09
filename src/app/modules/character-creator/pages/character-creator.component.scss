@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Ringbearer', sans-serif;
 
 }
 
@@ -71,6 +71,8 @@
     grid-template-columns: auto auto;
     grid-template-rows: 7em 4em 4em;
 
+    position: relative;
+    right: 1em;
 }
 
 .character-name{
@@ -99,8 +101,6 @@
 .property{
     display: flex;
     flex-direction: column;
-    align-self: center;
-    justify-self: center;
 
     width: 11em;
     position: relative;
@@ -173,7 +173,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    width: 11em;
+    width: 12em;
     height: 31.5em;
     margin-top: 3.5em;
     padding-left: .2em;
@@ -710,6 +710,13 @@
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row: 2;
+
+        right:0
+    }
+
+    .property{
+        align-self: center;
+        justify-self: center;
     }
 
     .dice-place{

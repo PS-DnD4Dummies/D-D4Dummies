@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
-import { Race, Class, Alignment, Background} from "@data/enums/enum";
+import { Race, Class, Alignment, Background, Skill} from "@data/enums/enum";
 
 @Component({
     selector: 'character-creator',
@@ -13,7 +13,8 @@ export class CharacterCreatorComponent implements OnInit{
     enumRace = Object.values(Race); 
     enumClass = Object.values(Class); 
     enumAlignment = Object.values(Alignment); 
-    enumBackground = Object.values(Background); 
+    enumBackground = Object.values(Background);
+    enumSkill = Object.values(Skill);
 
     race: string = "";
     class: string = "";
@@ -33,6 +34,10 @@ export class CharacterCreatorComponent implements OnInit{
     stats = new Map<string, number>(this.nombresYValores);
     modifiers = new Map<string, number>(this.nombresYValores);
     savingThrows = new Map<string, number>(this.nombresYValores);
+
+    skillsModifiers = new Map<string, number>(this.nombresYValores);
+    skillsOptions = new Map<string, number>(this.nombresYValores);
+    
     
     passivePerception: number = 0;
 
@@ -40,15 +45,22 @@ export class CharacterCreatorComponent implements OnInit{
     armorClass: number = 0;
     initiative: number = 0;
     speed: number = 0;
-    hitDice: string = "";
+    hitDice: string = "0d0";
+
+    numChecked: number = 0;
+    maxCheck: number = 5;
+    isChecked: boolean = false;
+    isDisabled: boolean = false;
 
     constructor(){
     }
 
     ngOnInit(){
+
     }
 
     zaWarudo(){
+
         if (!this.checkFields()){
             return;
         }
@@ -107,8 +119,32 @@ export class CharacterCreatorComponent implements OnInit{
         
         this.stats.forEach( (value, key) => {
             this.modifiers.set(key, this.calculateModifyer(value));  
+            this.savingThrows.set(key, this.calculateModifyer(value)); 
         })
 
+        this.setSkillsModifiers();
+
+    }
+
+    setSkillsModifiers(){
+        this.skillsModifiers.set("acrobatics", (this.modifiers.get('Dexterity') ?? 0));
+        this.skillsModifiers.set("animal-handling", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("arcana", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("athletics", (this.modifiers.get('Strength') ?? 0));
+        this.skillsModifiers.set("deception", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("history", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("insight", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("intimidation", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("investigation", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("medicine", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("nature", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("perception", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("performance", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("persuasion", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("religion", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("sleight-of-hand", (this.modifiers.get('Dexterity') ?? 0));
+        this.skillsModifiers.set("stealth", (this.modifiers.get('Dexterity') ?? 0));
+        this.skillsModifiers.set("survival", (this.modifiers.get('Wisdom') ?? 0));
     }
 
     racesTweaks(){
@@ -168,97 +204,232 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     classesTweaks(){
-
-        this.savingThrows = new Map(this.modifiers);
-
+        this.skillsOptions.clear();
+        this.maxCheck = 0;
+        
         switch (this.class) {
             case "barbarian":
                 this.hitDice = "1d12";
                 this.hitPoints = 12 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Strength', 2 + (this.savingThrows.get('Strength') ?? 0));
                 this.savingThrows.set('Constitution', 2 + (this.savingThrows.get('Constitution') ?? 0));
+
+                this.skillsOptions.set(Skill.Perception, 0);
+                this.skillsOptions.set(Skill.Intimidation, 0);
+                this.skillsOptions.set(Skill.Survival, 0);
+                this.skillsOptions.set(Skill.Animal_handling, 0);
+                this.skillsOptions.set(Skill.Athletics, 0);
+                this.skillsOptions.set(Skill.Nature, 0);
+                this.maxCheck = 2;
+                
                 break;
 
             case "bard":
                 this.hitDice = "1d8";
                 this.hitPoints = 8 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Dexterity', 2 + (this.savingThrows.get('Dexterity') ?? 0));
                 this.savingThrows.set('Charisma', 2 + (this.savingThrows.get('Charisma') ?? 0));
+
+                this.enumSkill.forEach(skill =>{ this.skillsOptions.set(skill, 0); })
+                this.maxCheck = 3;
+                
                 break;
 
             case "cleric":
                 this.hitDice = "1d8";
                 this.hitPoints = 8 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Wisdom', 2 + (this.savingThrows.get('Wisdom') ?? 0));
                 this.savingThrows.set('Charisma', 2 + (this.savingThrows.get('Charisma') ?? 0));
+                
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Medicine, 0);
+                this.skillsOptions.set(Skill.History, 0);
+                this.skillsOptions.set(Skill.Persuasion, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.maxCheck = 2;
+                
                 break;
 
             case "druid":
                 this.hitDice = "1d8";
                 this.hitPoints = 8 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Intelligence', 2 + (this.savingThrows.get('Intelligence') ?? 0));
                 this.savingThrows.set('Wisdom', 2 + (this.savingThrows.get('Wisdom') ?? 0));
+
+                this.skillsOptions.set(Skill.Arcana, 0);
+                this.skillsOptions.set(Skill.Animal_handling, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Medicine, 0);
+                this.skillsOptions.set(Skill.Nature, 0);
+                this.skillsOptions.set(Skill.Perception, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.skillsOptions.set(Skill.Survival, 0);
+                this.maxCheck = 2;
+                
                 break;
 
             case "fighter":
                 this.hitDice = "1d10";
                 this.hitPoints = 10 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Strength', 2 + (this.savingThrows.get('Strength') ?? 0));
                 this.savingThrows.set('Constitution', 2 + (this.savingThrows.get('Constitution') ?? 0));
+
+                this.skillsOptions.set(Skill.Acrobatics, 0);
+                this.skillsOptions.set(Skill.Animal_handling, 0);
+                this.skillsOptions.set(Skill.Athletics, 0);
+                this.skillsOptions.set(Skill.History, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Intimidation, 0);
+                this.skillsOptions.set(Skill.Perception, 0);
+                this.skillsOptions.set(Skill.Survival, 0);
+                this.maxCheck = 2;
+                
                 break;
 
             case "monk":
                 this.hitDice = "1d8";
                 this.hitPoints = 8 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Strength', 2 + (this.savingThrows.get('Strength') ?? 0));
                 this.savingThrows.set('Dexterity', 2 + (this.savingThrows.get('Dexterity') ?? 0));
+
+                this.skillsOptions.set(Skill.Acrobatics, 0);
+                this.skillsOptions.set(Skill.Athletics, 0);
+                this.skillsOptions.set(Skill.History, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.skillsOptions.set(Skill.Stealth, 0);
+                this.maxCheck = 2;
+
                 break;
             
             case "paladin":
                 this.hitDice = "1d10";
                 this.hitPoints = 10 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Wisdom', 2 + (this.savingThrows.get('Wisdom') ?? 0));
                 this.savingThrows.set('Charisma', 2 + (this.savingThrows.get('Charisma') ?? 0));
+
+                this.skillsOptions.set(Skill.Athletics, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Intimidation, 0);
+                this.skillsOptions.set(Skill.Medicine, 0);
+                this.skillsOptions.set(Skill.Persuasion, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.maxCheck = 2;
+
                 break;
 
             case "ranger":
                 this.hitDice = "1d10";
                 this.hitPoints = 10 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Strength', 2 + (this.savingThrows.get('Intelligence') ?? 0));
                 this.savingThrows.set('Dexterity', 2 + (this.savingThrows.get('Dexterity') ?? 0));
+
+                this.skillsOptions.set(Skill.Animal_handling, 0);
+                this.skillsOptions.set(Skill.Athletics, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Investigation, 0);
+                this.skillsOptions.set(Skill.Nature, 0);
+                this.skillsOptions.set(Skill.Perception, 0);
+                this.skillsOptions.set(Skill.Stealth, 0);
+                this.skillsOptions.set(Skill.Survival, 0);
+                this.maxCheck = 3;
+
                 break;
             
             case "rogue":
                 this.hitDice = "1d8";
                 this.hitPoints = 8 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Dexterity', 2 + (this.savingThrows.get('Dexterity') ?? 0));
                 this.savingThrows.set('Intelligence', 2 + (this.savingThrows.get('Intelligence') ?? 0));
+
+                this.skillsOptions.set(Skill.Acrobatics, 0);
+                this.skillsOptions.set(Skill.Athletics, 0);
+                this.skillsOptions.set(Skill.Deception, 0);
+                this.skillsOptions.set(Skill.Deception, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Intimidation, 0);
+                this.skillsOptions.set(Skill.Investigation, 0);
+                this.skillsOptions.set(Skill.Perception, 0);
+                this.skillsOptions.set(Skill.Performance, 0);
+                this.skillsOptions.set(Skill.Persuasion, 0);
+                this.skillsOptions.set(Skill.Sleight_of_hand, 0);
+                this.skillsOptions.set(Skill.Stealth, 0);
+                this.maxCheck = 4;
+                
                 break;
             
             case "sorcerer":
                 this.hitDice = "1d6";
                 this.hitPoints = 6 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Constitution', 2 + (this.savingThrows.get('Constitution') ?? 0));
                 this.savingThrows.set('Charisma', 2 + (this.savingThrows.get('Charisma') ?? 0));
+
+                this.skillsOptions.set(Skill.Arcana, 0);
+                this.skillsOptions.set(Skill.Deception, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Intimidation, 0);
+                this.skillsOptions.set(Skill.Persuasion, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.maxCheck = 2;
+                
                 break;
             
             case "warlock":
                 this.hitDice = "1d8";
                 this.hitPoints = 8 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Wisdom', 2 + (this.savingThrows.get('Wisdom') ?? 0));
                 this.savingThrows.set('Charisma', 2 + (this.savingThrows.get('Charisma') ?? 0));
+
+                this.skillsOptions.set(Skill.Arcana, 0);
+                this.skillsOptions.set(Skill.Deception, 0);
+                this.skillsOptions.set(Skill.History, 0);
+                this.skillsOptions.set(Skill.Intimidation, 0);
+                this.skillsOptions.set(Skill.Investigation, 0);
+                this.skillsOptions.set(Skill.Nature, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.maxCheck = 2;
+                
                 break;
             
             case "wizard":
                 this.hitDice = "1d6";
                 this.hitPoints = 6 + (this.modifiers.get('Constitution') ?? 0);
+
                 this.savingThrows.set('Intelligence', 2 + (this.savingThrows.get('Intelligence') ?? 0));
                 this.savingThrows.set('Wisdom', 2 + (this.savingThrows.get('Wisdom') ?? 0));
+
+                this.skillsOptions.set(Skill.Arcana, 0);
+                this.skillsOptions.set(Skill.History, 0);
+                this.skillsOptions.set(Skill.Insight, 0);
+                this.skillsOptions.set(Skill.Investigation, 0);
+                this.skillsOptions.set(Skill.Medicine, 0);
+                this.skillsOptions.set(Skill.Religion, 0);
+                this.maxCheck = 2;
+
                 break;
 
             default:
               console.log("error");
         }
+
+        this.enumSkill.forEach( (skill) => {
+            if(this.skillsOptions.has(skill)){
+                const checkbox = document.querySelector("." + skill) as HTMLInputElement;
+                checkbox.disabled = false;
+            }
+        })
+
     }
 
     calculatePassivePerception(){
@@ -279,6 +450,69 @@ export class CharacterCreatorComponent implements OnInit{
 
     enumParser(s: string){
         return s.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
+    checkboxManager(skill: string){
+
+        const checkbox = document.querySelector("." + skill) as HTMLInputElement;
+
+        if (!checkbox.checked) {
+            this.deleteCompetence(skill);
+
+            this.skillsOptions.set(skill, 0);
+
+            this.numChecked--;
+
+        } else {
+            this.giveCompetence(skill);
+
+            this.skillsOptions.set(skill, 1);
+
+            this.numChecked++;
+        }
+
+        if (this.numChecked >= this.maxCheck){
+            this.isDisabled = true;
+
+            this.disableRadioButtons();
+
+        } else if (this.isDisabled) {
+            this.isDisabled = false;
+
+            this.enableRadioButtons();
+        }
+    }
+
+    giveCompetence(skill: string){
+        this.skillsModifiers.set(skill, (this.skillsModifiers.get(skill) ?? 0) + 2);
+    }
+
+    deleteCompetence(skill: string){
+        this.skillsModifiers.set(skill, (this.skillsModifiers.get(skill) ?? 0) - 2);
+    }
+
+    enableRadioButtons(){
+        let keysArray = Array.from(this.skillsOptions.keys());
+        let helper;
+
+        keysArray.forEach( (key) => {
+            if (!this.skillsOptions.get(key)){
+                helper = document.querySelector("." + key) as HTMLInputElement;
+                helper.disabled = false;
+            }
+        })
+    }
+
+    disableRadioButtons(){
+        let keysArray = Array.from(this.skillsOptions.keys());
+        let helper;
+
+        keysArray.forEach( (key) => {
+            if (!this.skillsOptions.get(key)){
+                helper = document.querySelector("." + key) as HTMLInputElement;
+                helper.disabled = true;
+            }
+        })
     }
 
 }
