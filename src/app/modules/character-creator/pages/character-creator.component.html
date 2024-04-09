@@ -298,36 +298,32 @@
 
             <section class="proficiencie proficiencie--armor">
                 <label class="proficiencie__label">Armor</label>
-                <select class="proficiencie__selector">
-                    <option class="proficiencie__option proficiencie__option--armor-1" value="default">Pick An Armor!</option>
-                    <option class="proficiencie__option proficiencie__option--armor-2" value="opcion2">Opción 2</option>
+                <select class="proficiencie__selector" [(ngModel)]="armor">
+                    <option class="proficiencie__option proficiencie__option--armor" value="default" *ngFor="let i of arrayArmors" [value]="i">{{ enumParser(i) }}</option>
                 </select>
 
             </section>
 
             <section class="proficiencie proficiencie--weapon">
                 <label class="proficiencie__label">Weapon</label>
-                <select class="proficiencie__selector">
-                    <option class="proficiencie__option proficiencie__option--weapon-1" value="default">Pick A Weapon!</option>
-                    <option class="proficiencie__option proficiencie__option--weapon-2" value="opcion2">Opción 2</option>
+                <select class="proficiencie__selector" [(ngModel)]="weapon">
+                    <option class="proficiencie__option proficiencie__option--weapon" value="default"*ngFor="let i of enumRace" [value]="i">{{ enumParser(i) }}</option>
                 </select>
 
             </section>
 
             <section class="proficiencie proficiencie--tools">
                 <label class="proficiencie__label">Tools</label>
-                <select class="proficiencie__selector">
-                    <option class="proficiencie__option proficiencie__option--tools-1" value="default">Pick Tools!</option>
-                    <option class="proficiencie__option proficiencie__option--tools-2" value="opcion2">Opción 2</option>
+                <select class="proficiencie__selector" [(ngModel)]="tool">
+                    <option class="proficiencie__option proficiencie__option--tools" value="default"*ngFor="let i of arrayTools" [value]="i">{{ enumParser(i) }}</option>
                 </select>
 
             </section>
 
             <section class="proficiencie proficiencie--language">
                 <label class="proficiencie__label">Language</label>
-                <select class="proficiencie__selector">
-                    <option class="proficiencie__option proficiencie__option--language-1" value="default">Pick Your Language!</option>
-                    <option class="proficiencie__option proficiencie__option--language-2" value="opcion2">Opción 2</option>
+                <select class="proficiencie__selector" [(ngModel)]="language">
+                    <option class="proficiencie__option proficiencie__option--language" value="default"*ngFor="let i of arrayLanguages" [value]="i">{{ enumParser(i) }}</option>
                 </select>
 
             </section>

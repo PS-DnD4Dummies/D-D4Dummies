@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { Race, Class, Alignment, Background, Skill} from "@data/enums/enum";
+import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 
 @Component({
     selector: 'character-creator',
@@ -16,11 +17,21 @@ export class CharacterCreatorComponent implements OnInit{
     enumBackground = Object.values(Background);
     enumSkill = Object.values(Skill);
 
+    arrayArmors: string[] = ["Light armor", "Medium armor", "Heavy armor", "Shield"];
+    arrayWeapons: string[] = [];
+    arrayTools: string[] = [];
+    arrayLanguages: string[] = [];
+
     race: string = "";
     class: string = "";
     alignment: string = "";
     background: string = "";
     name: string = "";
+
+    armor: string = "";
+    weapon: string = "";
+    tool: string = "";
+    language: string = "";
 
     nombresYValores: [string, number][] = [
             ['Strength', 0],
@@ -35,8 +46,8 @@ export class CharacterCreatorComponent implements OnInit{
     modifiers = new Map<string, number>(this.nombresYValores);
     savingThrows = new Map<string, number>(this.nombresYValores);
 
-    skillsModifiers = new Map<string, number>(this.nombresYValores);
-    skillsOptions = new Map<string, number>(this.nombresYValores);
+    skillsModifiers = new Map<string, number>();
+    skillsOptions = new Map<string, number>();
     
     
     passivePerception: number = 0;
@@ -52,11 +63,13 @@ export class CharacterCreatorComponent implements OnInit{
     isChecked: boolean = false;
     isDisabled: boolean = false;
 
-    constructor(){
+    constructor(private dndApiService: DndApiService){
     }
 
     ngOnInit(){
-
+        this.resetProficienciesArrays();
+        this.getToolsFromAPI();
+        this.getLanguagesFromAPI();
     }
 
     zaWarudo(){
@@ -64,15 +77,18 @@ export class CharacterCreatorComponent implements OnInit{
         if (!this.checkFields()){
             return;
         }
-
+        
         this.generateRandomNumbersForStats();
-        this.calculateStats();
-        this.calculatePassivePerception();
-        this.calculateCombatStats();
+        this.calculateModifiersAndSavingThrows();
+
+        this.restartSkillOptions();
 
         this.racesTweaks();
         this.classesTweaks();
-
+        
+        this.calculatePassivePerception();
+        this.calculateCombatStats();
+        
     }
 
     checkFields(){
@@ -83,6 +99,9 @@ export class CharacterCreatorComponent implements OnInit{
         return false;
     }
 
+
+    
+    //----- BASIC STAT CALCULATIONS -----
     generateRandomNumbersForStats(){
         let sum = 0;
         const minSum = 50;
@@ -106,7 +125,7 @@ export class CharacterCreatorComponent implements OnInit{
             }
         }
     }
-    
+
     calculateModifyer(valor: number): number {
         if (valor < 1 || valor > 20) {
             throw new Error("El valor debe estar entre 1 y 20.");
@@ -115,38 +134,28 @@ export class CharacterCreatorComponent implements OnInit{
         return Math.floor((valor - 10) / 2);
     }
 
-    calculateStats(){
+    calculateModifiersAndSavingThrows(){
         
         this.stats.forEach( (value, key) => {
             this.modifiers.set(key, this.calculateModifyer(value));  
             this.savingThrows.set(key, this.calculateModifyer(value)); 
         })
 
-        this.setSkillsModifiers();
-
     }
 
-    setSkillsModifiers(){
-        this.skillsModifiers.set("acrobatics", (this.modifiers.get('Dexterity') ?? 0));
-        this.skillsModifiers.set("animal-handling", (this.modifiers.get('Wisdom') ?? 0));
-        this.skillsModifiers.set("arcana", (this.modifiers.get('Intelligence') ?? 0));
-        this.skillsModifiers.set("athletics", (this.modifiers.get('Strength') ?? 0));
-        this.skillsModifiers.set("deception", (this.modifiers.get('Charisma') ?? 0));
-        this.skillsModifiers.set("history", (this.modifiers.get('Intelligence') ?? 0));
-        this.skillsModifiers.set("insight", (this.modifiers.get('Wisdom') ?? 0));
-        this.skillsModifiers.set("intimidation", (this.modifiers.get('Charisma') ?? 0));
-        this.skillsModifiers.set("investigation", (this.modifiers.get('Intelligence') ?? 0));
-        this.skillsModifiers.set("medicine", (this.modifiers.get('Wisdom') ?? 0));
-        this.skillsModifiers.set("nature", (this.modifiers.get('Intelligence') ?? 0));
-        this.skillsModifiers.set("perception", (this.modifiers.get('Wisdom') ?? 0));
-        this.skillsModifiers.set("performance", (this.modifiers.get('Charisma') ?? 0));
-        this.skillsModifiers.set("persuasion", (this.modifiers.get('Charisma') ?? 0));
-        this.skillsModifiers.set("religion", (this.modifiers.get('Intelligence') ?? 0));
-        this.skillsModifiers.set("sleight-of-hand", (this.modifiers.get('Dexterity') ?? 0));
-        this.skillsModifiers.set("stealth", (this.modifiers.get('Dexterity') ?? 0));
-        this.skillsModifiers.set("survival", (this.modifiers.get('Wisdom') ?? 0));
+    calculatePassivePerception(){
+        this.passivePerception = 10 + (this.modifiers.get('Wisdom') ?? 0);
     }
 
+    calculateCombatStats(){
+        this.hitPoints = 10 + (this.modifiers.get('Constitution') ?? 0);
+        this.armorClass = 10 + (this.modifiers.get('Dexterity') ?? 0);
+        this.initiative = (this.modifiers.get('Dexterity') ?? 0);
+ 
+    }
+
+
+    //----- USER CHOICE TWEAKS -----
     racesTweaks(){
 
         this.speed = 30;
@@ -201,12 +210,11 @@ export class CharacterCreatorComponent implements OnInit{
             default:
               console.log("error");
         }
+
+        this.setSkillsModifiers();
     }
 
     classesTweaks(){
-        this.skillsOptions.clear();
-        this.maxCheck = 0;
-        
         switch (this.class) {
             case "barbarian":
                 this.hitDice = "1d12";
@@ -432,24 +440,47 @@ export class CharacterCreatorComponent implements OnInit{
 
     }
 
-    calculatePassivePerception(){
-        this.passivePerception = 10 + (this.modifiers.get('Wisdom') ?? 0);
-    }
 
-    calculateCombatStats(){
-        this.hitPoints = 10 + (this.modifiers.get('Constitution') ?? 0);
-        this.armorClass = 10 + (this.modifiers.get('Dexterity') ?? 0);
-        this.initiative = (this.modifiers.get('Dexterity') ?? 0);
- 
-    }
 
-    modifyerParse(modifyer: number | undefined){
-        if (modifyer == undefined) modifyer = 0;
-        return modifyer >= 0 ? "+" + modifyer : modifyer;
+    //----- SKILLS RELATED -----
+    setSkillsModifiers(){
+        this.skillsModifiers.set("acrobatics", (this.modifiers.get('Dexterity') ?? 0));
+        this.skillsModifiers.set("animal-handling", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("arcana", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("athletics", (this.modifiers.get('Strength') ?? 0));
+        this.skillsModifiers.set("deception", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("history", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("insight", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("intimidation", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("investigation", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("medicine", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("nature", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("perception", (this.modifiers.get('Wisdom') ?? 0));
+        this.skillsModifiers.set("performance", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("persuasion", (this.modifiers.get('Charisma') ?? 0));
+        this.skillsModifiers.set("religion", (this.modifiers.get('Intelligence') ?? 0));
+        this.skillsModifiers.set("sleight-of-hand", (this.modifiers.get('Dexterity') ?? 0));
+        this.skillsModifiers.set("stealth", (this.modifiers.get('Dexterity') ?? 0));
+        this.skillsModifiers.set("survival", (this.modifiers.get('Wisdom') ?? 0));
     }
+    
+    restartSkillOptions(){
+        let keysArray = Array.from(this.skillsOptions.keys());
 
-    enumParser(s: string){
-        return s.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        console.log(keysArray);
+
+        if(keysArray.length == 0) return;
+
+        keysArray.forEach( (key) => {
+            const checkbox = document.querySelector("." + key) as HTMLInputElement;
+            checkbox.checked = false;
+            checkbox.disabled = true;
+        })
+
+        this.maxCheck = 0;
+        this.numChecked = 0;
+        this.skillsOptions.clear();
+        
     }
 
     checkboxManager(skill: string){
@@ -474,12 +505,12 @@ export class CharacterCreatorComponent implements OnInit{
         if (this.numChecked >= this.maxCheck){
             this.isDisabled = true;
 
-            this.disableRadioButtons();
+            this.disableCheckboxes();
 
         } else if (this.isDisabled) {
             this.isDisabled = false;
 
-            this.enableRadioButtons();
+            this.enableCheckboxes();
         }
     }
 
@@ -491,7 +522,7 @@ export class CharacterCreatorComponent implements OnInit{
         this.skillsModifiers.set(skill, (this.skillsModifiers.get(skill) ?? 0) - 2);
     }
 
-    enableRadioButtons(){
+    enableCheckboxes(){
         let keysArray = Array.from(this.skillsOptions.keys());
         let helper;
 
@@ -503,7 +534,7 @@ export class CharacterCreatorComponent implements OnInit{
         })
     }
 
-    disableRadioButtons(){
+    disableCheckboxes(){
         let keysArray = Array.from(this.skillsOptions.keys());
         let helper;
 
@@ -513,6 +544,41 @@ export class CharacterCreatorComponent implements OnInit{
                 helper.disabled = true;
             }
         })
+    }
+
+
+    //----- PROFICIENCIES RELATED -----
+    resetProficienciesArrays(){
+        this.arrayTools = [];
+        this.arrayLanguages = [];
+    }
+
+    getToolsFromAPI(){
+        this.dndApiService.getTools().subscribe( (data: any) => {
+            data.equipment.forEach( (element: any) => {
+                this.arrayTools.push(element.name);
+            })
+        })
+    }
+
+    getLanguagesFromAPI(){
+        this.dndApiService.getLanguages().subscribe( (data: any) => {
+            data.results.forEach( (element: any) => {
+                this.arrayLanguages.push(element.name);
+            })
+        })
+    }
+    
+
+
+    //----- DATA PARSERS -----
+    modifyerParse(modifyer: number | undefined){
+        if (modifyer == undefined) modifyer = 0;
+        return modifyer >= 0 ? "+" + modifyer : modifyer;
+    }
+
+    enumParser(s: string){
+        return s.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     }
 
 }

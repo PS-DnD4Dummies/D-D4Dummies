@@ -74,7 +74,7 @@ export class DndApiService {
   }
 
   getTools(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/equipment-categories/tools`)
+    return this.http.get(`${this.baseUrl}/equipment-categories/tools`);
   }
   getTool(toolIndex: any): Observable<ToolInfo> {
     return this.http.get<ToolInfo>(`${this.baseUrl}/equipment/${toolIndex}`);
@@ -82,10 +82,13 @@ export class DndApiService {
 
 
   getAdventuringGear(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/equipment-categories/adventuring-gear`)
+    return this.http.get(`${this.baseUrl}/equipment-categories/adventuring-gear`);
   }
   getAdventureGearInfo(AdventuringGearInfo: any): Observable<AdventuringGearInfo> {
     return this.http.get<AdventuringGearInfo>(`${this.baseUrl}/equipment/${AdventuringGearInfo}`);
   }
 
+  getLanguages(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/languages`);
+  }
 }
