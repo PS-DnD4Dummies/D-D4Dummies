@@ -2,7 +2,8 @@
     <section class="character-creator">
         <figure class="character-profile">
             <p class="character-profile__place-name character-creator__label">Your character</p>
-            <img src="/assets/images/default.jpg" class="can-hover character-profile__img" />
+            <img [src]="displayImage" class="can-hover character-profile__img" />
+            <input type="file" id="file-upload" accept="image/*" (change)="onFileSelected($event)">
         </figure>
 
         <article class="user-options">
