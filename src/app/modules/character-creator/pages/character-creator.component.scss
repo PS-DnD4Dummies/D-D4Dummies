@@ -23,6 +23,7 @@
 .character-creator{
     display: grid;
     grid-template-columns: 1fr 1fr;
+
 }
 
 .character-creator__label{
@@ -65,9 +66,8 @@
 .character-profile__place-name{
     position: relative;
     top: 0.6em;
-    right: 1em;
 
-    width: 12em;
+    width: 11em;
 }
 
 .file-button{
@@ -143,8 +143,8 @@
 .dice-place{
     background-color: #292828;
 
-    width: 19em;
-    height: 15.5em;
+    width: 15em;
+    height: 14.5em;
 
     border-radius: .5em;
     border: .15em solid #000;
@@ -168,6 +168,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     
     height: 13em;
 }
@@ -177,6 +178,43 @@
     max-height: 12em;
 
     cursor: pointer;
+
+    position: relative;
+    top: 1em;
+}
+
+.reset-tool{
+    display: flex;
+    align-self: flex-end;
+    justify-self: flex-end;
+    
+    opacity: 0;
+    visibility: hidden;
+}
+
+.reset-activated{
+    opacity: 1;
+    visibility: visible;
+}
+
+.reset-button{
+    background-color: #333;
+    border: .01em solid #000;
+    border-radius: .3em;
+    box-shadow: .3em .3em .1em rgba(0,0,0,0.1);
+
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    color:#c9c5c5;
+    padding: .5em;
+
+    position: relative;
+    top: .1em;
+    left: .7em;
+
+    font-size: 110%;
+
 }
 
 .skills{
@@ -626,8 +664,6 @@
     flex-direction: column;
     justify-content: center;
 
-
-
 }
 
 .persistence{
@@ -683,6 +719,15 @@
 
     font-size: 1.2em;
     color: var(--paleta-rojo1); 
+}
+
+.marked-character-label{
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    color: var(--paleta-rojo1); 
+    padding: .2em;
 }
 
 @keyframes shimmer {

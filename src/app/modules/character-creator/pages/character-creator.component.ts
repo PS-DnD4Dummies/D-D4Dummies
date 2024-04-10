@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, QueryList, ViewChildren } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { Race, Class, Alignment, Background, Skill} from "@data/enums/enum";
 import { RaceInfo } from "@data/interfaces/api_parameters";
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import { FirestoreService } from "@core/services/firebase/firestore/firestore.service";
+import { LoreSectionComponent } from "../components/lore-section/lore-section.component";
 
 @Component({
     selector: 'character-creator',
@@ -18,11 +19,6 @@ export class CharacterCreatorComponent implements OnInit{
     enumAlignment = Object.values(Alignment); 
     enumBackground = Object.values(Background);
     enumSkill = Object.values(Skill);
-
-    arrayArmors: string[] = ["Light armor", "Medium armor", "Heavy armor", "Shield"];
-    arrayWeapons: string[] = [];
-    arrayTools: string[] = [];
-    arrayLanguages: string[] = [];
 
     race: string = "";
     class: string = "";
@@ -51,7 +47,6 @@ export class CharacterCreatorComponent implements OnInit{
     skillsModifiers = new Map<string, number>();
     skillsOptions = new Map<string, number>();
     
-    
     passivePerception: number = 0;
 
     hitPoints: number = 0;
@@ -61,7 +56,7 @@ export class CharacterCreatorComponent implements OnInit{
     hitDice: string = "0d0";
 
     numChecked: number = 0;
-    maxCheck: number = 5;
+    maxCheck: number = 0;
     isChecked: boolean = false;
     isDisabled: boolean = false;
 
@@ -71,11 +66,21 @@ export class CharacterCreatorComponent implements OnInit{
     displayImage: string = '/assets/images/character-creator-default-portrait.jpg';
     selectedFile: any;
 
+    loreLabels = ['Personality Traits', 'Ideals', 'Bonds', 'Flaws'];
+
+    defaultPlaceholders = [
+        'Personality Traits',
+        'Ideals',
+        'Bonds',
+        'Flaws'];
+
+    @ViewChildren(LoreSectionComponent) loreSections!: QueryList<LoreSectionComponent>;
+    textAreaDisabled = true;
+
     constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService){
     }
 
     ngOnInit(){
-        this.resetProficienciesArrays();
     }
 
     zaWarudo(){
@@ -83,6 +88,13 @@ export class CharacterCreatorComponent implements OnInit{
         if (!this.checkFields()){
             return;
         }
+
+        this.showResetButton();
+
+        this.resetTextAreaContent();
+        this.enableTextArea();
+
+        this.resetDefaultImage();
 
         this.getProficienciesFromFirestore();
         this.getFeatsFromAPI();
@@ -94,6 +106,8 @@ export class CharacterCreatorComponent implements OnInit{
 
         this.racesTweaks();
         this.classesTweaks();
+
+        this.changeCharacterLabel();
         
         this.calculatePassivePerception();
         this.calculateCombatStats();
@@ -587,11 +601,6 @@ export class CharacterCreatorComponent implements OnInit{
 
 
     //----- PROFICIENCIES RELATED -----
-    resetProficienciesArrays(){
-        this.arrayTools = [];
-        this.arrayLanguages = [];
-    }
-
     getProficienciesFromFirestore(){
         this.proficiencies = "";
         this.firestoreService.readClass((this.class).toLowerCase()).then(baseClass => {
@@ -655,6 +664,53 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     triggerChangeImageInput(){
+        if(this.maxCheck == 0) return;
+        
         document.getElementById('file-upload')?.click();
+
+        const label = document.querySelector('.character-profile__place-name');
+        if (label != null){ label.classList.remove('marked-character-label'); label.textContent = "Done!"; } 
+    }
+
+    resetDefaultImage(){
+        this.displayImage = '/assets/images/character-creator-default-portrait.jpg';
+
+        const label = document.querySelector('.character-profile__place-name');
+        if (label != null){ label.classList.remove('marked-character-label'); label.textContent = "Welcome!"; } 
+    }
+
+    changeCharacterLabel(){
+        const label = document.querySelector('.character-profile__place-name');
+        if (label != null){ label.classList.add('marked-character-label'); label.textContent = "Change his/her looks!"; } 
+    }
+
+    //----- LORE SECTION TOOLS -----
+    extractTextAreasContent() {
+        const contents = this.loreSections.toArray().map(section => section.textAreaContent);
+    }
+
+    enableTextArea(){
+        this.textAreaDisabled = false;
+        this.loreSections.toArray().forEach((loreSection, index) => {
+            if (index < this.defaultPlaceholders.length) {
+              loreSection.placeholder = this.defaultPlaceholders[index];
+            }
+        });
+    }
+
+    resetTextAreaContent(){
+        this.loreSections.toArray().forEach((loreSection) => {
+            loreSection.textAreaContent = "";
+        });
+    }
+
+    //----- RESET TOOLS -----
+    showResetButton(){
+        const resetButton = document.querySelector(".reset-tool") as HTMLInputElement;
+        resetButton.classList.add('reset-activated');
+    }
+
+    resetPage(){
+        window.location.reload();
     }
 }

@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { CharacterCreatorRoutingModule } from './character-creator-routing.module';
 import { CharacterCreatorComponent } from './pages/character-creator.component';
+import { LoreSectionComponent } from './components/lore-section/lore-section.component';
 
 
 @NgModule({
-  declarations: [CharacterCreatorComponent],
+  declarations: [CharacterCreatorComponent, LoreSectionComponent],
   imports: [
     CommonModule,
     CharacterCreatorRoutingModule,

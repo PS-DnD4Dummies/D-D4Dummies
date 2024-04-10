@@ -1,7 +1,7 @@
 <main class="background-character-creator">
     <section class="character-creator">
         <figure class="character-profile">
-            <p class="character-profile__place-name character-creator__label">Change your looks!</p>
+            <p class="character-profile__place-name character-creator__label">Welcome!</p>
             <img [src]="displayImage" class="can-hover character-profile__img" (click)="triggerChangeImageInput()" />
             <input type="file" id="file-upload" class="file-button" accept="image/*" (change)="onFileSelected($event)">
         </figure>
@@ -48,6 +48,10 @@
                 class="dice__img"
                 (click)="zaWarudo()"
                 />
+
+                <div class="reset-tool">
+                    <button class="reset-button" type="button" (click)="resetPage()">RESET</button>
+                </div>
             </figure>
         </article>
 
@@ -347,13 +351,7 @@
         </article>
 
         <article class="lore">
-            <section class="lore__section"></section>
-
-            <section class="lore__section"></section>
-
-            <section class="lore__section"></section>
-
-            <section class="lore__section"></section>
+            <app-lore-section *ngFor="let label of loreLabels" [labelText]="label" [isDisabled]="textAreaDisabled"></app-lore-section>
 
         </article>
 
@@ -363,7 +361,7 @@
             </div>
 
             <div class="persistence__container persistence__container--save">
-                <button class="persistence__button persistence__button--save" type="button">SAVE</button>
+                <button class="persistence__button persistence__button--save" type="button" (click)="extractTextAreasContent()">SAVE</button>
             </div>
 
         </section>
