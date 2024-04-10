@@ -8,6 +8,7 @@ export interface RaceInfo {
   age: string;
   alignment: string;
   size_description: string;
+  languages: [];
   language_desc: string;
   traits: [];
 }
