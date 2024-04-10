@@ -630,7 +630,7 @@ export class CharacterCreatorComponent implements OnInit{
         return s.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     }
 
-
+    //----- IMAGE TOOLS -----
     onFileSelected(event: any): void {
         if (event.target.files.length > 0) {
           const file = event.target.files[0];
@@ -652,5 +652,9 @@ export class CharacterCreatorComponent implements OnInit{
         } else {
           this.selectedFile = null;
         }
-      }
+    }
+
+    triggerChangeImageInput(){
+        document.getElementById('file-upload')?.click();
+    }
 }

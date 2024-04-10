@@ -1,9 +1,9 @@
 <main class="background-character-creator">
     <section class="character-creator">
         <figure class="character-profile">
-            <p class="character-profile__place-name character-creator__label">Your character</p>
-            <img [src]="displayImage" class="can-hover character-profile__img" />
-            <input type="file" id="file-upload" accept="image/*" (change)="onFileSelected($event)">
+            <p class="character-profile__place-name character-creator__label">Change your looks!</p>
+            <img [src]="displayImage" class="can-hover character-profile__img" (click)="triggerChangeImageInput()" />
+            <input type="file" id="file-upload" class="file-button" accept="image/*" (change)="onFileSelected($event)">
         </figure>
 
         <article class="user-options">

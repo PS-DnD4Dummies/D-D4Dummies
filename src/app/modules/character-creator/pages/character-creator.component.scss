@@ -51,8 +51,9 @@
 }
 
 .character-profile__img{
-    max-width: 12em;
-    max-height: 15em;
+    width: 12em;
+    height: 15em;
+    object-fit: cover;
 
     border: .15em solid black;
     cursor: pointer;
@@ -64,7 +65,13 @@
 .character-profile__place-name{
     position: relative;
     top: 0.6em;
-    right: 3em;
+    right: 1em;
+
+    width: 12em;
+}
+
+.file-button{
+    display: none;
 }
 
 .user-options{
