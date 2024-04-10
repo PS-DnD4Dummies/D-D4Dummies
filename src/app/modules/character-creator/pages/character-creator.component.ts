@@ -68,6 +68,9 @@ export class CharacterCreatorComponent implements OnInit{
     proficiencies: string | any = "";
     feats: string | any = "";
 
+    displayImage: string = '/assets/images/character-creator-default-portrait.jpg';
+    selectedFile: any;
+
     constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService){
     }
 
@@ -485,8 +488,6 @@ export class CharacterCreatorComponent implements OnInit{
     restartSkillOptions(){
         let keysArray = Array.from(this.skillsOptions.keys());
 
-        console.log(keysArray);
-
         if(keysArray.length == 0) return;
 
         keysArray.forEach( (key) => {
@@ -592,6 +593,7 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     getProficienciesFromFirestore(){
+        this.proficiencies = "";
         this.firestoreService.readClass((this.class).toLowerCase()).then(baseClass => {
             this.proficiencies = baseClass?.proficiencies.replace(/ \\n/g, ", ");
             this.proficiencies = this.proficiencies.replace("- ", "");
@@ -600,8 +602,6 @@ export class CharacterCreatorComponent implements OnInit{
                 (data as {languages: {name: string}[]}).languages.forEach(element => {
                     this.proficiencies = this.proficiencies + ", " + element.name;
                   });
-
-                console.log(this.proficiencies);
             });
 
             
@@ -609,19 +609,16 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     getFeatsFromAPI(){
+        this.feats = "";
         this.dndApiService.getRace(this.race).subscribe((data: RaceInfo) => {
             (data as {traits: {name: string}[]}).traits.forEach(element => {
                 this.feats = this.feats + ", " + element.name;
             });
 
             this.feats = this.feats.replace(", ", "");
-
-            console.log(this.feats);
         });
 
     }
-    
-
 
     //----- DATA PARSERS -----
     modifyerParse(modifyer: number | undefined){
@@ -633,4 +630,27 @@ export class CharacterCreatorComponent implements OnInit{
         return s.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     }
 
+
+    onFileSelected(event: any): void {
+        if (event.target.files.length > 0) {
+          const file = event.target.files[0];
+          const fileSizeInMB = file.size / 1024 / 1024;
+          const validExtensions = ['image/jpeg', 'image/png'];
+      
+          if (!validExtensions.includes(file.type)) {
+            alert('Only .jpg and .png files are allowed.');
+            return;
+          }
+      
+          if (fileSizeInMB > 10) {
+            alert('File size must be less than 10MB.');
+            return;
+          }
+          
+          this.selectedFile = file;
+          this.displayImage = URL.createObjectURL(this.selectedFile);
+        } else {
+          this.selectedFile = null;
+        }
+      }
 }
