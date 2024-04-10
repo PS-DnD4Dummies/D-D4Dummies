@@ -66,7 +66,7 @@ export class CharacterCreatorComponent implements OnInit{
     isDisabled: boolean = false;
 
     proficiencies: string | any = "";
-    traits: string | any = "";
+    feats: string | any = "";
 
     constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService){
     }
@@ -579,12 +579,12 @@ export class CharacterCreatorComponent implements OnInit{
     getFeatsFromAPI(){
         this.dndApiService.getRace(this.race).subscribe((data: RaceInfo) => {
             (data as {traits: {name: string}[]}).traits.forEach(element => {
-                this.traits = this.traits + ", " + element.name;
+                this.feats = this.feats + ", " + element.name;
             });
 
-            this.traits = this.traits.replace(", ", "");
+            this.feats = this.feats.replace(", ", "");
 
-            console.log(this.traits);
+            console.log(this.feats);
         });
 
     }
