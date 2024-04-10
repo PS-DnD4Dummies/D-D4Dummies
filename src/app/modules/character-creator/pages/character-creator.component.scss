@@ -53,6 +53,7 @@
     max-height: 15em;
 
     border: .15em solid black;
+    cursor: pointer;
 
     border-radius: .5em;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
@@ -126,6 +127,8 @@
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
 
     padding: .5em;
+
+    cursor: pointer;
 }
 
 .dice-place{
@@ -163,6 +166,8 @@
 .dice__img{
     max-width: 12em;
     max-height: 12em;
+
+    cursor: pointer;
 }
 
 .skills{
@@ -667,6 +672,7 @@
     background-size: 200% auto;
     animation: shimmer 2s infinite linear;
 
+    font-size: 1.2em;
     color: var(--paleta-rojo1); 
 }
 
@@ -684,7 +690,7 @@
 }
 
 .can-hover:hover{
-    background-color: #2f2f2f;
+    background-color: rgb(31, 30, 30);
     
     border-color: #b6921c;
     transition: border-color 0.5s ease, background-color 0.5s ease;
@@ -848,6 +854,8 @@
     .skills{
         grid-column: auto;
         grid-row: 7;
+
+        height: 40em;
 
     }
 
