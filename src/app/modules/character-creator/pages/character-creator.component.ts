@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { Race, Class, Alignment, Background, Skill} from "@data/enums/enum";
+import { RaceInfo } from "@data/interfaces/api_parameters";
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
+import { FirestoreService } from "@core/services/firebase/firestore/firestore.service";
 
 @Component({
     selector: 'character-creator',
@@ -63,13 +65,14 @@ export class CharacterCreatorComponent implements OnInit{
     isChecked: boolean = false;
     isDisabled: boolean = false;
 
-    constructor(private dndApiService: DndApiService){
+    proficiencies: string | any = "";
+    traits: string | any = "";
+
+    constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService){
     }
 
     ngOnInit(){
         this.resetProficienciesArrays();
-        this.getToolsFromAPI();
-        this.getLanguagesFromAPI();
     }
 
     zaWarudo(){
@@ -77,6 +80,9 @@ export class CharacterCreatorComponent implements OnInit{
         if (!this.checkFields()){
             return;
         }
+
+        this.getProficienciesFromFirestore();
+        this.getFeatsFromAPI();
         
         this.generateRandomNumbersForStats();
         this.calculateModifiersAndSavingThrows();
@@ -553,20 +559,34 @@ export class CharacterCreatorComponent implements OnInit{
         this.arrayLanguages = [];
     }
 
-    getToolsFromAPI(){
-        this.dndApiService.getTools().subscribe( (data: any) => {
-            data.equipment.forEach( (element: any) => {
-                this.arrayTools.push(element.name);
-            })
-        })
+    getProficienciesFromFirestore(){
+        this.firestoreService.readClass((this.class).toLowerCase()).then(baseClass => {
+            this.proficiencies = baseClass?.proficiencies.replace(/ \\n/g, ", ");
+            this.proficiencies = this.proficiencies.replace("- ", "");
+
+            this.dndApiService.getRace(this.race).subscribe((data: RaceInfo) => {
+                (data as {languages: {name: string}[]}).languages.forEach(element => {
+                    this.proficiencies = this.proficiencies + ", " + element.name;
+                  });
+
+                console.log(this.proficiencies);
+            });
+
+            
+        });
     }
 
-    getLanguagesFromAPI(){
-        this.dndApiService.getLanguages().subscribe( (data: any) => {
-            data.results.forEach( (element: any) => {
-                this.arrayLanguages.push(element.name);
-            })
-        })
+    getFeatsFromAPI(){
+        this.dndApiService.getRace(this.race).subscribe((data: RaceInfo) => {
+            (data as {traits: {name: string}[]}).traits.forEach(element => {
+                this.traits = this.traits + ", " + element.name;
+            });
+
+            this.traits = this.traits.replace(", ", "");
+
+            console.log(this.traits);
+        });
+
     }
     
 

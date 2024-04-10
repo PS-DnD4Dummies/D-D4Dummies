@@ -85,24 +85,7 @@ export class FirestoreService {
   }
 
 
-  /*character:Character = {
-      name: 'pepe',
-      class: Class.Barbarian,
-      race: Race.Dragonborn,
-      subrace: '',
-      alignment: Alignment.Chaotic_evil,
-      backgroud: '',
-      skills: Skill.Acrobatics,
-      abilityScore: {
-        Charisma: 0,
-        Constitution: 0,
-        Dexterity: 0,
-        Inteligence: 0,
-        Strength: 0,
-        Wisdom: 0
-      }
-    }*/
-  //this.firestore.addCharacter("puta",this.character).then(result=>console.log(result));
+  
   async addCharacter(uid:string,character:Character): Promise<boolean>{
     return await addDoc(collection(this.firestore,"users",uid,"characters"),{
       ...character
@@ -115,7 +98,6 @@ export class FirestoreService {
     })
   }
 
-  //this.firestore.deleteCharacter("puta","sWiK1xdy8xD6EuXaj5vb").then(result=>console.log(result));
   async deleteCharacter(uid:string,characterID:string): Promise<boolean>{
     return await deleteDoc(doc(this.firestore,"users",uid,"characters",characterID))
       .then( () => {
@@ -128,14 +110,6 @@ export class FirestoreService {
   }
 
 
-  /*this.firestore.updateCharacter("puta","sWiK1xdy8xD6EuXaj5vb",{abilityScore: {
-      Charisma: 0,
-      Constitution: 1,
-      Dexterity: 0,
-      Inteligence: 0,
-      Strength: 0,
-      Wisdom: 0
-    }}).then(result=>console.log(result));*/
   async updateCharacter(uid:string,characterID:string,fieldsToUpdate:any): Promise<boolean>{
     return await updateDoc(doc(this.firestore,"users",uid,"characters",characterID),{...fieldsToUpdate})
       .then( () => {
@@ -163,7 +137,6 @@ export class FirestoreService {
       })
   }
 
-  //this.firestore.readAllCharacters("puta").then(result=>console.log(result));
   async readAllCharacters(uid:string): Promise<Character[]|null>{
     return await getDocs(collection(this.firestore,"users",uid,"characters"))
       .then( (querySnapshot) => {
