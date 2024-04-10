@@ -16,8 +16,6 @@
 
     color: #c9c5c5;
 
-    padding-right: 8em;
-    padding-top: 1em;
 }
 
 .character-creator{
@@ -54,7 +52,7 @@
     max-width: 12em;
     max-height: 15em;
 
-    border: .05em solid black;
+    border: .15em solid black;
 
     border-radius: .5em;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
@@ -73,6 +71,7 @@
 
     position: relative;
     right: 1em;
+    top: 3em;
 }
 
 .character-name{
@@ -94,8 +93,10 @@
     color: #c9c5c5;
 
     border-radius: .5em;
-    border: .1em solid #000;
+    border: .15em solid #000;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
+
+    transition: border 0.5s ease, background-color 0.5s ease;;
 }
 
 .property{
@@ -110,7 +111,9 @@
 .property__type-label{
     position: relative;
     right: .7em;
-    bottom: .05em;
+
+    text-shadow: 1px 0 #333, -1px 0 #333, 0 1px #333, 0 -1px #333,
+              .5px .5px #333, -.5px -.5px #333, .5px -.5px #333, -.5px .5px #333;
     
 }
 
@@ -119,7 +122,7 @@
     color: #c9c5c5;
 
     border-radius: .5em;
-    border: .1em solid #000;
+    border: .15em solid #000;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
 
     padding: .5em;
@@ -132,7 +135,7 @@
     height: 15.5em;
 
     border-radius: .5em;
-    border: .1em solid #000;
+    border: .15em solid #000;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
 
     color: #c9c5c5;
@@ -166,7 +169,7 @@
     background-color: #292828;
 
     border-radius: .4em;
-    border: .1em solid #000;
+    border: .15em solid #000;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
 
     display: flex;
@@ -186,14 +189,20 @@
 .skills__place-name{
     position: relative;
     bottom: .8em;
-    left: .95em;
+    
+    display: flex;
+    align-self: center;
+    justify-self: center;
+
+    width: 11em;
+    padding: .2em;
 }
 
 .skill-type{
     background-color: #333;
 
     border-radius: .2em;
-    border: .1em solid #000;
+    border: .15em solid #000;
     box-shadow: 0 0 .6em rgba(0, 0, 0, 0.5);
 
     padding: .1em;
@@ -204,9 +213,9 @@
 
 }
 
-.skill-type__radio, .skill-type__name, .skill-type__modifier{
+.skill-type__radio{
     position: relative;
-    top: .09em;
+    top: .35em;
 }
 
 .basic-character-stats{
@@ -219,7 +228,7 @@
     background-color: #292828;
 
     width: 16.5em;
-    height: 25.5em;
+    height: 25.9em;
 
     display: flex;
     flex-direction: column;
@@ -301,7 +310,7 @@
     background-color: #292828;
 
     width: 16.5em;
-    height: 26em;
+    height: 26.5em;
 
     border-radius: .4em;
     border: 0.1em solid #000;
@@ -467,60 +476,7 @@
 
 }
 
-.proficiencies{
-    background-color: #292828;
-
-    border-radius: .4em;
-    border: .1em solid #000;
-    box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
-
-    width: 11em;
-    height: 15em;
-    padding: .5em;
-
-    position: relative;
-
-    display: flex;
-    flex-direction: column ;
-    justify-content: space-between;
-
-    justify-self: center;
-    align-self: center;
-    
-}
-
-.proficiencies__place-name{
-    position: relative;
-    bottom: 1em;
-    left: .9em;
-}
-
-.proficiencie{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    position: relative;
-    bottom: 1em;
-}
-
-.proficiencie__label{
-    position: relative;
-    top: .2em;
-}
-
-.proficiencie__selector{
-    background-color: #333;
-    color: #c9c5c5;
-
-    border-radius: .5em;
-    border: .1em solid #000;
-    box-shadow: .32em .35em .1em rgba(0, 0, 0, 0.5);
-
-    padding: .5em;
-}
-
-.traits{
+.feats, .proficiencies{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -528,11 +484,14 @@
     justify-self: center;
     align-self: center;
 
+}
+
+.feats{
     position: relative;
     bottom: 3.5em;
 }
 
-.traits__container{
+.feats__container, .proficiencies__container{
     
     background-color: #292828;
 
@@ -549,12 +508,12 @@
     flex-direction: column;
 }
 
-.traits__place-name{
+.feats__place-name, .proficiencies__place-name{
     position: relative;
     bottom: 1.7em;
 }
 
-.traits__text{
+.feats__text, .proficiencies__text{
     font-size: 80%;
 
     position: relative;
@@ -691,7 +650,51 @@
 }
 
 .persistence__button:hover{
-    background-color: rgb(31, 30, 30)
+    background-color: rgb(31, 30, 30);
+    border: .01em solid #b6921c;
+}
+
+.marked{
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    color:#333;
+}
+
+.marked-label{
+    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+    background-size: 200% auto;
+    animation: shimmer 2s infinite linear;
+
+    color: var(--paleta-rojo1); 
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+.can-hover{
+    transition: border-color 0.5s ease, background-color 0.5s ease;
+}
+
+.can-hover:hover{
+    background-color: #2f2f2f;
+    
+    border-color: #b6921c;
+    transition: border-color 0.5s ease, background-color 0.5s ease;
+}
+
+.can-hover:focus,
+.can-hover:active {
+    background-color: #2f2f2f;
+    border-color: #b6921c; 
+    outline: none; 
 }
 
 @media screen and (max-width: 1170px) {
@@ -701,12 +704,17 @@
 
     .character-creator{
         grid-template-columns: 25em 25em;
+        grid-template-rows: auto 20em;
         font-size: 80%;
     }
 
     .character-profile{
         grid-column: 1;
         grid-row: 1;
+    }
+
+    .property__type-label{
+        top: .2em;
     }
 
     .user-options{
@@ -743,6 +751,8 @@
     .basic-character-stats{
         grid-column: 1;
         grid-row: 3;
+
+        position: relative;
     }
 
     .character-stats{
@@ -751,7 +761,7 @@
 
         margin: 2em;
         position: relative;
-        top: 1em;
+        top: 5em;
     }
 
     .proficiencies{
@@ -761,7 +771,7 @@
         height: 20em;
     }
 
-    .traits{
+    .feats{
         grid-column: 1;
         grid-row: 5;
 
@@ -806,11 +816,16 @@
         grid-row: auto;
     }
 
+    .property__type-label{
+        top: .3em;
+    }
+
     .user-options{
         grid-column: auto;
         grid-row: 3;
 
         position: relative;
+        top: 0;
         bottom: 1em;
         right: .5em;
 
@@ -857,7 +872,7 @@
         height: 20em;
     }
 
-    .traits{
+    .feats{
         grid-column: auto;
         grid-row: 9;
 

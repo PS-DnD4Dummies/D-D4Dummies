@@ -431,13 +431,25 @@ export class CharacterCreatorComponent implements OnInit{
               console.log("error");
         }
 
+        this.disableNotUsedAndMarkUsed();
+        this.changeSkillLabel();
+    }
+
+    disableNotUsedAndMarkUsed(){
         this.enumSkill.forEach( (skill) => {
             if(this.skillsOptions.has(skill)){
                 const checkbox = document.querySelector("." + skill) as HTMLInputElement;
                 checkbox.disabled = false;
+                
+                const box = document.querySelector(".skill-type-" + skill) as HTMLInputElement;
+                box.classList.add('marked');
             }
         })
+    }
 
+    changeSkillLabel(){
+        const label = document.querySelector('.skills__place-name')
+        if (label != null){ label.classList.add('marked-label'); label.textContent = "Choose " + this.maxCheck + " Skills!"; } 
     }
 
 
@@ -475,11 +487,17 @@ export class CharacterCreatorComponent implements OnInit{
             const checkbox = document.querySelector("." + key) as HTMLInputElement;
             checkbox.checked = false;
             checkbox.disabled = true;
+            
+            const box = document.querySelector(".skill-type-" + key) as HTMLInputElement;
+            box.classList.remove('marked');
         })
 
         this.maxCheck = 0;
         this.numChecked = 0;
         this.skillsOptions.clear();
+
+        const label = document.querySelector('.skills__place-name');
+        if (label != null){ label.classList.remove('marked-label'); label.textContent = "Skills"; }  
         
     }
 
@@ -525,25 +543,39 @@ export class CharacterCreatorComponent implements OnInit{
     enableCheckboxes(){
         let keysArray = Array.from(this.skillsOptions.keys());
         let helper;
+        let box;
 
         keysArray.forEach( (key) => {
             if (!this.skillsOptions.get(key)){
                 helper = document.querySelector("." + key) as HTMLInputElement;
                 helper.disabled = false;
+
+                box = document.querySelector(".skill-type-" + key) as HTMLInputElement;
+                box.classList.add('marked');
             }
         })
+
+        const label = document.querySelector('.skills__place-name')
+        if (label != null){ label.classList.add('marked-label'); label.textContent = "Choose " + this.maxCheck + " Skills!"; } 
     }
 
     disableCheckboxes(){
         let keysArray = Array.from(this.skillsOptions.keys());
         let helper;
+        let box;
 
         keysArray.forEach( (key) => {
             if (!this.skillsOptions.get(key)){
                 helper = document.querySelector("." + key) as HTMLInputElement;
                 helper.disabled = true;
+
+                box = document.querySelector(".skill-type-" + key) as HTMLInputElement;
+                box.classList.remove('marked');
             }
         })
+
+        const label = document.querySelector('.skills__place-name')
+        if (label != null){ label.classList.remove('marked-label'); label.textContent = "Done!"; } 
     }
 
 

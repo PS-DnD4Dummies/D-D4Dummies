@@ -2,38 +2,38 @@
     <section class="character-creator">
         <figure class="character-profile">
             <p class="character-profile__place-name character-creator__label">Your character</p>
-            <img src="/assets/images/default.jpg" class="character-profile__img" />
+            <img src="/assets/images/default.jpg" class="can-hover character-profile__img" />
         </figure>
 
         <article class="user-options">
             <section class="character-name">
-                <input type="text" class="character-name__name-value" [(ngModel)]="name" placeholder="Give your character a name!">
+                <input type="text" class="can-hover character-name__name-value" [(ngModel)]="name" placeholder="Give your character a name!">
             </section>
 
             <section class="property property--race">
                 <label class="property__type-label">Race</label>
-                <select class="property__selector" [(ngModel)]="race">
+                <select class="can-hover property__selector" [(ngModel)]="race">
                     <option class="property__option property__option--race-1" value="default" *ngFor="let i of enumRace" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
 
             <section class="property property--class">
                 <label class="property__type-label">Class</label>
-                <select class="property__selector" [(ngModel)]="class">
+                <select class="can-hover property__selector" [(ngModel)]="class">
                     <option class="property__option property__option--class-1" value="default" *ngFor="let i of enumClass" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
 
             <section class="property property--alignment">
                 <label class="property__type-label">Alignment</label>
-                <select class="property__selector" [(ngModel)]="alignment">
+                <select class="can-hover property__selector" [(ngModel)]="alignment">
                     <option class="property__option property__option--alignment-1" value="default" *ngFor="let i of enumAlignment" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
 
             <section class="property property--background">
                 <label class="property__type-label">Background</label>
-                <select class="property__selector" [(ngModel)]="background">
+                <select class="can-hover property__selector" [(ngModel)]="background">
                     <option class="property__option property__option--background-1" value="default" *ngFor="let i of enumBackground" [value]="i">{{ enumParser(i) }}</option>
                 </select>
             </section>
@@ -53,119 +53,119 @@
         <article class="skills">
             <p class="skills__place-name character-creator__label">Skills</p>
 
-            <section class="skill-type skill-type--acrobatics">
+            <section class="skill-type skill-type-acrobatics">
                 <input type="checkbox" class="skill-type__radio acrobatics" disabled (click)="checkboxManager('acrobatics')">
                 <label class="skill-type__modifier skill-type__modifier--acrobatics"> {{ modifyerParse(skillsModifiers.get('acrobatics')) }}</label>
                 <label class="skill-type__separator"> - Acrobatics</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--AnimalHandling">
+            <section class="skill-type skill-type-animal-handling">
                 <input type="checkbox" class="skill-type__radio animal-handling" disabled (change)="checkboxManager('animal-handling')">
                 <label class="skill-type__modifier skill-type__modifier--animal-handling"> {{ modifyerParse(skillsModifiers.get('animal-handling')) }}</label>
                 <label class="skill-type__separator"> - Animal Handling</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Arcana">
+            <section class="skill-type skill-type-arcana">
                 <input type="checkbox" class="skill-type__radio arcana" disabled (click)="checkboxManager('arcana')">
                 <label class="skill-type__modifier skill-type__modifier--arcana"> {{ modifyerParse(skillsModifiers.get('arcana')) }}</label>
                 <label class="skill-type__separator"> - Arcana</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Athletics">
+            <section class="skill-type skill-type-athletics">
                 <input type="checkbox" class="skill-type__radio athletics" disabled (click)="checkboxManager('athletics')">
                 <label class="skill-type__modifier skill-type__modifier--athletics"> {{ modifyerParse(skillsModifiers.get('athletics')) }}</label>
                 <label class="skill-type__separator"> - Athletics</label><br>
             </section>
 
-            <section class="skill-type skill-type--Deception">
+            <section class="skill-type skill-type-deception">
                 <input type="checkbox" class="skill-type__radio deception" disabled (click)="checkboxManager('deception')">
                 <label class="skill-type__modifier skill-type__modifier--deception"> {{ modifyerParse(skillsModifiers.get('deception')) }}</label>
                 <label class="skill-type__separator"> - Deception</label><br>
             </section>
 
-            <section class="skill-type skill-type--History">
+            <section class="skill-type skill-type-history">
                 <input type="checkbox" class="skill-type__radio history" disabled (click)="checkboxManager('history')">
                 <label class="skill-type__modifier skill-type__modifier--history"> {{ modifyerParse(skillsModifiers.get('history')) }}</label>
                 <label class="skill-type__separator"> - History</label><br>
             </section>
 
-            <section class="skill-type skill-type--Insight">
+            <section class="skill-type skill-type-insight">
                 <input type="checkbox" class="skill-type__radio insight" disabled (click)="checkboxManager('insight')">
                 <label class="skill-type__modifier skill-type__modifier--insight"> {{ modifyerParse(skillsModifiers.get('insight')) }}</label>
                 <label class="skill-type__separator"> - Insight</label><br>
             </section>
 
-            <section class="skill-type skill-type--Intimidation">
+            <section class="skill-type skill-type-intimidation">
                 <input type="checkbox" class="skill-type__radio intimidation" disabled (click)="checkboxManager('intimidation')">
                 <label class="skill-type__modifier skill-type__modifier--intimidation"> {{ modifyerParse(skillsModifiers.get('intimidation')) }}</label>
                 <label class="skill-type__separator"> - Intimidation</label><br>
             </section>
 
-            <section class="skill-type skill-type--Investigation">
+            <section class="skill-type skill-type-investigation">
                 <input type="checkbox" class="skill-type__radio investigation" disabled (click)="checkboxManager('investigation')">
                 <label class="skill-type__modifier skill-type__modifier--investigation"> {{ modifyerParse(skillsModifiers.get('investigation')) }}</label>
                 <label class="skill-type__separator"> - Investigation</label><br>
             </section>
 
-            <section class="skill-type skill-type--Medicine">
+            <section class="skill-type skill-type-medicine">
                 <input type="checkbox" class="skill-type__radio medicine" disabled (click)="checkboxManager('medicine')">
                 <label class="skill-type__modifier skill-type__modifier--medicine"> {{ modifyerParse(skillsModifiers.get('medicine')) }}</label>
                 <label class="skill-type__separator"> - Medicine</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Nature">
+            <section class="skill-type skill-type-nature">
                 <input type="checkbox" class="skill-type__radio nature" disabled (click)="checkboxManager('nature')">
                 <label class="skill-type__modifier skill-type__modifier--nature"> {{ modifyerParse(skillsModifiers.get('nature')) }}</label>
                 <label class="skill-type__separator"> - Nature</label><br>
             </section>
 
-            <section class="skill-type skill-type--Perception">
+            <section class="skill-type skill-type-perception">
                 <input type="checkbox" class="skill-type__radio perception" disabled (click)="checkboxManager('perception')">
                 <label class="skill-type__modifier skill-type__modifier--perception"> {{ modifyerParse(skillsModifiers.get('perception')) }}</label>
                 <label class="skill-type__separator"> - Perception</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Performance">
+            <section class="skill-type skill-type-performance">
                 <input type="checkbox" class="skill-type__radio performance" disabled (click)="checkboxManager('performance')">
                 <label class="skill-type__modifier skill-type__modifier--performance"> {{ modifyerParse(skillsModifiers.get('performance')) }}</label>
                 <label class="skill-type__separator"> - Performance</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Persuasion">
+            <section class="skill-type skill-type-persuasion">
                 <input type="checkbox" class="skill-type__radio persuasion" disabled (click)="checkboxManager('persuasion')">
                 <label class="skill-type__modifier skill-type__modifier--persuasion"> {{ modifyerParse(skillsModifiers.get('persuasion')) }}</label>
                 <label class="skill-type__separator"> - Persuasion</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Religion">
+            <section class="skill-type skill-type-religion">
                 <input type="checkbox" class="skill-type__radio religion" disabled (click)="checkboxManager('religion')">
                 <label class="skill-type__modifier skill-type__modifier--religion"> {{ modifyerParse(skillsModifiers.get('religion')) }}</label>
                 <label class="skill-type__separator"> - Religion</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--SleightOfHand">
+            <section class="skill-type skill-type-sleight-of-hand">
                 <input type="checkbox" class="skill-type__radio sleight-of-hand" disabled (click)="checkboxManager('sleight-of-hand')">
                 <label class="skill-type__modifier skill-type__modifier--sleight-of-hand"> {{ modifyerParse(skillsModifiers.get('sleight-of-hand')) }}</label>
                 <label class="skill-type__separator"> - Sleight of Hand</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Stealth">
+            <section class="skill-type skill-type-stealth">
                 <input type="checkbox" class="skill-type__radio stealth" disabled (click)="checkboxManager('stealth')">
                 <label class="skill-type__modifier skill-type__modifier--stealth"> {{ modifyerParse(skillsModifiers.get('stealth')) }}</label>
                 <label class="skill-type__separator"> - Stealth</label><br>
 
             </section>
 
-            <section class="skill-type skill-type--Survival">
+            <section class="skill-type skill-type-survival">
                 <input type="checkbox" class="skill-type__radio survival" disabled (click)="checkboxManager('survival')">
                 <label class="skill-type__modifier skill-type__modifier--survival"> {{ modifyerParse(skillsModifiers.get('survival')) }}</label>
                 <label class="skill-type__separator"> - Survival</label><br>
@@ -294,46 +294,18 @@
         </div>
 
         <article class="proficiencies">
-            <p class="proficiencies__place-name character-creator__label">Proficiencies</p>
+            <div class="proficiencies__container">
+                <p class="proficiencies__place-name character-creator__label">Proficiencies</p>
+                <p class="proficiencies__text">Here you will see your character proficiencies. First roll the dice!</p>
 
-            <section class="proficiencie proficiencie--armor">
-                <label class="proficiencie__label">Armor</label>
-                <select class="proficiencie__selector" [(ngModel)]="armor">
-                    <option class="proficiencie__option proficiencie__option--armor" value="default" *ngFor="let i of arrayArmors" [value]="i">{{ enumParser(i) }}</option>
-                </select>
-
-            </section>
-
-            <section class="proficiencie proficiencie--weapon">
-                <label class="proficiencie__label">Weapon</label>
-                <select class="proficiencie__selector" [(ngModel)]="weapon">
-                    <option class="proficiencie__option proficiencie__option--weapon" value="default"*ngFor="let i of enumRace" [value]="i">{{ enumParser(i) }}</option>
-                </select>
-
-            </section>
-
-            <section class="proficiencie proficiencie--tools">
-                <label class="proficiencie__label">Tools</label>
-                <select class="proficiencie__selector" [(ngModel)]="tool">
-                    <option class="proficiencie__option proficiencie__option--tools" value="default"*ngFor="let i of arrayTools" [value]="i">{{ enumParser(i) }}</option>
-                </select>
-
-            </section>
-
-            <section class="proficiencie proficiencie--language">
-                <label class="proficiencie__label">Language</label>
-                <select class="proficiencie__selector" [(ngModel)]="language">
-                    <option class="proficiencie__option proficiencie__option--language" value="default"*ngFor="let i of arrayLanguages" [value]="i">{{ enumParser(i) }}</option>
-                </select>
-
-            </section>
+            </div>
 
         </article>
 
-        <section class="traits">
-            <div class="traits__container">
-                <p class="traits__place-name character-creator__label">Traits</p>
-                <p class="traits__text">Here you will see your character traits. First roll the dice!</p>
+        <section class="feats">
+            <div class="feats__container">
+                <p class="feats__place-name character-creator__label">Feats</p>
+                <p class="feats__text">Here you will see your character feats. First roll the dice!</p>
 
             </div>
         </section>
