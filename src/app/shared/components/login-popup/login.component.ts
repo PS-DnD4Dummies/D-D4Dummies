@@ -17,6 +17,7 @@ export class LoginComponent {
   @Output() closePopUpEmitter = new EventEmitter<boolean>();
   @Output() logInEmitter = new EventEmitter<LogInData>();
   @Output() logInGoogleEmitter = new EventEmitter<any>();
+  @Output() logInFacebookEmitter = new EventEmitter<any>();
 
   @Input() validEmailPassword!: boolean;
 
@@ -60,6 +61,8 @@ export class LoginComponent {
   logInWithGoogle(){
     this.logInGoogleEmitter.emit();
   }
-
+  logInWithFacebook(){
+    this.logInFacebookEmitter.emit();
+  }
 }
 
