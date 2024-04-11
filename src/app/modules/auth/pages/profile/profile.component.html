@@ -1,81 +1,47 @@
-
 <div *ngIf="isAuthenticated; else notAuthenticated">
-    <main class="user-info">
-        <article class="user-box">
-            <figure class="user-box__profile">
-                <img 
-                    [src]="parsePhotoGoogleURL(profilePhotoURL)"
-                    class="user-box__img"
-                >
-            </figure>
+  <main class="user-info">
+    <h1 class="profile-title">My Profile</h1>
+    <article class="user-box">
+      <div class="user-box__content">
 
-            <h1 class="user-box__title">Account information</h1>
-
-            <section class="user-box__info">
-                <div class="user-box__portion">
-                    <label class="user-box__label">Username:</label>
-                    <p type="text" class="user-box__text user-box__text--username">{{ username }}</p>
-                </div>
-                 
-                <div class="user-box__portion">
-                    <label class="user-box__label">Email:</label>
-                    <p type="text" class="user-box__text user-box__text--username">{{ email }}</p>
-                </div>
-
-                <div class="user-box__portion">
-                    <label class="user-box__label">Birth date:</label>
-                    <p type="text" class="user-box__text user-box__text--username">{{ birthDate | date }}</p>
-                </div>
-                
-            </section>
-
-            <button mat-button (click)="signOut()" class="sign-out-button">Sign Out</button>
-        </article>
-
-        
-
-        <h1 class="update-info-label">Update your information:</h1>
-        <section >
-            <form (ngSubmit)="updateProfile()" class="update-profile-form">
-
-                <section class="update-profile-info">
-                    <section class="parameter parameter--username">
-                        <label class="parameter__label">New Username:</label>
-                        <input type="text" [(ngModel)]="newUsername" [ngClass]="{'input-error': usernameError}" name="newUsername" class="parameter__text">
-                    </section>
-        
-                    <section class="parameter parameter--password">
-                        <label class="parameter__label">New Password:</label>
-                        <input type="text" [(ngModel)]="newPassword" [ngClass]="{'input-error': passwordError}" name="newPassword" class="parameter__text">
-                    </section>
-                    <section class="parameter parameter--birthdate">
-                        <label class="parameter__label">New Birthdate:</label>
-                        <input type="date" [(ngModel)]="newBirthDate" [ngClass]="{'input-error': birthdateError}" name="newBirthDate" class="parameter__text">
-                    </section>
-                </section>
-    
-                <section class="update-profile-image">
-                    <label class="update-profile-image__label">New Profile Picture:</label>
-                    <img [src]="displayImage" class="user-profile__img">
-                    <input type="file" (change)="onFileSelected($event)" accept="image/*">
-    
-                    <button mat-button type="submit" class="update-profile-button">Update Profile</button>
-                </section>
-    
-                
-    
-            </form>
-        </section>  
-        <!-- <h1 class="character-title">Your saved characters:</h1>
-        <article class="character-list"></article> -->
-    </main>
-    <router-outlet></router-outlet>
-    </div>  
-    <ng-template #notAuthenticated>
-        <!-- Mostrar contenido para usuarios no autenticados -->
-        <!-- Por ejemplo, mostrar un mensaje para iniciar sesión -->
-        <div class="not-authenticated-message">
-        <p>Por favor, <a [routerLink]="['/signUp']">registrate</a> para poder acceder a esta página.</p>
+        <div class="user-box__pfp">
+          <label *ngIf="isEditing" for="fileInput">
+            <img [src]="profilePhotoURL" class="user-box__img" alt="Profile Picture">
+          </label>
+          <input *ngIf="isEditing" type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
+          <img *ngIf="!isEditing" [src]="parsePhotoGoogleURL(profilePhotoURL)" class="user-box__img" alt="Profile Picture">
         </div>
-      </ng-template>
-      
+
+        <div class="user-box__info">
+          <div class="user-box__portion">
+            <label class="user-box__label">Username:</label>
+            <p *ngIf="!isEditing" class="user-box__text user-box__text--username">{{ username }}</p>
+            <input *ngIf="isEditing" type="text" [(ngModel)]="newUsername" class="user-box__input">
+          </div>
+          <div class="user-box__portion">
+            <label class="user-box__label">Email:</label>
+            <p *ngIf="!isEditing" class="user-box__text user-box__text--email">{{ email }}</p>
+            <input *ngIf="isEditing" type="email" [(ngModel)]="newEmail" class="user-box__input">
+          </div>
+          <div class="user-box__portion">
+            <label class="user-box__label">Birth date:</label>
+            <p *ngIf="!isEditing" class="user-box__text user-box__text--birthdate">{{ birthDate | date }}</p>
+            <input *ngIf="isEditing" type="date" [(ngModel)]="newBirthDate" class="user-box__input">
+          </div>
+        </div>
+      </div>
+
+      <div class="edit-buttons">
+        <button mat-button (click)="toggleEdit()" *ngIf="!isEditing" id="button-edit">Edit</button>
+        <button mat-button (click)="cancelEdit()" *ngIf="isEditing" id="button-cancel">Cancel</button>
+        <button mat-button (click)="saveChanges()" *ngIf="isEditing" id="button-save">Save Changes</button>
+      </div>
+    </article>
+  </main>
+</div>
+
+<ng-template #notAuthenticated>
+  <div class="not-authenticated-message">
+    <p>Please <a [routerLink]="['/signUp']">sign up</a> to access this page.</p>
+  </div>
+</ng-template>

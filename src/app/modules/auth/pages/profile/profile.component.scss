@@ -1,232 +1,119 @@
-.user-info{
-    background-image: url('src/assets/images/dice_background_red.png');
-    background-repeat: repeat;
-    background-size: 50em;
+.user-info {
+  margin: 0;
+  padding: 20px;
 
-    padding-left: 20em;
-    padding-right: 20em;
-    padding-top: 2em;
+  background-image: url('src/assets/images/dice_background_red.png');
+  background-size: 50em;
 
-    height: 78vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    font-family: 'Ringbearer', sans-serif;
-    color: var(--paleta-beige);
-}
+  min-height: 80vh;
 
-@media screen and (max-width: 1000px), (max-height: 780px) {
-    .user-info {
-        padding-bottom:20em;
+  .profile-title {
+    text-align: center;
+    font-family: 'DRAGON HUNTER';
+    color: #ffbb00;
+  }
+
+  .user-box {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+
+    background-color: rgba(28, 60, 71, 0.86);
+    max-width: 1440px;
+
+    .user-box__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .user-box__pfp {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-right: 20px;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .user-box__info {
+        flex-grow: 1;
+
+        .user-box__portion {
+          margin-bottom: 1em;
+          display: flex;
+          flex-direction: column;
+
+          color: var(--paleta-beige);
+        }
+
+        .user-box__portion p{
+          margin: 0;
+          color: var();
+
+          .user-box__label {
+
+          }
+        }
+      }
     }
-}
 
-.user-box{
-    display: grid;
+    .edit-buttons {
+      margin-top: 1em;
+      text-align: center;
+      border: 1px solid rgba(27, 31, 35, .15);
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+      box-sizing: border-box;
 
-    grid-template-rows: auto auto;
-    grid-template-columns: 17em auto 10em;
-
-    background-color: #333;
-
-    border-radius: .5em;
-    border: .15em solid #ffaa00;
-    box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
-
-}
-
-.user-box__profile{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 17em;
-    padding-top: 1.2em;
-    padding-bottom: 1.3em;
-
-    grid-row-start: 1;
-    grid-row-end:  3;
-
-}
-
-.user-box__img{
-    width: 10em;
-    height: 10em;
-
-    border: .15em solid #ffaa00;
-    border-radius: .5em;
-    box-shadow: .8em .7em .5em rgba(0, 0, 0, 0.5);
-}
-
-.user-box__title{
-    position: relative;
-    top: .8em;
-    left: 1.2em;
-
-    grid-row: 1;
-    grid-column:  2;
-}
-
-.user-box__info{
-    display:flex;
-    flex-direction: column;
-    padding: 1em;
-
-
-    grid-row: 2;
-    grid-column:  2;
-
-    position: relative;
-    left: 2em;
-
-}
-
-.user-box__portion{
-    display: flex;
-
-}
-
-.user-box__text{
-    position: relative;
-    left: 1em;
-    top: -1em;
-}
-
-.sign-out-button{
-    align-self: flex-end;
-    grid-row: 2;
-    grid-column:  3;
-
-    border-radius: .5em 0 .3em 0;
-
-    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
-    background-size: 200% auto;
-    animation: shimmer 2s infinite linear;
-
-    font-family: 'Ringbearer', sans-serif;
-
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: -100% 50%;
+      #button-edit {
+        background-color: #ffbb00;
+        color: #fff;
+      }
+      #button-cancel {
+        background-color: #880c0c;
+        color: #fff;
+      }
+      #button-save {
+        background-color: #35a42b;
+        color: #fff;
+        margin-left: 12em;
+      }
+    }
   }
 }
 
-
-.update-profile-form{
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 1em;
+/* CSS */
+.button-3 {
+appearance: none;
+background-color: #2ea44f;
+border: 1px solid rgba(27, 31, 35, .15);
+border-radius: 6px;
+box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+box-sizing: border-box;
+color: #fff;
+cursor: pointer;
+display: inline-block;
+font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+font-size: 14px;
+font-weight: 600;
+line-height: 20px;
+padding: 6px 16px;
+position: relative;
+text-align: center;
+text-decoration: none;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+vertical-align: middle;
+white-space: nowrap;
 }
 
-.update-profile-info{
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    position: relative;
-    left: 1.5em;
-
-    grid-column: 1;
-
-
-}
-
-.update-profile-image{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    grid-column: 2;
-}
-
-.user-profile__img{
-    width: 12em;
-    height: 12em;
-
-    border: .2em solid #ffaa00;
-    border-radius: .5em;
-    box-shadow: .6em .6em .2em rgba(0,0,0,0.5);
-}
-
-.update-profile-button{
-    width: 12em;
-
-    margin-top: 2em;
-
-    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
-    background-size: 200% auto;
-    animation: shimmer 2s infinite linear;
-
-    font-family: 'Ringbearer', sans-serif;
-
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: -100% 50%;
-  }
-}
-
-
-.parameter{
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em 0;
-
-}
-
-.parameter__label{
-    position: relative;
-    right: .5em;
-    bottom: .2em;
-
-}
-
-.update-profile-image__label{
-    position: relative;
-    bottom: .4em;
-}
-
-.parameter__text{
-    background-color: #333;
-    color: #c9c5c5;
-    width: 25em;
-    font-size: 100%;
-}
-
-.parameter__text::-webkit-calendar-picker-indicator {
-    display: none;
-}
-
-// .character-card{
-//     display:flex;
-//     flex-direction: column;
-//     justify-content: center;
-// }
-.not-authenticated-message {
-    font-family: 'Ringbearer', sans-serif;
-    background: linear-gradient(to right, #a6a1a1, #c9c5c5, #bab6b6, #b0adad, #a6a1a1);
-    background-size: 200% auto;
-    animation: shimmer 10s infinite linear;
-
-    text-align: center; /* Para centrar el texto */
-    padding: 10px; /* Añadir espacio alrededor del texto */
-
-    height: 80vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-.not-authenticated-message a {
-    color: rgb(67, 7, 7); /* Color del texto del enlace */
-    text-decoration: none; /* Eliminar subrayado del enlace */
-  }
