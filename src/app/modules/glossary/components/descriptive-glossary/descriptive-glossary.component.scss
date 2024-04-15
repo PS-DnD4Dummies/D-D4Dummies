@@ -30,7 +30,7 @@
   font-size: 3em;
   font-weight: bold;
   text-transform: uppercase;
-  
+
   font-family: 'Ringbearer', sans-serif;
   color: var(--paleta-beige);
 
@@ -55,8 +55,8 @@
   color: var(--paleta-beige);
   font-family: 'Ringbearer', sans-serif;
   font-size: 110%;
-  
-  
+
+
 }
 
 .banner:hover .banner__text{
@@ -77,6 +77,20 @@
     justify-content: center;
     align-items: center;
     margin-right: 4em;
+
+    &__searcher {
+      margin-bottom: 2em;
+      height: 2em;
+      width: 60vh;
+      border-radius: 20px;
+      font-size: x-large;
+      border: 10px solid #ffbb00;
+
+      input[type="text"] {
+        width: 100%;
+        outline: none;
+      }
+    }
 
     &__list {
       padding: 0;
