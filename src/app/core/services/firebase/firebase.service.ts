@@ -74,6 +74,26 @@ export class FirebaseService {
     return true;
   }
 
+  async signInWithFacebookProcess():Promise<Boolean>{
+    const signInCheck = await this.authService.signInWithFacebook();
+    if(signInCheck===null)  return false;
+
+    console.log(signInCheck);
+    const user:User={
+      uid: signInCheck.uid,
+      email: signInCheck.email,
+      username: signInCheck.displayName,
+      birthdate: signInCheck.birthDate,
+      photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
+    }
+
+
+    const createSchemaCheck = await this.firestoreService.addUser(user);
+    if(!createSchemaCheck) return false;
+    
+    return true;
+  }
+
   async updateProfileInfo(user:User, changes : {[key:string]:any}, profilePhoto:File | null, user_auth: any):Promise<Boolean>{
 
     if("password" in changes){

@@ -16,4 +16,5 @@ export const ROUTES = {
     CHARACTER:{
         DEFAULT:"character-creator",
     }
+    
 }

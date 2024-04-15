@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile, updatePassword, updateEmail } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, User, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile, updatePassword, updateEmail, FacebookAuthProvider } from '@angular/fire/auth';
 import { defaultProfilePhotoURL } from '@data/constanst/url';
 import { error } from 'console';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -54,6 +54,22 @@ export class AuthenticationFirebaseService {
     }
   }
 
+
+  async signInWithFacebook(): Promise <any> {
+    try{
+      var provider = new FacebookAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      const result = await signInWithPopup(this.auth,provider);
+      const user = result.user;
+      // This gives you a Google Access Token.
+      const credential = FacebookAuthProvider.credentialFromResult(result);
+      const token = credential!.accessToken;
+      return user;
+    }catch(error){
+      console.log("Error al iniciar sesión con google. Error: "+ error);
+    }
+  }
 
 
 
