@@ -14,12 +14,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { components } from './components';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    components
   ],
   imports: [
     MatIconModule,
