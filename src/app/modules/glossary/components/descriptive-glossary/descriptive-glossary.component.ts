@@ -15,6 +15,7 @@ export class DescriptiveGlossaryComponent implements OnInit {
   textDescription: string = "";
   filteredItems: any[] = [];
   searchTerm: string = "";
+  noResults: boolean = false;
 
   constructor(private route: ActivatedRoute, private dndApiService: DndApiService, private location: Location) { }
 
@@ -94,7 +95,7 @@ export class DescriptiveGlossaryComponent implements OnInit {
     this.filteredItems = this.items.filter(item =>
       item.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
-    console.log('log en el appyFilter',this.searchTerm);
+    this.noResults = this.filteredItems.length === 0;
   }
 
   filterItems(): void {

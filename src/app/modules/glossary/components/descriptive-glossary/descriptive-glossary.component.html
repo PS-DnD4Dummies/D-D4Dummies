@@ -8,7 +8,8 @@
   </section>
 
   <section class="elements-section">
-    <input class="elements-section__searcher" type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" (input)="filterItems()">
+    <input class="elements-section__searcher" type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="filterItems()">
+    <p *ngIf="noResults" class="error-message">&#x274C; No matches found</p>
     <ul class="elements-section__list">
       <li class="elements-section__entry" *ngFor="let item of filteredItems">
         <app-descriptive-glossary-element [item]="item"></app-descriptive-glossary-element>
