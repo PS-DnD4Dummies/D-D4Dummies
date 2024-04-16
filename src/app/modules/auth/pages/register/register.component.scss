@@ -56,25 +56,6 @@
     display: none;
 }
 
-.user-profile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-
-    height: 14em;
-
-}
-
-.user-profile__img{
-    width: 12em;
-    height: 12em;
-
-    border: .2em solid #ffaa00;
-    border-radius: .5em;
-    box-shadow: .6em .6em .2em rgba(0,0,0,0.5);
-    
-}
 
 .persistence{
     display: flex;
@@ -110,9 +91,7 @@
 
 .parameter__age-warning{
   font-size: 60%;
-
-  position: relative;
-  right: 6.5em;
+  justify-content: center;
 }
 
 @media screen and (max-width: 800px), (max-height: 560px) {
@@ -122,4 +101,110 @@
 
       font-size: 110%;
   }
+}
+---------------------------------------------------------------------------------------
+.user-info {
+    margin: 0;
+    padding: 20px;
+  
+    background-image: url('src/assets/images/dice_background_red.png');
+    background-size: 50em;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    min-height: 80vh;
+}  
+
+.user-box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: rgba(28, 60, 71, 0.86);
+    max-width: 900px;
+
+    .user-box__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .user-box__pfp {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .user-box__info {
+        flex-grow: 1;
+
+        .user-box__portion {
+          margin-bottom: 1em;
+          display: flex;
+          flex-direction: column;
+
+          color: var(--paleta-beige);
+        }
+
+        .user-box__portion p{
+          margin: 0;
+          color: var();
+        }
+
+        .user-box__label {
+          font-weight: bolder;
+          color: #ffbb00;
+        }
+      }
+    }
+}
+
+.Register-buttons {
+    margin-top: 1em;
+    text-align: center;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+
+    #button-edit {
+      background-color: #ffbb00;
+      color: #fff;
+    }
+}
+
+.profile-title {
+    text-align: center;
+    font-family: 'DRAGON HUNTER';
+    color: #ffbb00;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgba(0, 0, 0, 0.87);
+  }
+
+.user-box__input_email{
+    width: 300px; 
+}
+.user-box__input_password{
+    width: 257px; 
+}
+.user-box__input_username{
+    width: 252px; 
+}
+.user-box__input_confirmemail{
+    width: 215px; 
+}
+.user-box__input_confirmpassword{
+    width: 173px; 
+}
+.user-box__input_birthdate{
+    width: 264px; 
 }
