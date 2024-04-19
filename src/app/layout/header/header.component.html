@@ -39,24 +39,14 @@
         </div>
 
         <div class="upper-bar__login">
-            <!-- <button  mat-buttonclass="upper-bar__login-logo-action" [routerLink]="" *ngIf="currentUser===undefined || currentUser===null">
-                <img class="upper-bar__login-logo-image" [src]='images.get("login.png")' alt="Login">
-            </button> -->
             <button *ngIf="currentUser ==undefined && currentUser ==null" mat-button [matMenuTriggerFor]="menu">
                 <img class="upper-bar__login-logo-image" [src]="urlProfile">
             
-              <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
-                <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
-                <button class = "boton_Log_in" (click)="openClosePopUp()">Log In</button>
-                <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()">Log Out</button>
-              </mat-menu>
+                <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
+                    <button class = "boton_Log_in" (click)="openClosePopUp()">Log In</button>
+                </mat-menu>
             </button>
-            <!-- ESTE ES EL QUE FURULA -> <button mat-button class="upper-bar__login-logo-action" (click)="openClosePopUp()" *ngIf="currentUser===undefined || currentUser===null">
-                <img class="upper-bar__login-logo-image" [src]="urlProfile">
-            </button> HATA AQUI!!!!!
-            <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" (click)="sidenav.open();">
-                <img class="upper-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
-            </button> -->
+
             <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [matMenuTriggerFor]="menu">
                 <img id = "photo-width" class="upper-bar__login-logo-image_login" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
                 <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
@@ -64,73 +54,53 @@
                     <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
                 </mat-menu>
             </button>
+
         </div>
 
+        <figure class="hamburger">
+            <a class="abrir" (click)="openSideBar()">
+                <img class="hamburger-img" src="/assets/images/barra-de-menus.png">
+            </a>
+        </figure>
+
     </section>
-
-
-
+    
 </header>
 
-<!-- <main class="main-container">
-    <section class="upper-bar">
-        <div class="upper-bar__main-logo">
-            <a class="upper-bar__main-logo-action"  href="/src/app/index.html">
-                <img class="upper-bar_main-logo-image" src="/src/assets/images/logo.png" alt="Logo">
-            </a>
+<article class="side-bar" (clickOutside)="closeSideBar()">
+    
+    <figure class="side-bar__login">
+        <button *ngIf="currentUser==undefined && currentUser==null" (click)="openClosePopUp()" class = "boton_Log_in">Log In</button>
+        <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()" >Log Out</button>
+        <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
+        
+        <div class="side-bar__login-logo-container" *ngIf="currentUser!==undefined && currentUser!==null">
+            <img id = "photo-width" class="side-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
         </div>
+        
+        <a class="cerrar" (click)="closeSideBar()">
+            <img class="exit" src="/assets/images/eliminar-simbolo.png">
+        </a>
+    </figure>
 
+    <nav class="side-bar__main-menu">
+        <ul class="side-bar__menu-primario">
+            <li *ngFor="let buttonItem of glossaryLiContents">
+                <a [routerLink]="buttonItem.route">{{buttonItem.text}}</a>
+            </li>
 
-        <h1 class="upper-bar__title">D&D FOR DUMMIES</h1>
-
-
-        <div class="upper-bar__login">
-            <img class="upper-bar__login-logo-image" src="/src/assets/images/login.png" alt="Login">
-        </div>
-
-    </section>
-
-    <section class="lower-bar">
-        <nav class="main-menu">
-
-            <ul class="main-menu__options main-menu__options--general">
-
-                <li class="main-menu__link main-menu__link--glossary">
-                    <a class="main-menu__label main-menu__label--glossary" href="/src/app/glossary/index.html">Glossary &#x25BE</a>
-
-                    <ul class="main-menu__options main-menu__options--glossary">
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/character-related/races/races.html">Races</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/character-related/classes/classes.html">Classes</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/character-related/alignments/alignments.html">Alignments</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/character-related/know-your-rolls/know-your-rolls.html">Know your rolls</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/interaction-related/weapons/weapons.html">Weapons</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/interaction-related/spells/spells.html">Spells</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/interaction-related/combat-gear/combat-gear.html">Combat Gear</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/interaction-related/combat/combat.html">Combat</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/adventure-related/adventure/adventure.html">Adventure</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/adventure-related/tools-section/tools.html">Tools</a></li>
-                        <li class="main-menu__glossary-section"><a href="/src/app/glossary/adventure-related/adventuring-gear/adventuring-gear.html">Adventuring Gear</a></li>
-                    </ul>
+            <ul class="side-bar__menu-secundario">
+                <li>
+                    <a [routerLink]="routesURL.CHARACTER.DEFAULT">Character Creator</a>
                 </li>
-
-                <li class="main-menu__link"><a class="main-menu__label" href="/src/app/character-creator/character-creator.html">Character Creator</a></li>
-
-                <li class="main-menu__link"><a class="main-menu__label" href="/src/app/forum/index.html">Forum</a></li>
-
+    
+                <li>
+                    <a [routerLink]="routesURL.FORUM.DEFAULT">Forum</a>
+                </li>
             </ul>
 
-        </nav>
+        </ul>
 
-        <div class="main-menu__search-bar">
-            <form class="main-menu__search-bar-form" action="" method="">
-                <input class="main-menu__search-bar-input" type="search" name="query" placeholder="Search...">
-                <button class="main-menu__search-button">
-                    <img src="/src/assets/images/search.png" alt="">
-                </button>
-            </form>
-        </div>
+    </nav>
 
-    </section>
-
-    <div class="login-popup-container"></div>
-</main> -->
+</article>

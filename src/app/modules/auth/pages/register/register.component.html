@@ -1,55 +1,47 @@
 <main class="background-signup">
-    <div class="main-container"> 
-        <section class="first-col">
-            <h1 class="main-signup__title">Sign up for the adventure!</h1>
-            <article class="user-info">
-                <section class="parameter parameter--email">
-                    <label class="parameter__label">Email:</label>
-                    <input type="email" class="parameter__text parameter__text--email" [(ngModel)]="userEmail" [ngClass]="{'input-error': emailError}" name="email">
-                    
-                    <label class="parameter__label">Confirm Email:</label>
-                    <input type="email" class="parameter__text parameter__text--confirm-email" [(ngModel)]="userConfirmEmail" [ngClass]="{'input-error': confirmEmailError}" name="confirmEmail"> 
-                </section>
-                
-                <section class="parameter parameter--username">
-                    <label class="parameter__label">Username:</label>
-                    <input type="text" class="parameter__text parameter__text--username" [(ngModel)]="username" [ngClass]="{'input-error': usernameError}" name="username"> 
-                </section>
-                
-                <section class="parameter parameter--password">
-                    <label class="parameter__label">Password:</label>
-                    <input type="password" class="parameter__text parameter__text--password" [(ngModel)]="userPassword" [ngClass]="{'input-error': passwordError}" name="password"> 
-                    
-                    <label class="parameter__label">Confirm Password:</label>
-                    <input type="password" class="parameter__text parameter__text--confirm-password" [(ngModel)]="userConfirmPassword" [ngClass]="{'input-error': confirmPasswordError}" name="confirmPassword"> 
-                </section>
-                
-                <section class="parameter parameter--birth-date">
-                    <label class="parameter__label">Birth date:</label>
-                    <input type="date" class="parameter__text parameter__text--birth-date" [(ngModel)]="userBirthDate" [ngClass]="{'input-error': birthDateError}" name="birthDate"> 
-                </section>
-                
-            </article>
+    <h1 class="main-signup__title">Sign up for the adventure!</h1>
+
+    <form class="user-info" action="#">
+
+        <figure class="user-profile">
+            <img 
+            src="/assets/images/omnicomteamx_logo.png"
+            class="user-profile__img"
+            >
+        </figure>
+        <input type="file" id="imageUpload" accept="image/png, image/jpeg" (change)="onFileSelected($event)"/>
+        <button type="button" class="user-profile__button" onclick="document.getElementById('imageUpload').click()">Upload</button>
+
+
+        <section class="texts">
+            <label class="parameter__label">Email:</label>
+            <input type="email" class="parameter__text parameter__text--email" [(ngModel)]="userEmail" [ngClass]="{'input-error': emailError}" name="email">
+
+            <label class="parameter__label">Confirm Email:</label>
+            <input type="email" class="parameter__text parameter__text--confirm-email" [(ngModel)]="userConfirmEmail" [ngClass]="{'input-error': confirmEmailError}" name="confirmEmail"> 
+        
+
+            <label class="parameter__label">Username:</label>
+            <input type="text" class="parameter__text parameter__text--username" [(ngModel)]="username" [ngClass]="{'input-error': usernameError}" name="username"> 
+        
+
+            <label class="parameter__label">Password:</label>
+            <input type="password" class="parameter__text parameter__text--password" [(ngModel)]="userPassword" [ngClass]="{'input-error': passwordError}" name="password"> 
+
+            <label class="parameter__label">Confirm Password:</label>
+            <input type="password" class="parameter__text parameter__text--confirm-password" [(ngModel)]="userConfirmPassword" [ngClass]="{'input-error': confirmPasswordError}" name="confirmPassword"> 
+
+        
+            <label class="parameter__label">Birth date:</label>
+            <input type="date" class="parameter__text parameter__text--birth-date" [(ngModel)]="userBirthDate" [ngClass]="{'input-error': birthDateError}" name="birthDate"> 
+
             <p class="parameter__age-warning">*You must be +18 years old to sign up</p>
 
         </section>
-        
-        <section class="second-col">
-            <figure class="user-profile">
-                <img 
-                    [src]="displayImage"
-                    class="user-profile__img"
-                >
-            
-                <input type="file" id="file-upload" accept="image/*" (change)="onFileSelected($event)">
-            
-            </figure>
-            <section class="persistence">
-                <button type="button" class="persistence__button" (click)="registerUser()">Register</button>
-            </section>
 
+        <section class="persistence">
+            <button type="button" class="persistence__button" (click)="registerUser()">Register</button>
         </section>
-        
-    </div>
-    
+    </form>
+
 </main>
