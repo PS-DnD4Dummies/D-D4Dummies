@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
@@ -15,30 +14,23 @@
 }
 
 .section {
-  margin: 1em 0;
-  background-size: contain;
+  margin-top: 2em;
   width: 100%;
-  height: 40vw;
-  display: flex;
+  height: 40vh;
+
+  display: grid;
   align-items: center;
-  justify-content: center;
+
+  border-top: 5px groove rgba(224, 60, 60, 0.16);
+  border-bottom: 5px groove rgba(224, 60, 60, 0.16);
 }
 
 .section__container {
-  height: 100%;
-  width: auto;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(2px) brightness(0.6);
-  padding: 4em;
-
+  flex-direction: row;
 }
 
 .section__zone {
-  width: 50%;
-  height: 50%;
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -52,106 +44,117 @@
   border: 5px solid black;
   border-radius: 20%;
   transition: border-color 0.3s ease;
+  width: 60%;
 }
 
 .section__label {
+  width: 100%;
   font-size: 1.5em;
-  color: var(--paleta-dorado);
-  font-weight: 700;
+  color: #ffbb00;
   text-align: center;
-
-  
-  font-family: 'Ringbearer', sans-serif;
+  font-family: 'DRAGON HUNTER', sans-serif;
+  text-shadow: 3px 0 #000000, -3px 0 #000000, 0 3px #000000, 0 -3px #000000,
+  2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
 }
 
 .section__zone .section__img:hover {
   border-color: #FFBB00FF;
 }
 
-.section--character {
-  background: url(/assets/backgrounds/magic-forest1.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+#section--character {
+  background: url('/assets/backgrounds/magic-forest1.png') center/cover no-repeat;
   justify-content: flex-end;
-}
-
-.blur-container {
-  background: rgba(255, 255, 255, 0.11);
-  backdrop-filter: blur(5px);
-  padding: 0.50em;
-  border-radius: 10px;
+  grid-template-columns: 1fr 2fr;
 }
 
 #section--character_label{
   white-space: pre-line;
-  color: var(--paleta-dorado);
-  height: 90%;
-  width: 100%;
+  color: #ffbb00;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: Ebrima, sans-serif;
+  font-family: 'Ringbearer', SansSerif;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 2.5em;
   text-shadow:
-    -1px -1px 0 #2C0506,
-    1px -1px 0 #2C0506,
-    -1px  1px 0 #2C0506,
-    1px  1px 0 #2C0506;
-
-
+    -1px -1px 0 rgba(0, 0, 0, 0.37),
+    1px -1px 0 rgba(0, 0, 0, 0.37),
+    -1px  1px 0 rgba(0, 0, 0, 0.37),
+    1px  1px 0 rgba(0, 0, 0, 0.37);
 }
 
-.section--interaction {
-  background: url(/assets/backgrounds/red-forest.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+#section--interaction {
+  background: url('/assets/backgrounds/red-forest.png') center/cover no-repeat;
   justify-content: flex-start;
+  grid-template-columns: 2fr 1fr;
+
+  .blur-container {
+    background: rgba(28, 60, 71, 0.69);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    padding: 0.5em 0;
+    border-radius: 20px 0 0 20px;
+    border-width: 3px 0 3px 3px;
+    border-style: solid;
+    border-color: #ffbb00;
+  }
 }
 #section--interaction_label{
   white-space: pre-line;
-  color: var(--paleta-dorado);
-  height: 90%;
-  width: 90%;
+  color: #ffbb00;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: Ebrima, sans-serif;
+  font-family: 'Ringbearer', SansSerif;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 2.5em;
   text-shadow:
-    -1px -1px 0 #2C0506,
-    1px -1px 0 #2C0506,
-    -1px  1px 0 #2C0506,
-    1px  1px 0 #2C0506;
+    -1px -1px 0 rgba(0, 0, 0, 0.37),
+    1px -1px 0 rgba(0, 0, 0, 0.37),
+    -1px  1px 0 rgba(0, 0, 0, 0.37),
+    1px  1px 0 rgba(0, 0, 0, 0.37);
 }
 
-.section--adventure {
-  background: url(/assets/backgrounds/magic-forest2.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+#section--adventure {
+  background: url('/assets/backgrounds/magic-forest2.png') center/cover no-repeat;
   justify-content: flex-end;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 2em;
+
+  img {
+    width: 50%;
+  }
 }
+
 #section--adventure_label{
   white-space: pre-line;
-  color: var(--paleta-dorado);
-  height: 90%;
-  width: 70%;
+  color: #ffbb00;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: Ebrima, sans-serif;
+  font-family: 'Ringbearer', SansSerif;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 2.5em;
   text-shadow:
-    -1px -1px 0 #2C0506,
-    1px -1px 0 #2C0506,
-    -1px  1px 0 #2C0506,
-    1px  1px 0 #2C0506;
+    -1px -1px 0 rgba(0, 0, 0, 0.37),
+    1px -1px 0 rgba(0, 0, 0, 0.37),
+    -1px  1px 0 rgba(0, 0, 0, 0.37),
+    1px  1px 0 rgba(0, 0, 0, 0.37);
+}
+
+.blur-container {
+  background: rgba(28, 60, 71, 0.69);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  padding: 0.5em 0;
+  border-radius: 0 20px 20px 0;
+  border-width: 3px 3px 3px 0;
+  border-style: solid;
+  border-color: #ffbb00;
 }

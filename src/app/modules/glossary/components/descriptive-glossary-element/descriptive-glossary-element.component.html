@@ -1,10 +1,14 @@
 <main class="glossary-element">
-  <div class="glossary-element-container">
-    <h1 class="glossary-element__name">{{ item.name }}</h1>
-    <div class="image-container">
-      <img class="glossary-element__image" [src]="sectionImages[section] ? sectionImages[section] : (itemImages[item.name] ? itemImages[item.name] : defaultItemImage)" alt="icon_image">
-      <p class="glossary-element__description"></p>
+  <h1 class="glossary-element__name">{{ item.name }}</h1>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+          <img class="glossary-element__image" [src]="sectionImages[section] ? sectionImages[section] : (itemImages[item.name] ? itemImages[item.name] : defaultItemImage)" alt="icon_image">
+      </div>
+
+      <div class="flip-card-back">
+        <button class="glossary-element__button" (click)="seeMore(item)">SEE MORE</button>
+      </div>
     </div>
-    <button class="glossary-element__button" (click)="seeMore(item)">SEE MORE</button>
   </div>
 </main>
