@@ -134,7 +134,7 @@ app-dice{
     background-color: #292828;
 
     width: 19em;
-    height: 15.5em;
+    // height: 15.5em;
 
     border-radius: .5em;
     border: .1em solid #000;
@@ -142,7 +142,6 @@ app-dice{
 
     color: #c9c5c5;
     
-    align-self: center;
     justify-self: center;
 
     margin: 2em;
@@ -151,6 +150,7 @@ app-dice{
 .dice-place__place-name{
     position: relative;
     bottom: 0.5em;
+    z-index: 10;
     left: 1em;
 }
 
@@ -159,13 +159,9 @@ app-dice{
     align-items: center;
     justify-content: center;
     
-    height: 13em;
+    // height: 13em;
 }
 
-.dice__img{
-    max-width: 12em;
-    max-height: 12em;
-}
 
 .skills{
     background-color: #292828;
