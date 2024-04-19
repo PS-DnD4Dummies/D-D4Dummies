@@ -19,7 +19,7 @@ export class DiceComponent implements AfterViewInit {
   private renderer!: THREE.WebGLRenderer;
   private orbitControls!: OrbitControls;
   private modelLoader!: GLTFLoader;
-  private dice!: THREE.Object3D;
+  private dice!: THREE.Group;
 
   private directionalLights:THREE.DirectionalLight[] = [];
 
@@ -40,22 +40,30 @@ export class DiceComponent implements AfterViewInit {
 
   createDice() {
     this.modelLoader.load('/assets/d20/DADO DND.gltf', (gltf) => {
-      this.dice = gltf.scene;
-      //this.dice.scale.set(0.05,0.05,0.05);
+
+      this.dice = new THREE.Group(); 
+      this.dice.add(gltf.scene); 
+  
+      const boundingBox = new THREE.Box3().setFromObject(gltf.scene);
+      const center = new THREE.Vector3();
+      boundingBox.getCenter(center);
+      gltf.scene.position.sub(center);
+  
       this.scene.add(this.dice);
-      //this.dice.castShadow = true;
-      //this.dice.receiveShadow = true;
-      //this.spotLight.target = this.dice;
 
       this.directionalLights.forEach(light=>{
-        light.target = this.dice.children[1];
+        light.target = this.dice.children[0];
         this.scene.add(light);
         console.log(this.dice)
         console.log(light)
       })
+
+      this.animate();
+      
     }, 
     (xhr) => {
       console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      
     }, 
     (error) => {
       console.error('An error happened', error);
@@ -89,7 +97,7 @@ export class DiceComponent implements AfterViewInit {
     this.orbitControls.update();
 
     this.createDice();
-    this.animate();
+
 
     this.createGUI();
   }
@@ -137,16 +145,9 @@ export class DiceComponent implements AfterViewInit {
   animate = () => {
     requestAnimationFrame(this.animate);
     if (this.dice) {
-      const quaternation = new THREE.Quaternion();
-      quaternation.setFromAxisAngle(new THREE.Vector3(
-        this.controls.rotationX,
-        this.controls.rotationY,
-        this.controls.rotationZ
-      ),Math.PI/2)
-      this.dice.applyQuaternion(quaternation);
-      // this.dice.rotation.x = Math.PI * this.controls.rotationX;
-      // this.dice.rotation.y = Math.PI * this.controls.rotationY;
-      // this.dice.rotation.z = Math.PI * this.controls.rotationZ;
+      this.dice.rotation.x = Math.PI * this.controls.rotationX;
+      this.dice.rotation.y = Math.PI * this.controls.rotationY;
+      this.dice.rotation.z = Math.PI * this.controls.rotationZ;
     }
     this.orbitControls.update();
     this.renderer.render(this.scene, this.camera);
