@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { DiceComponent } from "@shared/components/dice/dice.component";
+import { randomInt } from "crypto";
 
 @Component({
     selector: 'character-creator',
@@ -18,6 +19,7 @@ export class CharacterCreatorComponent{
     }
 
     callRollDice(){
-        this.diceComponent.rollDice(4);
+        
+        this.diceComponent.rollDice(20);
     }
 }

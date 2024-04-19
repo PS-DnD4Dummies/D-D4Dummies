@@ -35,7 +35,7 @@ export class DiceComponent implements AfterViewInit {
     rotationZ:0,
   };
   
-  private gui = new dat.GUI();
+  //private gui = new dat.GUI();
 
 
   constructor() { }
@@ -78,11 +78,11 @@ export class DiceComponent implements AfterViewInit {
   }
 
 
-  createGUI(){
+  /*createGUI(){
     this.gui.add(this.controls,"rotationX",-1,1,0.01);
     this.gui.add(this.controls,"rotationY",-1,1,0.01);
     this.gui.add(this.controls,"rotationZ",-1,1,0.01);
-  }
+  }*/
 
   init() {
     this.scene = new THREE.Scene();
@@ -106,7 +106,7 @@ export class DiceComponent implements AfterViewInit {
     this.createDice();
 
 
-    this.createGUI();
+    //this.createGUI();
   }
 
   initTween(){
@@ -131,10 +131,19 @@ export class DiceComponent implements AfterViewInit {
       .to(dicePositions[face],2000)
       .easing(TWEEN.Easing.Quadratic.InOut);
 
+    this.randomTween.chain(this.tween).start(undefined,true);
 
+  }
+
+  //todo
+  animationAllFaces(){
+    for(var i=1; i<=20; i++){
+      this.tween = new TWEEN.Tween(this.controls,false)
+        .to(dicePositions[i],2000)
+        .delay(i*2000)
+        .start();
+    }
     
-    this.randomTween.chain(this.tween).start();
-
   }
 
 
@@ -180,11 +189,16 @@ export class DiceComponent implements AfterViewInit {
   }
 
   animate = (time: number) => {
+
+    
+
+
     this.tween.update(time);
     this.randomTween.update(time);
 
-
     requestAnimationFrame(this.animate);
+
+
     if (this.dice) {
       this.dice.rotation.x = Math.PI * this.controls.rotationX;
       this.dice.rotation.y = Math.PI * this.controls.rotationY;
