@@ -1,0 +1,69 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-image: url('src/assets/images/dice_background_red.png');
+    background-repeat: repeat;
+    background-size: 30em;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 30em; 
+  }
+  
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-button {
+    font-size: 2em;
+    cursor: pointer;
+    position: relative;
+    right: 2em;
+  }
+  
+  .modal-body {
+    padding: 1em 1em;
+  }
+  
+  .character-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 1em 0;
+
+    background-color: #333;
+    border-radius: .4em;
+    border: .01em solid #000;
+    box-shadow: .3em .3em .1em rgba(0,0,0,0.1);
+
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  .character-item:hover{
+    background-color: rgb(31, 30, 30);
+    border: .01em solid #b6921c;
+  }
+  
+  .character-list-image{
+    width: 3em; 
+    height: 3em; 
+    margin-right: 1em;
+    object-fit: cover;
+    border-radius: .4em 0 0 .4em;
+  }
+  
