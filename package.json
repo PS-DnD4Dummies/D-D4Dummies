@@ -25,6 +25,7 @@
     "@angular/platform-server": "^17.2.0",
     "@angular/router": "^17.2.0",
     "@angular/ssr": "^17.2.1",
+    "@tweenjs/tween.js": "^23.1.1",
     "@types/dat.gui": "^0.7.13",
     "bootstrap-icons": "^1.11.3",
     "dat.gui": "^0.7.9",

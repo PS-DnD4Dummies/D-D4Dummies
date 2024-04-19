@@ -1,8 +1,11 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import * as dat from 'dat.gui';
 import * as THREE from 'three';
+import * as TWEEN from '@tweenjs/tween.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DiceControls } from '@data/interfaces';
+import { dicePositions } from '@data/constanst/dicePositions';
 
 @Component({
   selector: 'app-dice',
@@ -20,10 +23,13 @@ export class DiceComponent implements AfterViewInit {
   private orbitControls!: OrbitControls;
   private modelLoader!: GLTFLoader;
   private dice!: THREE.Group;
+  private tween!: TWEEN.Tween<DiceControls>;
+  private randomTween!: TWEEN.Tween<DiceControls>
+  private time = 0;
 
   private directionalLights:THREE.DirectionalLight[] = [];
 
-  private controls = {
+  private controls:DiceControls = {
     rotationX:0,
     rotationY:0,
     rotationZ:0,
@@ -58,7 +64,8 @@ export class DiceComponent implements AfterViewInit {
         console.log(light)
       })
 
-      this.animate();
+      this.initTween();
+      this.animate(this.time);
       
     }, 
     (xhr) => {
@@ -93,14 +100,44 @@ export class DiceComponent implements AfterViewInit {
 
     //this.camera.position.z = 1;
 
-    this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.orbitControls.update();
+    //this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
+    //this.orbitControls.update();
 
     this.createDice();
 
 
     this.createGUI();
   }
+
+  initTween(){
+
+    this.randomTween = new TWEEN.Tween(this.controls,false)
+      .to({
+        rotationX:1,
+        rotationY:3,
+        rotationZ:4,
+      },2000)
+      .easing(TWEEN.Easing.Quadratic.InOut);
+
+      this.tween = new TWEEN.Tween(this.controls,false);
+  }
+
+  rollDice(face:number){
+    if(face>20 || face<=0){
+      console.log("Face not found");
+      return;
+    }
+    this.tween = new TWEEN.Tween(this.controls,false)
+      .to(dicePositions[face],2000)
+      .easing(TWEEN.Easing.Quadratic.InOut);
+
+
+    
+    this.randomTween.chain(this.tween).start();
+
+  }
+
+
 
   addLights(){
     const directionalLight = new THREE.DirectionalLight(0xffffff, 8);
@@ -142,14 +179,18 @@ export class DiceComponent implements AfterViewInit {
     this.scene.add(pointLight);
   }
 
-  animate = () => {
+  animate = (time: number) => {
+    this.tween.update(time);
+    this.randomTween.update(time);
+
+
     requestAnimationFrame(this.animate);
     if (this.dice) {
       this.dice.rotation.x = Math.PI * this.controls.rotationX;
       this.dice.rotation.y = Math.PI * this.controls.rotationY;
       this.dice.rotation.z = Math.PI * this.controls.rotationZ;
     }
-    this.orbitControls.update();
+    //this.orbitControls.update();
     this.renderer.render(this.scene, this.camera);
   };
 }

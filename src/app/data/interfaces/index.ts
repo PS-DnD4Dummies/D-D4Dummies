@@ -13,6 +13,12 @@ export interface LogInData {
     password:string
 }
 
+export interface DiceControls {
+    rotationX:number,
+    rotationY:number,
+    rotationZ:number,
+}
+
 export interface Character {
     name:string,
     class:Class,
