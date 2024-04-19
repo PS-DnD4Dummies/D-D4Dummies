@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
 import { FormBuilder } from '@angular/forms';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
@@ -9,7 +9,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeComponent } from '@modules/home/pages/home/home.component';
 import { HomeModule } from '@modules/home/home.module';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -94,6 +94,12 @@ export class HeaderComponent implements OnInit {
     });
 
     this.insurance = false;
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.closeSideBar();
+      }
+    });
   }
 
   /*@ViewChild('sidenav') sidenav!: MatSidenav;
@@ -115,7 +121,7 @@ export class HeaderComponent implements OnInit {
     //this.auth.signOut();
     
     this.loadImages();
-
+  
     // this.cleanStorage();
   }
 
@@ -126,6 +132,7 @@ export class HeaderComponent implements OnInit {
 
   openClosePopUp(){
     this.visibilityPopUpLogIn = !this.visibilityPopUpLogIn;
+    this.closeSideBar();
   }
   openCloseMatMenu(){
     this.visibilityMatMenuPopUp = !this.visibilityMatMenuPopUp;
@@ -147,6 +154,8 @@ export class HeaderComponent implements OnInit {
         this.visibilityPopUpLogIn = false;
       }
     });
+
+    this.closeSideBar();
   }
 
   signOut(){
@@ -154,6 +163,8 @@ export class HeaderComponent implements OnInit {
       this.openSnackBar("Sign Out","Close")
       this.router.navigate(["/"]);
     })
+
+    this.closeSideBar();
   }
 
   logInWithGoogle(){
@@ -235,6 +246,22 @@ export class HeaderComponent implements OnInit {
     sessionStorage.clear();
   }
 
+  openSideBar(){
+    const side = document.querySelector('.side-bar');
 
+    if (side){
+      side.classList.add("visible");
+
+    }
+  }
+
+  closeSideBar(){
+    const side = document.querySelector('.side-bar');
+
+    if (side){
+      side.classList.remove("visible");
+
+    }
+  }
 
 }

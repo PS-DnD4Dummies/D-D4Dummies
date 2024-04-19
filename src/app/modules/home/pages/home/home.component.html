@@ -1,31 +1,30 @@
 <main class="main-page">
   <section class="banner">
       <img class="banner__image" src="/assets/images/mainpagebanner1.jpeg">
-      <p class="banner__text">Welcome to Dungeons and Dragons for Dummies!</p>
-      <p class="banner__hover-text">D&D For Dummies is a website intended for people who wants to know about Dungeons And Dragons but are held back by the not so welcoming and hard to read books. We are here for you!</p>
+      <p class="banner__hover-text">Welcome to Dungeons and Dragons for Dummies!</p>
   </section>
 
   <section class="main-sections">
 
       <figure class="main-sections__character-creator-banner">
-          <a [routerLink]="routesURL.CHARACTER.DEFAULT">
+          <a class="link-main" [routerLink]="routesURL.CHARACTER.DEFAULT">
               <img class="main-sections__image character-creator-img" src=>
+              <label class="main-sections__label">Character Creator</label>
           </a>
-          <label class="main-sections__label">Character Creator</label>
       </figure>
 
       <figure class="main-sections-banner main-sections--glossary-banner">
-          <a [routerLink]="routesURL.GLOSSARY.DEFAULT">
+          <a class="link-main" [routerLink]="routesURL.GLOSSARY.DEFAULT">
               <img class="main-sections__image glossary-img" src=>
+              <label class="main-sections__label">Glossary</label>
           </a>
-          <label class="main-sections__label">Glossary</label>
       </figure>
 
       <figure class="main-sections__forum-banner">
-          <a>
+          <a class="link-main">
               <img class="main-sections__image forum-img" src=>
+              <label class="main-sections__label">Forum</label>
           </a>
-          <label class="main-sections__label">Forum</label>
       </figure>
 
   </section>
