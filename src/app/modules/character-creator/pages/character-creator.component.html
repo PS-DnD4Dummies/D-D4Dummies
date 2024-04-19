@@ -1,3 +1,4 @@
+
 <main class="background-character-creator">
     <section class="character-creator">
         <figure class="character-profile">
@@ -40,11 +41,8 @@
         </article>
 
         <article class="dice-place">
-            <p class="dice-place__place-name character-creator__label">Roll the dice</p>
-            <figure class="dice">
-                <img src="/assets/images/logo.png"
-                    class="dice__img" />
-            </figure>
+            <!-- <p class="dice-place__place-name character-creator__label">Roll the dice</p> -->
+            <app-dice #diceComponent (click)="callRollDice()"></app-dice>
         </article>
 
         <article class="skills">

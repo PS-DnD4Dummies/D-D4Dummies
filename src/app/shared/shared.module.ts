@@ -14,12 +14,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { components } from './components';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    components
   ],
   imports: [
     MatIconModule,
@@ -35,6 +36,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatMenuModule,
     MatSnackBarModule
   ],
-  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule,MatSidenavModule,MatButtonModule,MatMenuModule,MatSnackBarModule]
+  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule,MatSidenavModule,MatButtonModule,MatMenuModule,MatSnackBarModule, ...components]
 })
 export class SharedModule { }
