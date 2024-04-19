@@ -5,6 +5,10 @@ import { RaceInfo } from "@data/interfaces/api_parameters";
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import { FirestoreService } from "@core/services/firebase/firestore/firestore.service";
 import { LoreSectionComponent } from "../components/lore-section/lore-section.component";
+import { Character } from "@data/interfaces";
+import { CloudStorageService } from "@core/services/firebase/cloud-storage/cloud-storage.service";
+import { AuthenticationFirebaseService } from "@core/services/firebase/authentication/authentication-firebase.service";
+import { defaultCharacterPhotoURL } from "@data/constanst/url";
 
 @Component({
     selector: 'character-creator',
@@ -76,8 +80,10 @@ export class CharacterCreatorComponent implements OnInit{
 
     @ViewChildren(LoreSectionComponent) loreSections!: QueryList<LoreSectionComponent>;
     textAreaDisabled = true;
+    buttonsDisabled = true;
 
-    constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService){
+    constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService,
+        private cloudStorageService:CloudStorageService, private auth:AuthenticationFirebaseService){
     }
 
     ngOnInit(){
@@ -93,6 +99,8 @@ export class CharacterCreatorComponent implements OnInit{
 
         this.resetTextAreaContent();
         this.enableTextArea();
+
+        this.enablePersistenceButtons();
 
         this.resetDefaultImage();
 
@@ -687,6 +695,7 @@ export class CharacterCreatorComponent implements OnInit{
     //----- LORE SECTION TOOLS -----
     extractTextAreasContent() {
         const contents = this.loreSections.toArray().map(section => section.textAreaContent);
+        return contents;
     }
 
     enableTextArea(){
@@ -713,4 +722,58 @@ export class CharacterCreatorComponent implements OnInit{
     resetPage(){
         window.location.reload();
     }
+
+
+    //----- SAVE TOOLS -----
+
+    enablePersistenceButtons(){
+        this.buttonsDisabled = false;
+    }
+
+    async getCharacterPhotoURL(uid:string): Promise<string> {
+        try {
+            let imageURL = defaultCharacterPhotoURL; 
+            if(this.selectedFile != null){
+                imageURL = await this.cloudStorageService.uploadCharacterPhoto(uid, this.name, this.selectedFile);
+            }
+            return imageURL;
+        } catch (error) {
+            console.error("Error getting character photo URL:", error);
+            throw error;
+        }
+    }
+
+    async buildCharacterObject(){
+        try {
+            let uid = "";
+
+            this.auth.currentAuthStatus.subscribe(authStatus => {
+                uid = authStatus.uid;
+            });
+
+            const photoURL = await this.getCharacterPhotoURL(uid);
+    
+            const character: Character = {
+                name: this.name,
+                class: this.class,
+                race: this.race,
+                alignment: this.alignment,
+                background: this.background,
+                stats: this.stats,
+                skillModifiers: this.skillsModifiers,
+                skillOptions: this.skillsOptions,
+                loreSections: this.extractTextAreasContent(),
+                photoURL: photoURL
+            };
+    
+            console.log(character);
+            this.firestoreService.addCharacter(uid, character);
+        } catch (error) {
+            console.error("Failed to build character object:", error);
+        }
+
+        
+    }
+
+    
 }

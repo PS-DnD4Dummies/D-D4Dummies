@@ -357,11 +357,11 @@
 
         <section class="persistence">
             <div class="persistence__container persistence__container--load">
-                <button class="persistence__button persistence__button--load" type="button">LOAD</button>
+                <button class="persistence__button persistence__button--load" type="button" [disabled]="buttonsDisabled">LOAD</button>
             </div>
 
             <div class="persistence__container persistence__container--save">
-                <button class="persistence__button persistence__button--save" type="button" (click)="extractTextAreasContent()">SAVE</button>
+                <button class="persistence__button persistence__button--save" type="button" (click)="buildCharacterObject()" [disabled]="buttonsDisabled">SAVE</button>
             </div>
 
         </section>

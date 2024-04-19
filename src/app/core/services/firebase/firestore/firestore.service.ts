@@ -84,12 +84,24 @@ export class FirestoreService {
     });
   }
 
-
+  mapToObject(map: Map<string, number>): {[key: string]: number} {
+    const obj: {[key: string]: number} = {};
+    map.forEach((value, key) => {
+        obj[key] = value;
+    });
+    return obj;
+  }
   
   async addCharacter(uid:string,character:Character): Promise<boolean>{
-    return await addDoc(collection(this.firestore,"users",uid,"characters"),{
-      ...character
-    }).then( () => {
+
+    const characterData = {
+      ...character,
+      stats: this.mapToObject(character.stats),
+      skillModifiers: this.mapToObject(character.skillModifiers),
+      skillOptions: this.mapToObject(character.skillOptions)
+    };
+
+    return await setDoc(doc(this.firestore,"users",uid,"characters",characterData.name),characterData).then( () => {
       console.log("Escritura en firestore de manera correcta");
       return true;
     }).catch(error=>{

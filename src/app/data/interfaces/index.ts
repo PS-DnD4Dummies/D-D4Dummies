@@ -15,13 +15,15 @@ export interface LogInData {
 
 export interface Character {
     name:string,
-    class:Class,
-    race:Race,
-    alignment:Alignment,
-    backgroud:Background, 
-    skills:[Skill, Skill],
-    proficiencies:[string, string, string, string],
-    lore_sections:[string, string, string, string]
+    class:string,
+    race:string,
+    alignment:string,
+    background:string,
+    stats:Map<string, number>,
+    skillModifiers: Map<string, number>,
+    skillOptions:Map<string, number>,
+    loreSections:string[],
+    photoURL:string;
 
 }
 
