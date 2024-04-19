@@ -1,9 +1,10 @@
 import { Component, QueryList, ViewChildren } from "@angular/core";
 import { OnInit } from "@angular/core";
-import { Race, Class, Alignment, Background, Skill} from "@data/enums/enum";
+import { Race, Class, Alignment, Background, Skill, MaxSkillCheck} from "@data/enums/enum";
 import { RaceInfo } from "@data/interfaces/api_parameters";
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import { FirestoreService } from "@core/services/firebase/firestore/firestore.service";
+import { CharacterListLoaderComponent } from "../components/character-list-loader/character-list-loader.component";
 import { LoreSectionComponent } from "../components/lore-section/lore-section.component";
 import { Character } from "@data/interfaces";
 import { CloudStorageService } from "@core/services/firebase/cloud-storage/cloud-storage.service";
@@ -18,6 +19,8 @@ import { defaultCharacterPhotoURL } from "@data/constanst/url";
 })
 
 export class CharacterCreatorComponent implements OnInit{
+
+    uid = "";
     enumRace = Object.values(Race); 
     enumClass = Object.values(Class); 
     enumAlignment = Object.values(Alignment); 
@@ -67,7 +70,7 @@ export class CharacterCreatorComponent implements OnInit{
     proficiencies: string | any = "";
     feats: string | any = "";
 
-    displayImage: string = '/assets/images/character-creator-default-portrait.jpg';
+    displayImage = defaultCharacterPhotoURL;
     selectedFile: any;
 
     loreLabels = ['Personality Traits', 'Ideals', 'Bonds', 'Flaws'];
@@ -80,13 +83,20 @@ export class CharacterCreatorComponent implements OnInit{
 
     @ViewChildren(LoreSectionComponent) loreSections!: QueryList<LoreSectionComponent>;
     textAreaDisabled = true;
+
     buttonsDisabled = true;
+    isModalOpen = false;
+
+    characterList : Character[] = [];
 
     constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService,
         private cloudStorageService:CloudStorageService, private auth:AuthenticationFirebaseService){
     }
 
     ngOnInit(){
+        this.auth.currentAuthStatus.subscribe(authStatus => {
+            this.uid = authStatus.uid;
+        });
     }
 
     zaWarudo(){
@@ -260,7 +270,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Animal_handling, 0);
                 this.skillsOptions.set(Skill.Athletics, 0);
                 this.skillsOptions.set(Skill.Nature, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Barbarian;
                 
                 break;
 
@@ -272,7 +282,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.savingThrows.set('Charisma', 2 + (this.savingThrows.get('Charisma') ?? 0));
 
                 this.enumSkill.forEach(skill =>{ this.skillsOptions.set(skill, 0); })
-                this.maxCheck = 3;
+                this.maxCheck = MaxSkillCheck.Bard;
                 
                 break;
 
@@ -288,7 +298,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.History, 0);
                 this.skillsOptions.set(Skill.Persuasion, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Cleric;
                 
                 break;
 
@@ -307,7 +317,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Perception, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
                 this.skillsOptions.set(Skill.Survival, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Druid;
                 
                 break;
 
@@ -326,7 +336,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Intimidation, 0);
                 this.skillsOptions.set(Skill.Perception, 0);
                 this.skillsOptions.set(Skill.Survival, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Fighter;
                 
                 break;
 
@@ -343,7 +353,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Insight, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
                 this.skillsOptions.set(Skill.Stealth, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Monk;
 
                 break;
             
@@ -360,7 +370,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Medicine, 0);
                 this.skillsOptions.set(Skill.Persuasion, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Paladin;
 
                 break;
 
@@ -379,7 +389,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Perception, 0);
                 this.skillsOptions.set(Skill.Stealth, 0);
                 this.skillsOptions.set(Skill.Survival, 0);
-                this.maxCheck = 3;
+                this.maxCheck = MaxSkillCheck.Ranger;
 
                 break;
             
@@ -402,7 +412,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Persuasion, 0);
                 this.skillsOptions.set(Skill.Sleight_of_hand, 0);
                 this.skillsOptions.set(Skill.Stealth, 0);
-                this.maxCheck = 4;
+                this.maxCheck = MaxSkillCheck.Rogue;
                 
                 break;
             
@@ -419,7 +429,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Intimidation, 0);
                 this.skillsOptions.set(Skill.Persuasion, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Sorcerer;
                 
                 break;
             
@@ -437,7 +447,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Investigation, 0);
                 this.skillsOptions.set(Skill.Nature, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Warlock;
                 
                 break;
             
@@ -454,7 +464,7 @@ export class CharacterCreatorComponent implements OnInit{
                 this.skillsOptions.set(Skill.Investigation, 0);
                 this.skillsOptions.set(Skill.Medicine, 0);
                 this.skillsOptions.set(Skill.Religion, 0);
-                this.maxCheck = 2;
+                this.maxCheck = MaxSkillCheck.Wizard;
 
                 break;
 
@@ -559,6 +569,7 @@ export class CharacterCreatorComponent implements OnInit{
 
             this.enableCheckboxes();
         }
+
     }
 
     giveCompetence(skill: string){
@@ -725,14 +736,13 @@ export class CharacterCreatorComponent implements OnInit{
 
 
     //----- SAVE TOOLS -----
-
     enablePersistenceButtons(){
         this.buttonsDisabled = false;
     }
 
     async getCharacterPhotoURL(uid:string): Promise<string> {
         try {
-            let imageURL = defaultCharacterPhotoURL; 
+            let imageURL = this.displayImage; 
             if(this.selectedFile != null){
                 imageURL = await this.cloudStorageService.uploadCharacterPhoto(uid, this.name, this.selectedFile);
             }
@@ -744,14 +754,14 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     async buildCharacterObject(){
+        if(this.numChecked != this.maxCheck){
+            console.log("Eso")
+            return;
+        }
+
         try {
-            let uid = "";
 
-            this.auth.currentAuthStatus.subscribe(authStatus => {
-                uid = authStatus.uid;
-            });
-
-            const photoURL = await this.getCharacterPhotoURL(uid);
+            const photoURL = await this.getCharacterPhotoURL(this.uid);
     
             const character: Character = {
                 name: this.name,
@@ -767,7 +777,7 @@ export class CharacterCreatorComponent implements OnInit{
             };
     
             console.log(character);
-            this.firestoreService.addCharacter(uid, character);
+            this.firestoreService.addCharacter(this.uid, character);
         } catch (error) {
             console.error("Failed to build character object:", error);
         }
@@ -775,5 +785,96 @@ export class CharacterCreatorComponent implements OnInit{
         
     }
 
+    //----- LOAD TOOLS -----
+    objectToMap(obj: { [key: string]: number }): Map<string, number> {
+        const map = new Map<string, number>();
+        Object.keys(obj).forEach(key => {
+            map.set(key, obj[key]);
+        });
+        return map;
+    }
     
+
+    async loadCharacterList(){
+        const characters = await this.firestoreService.readAllCharacters(this.uid);
+        if (characters) {
+            this.characterList = characters;
+        } else {
+            console.log("Error al cargar los personajes.")
+        }
+        this.openModal();
+    }
+
+    openModal() {
+        this.isModalOpen = true;
+    }
+    
+    handleCharacterSelect(character: any) {
+        if (character) {
+            this.importCharacterData(character);
+            this.recalculateStats(character);
+        }
+        this.isModalOpen = false;
+    }
+
+    importCharacterData(character : any){
+        this.name = character.name;
+        this.race = character.race;
+        this.class = character.class;
+        this.alignment = character.alignment;
+        this.background = character.background;
+        
+        this.stats = this.objectToMap(character.stats);
+        this.loreSections.forEach((section, index) => {
+            section.textAreaContent = character.loreSections[index];
+        })
+        this.displayImage = character.photoURL;
+
+        this.numChecked = this.maxCheck;
+        
+    }
+
+    recalculateStats(character : any){
+        this.showResetButton();
+
+        this.enableTextArea();
+
+        this.enablePersistenceButtons();
+
+        this.calculateModifiersAndSavingThrows();
+
+        this.getProficienciesFromFirestore();
+        this.getFeatsFromAPI();
+
+        this.racesTweaks();
+        this.classesTweaks();
+
+        this.calculatePassivePerception();
+        this.calculateCombatStats();
+        
+        this.skillsOptions = this.objectToMap(character.skillOptions);
+        this.isDisabled = true;
+        this.disableCheckboxes();
+
+        this.manageImportCheckbox();
+    }
+
+    manageImportCheckbox(){
+        let keysArray = Array.from(this.skillsOptions.keys());
+        let helper;
+        let box;
+
+        keysArray.forEach( (key) => {
+            if (this.skillsOptions.get(key)){
+                helper = document.querySelector("." + key) as HTMLInputElement;
+                helper.disabled = false;
+                helper.checked = true;
+
+                box = document.querySelector(".skill-type-" + key) as HTMLInputElement;
+                box.classList.add('marked');
+                this.numChecked++;
+            }
+        })
+
+    }
 }
