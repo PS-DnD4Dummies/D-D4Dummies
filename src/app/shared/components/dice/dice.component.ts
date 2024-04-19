@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import * as dat from 'dat.gui';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -16,11 +17,20 @@ export class DiceComponent implements AfterViewInit {
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
-  private controls!: OrbitControls;
+  private orbitControls!: OrbitControls;
   private modelLoader!: GLTFLoader;
   private dice!: THREE.Object3D;
 
   private directionalLights:THREE.DirectionalLight[] = [];
+
+  private controls = {
+    rotationX:0,
+    rotationY:0,
+    rotationZ:0,
+  };
+  
+  private gui = new dat.GUI();
+
 
   constructor() { }
 
@@ -52,11 +62,18 @@ export class DiceComponent implements AfterViewInit {
     });
   }
 
+
+  createGUI(){
+    this.gui.add(this.controls,"rotationX",-1,1,0.01);
+    this.gui.add(this.controls,"rotationY",-1,1,0.01);
+    this.gui.add(this.controls,"rotationZ",-1,1,0.01);
+  }
+
   init() {
     this.scene = new THREE.Scene();
     this.modelLoader = new GLTFLoader();
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.set(0,0.5,1);
+    this.camera.position.set(0,0,0.6);
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvasRef.nativeElement });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -66,13 +83,15 @@ export class DiceComponent implements AfterViewInit {
 
     //this.scene.background = new THREE.Color(0xffffff);
 
-    this.camera.position.z = 1;
+    //this.camera.position.z = 1;
 
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.update();
+    this.orbitControls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.orbitControls.update();
 
     this.createDice();
     this.animate();
+
+    this.createGUI();
   }
 
   addLights(){
@@ -118,10 +137,18 @@ export class DiceComponent implements AfterViewInit {
   animate = () => {
     requestAnimationFrame(this.animate);
     if (this.dice) {
-      //this.dice.rotation.x += 0.01;
-      //this.dice.rotation.y += 0.01;
+      const quaternation = new THREE.Quaternion();
+      quaternation.setFromAxisAngle(new THREE.Vector3(
+        this.controls.rotationX,
+        this.controls.rotationY,
+        this.controls.rotationZ
+      ),Math.PI/2)
+      this.dice.applyQuaternion(quaternation);
+      // this.dice.rotation.x = Math.PI * this.controls.rotationX;
+      // this.dice.rotation.y = Math.PI * this.controls.rotationY;
+      // this.dice.rotation.z = Math.PI * this.controls.rotationZ;
     }
-    this.controls.update();
+    this.orbitControls.update();
     this.renderer.render(this.scene, this.camera);
   };
 }
