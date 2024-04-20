@@ -110,8 +110,8 @@ export class FirestoreService {
     })
   }
 
-  async deleteCharacter(uid:string,characterID:string): Promise<boolean>{
-    return await deleteDoc(doc(this.firestore,"users",uid,"characters",characterID))
+  async deleteCharacter(uid:string,characterName:string): Promise<boolean>{
+    return await deleteDoc(doc(this.firestore,"users",uid,"characters",characterName))
       .then( () => {
         console.log("Borrado en firestore de manera correcta");
         return true;

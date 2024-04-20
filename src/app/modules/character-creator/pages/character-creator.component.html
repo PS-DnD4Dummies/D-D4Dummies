@@ -361,7 +361,7 @@
         </section>
 
         <article class="load">
-            <app-character-list-loader *ngIf="isModalOpen" [characters]="characterList" (selectCharacter)="handleCharacterSelect($event)"></app-character-list-loader>
+            <app-character-list-loader *ngIf="isModalOpen" [characters]="characterList" (selectCharacter)="handleCharacterSelect($event)" (deleteCharacter)="handleCharacterDelete($event)"></app-character-list-loader>
         </article>
     </section>
 </main>

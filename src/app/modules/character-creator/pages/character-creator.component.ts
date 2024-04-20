@@ -844,6 +844,8 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     recalculateStats(character : any){
+        this.restartSkillOptions();
+
         this.showResetButton();
 
         this.enableTextArea();
@@ -885,5 +887,13 @@ export class CharacterCreatorComponent implements OnInit{
             }
         })
 
+    }
+
+    handleCharacterDelete(character: any) {
+        if (character) {
+            this.firestoreService.deleteCharacter(this.uid, character.name);
+            this.loadCharacterList();
+        }
+        
     }
 }

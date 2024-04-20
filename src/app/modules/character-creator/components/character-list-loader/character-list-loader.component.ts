@@ -9,6 +9,7 @@ import { Character } from '@data/interfaces';
 export class CharacterListLoaderComponent {
   @Input() characters: Character[] = []; 
   @Output() selectCharacter = new EventEmitter<any>();
+  @Output() deleteCharacter = new EventEmitter<any>();
 
   closeModal() {
     this.selectCharacter.emit(null);
@@ -16,5 +17,9 @@ export class CharacterListLoaderComponent {
 
   onCharacterSelect(character: any) {
     this.selectCharacter.emit(character);
+  }
+
+  onDeleteCharacter(character: any) {
+    this.deleteCharacter.emit(character);
   }
 }
