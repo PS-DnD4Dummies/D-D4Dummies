@@ -102,3 +102,33 @@ body {
     background-position: -100% 50%;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .flip-card {
+    background-color: transparent;
+    width: 10em;
+    height: 10em;
+    perspective: 1000px;
+  }
+
+  .glossary-element__name{
+    width: 100%;
+    height: auto;
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .flip-card {
+    background-color: transparent;
+    width: 7em;
+    height: 7em;
+    perspective: 1000px;
+  }
+
+  .glossary-element__name{
+    width: 100%;
+    height: auto;
+    font-size: small;
+  }
+}

@@ -123,3 +123,73 @@
 .information-section-container {
   font-family: 'Platypi', sans-serif;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .banner__image {
+    height: 12em;
+  }
+
+  .banner__title {
+    margin: 0.5em 0 1em 0;
+    font-size: 2em;
+    width: 100%;
+  }
+
+  .banner__text {
+    font-size: 1em;
+    width: 90%;
+    height: auto;
+    margin: 0;
+  }
+
+  .information-section-container{
+    padding: 1em 3em 1.5em 3em;
+  }
+  .information-section__field-title {
+    text-align: center
+  }
+
+  .information-section__image{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .banner__image {
+    height: auto;
+  }
+
+  .banner__title {
+    font-size: 2em;
+    width: 100%;
+  }
+
+  .banner__text {
+    font-size: 1em;
+    width: 90%;
+    margin: 0;
+  }
+
+  .information-section-container{
+    width: 90%;
+    padding: 1em 1em 1.4em 1em;
+    display: block;
+    justify-self: center;
+  }
+
+  .information-section__field-title{
+    width: auto;
+    font-size: 1.5em;
+    text-align: center
+  }
+
+  .information-section__text-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .information-section__image{
+    width: 120%;
+  }
+
+}
