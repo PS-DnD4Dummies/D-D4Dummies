@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTES } from '@data/constanst/routes';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
@@ -28,24 +28,37 @@ export class RegisterComponent {
   confirmPasswordError: boolean = false;
   birthDateError: boolean = false;
 
+  profilePhotoURL: string = '/assets/images/default.jpg';
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+
+  openFileInput(): void {
+    this.fileInput.nativeElement.click();
+  }
+
   onFileSelected(event: any): void {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const fileSizeInMB = file.size / 1024 / 1024;
       const validExtensions = ['image/jpeg', 'image/png'];
-  
+
       if (!validExtensions.includes(file.type)) {
         alert('Only .jpg and .png files are allowed.');
         return;
       }
-  
+
       if (fileSizeInMB > 10) {
         alert('File size must be less than 10MB.');
         return;
       }
-      
+
+      // Mostrar la vista previa de la imagen seleccionada
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.profilePhotoURL = reader.result as string;
+      };
+
       this.selectedFile = file;
-      this.displayImage = URL.createObjectURL(this.selectedFile);
     } else {
       this.selectedFile = null;
     }
@@ -101,7 +114,7 @@ export class RegisterComponent {
 
     try {
       let successfulSignUp = await this.Firebase.signUpProcess(this.userEmail, this.username, this.userPassword, this.userBirthDate, this.selectedFile);
-  
+
       if (successfulSignUp) {
         // Inicia la sesión y redirige a la página principal
         this.router.navigate([ROUTES.HOME.DEFAULT]); // Asegúrate de reemplazar '/main-page' con la ruta correcta
@@ -113,7 +126,7 @@ export class RegisterComponent {
       console.error("SignUp process error: ", error);
       alert('An error occurred during the sign up process. Please try again.');
     }
-  
+
   }
 
   isAdult(birthDate: Date): boolean {
@@ -139,6 +152,6 @@ export class RegisterComponent {
     return passwordPattern.test(password);
   }
 
-  
+
 }import { FirebaseService } from '@core/services/firebase/firebase.service';
 
