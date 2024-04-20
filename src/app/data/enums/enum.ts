@@ -26,6 +26,21 @@ export enum Class {
     Wizard = "wizard"
 }
 
+export enum MaxSkillCheck {
+    Barbarian = 2,
+    Bard = 3,
+    Cleric = 2,
+    Druid = 2,
+    Fighter = 2,
+    Monk = 2,
+    Paladin = 2,
+    Ranger = 3,
+    Rogue = 4,
+    Sorcerer = 2,
+    Warlock = 2,
+    Wizard = 2
+}
+
 export enum Alignment {
     Chaotic_evil = "chaotic-evil",
     Chaotic_good = "chaotic-good",
@@ -74,6 +89,7 @@ export enum Skill {
     Stealth = "stealth",
     Survival = "survival"
 }
+
 
 export enum AbilityScore {
     Charisma = "cha",

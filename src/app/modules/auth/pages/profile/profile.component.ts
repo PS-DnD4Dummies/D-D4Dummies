@@ -69,7 +69,8 @@ export class ProfileComponent {
   }
 
   saveChanges(): void {
-    let changes : {[key:string]:any} = {};
+    let changes : {
+      [key:string]:any} = {};
 
     if (this.newUsername != '') {
       if (this.checkForValidUsername(this.newUsername)) {
@@ -82,7 +83,7 @@ export class ProfileComponent {
 
     if (this.newBirthDate != '') {
       if (this.isAdult(this.newBirthDate)) {
-        changes["birthdate"] = this.newBirthDate;
+        changes["birthdate"] = this.birthDate;
       } else {
         alert('Please enter a valid birthdate.');
         return;
@@ -171,7 +172,7 @@ export class ProfileComponent {
     const today = new Date();
     const adultYear = today.getFullYear() - 18;
     const adultDate = new Date(today.setFullYear(adultYear));
-
+    this.birthDate = birthDateObj;
     return birthDateObj <= adultDate;
   }
 

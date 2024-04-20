@@ -1,65 +1,112 @@
 .background-signup{
-    background-image: url('src/assets/images/dice_background_red.png');
+    background-image: url('/assets/images/dice_background_red.png');
     background-repeat: repeat;
     background-size: 30em;
 
-    font-size: 140%;
+    font-size: 150%;
 
-    height: 82vh;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 2em;
 
+    min-height: 100vh;
+    padding: 1em;
+
+    color: #c9c5c5;
+    text-shadow: 3px 0 #000000, -3px 0 #000000, 0 3px #000000, 0 -3px #000000,
+        2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
+    
+    font-family: 'Ringbearer', sans-serif;
 }
 
-.main-container{
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
+.main-signup__title{
+    text-align: center;
 
-  color: var(--paleta-beige);
-  font-family: 'Ringbearer', sans-serif;
-
-
-}
-
-.first-col{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    background-color: rgba(39, 39, 39, 0.5);
+    padding: .5em;
+    border-radius: .4em;
 }
 
 .user-info{
     display:flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
 
-    width: 80%;
+    width: 100%;
 }
 
-.parameter{
-    display: flex;
+.texts{
+    display:flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .1em;
 
-}
+    width: 100%;
 
-.parameter__text{
-    color: #c9c5c5;
-    
-    background: linear-gradient(to right, #2e2e2e, #333, #292929, #303030, #2e2e2e);
-    background-size: 200% auto;
-    animation: shimmer 10s infinite linear;
-
+    position: relative;
+    bottom: 3em;
 }
 
 .parameter__text--birth-date::-webkit-calendar-picker-indicator {
     display: none;
 }
 
+.parameter__label{
+    display: flex;
+    justify-content: flex-start;
+
+    width: 50%;
+
+    position: relative;
+    right: 1em;
+}
+
+.parameter__text{
+    width: 50%;
+
+    position: relative;
+    bottom: .2em;
+    
+    background: linear-gradient(to right, #2e2e2e, #333, #292929, #303030, #2e2e2e);
+    background-size: 200% auto;
+    animation: shimmer 10s infinite linear;
+
+    color:#c9c5c5;
+
+}
+
+.user-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    height: 14em;
+
+}
+
+.user-profile__img{
+    width: 12em;
+    height: 12em;
+
+    border: .2em solid #ffaa00;
+    border-radius: .5em;
+    box-shadow: .6em .6em .2em rgba(0,0,0,0.5);
+    
+}
 
 .persistence{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    align-content: flex-end;
+
+    width: 50%;
 
 }
 
@@ -71,7 +118,7 @@
     transition-duration: 0.4s;
     cursor: pointer;
 
-    color:#333;
+    color:#000000;
 
     font-size: 1.5em;
 
@@ -83,24 +130,41 @@
     animation: shimmer 2s infinite linear;
 
     font-family: 'Ringbearer', sans-serif;
+
+    position: relative;
+    bottom: 1.5em;
 }
 
-.input-error {
-    border: 1px solid red;
+.persistence__button:hover{
+    border: .05em solid black;
+    box-shadow: #333;
+    box-shadow: .3em .3em .2em rgba(0,0,0,0.5);
 }
 
 .parameter__age-warning{
   font-size: 60%;
-  justify-content: center;
+
+  position: relative;
+  right: 6.5em;
 }
 
-@media screen and (max-width: 800px), (max-height: 560px) {
-  .background-signup {
-      padding-bottom: 2em;
-      padding-top: 2em;
+@media screen and (max-width: 765px){
+    .background-signup {
+        font-size: 110%;
+    }
 
-      font-size: 110%;
-  }
+    .parameter__label, .parameter__text, .persistence, .parameter__age-warning, .warnings{
+        width: 75%;
+    }
+
+    .user-profile__button{
+        left: 6em;
+        bottom: 8em;
+    }
+
+    .main-signup__title{
+        font-size: 150%;
+    }
 }
 ---------------------------------------------------------------------------------------
 .user-info {

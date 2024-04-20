@@ -1,5 +1,9 @@
 <main class="main-page">
-  <button class="back-button" (click)="goBack()"></button>
+  <section class="navigation-search">
+    <button class="back-button" (click)="goBack()">&#8617;</button>
+    <input class="searcher" type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="filterItems()">
+  </section>
+
   <section class="banner">
     <img class="banner__image" src="./assets/backgrounds/ruins.png" alt="">
     <h1 class="banner__title">{{ selectedSection }}</h1>
@@ -8,8 +12,9 @@
   </section>
 
   <section class="elements-section">
+    <p *ngIf="noResults" class="error-message">&#x274C; No matches found</p>
     <ul class="elements-section__list">
-      <li class="elements-section__entry" *ngFor="let item of items">
+      <li class="elements-section__entry" *ngFor="let item of filteredItems">
         <app-descriptive-glossary-element [item]="item"></app-descriptive-glossary-element>
       </li>
     </ul>

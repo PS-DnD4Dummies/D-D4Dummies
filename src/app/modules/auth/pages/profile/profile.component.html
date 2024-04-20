@@ -25,7 +25,7 @@
           </div>
           <div class="user-box__portion">
             <label class="user-box__label">Birth date:</label>
-            <p *ngIf="!isEditing" class="user-box__text user-box__text--birthdate">{{ birthDate | date }}</p>
+            <p *ngIf="!isEditing" class="user-box__text user-box__text--birthdate">{{ birthDate | date: 'dd/MM/yyyy' }}</p>
             <input *ngIf="isEditing" type="date" [(ngModel)]="newBirthDate" class="user-box__input">
           </div>
         </div>

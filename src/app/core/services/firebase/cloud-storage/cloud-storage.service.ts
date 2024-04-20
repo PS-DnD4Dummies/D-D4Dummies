@@ -29,6 +29,20 @@ export class CloudStorageService {
     return downloadURL;
   }
 
+  async uploadCharacterPhoto(userID:string,characterName:string, file:File): Promise<string>{
+
+    const storageRef = ref(this.cloudStorage,'characterPhotos/'+userID+characterName);
+
+    await uploadBytes(storageRef,file).then(()=>{
+      console.log("La foto de perfil se ha subido correctamente.");
+    }).catch((error)=>{
+      console.log("Error al subir la foto de personaje. Error: "+error);
+    });
+
+    const downloadURL = await getDownloadURL(storageRef);
+    return downloadURL;
+  }
+
   async getImagesFromRoute(imageRoute:string):  Promise<String[]>{
     let urls: String[] = [];  
 

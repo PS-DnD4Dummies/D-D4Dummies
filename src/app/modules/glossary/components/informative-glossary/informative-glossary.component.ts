@@ -15,6 +15,7 @@ export class InformativeGlossaryComponent {
   sectionTitle?: string | null;
   sectionImageURL?: string | null;
   fields: { title: string; value: string }[] = [];
+  textDescription: string = "";
 
   constructor(private route: ActivatedRoute, private location: Location, private firestoreService:FirestoreService, private cloudStorageService:CloudStorageService) { }
 
@@ -32,15 +33,24 @@ export class InformativeGlossaryComponent {
   }
 
   async loadItems(): Promise<void> {
-    
+
     const sectionData = await this.firestoreService.readGlossarySection((this.selectedSection ?? 'defaultValue').toLowerCase());
     if (sectionData) {
-      console.log(sectionData)
       this.selectedSection = this.splitCamelCase(this.selectedSection ?? "default");
       this.fields = sectionData;
     } else {
-
-      console.log('No se pudieron obtener los datos de la sección del glosario');
+      console.log('Data not found');
+    }
+    switch (this.selectedSection) {
+      case 'Know Your Rolls':
+        this.textDescription = "Dice rolls are essential in D&D, determining success or failure for actions like attacking, casting spells, and skill checks, adding an element of chance to the game.";
+        break;
+      case 'Combat':
+        this.textDescription = "D&D combat is dynamic and strategic, featuring mechanics like falling unconscious, surprise, underwater combat, movement and positioning, initiative, mounted combat, damage and healing, and structured rounds and turns."
+        break;
+      case 'adventure':
+        this.textDescription = "In D&D, adventures are shaped by the environment, exploration, difficult terrain, social interactions, activities while traveling, resting, travel pace, downtime between adventures, speed, movement, time management, and special types of movement.";
+        break;
     }
   }
 

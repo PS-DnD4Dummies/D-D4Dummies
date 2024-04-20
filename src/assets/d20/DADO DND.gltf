@@ -1,0 +1,237 @@
+{
+    "asset": {
+        "copyright": "2020 (c) Adobe Inc.",
+        "generator": "Adobe Dimension - ef4f41a6842c60acc27c15e21adfa2a5f9da2982",
+        "version": "2.0"
+    },
+    "accessors": [
+        {
+            "bufferView": 0,
+            "componentType": 5126,
+            "count": 411096,
+            "type": "VEC3",
+            "max": [
+                0.24864253401756288,
+                0.2832651138305664,
+                0.26207977533340456
+            ],
+            "min": [
+                -0.2486412227153778,
+                -0.2832738757133484,
+                -0.26207825541496279
+            ]
+        },
+        {
+            "bufferView": 1,
+            "componentType": 5126,
+            "count": 411096,
+            "type": "VEC3"
+        },
+        {
+            "bufferView": 2,
+            "componentType": 5126,
+            "count": 411096,
+            "type": "VEC2"
+        },
+        {
+            "bufferView": 3,
+            "componentType": 5125,
+            "count": 191835,
+            "type": "SCALAR",
+            "max": [
+                411094.0
+            ],
+            "min": [
+                0.0
+            ]
+        },
+        {
+            "bufferView": 4,
+            "componentType": 5125,
+            "count": 219123,
+            "type": "SCALAR",
+            "max": [
+                411095.0
+            ],
+            "min": [
+                1.0
+            ]
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 4933152,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 4933152,
+            "byteLength": 4933152,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 9866304,
+            "byteLength": 3288768,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 13155072,
+            "byteLength": 767340,
+            "target": 34963
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 13922412,
+            "byteLength": 876492,
+            "target": 34963
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 14798904,
+            "uri": "DADO DND_binary.bin"
+        }
+    ],
+    "cameras": [
+        {
+            "perspective": {
+                "znear": 0.000018020398783846759,
+                "yfov": 0.6024156808853149,
+                "zfar": 2.0,
+                "aspectRatio": 1.3333333730697632
+            },
+            "type": "perspective",
+            "name": "render_camera"
+        }
+    ],
+    "images": [
+        {
+            "name": "image",
+            "uri": "DADO DND_images\\image.png",
+            "mimeType": "image/png"
+        }
+    ],
+    "materials": [
+        {
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    1.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.6000000238418579
+            },
+            "name": "Fondo",
+            "doubleSided": true
+        },
+        {
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "metallicRoughnessTexture": {
+                    "index": 0
+                }
+            },
+            "name": "Bordes y número",
+            "doubleSided": true
+        }
+    ],
+    "meshes": [
+        {
+            "name": "body 2",
+            "primitives": [
+                {
+                    "attributes": {
+                        "NORMAL": 1,
+                        "POSITION": 0,
+                        "TEXCOORD_0": 2
+                    },
+                    "indices": 3,
+                    "material": 0
+                },
+                {
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TEXCOORD_0": 2
+                    },
+                    "indices": 4,
+                    "material": 1
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "translation": [
+                0.588142991065979,
+                0.29963573813438418,
+                -0.0004016876046080142
+            ],
+            "rotation": [
+                -0.12059047073125839,
+                0.379409521818161,
+                0.04995020851492882,
+                0.9159756302833557
+            ],
+            "scale": [
+                1.0,
+                1.0,
+                0.9999999403953552
+            ],
+            "camera": 0,
+            "name": "render_camera_n3d"
+        },
+        {
+            "translation": [
+                -3.9100646631595739e-7,
+                0.23408927023410798,
+                7.629394360719744e-8
+            ],
+            "rotation": [
+                -0.13553763926029206,
+                0.022909866645932199,
+                0.15814732015132905,
+                0.9778006672859192
+            ],
+            "scale": [
+                1.0000004768371583,
+                0.9999998807907105,
+                1.0000004768371583
+            ],
+            "mesh": 0,
+            "name": "body 2"
+        }
+    ],
+    "samplers": [
+        {}
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0,
+                1
+            ],
+            "name": "scene"
+        }
+    ],
+    "textures": [
+        {
+            "name": "image",
+            "sampler": 0,
+            "source": 0
+        }
+    ],
+    "scene": 0
+}

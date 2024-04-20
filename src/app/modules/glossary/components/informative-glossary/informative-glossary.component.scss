@@ -5,19 +5,15 @@
 }
 
 .back-button {
-  background-color: var(--paleta-dorado);
-  color: var(--paleta-rojo_oscuro1);
+  background-color: var(--paleta-rojo2);
+  color: #ffbb00;
   border: none;
-  padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
-  margin-top: 1em;
-  margin-left: 1em;
-}
-
-.back-button::before {
-  content: '\2190';
-  margin-right: 5px;
+  font-size: 2em;
+  transform: scaleY(-1);
+  padding: 0 0.5em;
+  margin: 0.3em 0 0 0.5em;
 }
 
 .banner {
@@ -37,7 +33,7 @@
 
 .banner__title {
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -52,6 +48,21 @@
   2px 2px #000000, -2px -2px #000000, 2px -2px #000000, -2px 2px #000000;
 }
 
+.banner__text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+
+  color: var(--paleta-beige);
+  font-family: 'Platypi', sans-serif;
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .banner__separator {
   width: 98%;
   border: 1px solid white;
@@ -63,7 +74,7 @@
   align-items: center;
   justify-content: center;
 
-  padding: 10em;
+  padding: 3em 10em 6em 10em;
 }
 
 .information-section__text-container{
@@ -92,7 +103,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .information-section__image{
@@ -105,5 +116,80 @@
 
 .information-section__field-title{
   font-family: 'Ringbearer', sans-serif;
+  color: var(--paleta-beige);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.information-section-container {
+  font-family: 'Platypi', sans-serif;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .banner__image {
+    height: 12em;
+  }
+
+  .banner__title {
+    margin: 0.5em 0 1em 0;
+    font-size: 2em;
+    width: 100%;
+  }
+
+  .banner__text {
+    font-size: 1em;
+    width: 90%;
+    height: auto;
+    margin: 0;
+  }
+
+  .information-section-container{
+    padding: 1em 3em 1.5em 3em;
+  }
+  .information-section__field-title {
+    text-align: center
+  }
+
+  .information-section__image{
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .banner__image {
+    height: auto;
+  }
+
+  .banner__title {
+    font-size: 2em;
+    width: 100%;
+  }
+
+  .banner__text {
+    font-size: 1em;
+    width: 90%;
+    margin: 0;
+  }
+
+  .information-section-container{
+    width: 90%;
+    padding: 1em 1em 1.4em 1em;
+    display: block;
+    justify-self: center;
+  }
+
+  .information-section__field-title{
+    width: auto;
+    font-size: 1.5em;
+    text-align: center
+  }
+
+  .information-section__text-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .information-section__image{
+    width: 120%;
+  }
 
 }

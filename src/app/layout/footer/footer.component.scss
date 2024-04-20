@@ -1,60 +1,70 @@
 .main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    font-size: 75%;
-    background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
-    background-size: 200% auto;
-    animation: shimmer 2s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 75%;
+  background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
+  background-size: 200% auto;
+  animation: shimmer 2s infinite linear;
 
-    font-family: 'DRAGON HUNTER', sans-serif;
-    color: var(--paleta-rojo_oscuro2)
+  font-family: 'DRAGON HUNTER', sans-serif;
+  color: var(--paleta-rojo_oscuro2);
+
+  height: 6em;
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: -100% 50%;
-  }
+0% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: -100% 50%;
+}
 }
 
 .follow-us {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: 1em;
 
 }
 
 .follow-us__label{
-    position: relative;
+  position: relative;
 }
 
 .follow-us__link-list{
-    display: flex;
-    align-self: center;
-    justify-content: space-between;
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
 
-    position: relative;
-    bottom: 1em;
-    right: 1em;
+  list-style-type: none;
 
-    list-style-type: none;
+  width: 30em;
 
-    width: 30em;
+  position: relative;
+  bottom: 1em;
 }
 
 .follow-us__img{
-    max-width: 1em;
-    padding-right: .5em;
+  max-width: 1em;
+  padding-right: .5em;
 
-    position: relative;
-    top: .1em;
+  position: relative;
+  top: .1em;
 }
 
 .follow-us__link {
-    color: inherit;
+  color: inherit;
+}
+
+@media screen and (max-width: 768px){
+  .follow-us {
+    font-size: 80%;
+  
+  }
 }
