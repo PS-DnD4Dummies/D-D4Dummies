@@ -143,25 +143,19 @@ export class CharacterCreatorComponent implements OnInit{
 
         return false;
     }
-
-    callRollDice(){
-        
-        this.diceComponent.rollDice(20);
-    }
-
-
     
     //----- BASIC STAT CALCULATIONS -----
     generateRandomNumbersForStats(){
         let sum = 0;
         const minSum = 50;
-    
+
         let keysArray = Array.from(this.stats.keys());
 
         keysArray.forEach( (key) => {
             let num = Math.floor(Math.random() * 20) + 1;
             this.stats.set(key, num);
             sum += num; 
+
         })
 
         while (sum < minSum) {
@@ -174,6 +168,8 @@ export class CharacterCreatorComponent implements OnInit{
                 sum++; 
             }
         }
+
+        this.rollDice(Math.floor(sum / 6));
     }
 
     calculateModifyer(valor: number): number {
@@ -202,6 +198,10 @@ export class CharacterCreatorComponent implements OnInit{
         this.armorClass = 10 + (this.modifiers.get('Dexterity') ?? 0);
         this.initiative = (this.modifiers.get('Dexterity') ?? 0);
  
+    }
+
+    rollDice(face:number){
+        this.diceComponent.rollDice(face);
     }
 
 

@@ -205,14 +205,11 @@
     height: 13em;
 }
 
-.dice__img{
-    max-width: 12em;
-    max-height: 12em;
-
+.dice-object{
     cursor: pointer;
 
     position: relative;
-    top: 1em;
+    bottom: 1.45em;
 }
 
 .reset-tool{
