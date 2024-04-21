@@ -1,58 +1,60 @@
-<div class="login-container">
-    <span class="login-container__close-icon"><a (click)="closePopUp()"><i class="bi bi-x"></i></a></span>
-
-    <section class="login-form-box">
-        <h1>Welcome to the dungeon!</h1>
-        <form [formGroup]="logInForm"  class="login-info" (ngSubmit)="logInWithEmail()">
-
-            <section class="login-section login-section--name-email">
-
-
-                <mat-form-field>
-                    <mat-label>Username/Email</mat-label>
-                    <input matInput formControlName="email" type="email">
-                    <mat-icon matSuffix>email</mat-icon>
-                </mat-form-field>
-
-            </section>
-
-            <section class="login-section login-section--password">
-
-                <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" type="password">
-                    <mat-icon matSuffix>lock</mat-icon>
-                </mat-form-field>
-
-            </section>
-
-            <section class="login-section__remember-forgot">
-                <!-- <label><input type="checkbox">Remember me</label> -->
-                <!-- <a href="#">Forgot Password?</a> -->
-            </section>
-            <div class="confirmation_buttons">
-                <button class="confirmation__log-in-btn" type="submit">Log In</button>
-                <button class="confirmation__log-in-btn" (click)="logInWithGoogle()">Google</button>
-                <button class="confirmation__log-in-btn" (click)="logInWithFacebook()">Facebook</button>
-            </div>
-
-            <p *ngIf="!validEmailPassword" class="wrongEmailPassword_text">Your email and password are incorrect</p>
-
-        </form>
-
+<div class="backdrop">
+    <div class="login-container">
+        <span class="login-container__close-icon"><a (click)="closePopUp()"><i class="bi bi-x"></i></a></span>
     
-        <section class="confirmation">
-
+        <section class="login-form-box">
+            <h1>Welcome to the dungeon!</h1>
+            <form [formGroup]="logInForm"  class="login-info" (ngSubmit)="logInWithEmail()">
     
-            <div class="confirmation__register">
-                <p>New to D&D For Dummies?
-                    <a [routerLink]="routes.AUTH.REGISTER" class="confirmation__register-action" (click)="closePopUp()">
-                        Register here for free!
-                    </a>
-                </p>
-            </div>
+                <section class="login-section login-section--name-email">
+    
+    
+                    <mat-form-field>
+                        <mat-label>Username/Email</mat-label>
+                        <input matInput formControlName="email" type="email">
+                        <mat-icon matSuffix>email</mat-icon>
+                    </mat-form-field>
+    
+                </section>
+    
+                <section class="login-section login-section--password">
+    
+                    <mat-form-field>
+                        <mat-label>Password</mat-label>
+                        <input matInput formControlName="password" type="password">
+                        <mat-icon matSuffix>lock</mat-icon>
+                    </mat-form-field>
+    
+                </section>
+    
+                <section class="login-section__remember-forgot">
+                    <!-- <label><input type="checkbox">Remember me</label> -->
+                    <!-- <a href="#">Forgot Password?</a> -->
+                </section>
+                <div class="confirmation_buttons">
+                    <button class="confirmation__log-in-btn" type="submit">Log In</button>
+                    <button class="confirmation__log-in-btn" (click)="logInWithGoogle()">Google</button>
+                    <button class="confirmation__log-in-btn" (click)="logInWithFacebook()">Facebook</button>
+                </div>
+    
+                <p *ngIf="!validEmailPassword" class="wrongEmailPassword_text">Your email and password are incorrect</p>
+    
+            </form>
+    
+        
+            <section class="confirmation">
+    
+        
+                <div class="confirmation__register">
+                    <p>New to D&D For Dummies?
+                        <a [routerLink]="routes.AUTH.REGISTER" class="confirmation__register-action" (click)="closePopUp()">
+                            Register here for free!
+                        </a>
+                    </p>
+                </div>
+        
+            </section>
     
         </section>
-
-    </section>
+    </div>    
 </div>
