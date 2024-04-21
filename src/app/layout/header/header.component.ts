@@ -168,6 +168,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logInWithGoogle(){
+    console.log("asdf")
     this.firebaseService.signInWithGoogleProcess().then(result=>{
       console.log(result)
       this.visibilityPopUpLogIn = false;

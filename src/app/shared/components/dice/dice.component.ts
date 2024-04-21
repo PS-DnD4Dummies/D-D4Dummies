@@ -96,7 +96,7 @@ export class DiceComponent implements AfterViewInit {
     this.addLights();
 
 
-    //this.scene.background = new THREE.Color(0xffffff);
+    this.scene.background = new THREE.Color(0x333333);
 
     //this.camera.position.z = 1;
 

@@ -12,6 +12,7 @@ export class FirestoreService {
 
   //this.firestore.addUser(this.user).then(result=>console.log(result));
   async addUser(user:User): Promise<boolean>{
+    if(!user.birthdate) user.birthdate = new Date();
     return await setDoc(doc(this.firestore,"users",user.uid),{
       ...user
     }).then( () => {
