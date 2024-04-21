@@ -18,6 +18,15 @@
     }
 }
 
+.main-signup__title{
+  position: relative;
+  bottom: .5em;
+
+  background-color: rgba(39, 39, 39, 0.5);
+  padding: .5em;
+  border-radius: .4em;
+}
+
 .user-info{
     display:flex;
     flex-direction: row;
@@ -38,6 +47,8 @@
     width: 100%;
     height: auto;
   }
+
+  cursor: pointer;
 }
 
 .texts{
@@ -105,6 +116,10 @@
 .parameter__age-warning{
   font-size: 60%;
   position: relative;
+
+  background-color: rgba(39, 39, 39, 0.5);
+  padding: .5em;
+  border-radius: .4em;
 }
 
 @media screen and (max-width: 767px){
