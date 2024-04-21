@@ -115,8 +115,8 @@ export class DiceComponent implements AfterViewInit {
       .to({
         rotationX:1,
         rotationY:3,
-        rotationZ:4,
-      },2000)
+        rotationZ:3,
+      },1000)
       .easing(TWEEN.Easing.Quadratic.InOut);
 
       this.tween = new TWEEN.Tween(this.controls,false);
