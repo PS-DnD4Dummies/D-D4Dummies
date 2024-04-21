@@ -3,7 +3,7 @@
   <button class="back-button" (click)="goBack()">&#8617;</button>
 
   <section class="banner">
-    <img class="banner__image" src="./assets/backgrounds/desert-city.jpg" alt="">
+    <img class="banner__image" [src]="photos['desert-city'].image" alt="">
     <h1 class="banner__title">{{ selectedSection }}</h1>
     <p class="banner__text">{{textDescription}}</p>
     <hr class="banner__separator">

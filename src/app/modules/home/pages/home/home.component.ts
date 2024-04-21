@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@data/constanst/routes';
 import { FirebaseService } from '@core/services/firebase/firebase.service';
+import { RealtimedbService } from '@core/services/firebase/realtimedb/realtimedb.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,10 @@ export class HomeComponent implements OnInit {
 
   insurance: Boolean;
 
-  constructor(private firebaseService:FirebaseService) { 
+  constructor(
+    private firebaseService:FirebaseService,
+    private realTimeService:RealtimedbService
+  ) { 
     this.insurance = false;
   }
 
@@ -35,59 +39,18 @@ export class HomeComponent implements OnInit {
     }
   ];
 
+  photos!: any;
+
   ngOnInit(): void {
     this.loadImages();
-
-    // this.cleanStorage();
-
   }
 
-  async loadImages(){ // Si se acaba haciendo lo de las imagenes por real time database todo esto de aquí para abajo (y en footer y header)
-                      // hay que quitarlo y hacerlo con los servicios que hicieron. O si no, se quita igual y carga de forma local las imágenes y ya está.
+  async loadImages(){ 
     
-    const urlMainBanner = sessionStorage.getItem('mainpagebanner1.jpeg');
-    const urlCharacterCreator = sessionStorage.getItem('vertical-banner-character-creator.jpg');
-    const urlGlossary = sessionStorage.getItem('vertical-banner-glossary.jpg');
-    const urlForum = sessionStorage.getItem('vertical-banner-forum.jpg');
-
-    if (urlMainBanner && urlCharacterCreator && urlGlossary && urlForum) {
-      var image = document.querySelector('.character-creator-img') as HTMLImageElement;
-      image.src = urlCharacterCreator;
-
-      image = document.querySelector('.glossary-img') as HTMLImageElement;
-      image.src = urlGlossary;
-
-      image = document.querySelector('.forum-img') as HTMLImageElement;
-      image.src = urlForum;
-      
-    } else {
-      !this.insurance ? await this.takeImagesFromCloudService(): console.log("ERROR: Casi se ejecuta un segundo intento de acceder al Cloud.");
-      this.insurance = true;
-    }
+    this.realTimeService.readPhotos("mainPagePhotos").then(result => {
+      this.photos = result;
+    });
 
   }
 
-  async takeImagesFromCloudService(){
-    var url = this.firebaseService.getImagesFromFile("mainPagePhotos/");
-      await url.then((links) => {
-        const regex = /%2F([^?]+)/;
-        var urls = links; 
-
-        for (let item of urls){
-          const match = item.match(regex);
-  
-          if (match !== null){
-            sessionStorage.setItem(decodeURIComponent(match[1]), JSON.stringify(item).replace(/^["']|["']$/g, ''));
-          }
-        }
-        
-    })
-
-    this.loadImages();
-  }
-
-  async cleanStorage(){
-    localStorage.clear();
-    sessionStorage.clear();
-  }
 }

@@ -1,6 +1,6 @@
 <main class="main-page">
   <section class="banner">
-      <img class="banner__image" src="/assets/images/mainpagebanner1.jpeg">
+      <img class="banner__image" [src]="photos.mainpagebanner1.image">
       <p class="banner__hover-text">Welcome to Dungeons and Dragons for Dummies!</p>
   </section>
 
@@ -8,21 +8,21 @@
 
       <figure class="main-sections__character-creator-banner">
           <a class="link-main" [routerLink]="routesURL.CHARACTER.DEFAULT">
-              <img class="main-sections__image character-creator-img" src=>
+              <img class="main-sections__image character-creator-img" [src]="photos['vertical-banner-character-creator'].image">
               <label class="main-sections__label">Character Creator</label>
           </a>
       </figure>
 
       <figure class="main-sections-banner main-sections--glossary-banner">
           <a class="link-main" [routerLink]="routesURL.GLOSSARY.DEFAULT">
-              <img class="main-sections__image glossary-img" src=>
+              <img class="main-sections__image glossary-img" [src]="photos['vertical-banner-glossary'].image">
               <label class="main-sections__label">Glossary</label>
           </a>
       </figure>
 
       <figure class="main-sections__forum-banner">
           <a class="link-main">
-              <img class="main-sections__image forum-img" src=>
+              <img class="main-sections__image forum-img" [src]="photos['vertical-banner-forum'].image">
               <label class="main-sections__label">Forum</label>
           </a>
       </figure>

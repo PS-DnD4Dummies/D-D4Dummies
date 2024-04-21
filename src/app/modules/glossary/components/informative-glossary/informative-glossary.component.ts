@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Location,  NgForOf} from "@angular/common";
 import { FirestoreService } from '@core/services/firebase/firestore/firestore.service';
 import { CloudStorageService } from '@core/services/firebase/cloud-storage/cloud-storage.service';
+import { RealtimedbService } from '@core/services/firebase/realtimedb/realtimedb.service';
 
 @Component({
   selector: 'app-informative-glossary',
@@ -10,26 +11,45 @@ import { CloudStorageService } from '@core/services/firebase/cloud-storage/cloud
   styleUrl: './informative-glossary.component.scss'
 })
 export class InformativeGlossaryComponent {
-  selectedSection?: string | null;
+  selectedSection!: string |null;
   @Input() items: any[]=[]
   sectionTitle?: string | null;
   sectionImageURL?: string | null;
   fields: { title: string; value: string }[] = [];
   textDescription: string = "";
 
-  constructor(private route: ActivatedRoute, private location: Location, private firestoreService:FirestoreService, private cloudStorageService:CloudStorageService) { }
+  constructor(private route: ActivatedRoute, private location: Location, private firestoreService:FirestoreService, 
+    private realTimeService: RealtimedbService,
+    private cloudStorageService:CloudStorageService) { }
+
+
+    photos!:any;
+
+    async loadImages(section:string){ 
+    
+      this.realTimeService.readPhotos("glossaryPhotos").then(result => {
+        this.photos = result;
+        this.sectionImageURL = this.photos["informative-page"][section.toLowerCase()].image;
+        
+      });
+  
+    }
+
 
   goBack(): void {
     this.location.back();
   }
 
   ngOnInit(): void {
+
     this.route.paramMap.subscribe(params => {
       this.selectedSection = params.get('section');
-      this.loadSectionImage((this.selectedSection ?? 'defaultValue').toLowerCase());
-
+      this.loadImages(this.selectedSection as string);
       this.loadItems();
+      
     });
+    
+
   }
 
   async loadItems(): Promise<void> {
@@ -58,11 +78,6 @@ export class InformativeGlossaryComponent {
     return text.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
   }
 
-  loadSectionImage(section:any){
-    this.cloudStorageService.getSingleImageURL('glossaryPhotos/informative-page/' + section + '.jpg').then(imgUrl => {
-      this.sectionImageURL = imgUrl;
-    })
-  }
 }
 
 

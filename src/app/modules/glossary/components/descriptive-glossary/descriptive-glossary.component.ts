@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import {ActivatedRoute} from "@angular/router";
 import { Location} from "@angular/common";
+import { RealtimedbService } from '@core/services/firebase/realtimedb/realtimedb.service';
 
 @Component({
   selector: 'app-descriptive-glossary',
@@ -17,13 +18,24 @@ export class DescriptiveGlossaryComponent implements OnInit {
   searchTerm: string = "";
   noResults: boolean = false;
 
-  constructor(private route: ActivatedRoute, private dndApiService: DndApiService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private dndApiService: DndApiService, private location: Location, private realTimeService:RealtimedbService) { }
+
+  photos!:any;
+
+  async loadImages(){ 
+    this.realTimeService.readPhotos("glossaryPhotos").then(result => {
+      this.photos = result;
+      console.log(this.photos);
+    });
+
+  }
 
   goBack(): void {
     this.location.back();
   }
 
   ngOnInit(): void {
+    this.loadImages();
     this.route.paramMap.subscribe(params => {
       this.selectedSection = params.get('section');
       this.loadItems();

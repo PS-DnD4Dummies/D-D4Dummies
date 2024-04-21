@@ -11,6 +11,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { firebaseConf } from '@data/constanst/environment';
 import { FirestoreService } from './services/firebase/firestore/firestore.service';
 import { HttpClientModule } from '@angular/common/http';
+import { getDatabase, provideDatabase } from '@angular/fire/database';
 
 
 
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    provideDatabase(()=> getDatabase(undefined,"https://dnd4dummies-ccc4c-default-rtdb.europe-west1.firebasedatabase.app"))
   ],
   providers:[
     ScreenTrackingService,
