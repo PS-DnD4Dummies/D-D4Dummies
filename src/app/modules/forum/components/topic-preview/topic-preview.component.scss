@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+
 .topic-preview{
     display: grid;
     background: #333;
@@ -55,4 +62,29 @@
     width: 3.5em;
     height: 3.5em;
     border-radius: 6px;
+}
+
+@media screen and (max-width: 375px){
+
+    .topic-preview a{
+        font-size: 70%;
+        padding-left: 10%;
+    }
+
+    .topic-preview__date{
+        font-size: 70%;
+        padding-left: 10%;
+    }
+
+    .topic-preview__author{
+        font-size: 90%;
+        position: relative;
+        right: 1em;
+        padding-right: 10%;
+    }
+
+    .topic-preview__profile-pic {
+        font-size: 70%;
+        padding-right: 10%;
+    }
 }
