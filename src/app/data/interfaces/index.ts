@@ -8,6 +8,14 @@ export interface User {
     photoURL:string
 }
 
+export interface Post {
+    content:string,
+    like:number,
+    dislike:number,
+    user:User,
+    timestamp:Date
+}
+
 export interface LogInData {
     email:string
     password:string
