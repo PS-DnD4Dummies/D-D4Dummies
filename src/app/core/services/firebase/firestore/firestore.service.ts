@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
-import { BaseClass, Character, User } from '@data/interfaces';
+import { BaseClass, Character, Post, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -200,6 +200,18 @@ export class FirestoreService {
         console.log("Error al actualizar en firestore. Error: "+error);
         return null;
       })
+  }
+
+
+  async addPost(post:Post): Promise<boolean>{
+    
+    return await setDoc(doc(this.firestore,"posts"),post).then( () => {
+      console.log("Escritura en firestore de manera correcta");
+      return true;
+    }).catch(error=>{
+      console.log("Error al escribir en firestore. Error: "+error);
+      return false;
+    })
   }
 
 }
