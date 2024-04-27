@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, setDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, setDoc, updateDoc, query, limit, startAt, getCountFromServer } from '@angular/fire/firestore';
 import { BaseClass, Character, Post, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
 
@@ -211,6 +211,34 @@ export class FirestoreService {
     }).catch(error=>{
       console.log("Error al escribir en firestore. Error: "+error);
       return false;
+    })
+  }
+
+  async readPosts(numberOfPosts:number,shiftPost:number): Promise<Post[]|null>{
+
+    const postsRef = collection(this.firestore, "posts");
+    const q = query(postsRef,orderBy("timestamp"),limit(numberOfPosts),startAt(shiftPost))
+    
+    return await getDocs(q).then( (querySnapshot) => {
+      console.log("Lectura en firestore de manera correcta");
+      const posts : Post[] = [];
+      querySnapshot.forEach((doc)=>{
+        posts.push(doc.data() as Post);
+      })
+      return posts;
+    }).catch(error=>{
+      console.log("Error al leer en firestore. Error: "+error);
+      return null;
+    })
+  }
+
+  async getNumberOfPost(): Promise<number|null>{
+    const postsRef = collection(this.firestore, "posts");
+    return await getCountFromServer(postsRef).then((querySnapshot)=>{
+      return querySnapshot.data().count;
+    }).catch(error=>{
+      console.log("Error al leer la cantidad de documentos en firestore. Error: "+error);
+      return null;
     })
   }
 
