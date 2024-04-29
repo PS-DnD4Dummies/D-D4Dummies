@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ForumRoutingModule } from './forum-routing.module';
 import { SharedModule } from "@shared/shared.module";
-import { MainForumComponent } from './pages/main-forum/main-forum.component';
+import { ForumComponent } from './pages/forum/forum.component';
 import { TopicPageComponent } from './pages/topic-page/topic-page.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { TopicPreviewComponent } from './components/topic-preview/topic-preview.component';
@@ -11,7 +11,7 @@ import { TopicPreviewComponent } from './components/topic-preview/topic-preview.
 
 
 @NgModule({
-  declarations: [MainForumComponent, TopicPageComponent, CommentComponent, TopicPreviewComponent],
+  declarations: [ForumComponent, TopicPageComponent, CommentComponent, TopicPreviewComponent],
     imports: [
         CommonModule,
         ForumRoutingModule,

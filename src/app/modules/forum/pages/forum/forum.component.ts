@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './forum.component.scss'
 })
 export class ForumComponent {
-
+  dummyList = [1, 2, 3, 4, 5];
 }
