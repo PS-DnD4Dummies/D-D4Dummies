@@ -9,11 +9,12 @@ export interface User {
 }
 
 export interface Post {
+    title:string,
     content:string,
+    user:User,
+    timestamp:Date,
     like:number,
     dislike:number,
-    user:User,
-    timestamp:Date
 }
 
 export interface LogInData {
