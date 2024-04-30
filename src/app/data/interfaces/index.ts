@@ -17,6 +17,12 @@ export interface Post {
     dislike:number,
 }
 
+export interface Comment {
+  content: string,
+  user: User,
+  timestamp:Date,
+}
+
 export interface LogInData {
     email:string
     password:string
