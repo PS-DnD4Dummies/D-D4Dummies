@@ -94,7 +94,23 @@
 
 }
 
+.needToLogIn {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Aquí puedes ajustar la opacidad del overlay */
+  z-index: 1; /* Asegura que el overlay esté sobre el contenido */
+}
+
 .topic-creation-area {
+
+  position: relative;
   border: .05em solid black;
   border-radius: .5em;
   box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
