@@ -17,8 +17,19 @@
     </ul>
   </section>
 
-  <section class="new-topic-area" [ngClass]="{'needToLogIn':user===null}>
+  <section class="new-topic-area" [ngClass]="{'needToLogIn':user===null}">
+
+    <div class="text-overlay" *ngIf="user===null">
+        <p>You need to be logged to comment</p>
+        <div class="buttons-overlay">
+            <button>LogIn</button>
+            <button>Register</button>
+        </div>
+
+    </div>
+
     <section class="topic-creation-area" >
+      <div class="overlay"></div>
 
       <div class="topic-creation-area__name-container">
         <input type="text" class="topic-creation-area__name" placeholder="Topic">
@@ -32,6 +43,7 @@
 
 
     <div class="topic-button-container">
+       <div class="overlay overlay-button"></div>
       <button class="topic-button">Publish</button>
     </div>
 
