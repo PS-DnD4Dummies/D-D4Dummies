@@ -103,6 +103,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  border-radius: .5em;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); /* Aquí puedes ajustar la opacidad del overlay */
   z-index: 1; /* Asegura que el overlay esté sobre el contenido */
@@ -120,6 +121,22 @@
   width: 70em;
   height: 27.5em;
 
+}
+
+.text-overlay{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+}
+
+.buttons-overlay{
+  width: 100%;
 }
 
 .topic-creation-area__name-container {
@@ -173,7 +190,7 @@
   display: flex;
   align-self: center;
   justify-self: center;
-
+  position: relative;
   margin-bottom: 2em;
 
 }
@@ -195,9 +212,13 @@
   width: 5em;
   height: 1.5em;
 
-  position: relative;
+  position: sticky;
   left: 13.7em;
   bottom: 1em;
+}
+
+.overlay-button {
+  border-radius: .3em !important;
 }
 
 .topic-button:hover{
