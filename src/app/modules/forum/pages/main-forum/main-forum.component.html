@@ -17,9 +17,11 @@
             </ul>
         </section>
         
-        <section class="new-topic-area">
-            <section class="topic-creation-area">
+        <section class="new-topic-area" [ngClass]="{'needToLogIn':user===null}">
+            
 
+            <section class="topic-creation-area">
+                <div class="overlay"></div>
                 <div class="topic-creation-area__name-container">
                     <input type="text" class="topic-creation-area__name" placeholder="Topic">
                 </div>
