@@ -205,7 +205,7 @@ export class FirestoreService {
 
   async addPost(post:Post): Promise<boolean>{
     
-    return await setDoc(doc(this.firestore,"posts"),post).then( () => {
+    return await addDoc(collection(this.firestore,"posts"),post).then( () => {
       console.log("Escritura en firestore de manera correcta");
       return true;
     }).catch(error=>{

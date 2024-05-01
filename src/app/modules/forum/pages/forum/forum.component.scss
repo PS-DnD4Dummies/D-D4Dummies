@@ -95,7 +95,7 @@
 }
 
 .needToLogIn {
-  position: relative;
+  display: none;
 }
 
 .overlay {
@@ -105,8 +105,8 @@
   width: 100%;
   border-radius: .5em;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Aquí puedes ajustar la opacidad del overlay */
-  z-index: 1; /* Asegura que el overlay esté sobre el contenido */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .topic-creation-area {

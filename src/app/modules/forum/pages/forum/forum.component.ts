@@ -5,6 +5,7 @@ import {Subscription} from "rxjs";
 import {FirestoreService} from "@core/services/firebase/firestore/firestore.service";
 import {Post, User as OurUser} from "@data/interfaces";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import { UtilitiesService } from '@core/services/utilities/utilities.service';
 
 @Component({
   selector: 'app-forum',
@@ -14,7 +15,6 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 export class ForumComponent implements OnInit, OnDestroy{
   dummyList = [1, 2, 3, 4, 5];
 
-  user !: User;
 
   newPostTitle: string = '';
   newPostContent: string = '';
@@ -23,32 +23,24 @@ export class ForumComponent implements OnInit, OnDestroy{
 
   constructor(private authService: AuthenticationFirebaseService,
               private firestoreService: FirestoreService,
-              private authService2: AngularFireAuth,
+              private utilitiesService: UtilitiesService
   ){
-    this.authService.currentAuthStatus.subscribe(user => this.user=user);
+    
   }
 
   ngOnInit() {
-    this.authSubscription = this.authService2.authState.subscribe(user => {
-      if (user) {
-        // Si hay un usuario autenticado, obtener su información
-        this.firestoreService.readUser(user.uid).then(userData => {
-          if (userData) {
-            this.currentUser = userData;
-          } else {
-            console.error('User data not found.');
-          }
-        }).catch(error => {
-          console.error('Error retrieving user data:', error);
-        });
-      } /*else {
-        this.currentUser = null; // Reiniciar el usuario actual si no hay usuario autenticado
-      }*/
-    });
+    this.authSubscription =  this.authService.currentAuthStatus.subscribe(
+
+      user => {
+        this.currentUser = this.utilitiesService.firebaseUserToOurUser(user)
+        console.log(user);
+        console.log(this.currentUser);
+        
+      }
+    );
   }
 
   ngOnDestroy() {
-    // Desechar la suscripción para evitar fugas de memoria
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
