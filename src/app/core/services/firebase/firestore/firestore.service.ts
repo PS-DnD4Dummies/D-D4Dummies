@@ -214,10 +214,28 @@ export class FirestoreService {
     })
   }
 
-  async readPosts(numberOfPosts:number,shiftPost:number): Promise<Post[]|null>{
+  async getFirstsPosts(numberOfPosts:number): Promise<Post[]|null>{
 
     const postsRef = collection(this.firestore, "posts");
-    const q = query(postsRef,orderBy("timestamp"),limit(numberOfPosts),startAt(shiftPost))
+    const q = query(postsRef,orderBy("timestamp","desc"),limit(numberOfPosts))
+    
+    return await getDocs(q).then( (querySnapshot) => {
+      console.log("Lectura en firestore de manera correcta");
+      const posts : Post[] = [];
+      querySnapshot.forEach((doc)=>{
+        posts.push(doc.data() as Post);
+      })
+      return posts;
+    }).catch(error=>{
+      console.log("Error al leer en firestore. Error: "+error);
+      return null;
+    })
+  }
+
+  async getNextPosts(numberOfPosts:number,lastPostTimestamp:Date): Promise<Post[]|null>{
+
+    const postsRef = collection(this.firestore, "posts");
+    const q = query(postsRef,orderBy("timestamp","desc"),limit(numberOfPosts),startAt(lastPostTimestamp))
     
     return await getDocs(q).then( (querySnapshot) => {
       console.log("Lectura en firestore de manera correcta");

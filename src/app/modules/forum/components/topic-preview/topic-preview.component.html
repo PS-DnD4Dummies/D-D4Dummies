@@ -1,14 +1,12 @@
-<body>
-    <main class="topic-preview">
+
+    <section class="topic-preview">
         <a href=""> 
             <!-- Esto debe llevar al topic-page de este topic en concreto -->
-            <h1 class="topic-preview__name">Topic</h1>
+            <h1 class="topic-preview__name">{{post.title}}</h1>
         </a>
-        <time class="topic-preview__date">Publish date</time>
-        <h2 class="topic-preview__author">Author</h2>
+        <time class="topic-preview__date">{{convertToDate(post.timestamp) | date:'short'}}</time>
+        <h2 class="topic-preview__author">{{post.user.username}}</h2>
         <div class="topic-preview__image-container">
-            <img class="topic-preview__profile-pic" src="/assets/images/default.jpg" alt="">
+            <img class="topic-preview__profile-pic" [src]="post.user.photoURL" alt="">
         </div>
-    </main>
-
-</body>
+    </section>

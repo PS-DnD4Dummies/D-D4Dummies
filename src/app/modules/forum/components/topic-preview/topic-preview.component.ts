@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Post } from '@data/interfaces';
 
 @Component({
   selector: 'app-topic-preview',
@@ -8,9 +9,19 @@ import { Router } from '@angular/router';
 })
 export class TopicPreviewComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+
+  }
+
+  @Input() post!:Post;
   
   goToDisplay(){
     this.router.navigate(["/forum/pages/topic-page"]);
   }
+
+  convertToDate(timestamp:any): Date {
+    const milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
+    return new Date(milliseconds);
+  }
+
 }

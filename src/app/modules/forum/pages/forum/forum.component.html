@@ -11,8 +11,8 @@
 
   <section class="topic-list-container">
     <ul class="topic-list">
-      <li class="topic-display" *ngFor="let i of dummyList">
-        <app-topic-preview></app-topic-preview>
+      <li class="topic-display" *ngFor="let post of currentPosts">
+        <app-topic-preview [post]="post"></app-topic-preview>
       </li>
     </ul>
   </section>

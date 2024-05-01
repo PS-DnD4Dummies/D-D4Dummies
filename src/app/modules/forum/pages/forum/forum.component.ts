@@ -21,6 +21,10 @@ export class ForumComponent implements OnInit, OnDestroy{
   currentUser!: OurUser;
   authSubscription: Subscription | null = null;
 
+  numberOfPosts!: number;
+
+  currentPosts!:Post[];
+
   constructor(private authService: AuthenticationFirebaseService,
               private firestoreService: FirestoreService,
               private utilitiesService: UtilitiesService
@@ -30,14 +34,21 @@ export class ForumComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.authSubscription =  this.authService.currentAuthStatus.subscribe(
-
       user => {
         this.currentUser = this.utilitiesService.firebaseUserToOurUser(user)
-        console.log(user);
-        console.log(this.currentUser);
-        
       }
     );
+    this.firestoreService.getNumberOfPost().then(numberOfPosts => {
+      if (numberOfPosts!=null) this.numberOfPosts = numberOfPosts;
+      this.firestoreService.getFirstsPosts(5).then( (posts:Post[]|null) => {
+        if(posts==null) {
+          console.log("Ha habido un fallo leyendo los posts");
+          return;
+        }
+        this.currentPosts = posts;        
+      })
+    });
+    
   }
 
   ngOnDestroy() {
