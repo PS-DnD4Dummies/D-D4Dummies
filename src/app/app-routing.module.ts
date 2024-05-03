@@ -19,7 +19,11 @@ const routes: Routes = [
   {
    path:ROUTES.CHARACTER.DEFAULT,
    loadChildren:() => import('./modules/character-creator/character-creator.module').then(m => m.CharacterCreatorModule)
-  }
+  },
+  {
+    path:ROUTES.FORUM.DEFAULT,
+    loadChildren:() => import('./modules/forum/forum.module').then(m => m.ForumModule)
+   }
 ];
 
 @NgModule({

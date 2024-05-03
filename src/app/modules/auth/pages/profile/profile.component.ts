@@ -20,6 +20,7 @@ export class ProfileComponent {
   email: string = '';
   birthDate!: Date;
   profilePhotoURL: string = '';
+  isPremium: boolean = true;
 
   uid = "";
   characterList : Character[] = [];
@@ -60,6 +61,8 @@ export class ProfileComponent {
           this.originalProfilePhotoURL = user.photoURL; // Guardar la URL original
 
           this.reloadList();
+          this.isPremium = user.isPremium;
+          console.log(user)
         });
     }})
 

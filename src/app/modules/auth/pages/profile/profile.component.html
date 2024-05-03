@@ -4,12 +4,14 @@
     <article class="user-box">
       <div class="user-box__content">
 
-        <div class="user-box__pfp">
+        <app-profile-image *ngIf="!isEditing" [profileImageURL]="parsePhotoGoogleURL(profilePhotoURL)" [isPremium]="isPremium" class="user-box__img-comp"></app-profile-image>
+        
+        <div *ngIf="isEditing" class="user-box__pfp">
           <label *ngIf="isEditing" for="fileInput">
             <img [src]="profilePhotoURL" class="user-box__img" alt="Profile Picture">
           </label>
           <input *ngIf="isEditing" type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
-          <img *ngIf="!isEditing" [src]="parsePhotoGoogleURL(profilePhotoURL)" class="user-box__img" alt="Profile Picture">
+          
         </div>
 
         <div class="user-box__info">
@@ -41,6 +43,8 @@
     <app-character-list-loader class="character-list" (selectCharacter)="handleCharacterSelect($event)" (deleteCharacter)="handleCharacterDelete($event)" [profileMode]="true" [characters]="characterList"></app-character-list-loader>
 
   </main>
+
+  
 </div>
 
 <ng-template #notAuthenticated>

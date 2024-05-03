@@ -5,7 +5,8 @@ export interface User {
     email:string,
     username:string,
     birthdate:Date,
-    photoURL:string
+    photoURL:string,
+    isPremium:boolean
 }
 
 export interface LogInData {
