@@ -48,7 +48,7 @@
             </button>
 
             <button  mat-button class="upper-bar__login-logo-action" *ngIf="currentUser!==undefined && currentUser!==null" [matMenuTriggerFor]="menu">
-                <img id = "photo-width" class="upper-bar__login-logo-image_login" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
+                <app-profile-image [componentMode]="'header'" [profileImageURL]="parsePhotoGoogleURL(userPhotoURL)" [isPremium]="isPremium" class="user-box__img-comp"></app-profile-image>
                 <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
                     <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()" >Log Out</button>
                     <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
@@ -75,7 +75,7 @@
         <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
         
         <div class="side-bar__login-logo-container" *ngIf="currentUser!==undefined && currentUser!==null">
-            <img id = "photo-width" class="side-bar__login-logo-image" [src]="parsePhotoGoogleURL(currentUser.photoURL)">
+            <app-profile-image [componentMode]="'sidebar'" [profileImageURL]="parsePhotoGoogleURL(userPhotoURL)" [isPremium]="isPremium" class="user-box__img-comp"></app-profile-image>
         </div>
         
         <a class="cerrar" (click)="closeSideBar()">

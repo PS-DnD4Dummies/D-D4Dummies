@@ -1,7 +1,24 @@
-<div class="profile__image">
-    <img *ngIf="isPremium" src="assets/images/crown.png" class="profile__crown">
-    <div class="profile__pfp">
-        <img [src]="profileImageURL" class="profile__img" alt="Profile Picture">
+<div [ngSwitch]="componentMode">
+    <div *ngSwitchCase="'profilePage'" class="profile__image">
+        <img *ngIf="isPremium" src="assets/images/crown.png" class="profile__crown">
+        <div class="profile__pfp">
+            <img [src]="profileImageURL" class="profile__img" alt="Profile Picture">
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'header'" class="header__image">
+        <img *ngIf="isPremium" src="assets/images/crown.png" class="header__crown">
+        <div class="header__pfp">
+            <img [src]="profileImageURL" class="header__img" alt="Profile Picture">
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'sidebar'" class="sidebar__image">
+        <img *ngIf="isPremium" src="assets/images/crown.png" class="sidebar__crown">
+        <div class="sidebar__pfp">
+            <img [src]="profileImageURL" class="sidebar__img" alt="Profile Picture">
+        </div>
     </div>
 </div>
+
 
