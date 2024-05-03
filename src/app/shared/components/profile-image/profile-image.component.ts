@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './profile-image.component.scss'
 })
 export class ProfileImageComponent {
+  @Input() componentMode : String = "";
   @Input() isPremium : boolean = false;
   @Input() profileImageURL : String = "";
 

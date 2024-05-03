@@ -4,7 +4,7 @@
     <article class="user-box">
       <div class="user-box__content">
 
-        <app-profile-image *ngIf="!isEditing" [profileImageURL]="parsePhotoGoogleURL(profilePhotoURL)" [isPremium]="isPremium" class="user-box__img-comp"></app-profile-image>
+        <app-profile-image *ngIf="!isEditing" [componentMode]="'profilePage'" [profileImageURL]="parsePhotoGoogleURL(profilePhotoURL)" [isPremium]="isPremium" class="user-box__img-comp"></app-profile-image>
         
         <div *ngIf="isEditing" class="user-box__pfp">
           <label *ngIf="isEditing" for="fileInput">

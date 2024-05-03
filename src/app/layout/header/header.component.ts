@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HomeComponent } from '@modules/home/pages/home/home.component';
 import { HomeModule } from '@modules/home/home.module';
 import { NavigationEnd, Router } from '@angular/router';
+import { FirestoreService } from '@core/services/firebase/firestore/firestore.service';
 
 @Component({
   selector: 'app-header',
@@ -78,6 +79,8 @@ export class HeaderComponent implements OnInit {
   visibilityPopUpLogIn=false;
   visibilityMatMenuPopUp=false;
   validEmailPassword: boolean = true;
+  userPhotoURL : string = "";
+  isPremium : boolean = false;
 
   urlLogo!:string;
   urlProfile!:string;
@@ -86,6 +89,7 @@ export class HeaderComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth:AuthenticationFirebaseService,
     private firebaseService:FirebaseService,
+    private firestoreService:FirestoreService,
     private _snackBar: MatSnackBar,
     private router: Router
   ){
@@ -115,6 +119,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.auth.currentAuthStatus.subscribe(result => {
       this.currentUser=result;
+      if (result) {
+        this.firestoreService.readRealTimeUser(result.uid).subscribe(user => {
+          this.userPhotoURL = user.photoURL;
+          this.isPremium = user.isPremium;
+          console.log(user)
+        });
+      }
       //console.log(result);
     });
 
@@ -123,6 +134,7 @@ export class HeaderComponent implements OnInit {
     this.loadImages();
   
     // this.cleanStorage();
+
   }
 
   onSubmitForm(searchFormData:any){
