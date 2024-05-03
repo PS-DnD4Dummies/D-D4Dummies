@@ -1,0 +1,49 @@
+<div *ngIf="profileMode; else characterCreatorMode">
+  <div class="modal-backdrop__profile-mode" *ngIf="characters">
+    <div class="modal-content__profile-mode">
+
+      <div class="modal-header__profile-mode">
+        <h2>Your Characters!</h2>
+      </div>
+
+      <div class="modal-body">
+
+        <div *ngFor="let character of characters" class="character-item" (click)="onCharacterSelect(character)">
+          <img class="character-list-image" [src]="character.photoURL" alt="Character Image">
+          <span class="character-name">{{ character.name }}</span>
+          <button class="delete-button__profile-mode" (click)="$event.stopPropagation(); onDeleteCharacter(character)">
+            <span>DELETE</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #characterCreatorMode>
+  <div class="modal-backdrop" *ngIf="characters">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <span class="close-button" (click)="closeModal()">&times;</span>
+          <h2>Choose Your Character</h2>
+        </div>
+  
+  
+        <div class="modal-body">
+  
+          <div *ngFor="let character of characters" class="character-item" (click)="onCharacterSelect(character)">
+            <img class="character-list-image" [src]="character.photoURL" alt="Character Image">
+            <span class="character-name">{{ character.name }}</span>
+            <button class="delete-button" (click)="$event.stopPropagation(); onDeleteCharacter(character)">
+              <span>DELETE</span>
+            </button>
+          </div>
+  
+        </div>
+  
+      </div>
+  </div>
+</ng-template>

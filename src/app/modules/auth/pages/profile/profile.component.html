@@ -37,6 +37,9 @@
         <button mat-button (click)="saveChanges()" *ngIf="isEditing" id="button-save">Save Changes</button>
       </div>
     </article>
+
+    <app-character-list-loader class="character-list" (selectCharacter)="handleCharacterSelect($event)" (deleteCharacter)="handleCharacterDelete($event)" [profileMode]="true" [characters]="characterList"></app-character-list-loader>
+
   </main>
 </div>
 

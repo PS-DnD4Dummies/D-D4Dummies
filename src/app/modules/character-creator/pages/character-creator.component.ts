@@ -6,7 +6,8 @@ import { Race, Class, Alignment, Background, Skill, MaxSkillCheck} from "@data/e
 import { RaceInfo } from "@data/interfaces/api_parameters";
 import {DndApiService} from "@core/services/dnd-api/dnd-api.service";
 import { FirestoreService } from "@core/services/firebase/firestore/firestore.service";
-import { CharacterListLoaderComponent } from "../components/character-list-loader/character-list-loader.component";
+import { CharacterListLoaderComponent } from "../../../shared/components/character-list-loader/character-list-loader.component";
+import { CharacterListHandlerService } from "@core/services/characterListHandler/character-list-handler.service";
 import { LoreSectionComponent } from "../components/lore-section/lore-section.component";
 import { Character } from "@data/interfaces";
 import { CloudStorageService } from "@core/services/firebase/cloud-storage/cloud-storage.service";
@@ -93,14 +94,35 @@ export class CharacterCreatorComponent implements OnInit{
 
     @ViewChild('diceComponent') diceComponent!: DiceComponent;
 
-    constructor(private dndApiService: DndApiService, private firestoreService:FirestoreService,
-        private cloudStorageService:CloudStorageService, private auth:AuthenticationFirebaseService){
-    }
+    constructor(private dndApiService: DndApiService, 
+        private firestoreService:FirestoreService,
+        private cloudStorageService:CloudStorageService, 
+        private auth:AuthenticationFirebaseService, 
+        private characterListHandlerService:CharacterListHandlerService
+    ){}
 
     ngOnInit(){
         this.auth.currentAuthStatus.subscribe(authStatus => {
             this.uid = authStatus.uid;
         });
+
+        this.verifyIfFromProfile();
+    }
+
+    verifyIfFromProfile(){
+        this.characterListHandlerService.isFromProfile().then((fromProfile: boolean) => {
+            console.log(fromProfile);
+            if (fromProfile){
+                this.characterListHandlerService.loadCharacterData().then((character: Character) => {
+                    console.log(character);
+                    this.importCharacterData(character);
+                    this.recalculateStats(character);
+                    console.log(fromProfile);
+
+                })
+            }
+        })
+
     }
 
     zaWarudo(){
@@ -826,6 +848,14 @@ export class CharacterCreatorComponent implements OnInit{
         this.isModalOpen = false;
     }
 
+    handleCharacterDelete(character: any) {
+        if (character) {
+            this.firestoreService.deleteCharacter(this.uid, character.name);
+            this.loadCharacterList();
+        }
+            
+    }
+    
     importCharacterData(character : any){
         this.name = character.name;
         this.race = character.race;
@@ -889,11 +919,5 @@ export class CharacterCreatorComponent implements OnInit{
 
     }
 
-    handleCharacterDelete(character: any) {
-        if (character) {
-            this.firestoreService.deleteCharacter(this.uid, character.name);
-            this.loadCharacterList();
-        }
-        
-    }
+    
 }

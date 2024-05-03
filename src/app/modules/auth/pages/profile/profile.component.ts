@@ -4,6 +4,9 @@ import { FirestoreService } from '@core/services/firebase/firestore/firestore.se
 import { FirebaseService } from '@core/services/firebase/firebase.service';
 import { Router } from '@angular/router';
 import { ROUTES } from '@data/constanst/routes';
+import { CharacterListLoaderComponent } from '@shared/components/character-list-loader/character-list-loader.component';
+import { Character } from '@data/interfaces';
+import { CharacterListHandlerService } from '@core/services/characterListHandler/character-list-handler.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +20,9 @@ export class ProfileComponent {
   email: string = '';
   birthDate!: Date;
   profilePhotoURL: string = '';
+
+  uid = "";
+  characterList : Character[] = [];
 
   newUsername: string = '';
   newEmail: string = '';
@@ -36,6 +42,8 @@ export class ProfileComponent {
     private authService: AuthenticationFirebaseService,
     private firestoreService: FirestoreService,
     private firebaseService: FirebaseService,
+    private characterListLoaderComponent: CharacterListLoaderComponent,
+    private characterListHandlerService: CharacterListHandlerService,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -43,16 +51,45 @@ export class ProfileComponent {
       this.isAuthenticated = !!auth;
       if (auth) {
         this.auth = auth;
-        this.firestoreService.readRealTimeUser(auth.uid).subscribe(user => {
+        this.uid = auth.uid;
+        this.firestoreService.readRealTimeUser(this.uid).subscribe(user => {
           this.email = user.email;
           this.username = user.username;
           this.birthDate = new Date(user.birthdate.seconds*1000);
           this.profilePhotoURL = user.photoURL;
           this.originalProfilePhotoURL = user.photoURL; // Guardar la URL original
-          console.log(user)
+
+          this.reloadList();
         });
-      }})
+    }})
+
   }
+
+  async reloadList() {
+    try {
+      const characters = await this.characterListHandlerService.loadCharacterList(this.uid);
+      if (characters) {
+        this.characterList = characters;
+      }
+
+    } catch (error) {
+      console.error('Error al cargar la lista de personajes:', error);
+    }
+  }
+
+  handleCharacterSelect(character: any) {
+    this.characterListHandlerService.saveCharacterData(character);
+    this.router.navigate([ROUTES.CHARACTER.DEFAULT]);
+  }
+
+  handleCharacterDelete(character: any) {
+    if (character) {
+        this.firestoreService.deleteCharacter(this.uid, character.name);
+        this.reloadList();
+    }
+        
+  }
+
   toggleEdit(): void {
     this.isEditing = true;
     this.newUsername = this.username;
