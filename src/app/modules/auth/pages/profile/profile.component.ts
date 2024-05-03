@@ -17,6 +17,7 @@ export class ProfileComponent {
   email: string = '';
   birthDate!: Date;
   profilePhotoURL: string = '';
+  isPremium: boolean = true;
 
   newUsername: string = '';
   newEmail: string = '';
@@ -49,6 +50,7 @@ export class ProfileComponent {
           this.birthDate = new Date(user.birthdate.seconds*1000);
           this.profilePhotoURL = user.photoURL;
           this.originalProfilePhotoURL = user.photoURL; // Guardar la URL original
+          this.isPremium = user.isPremium;
           console.log(user)
         });
       }})

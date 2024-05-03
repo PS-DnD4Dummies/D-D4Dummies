@@ -44,7 +44,8 @@ export class FirebaseService {
       email: signUpCheck.email,
       username: username,
       birthdate: birthdate,
-      photoURL: profilePhotoURL !== null ? profilePhotoURL : defaultProfilePhotoURL
+      photoURL: profilePhotoURL !== null ? profilePhotoURL : defaultProfilePhotoURL,
+      isPremium: false
     };
   
     console.log("Por ahora va bien");
@@ -64,7 +65,8 @@ export class FirebaseService {
       email: signInCheck.email,
       username: signInCheck.displayName,
       birthdate: signInCheck.birthDate,
-      photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
+      photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL,
+      isPremium: false
     }
 
 
@@ -84,7 +86,8 @@ export class FirebaseService {
       email: signInCheck.email,
       username: signInCheck.displayName,
       birthdate: signInCheck.birthDate,
-      photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL
+      photoURL: signInCheck.photoURL !== null ? signInCheck.photoURL : defaultProfilePhotoURL,
+      isPremium: false
     }
 
 
