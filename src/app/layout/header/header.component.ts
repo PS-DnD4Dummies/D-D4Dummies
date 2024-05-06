@@ -18,7 +18,7 @@ import { FirestoreService } from '@core/services/firebase/firestore/firestore.se
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-
+  
   routesURL = ROUTES;
   searchForm;
 
@@ -78,12 +78,15 @@ export class HeaderComponent implements OnInit {
   currentUser!:any;
   visibilityPopUpLogIn=false;
   visibilityMatMenuPopUp=false;
+  visibilityPremium=false;
   validEmailPassword: boolean = true;
   userPhotoURL : string = "";
   isPremium : boolean = false;
 
   urlLogo!:string;
   urlProfile!:string;
+
+  
 
   constructor(
     private formBuilder: FormBuilder,
@@ -123,6 +126,7 @@ export class HeaderComponent implements OnInit {
         this.firestoreService.readRealTimeUser(result.uid).subscribe(user => {
           this.userPhotoURL = user.photoURL;
           this.isPremium = user.isPremium;
+          
           console.log(user)
         });
       }
@@ -275,6 +279,11 @@ export class HeaderComponent implements OnInit {
       side.classList.remove("visible");
 
     }
+  }
+
+  PopUpPremium(){
+    this.visibilityPremium = !this.visibilityPremium;
+    this.closeSideBar();
   }
 
 }

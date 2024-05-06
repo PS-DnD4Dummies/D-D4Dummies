@@ -6,6 +6,8 @@
     (logInFacebookEmitter)="logInWithFacebook()"
     [validEmailPassword]="validEmailPassword"
 ></app-login>
+<app-premium-popup *ngIf=" visibilityPremium" (closePopUpPremiumEmitter)="PopUpPremium()">
+</app-premium-popup>
 
 <header class="main-container">
     <section class="upper-bar">
@@ -44,6 +46,7 @@
             
                 <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
                     <button class = "boton_Log_in" (click)="openClosePopUp()">Log In</button>
+                    <button (click)="PopUpPremium()" class = "boton_perfil" >Premium</button>
                 </mat-menu>
             </button>
 
@@ -52,7 +55,9 @@
                 <mat-menu class="upper-bar__login-logo-action" #menu="matMenu">
                     <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()" >Log Out</button>
                     <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
+                    <button (click)="PopUpPremium()" class = "boton_perfil" >Premium</button>
                 </mat-menu>
+                
             </button>
 
         </div>
