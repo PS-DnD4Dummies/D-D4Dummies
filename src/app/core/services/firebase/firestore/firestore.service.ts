@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, setDoc, updateDoc, query, limit, startAt, getCountFromServer } from '@angular/fire/firestore';
-import { BaseClass, Character, Post, User } from '@data/interfaces';
+import { BaseClass, Character, Comment, Post, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -211,6 +211,38 @@ export class FirestoreService {
     }).catch(error=>{
       console.log("Error al escribir en firestore. Error: "+error);
       return false;
+    })
+  }
+
+  async addComment(comment:Comment,postId:string): Promise<boolean>{
+
+    return await addDoc(collection(this.firestore,"posts",postId,"comments"),comment).then( () => {
+      console.log("Escritura en firestore de manera correcta");
+      return true;
+    }).catch(error=>{
+      console.log("Error al escribir en firestore. Error: "+error);
+      return false;
+    })
+  }
+
+  async getComments(id:string): Promise<Comment[]|null>{
+
+    const commentRef = collection(this.firestore, "posts",id,"comments");
+    const q = query(commentRef);
+
+    return await getDocs(q).then( (querySnapshot) => {
+      console.log("Lectura en firestore de manera correcta");
+      const comments : Comment[] = [];
+      querySnapshot.forEach((doc)=>{
+        let comment = doc.data() as Comment;
+        comments.push(comment);
+        console.log(comment);
+        
+      })
+      return comments;
+    }).catch(error=>{
+      console.log("Error al leer en firestore. Error: "+error);
+      return null;
     })
   }
 
