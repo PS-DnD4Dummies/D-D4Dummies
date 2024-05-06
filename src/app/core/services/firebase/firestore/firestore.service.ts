@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, setDoc, updateDoc, query, limit, startAt, getCountFromServer } from '@angular/fire/firestore';
-import { BaseClass, Character, Post, User } from '@data/interfaces';
+import { BaseClass, Character, Comment, Post, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -214,6 +214,54 @@ export class FirestoreService {
     })
   }
 
+  async addComment(comment:Comment,postId:string): Promise<boolean>{
+
+    return await addDoc(collection(this.firestore,"posts",postId,"comments"),comment).then( () => {
+      console.log("Escritura en firestore de manera correcta");
+      return true;
+    }).catch(error=>{
+      console.log("Error al escribir en firestore. Error: "+error);
+      return false;
+    })
+  }
+
+  async getComments(id:string): Promise<Comment[]|null>{
+
+    const commentRef = collection(this.firestore, "posts",id,"comments");
+    const q = query(commentRef);
+
+    return await getDocs(q).then( (querySnapshot) => {
+      console.log("Lectura en firestore de manera correcta");
+      const comments : Comment[] = [];
+      querySnapshot.forEach((doc)=>{
+        let comment = doc.data() as Comment;
+        comments.push(comment);
+        console.log(comment);
+        
+      })
+      return comments;
+    }).catch(error=>{
+      console.log("Error al leer en firestore. Error: "+error);
+      return null;
+    })
+  }
+
+  async getPost(postId:string): Promise<Post|null>{
+
+    return await getDoc(doc(this.firestore,"posts",postId)).then( (docSnap) => {
+      if (docSnap.exists()) {
+        console.log("Lectura en firestore de manera correcta");
+        return docSnap.data() as Post;
+      } else {
+        console.log("Lectura en firestore de manera incorrecta");
+        return null;
+      }
+    }).catch(error=>{
+      console.log("Error al leer en firestore. Error: "+error);
+      return null;
+    })
+  }
+
   async getFirstsPosts(numberOfPosts:number): Promise<Post[]|null>{
 
     const postsRef = collection(this.firestore, "posts");
@@ -223,7 +271,11 @@ export class FirestoreService {
       console.log("Lectura en firestore de manera correcta");
       const posts : Post[] = [];
       querySnapshot.forEach((doc)=>{
-        posts.push(doc.data() as Post);
+        let post = doc.data() as Post;
+        post.id = doc.id;
+        posts.push(post);
+        console.log(post);
+        
       })
       return posts;
     }).catch(error=>{

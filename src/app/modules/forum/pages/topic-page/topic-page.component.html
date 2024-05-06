@@ -28,18 +28,18 @@
 
         <section class="comment-area">
             <section class="comment-area__creation">
-                <textarea class="comment-area__text" placeholder="Write a comment..."></textarea>
+                <textarea class="comment-area__text" placeholder="Write a comment..." [(ngModel)]="newCommentContent"></textarea>
             </section>
 
             <div class="comment-area__button-container">
-                <button class="comment-area__button">Comment</button>
+                <button (click)="addComment()" class="comment-area__button">Comment</button>
             </div>
         </section>
 
         <section class="comment-section-container">
             <ul class="comment-section-list">
-                <li class="comment" *ngFor="let i of dummyList">
-                    <app-comment></app-comment>
+                <li class="comment" *ngFor="let comment of comments">
+                    <app-comment [comment]="comment"></app-comment>
                 </li>
             </ul>
         </section>

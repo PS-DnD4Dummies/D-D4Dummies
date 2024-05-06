@@ -13,7 +13,6 @@ import { UtilitiesService } from '@core/services/utilities/utilities.service';
   styleUrl: './forum.component.scss'
 })
 export class ForumComponent implements OnInit, OnDestroy{
-  dummyList = [1, 2, 3, 4, 5];
 
   newId:string = '';
   newPostTitle: string = '';
@@ -46,6 +45,8 @@ export class ForumComponent implements OnInit, OnDestroy{
           return;
         }
         this.currentPosts = posts;
+        console.log(posts);
+        
       })
     });
 
@@ -60,6 +61,7 @@ export class ForumComponent implements OnInit, OnDestroy{
   publishPost() {
     if (this.newPostTitle.trim() !== '' && this.newPostContent.trim() !== '' && this.currentUser) {
       const newPost: Post = {
+        id:"",
         title: this.newPostTitle,
         content: this.newPostContent,
         user: this.currentUser,
