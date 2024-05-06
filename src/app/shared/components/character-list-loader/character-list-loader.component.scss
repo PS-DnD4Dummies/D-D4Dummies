@@ -131,32 +131,72 @@
     transition-duration: 0.4s;
     cursor: pointer;
     position: relative;
-    left: 5em;
+    left: 4.5em;
 
     color:#c9c5c5;
   }
 
+  
   .delete-button__profile-mode{
     width: 5em;
     height: 2em;
-
+    
     background-color: brown;
+    
+    border: .01em solid #000;
+    border-radius: .3em;
+    box-shadow: .3em .3em .1em rgba(0,0,0,0.1);
+    
+    transition-duration: 0.4s;
+    cursor: pointer;
+    position: relative;
+    right: 1.2em;
+    font-size: 80%;
+    
+    color:#c9c5c5;
+  }
+  
+  .delete-button:hover, .delete-button__profile-mode:hover{
+    background-color: rgb(104, 26, 26);
+  }
+  
+  .text_confirmation{
+    display: flex;
+    align-self: center;
+    justify-self: center;
+
+    padding: .5em;
+    
+  }
+
+  .buttons-list_confirmation{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    gap: .5em;
+  }
+
+  .button_confirmation{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+
+    padding: .5em;
+    width: 7em;
+
+    transition-duration: 0.4s;
+    background-color: brown;
+    color: #c7c7c7;
 
     border: .01em solid #000;
     border-radius: .3em;
     box-shadow: .3em .3em .1em rgba(0,0,0,0.1);
-
-    transition-duration: 0.4s;
-    cursor: pointer;
-    position: relative;
-    right: 1em;
-    font-size: 80%;
-
-    color:#c9c5c5;
   }
 
-  .delete-button__profile-mode:hover{
-    background-color: rgb(104, 26, 26);
+  .button_confirmation:hover{
+    background-color: rgb(137, 35, 35);
   }
 
   @media screen and (max-width: 1170px) {

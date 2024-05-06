@@ -11,9 +11,21 @@
         <div *ngFor="let character of characters" class="character-item" (click)="onCharacterSelect(character)">
           <img class="character-list-image" [src]="character.photoURL" alt="Character Image">
           <span class="character-name">{{ character.name }}</span>
-          <button class="delete-button__profile-mode" (click)="$event.stopPropagation(); onDeleteCharacter(character)">
+
+          <button mat-button class="delete-button__profile-mode" (click)="$event.stopPropagation()" [matMenuTriggerFor]="menu_delete">
             <span>DELETE</span>
+            <mat-menu class="matMenu_delete" #menu_delete="matMenu">
+              <p class="text_confirmation">Are you sure?</p>
+              <div class="buttons-list_confirmation">
+                <button class="button_confirmation" (click)="$event.stopPropagation(); onDeleteCharacter(character)">Yes</button>
+                <button class="button_confirmation" (click)="$event.stopPropagation(); menu_delete.close">No</button>
+              </div>
+            </mat-menu>
           </button>
+
+          <!-- <button class="delete-button__profile-mode" (click)="$event.stopPropagation(); onDeleteCharacter(character)">
+            <span>DELETE</span>
+          </button> -->
         </div>
 
       </div>
@@ -37,8 +49,16 @@
           <div *ngFor="let character of characters" class="character-item" (click)="onCharacterSelect(character)">
             <img class="character-list-image" [src]="character.photoURL" alt="Character Image">
             <span class="character-name">{{ character.name }}</span>
-            <button class="delete-button" (click)="$event.stopPropagation(); onDeleteCharacter(character)">
+            
+            <button mat-button class="delete-button" (click)="$event.stopPropagation()" [matMenuTriggerFor]="menu_delete">
               <span>DELETE</span>
+              <mat-menu class="matMenu_delete" #menu_delete="matMenu">
+                <p class="text_confirmation">Are you sure?</p>
+                <div class="buttons-list_confirmation">
+                  <button class="button_confirmation" (click)="$event.stopPropagation(); onDeleteCharacter(character)">Yes</button>
+                  <button class="button_confirmation" (click)="$event.stopPropagation(); menu_delete.close">No</button>
+                </div>
+              </mat-menu>
             </button>
           </div>
   
