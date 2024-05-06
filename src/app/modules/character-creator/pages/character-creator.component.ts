@@ -734,8 +734,7 @@ export class CharacterCreatorComponent implements OnInit{
     resetDefaultImage(){
         this.displayImage = '/assets/images/character-creator-default-portrait.jpg';
 
-        const label = document.querySelector('.character-profile__place-name');
-        if (label != null){ label.classList.remove('marked-character-label'); label.textContent = "Welcome!"; } 
+        this.resetImageLabel();
     }
 
     changeCharacterLabel(){
@@ -758,28 +757,34 @@ export class CharacterCreatorComponent implements OnInit{
         });
     }
 
-    resetTextAreaContent(){
-        this.loreSections.toArray().forEach((loreSection) => {
-            loreSection.textAreaContent = "";
-        });
-    }
-
+    
     //----- RESET TOOLS -----
     showResetButton(){
         const resetButton = document.querySelector(".reset-tool") as HTMLInputElement;
         resetButton.classList.add('reset-activated');
     }
-
+    
     resetPage(){
         window.location.reload();
     }
-
+    
     scrollToTop(alertMessage : string) {
         this.window.scrollTo(0, 0);
         setTimeout(() => {
             alert(alertMessage);
         }, 100);
         
+    }
+
+    resetTextAreaContent(){
+        this.loreSections.toArray().forEach((loreSection) => {
+            loreSection.textAreaContent = "";
+        });
+    }
+
+    resetImageLabel(){
+        const label = document.querySelector('.character-profile__place-name');
+        if (label != null){ label.classList.remove('marked-character-label'); label.textContent = "Welcome!"; } 
     }
 
     //----- SAVE TOOLS -----
@@ -905,6 +910,7 @@ export class CharacterCreatorComponent implements OnInit{
 
     recalculateStats(character : any){
         this.restartSkillOptions();
+        this.resetImageLabel();
 
         this.showResetButton();
 
@@ -925,6 +931,7 @@ export class CharacterCreatorComponent implements OnInit{
         
         this.skillsOptions = this.objectToMap(character.skillOptions);
         this.isDisabled = true;
+
         this.disableCheckboxes();
 
         this.manageImportCheckbox();
@@ -940,8 +947,10 @@ export class CharacterCreatorComponent implements OnInit{
         keysArray.forEach( (key) => {
             if (this.skillsOptions.get(key)){
                 helper = document.querySelector("." + key) as HTMLInputElement;
-                helper.disabled = false;
+                helper.disabled = true;
                 helper.checked = true;
+
+                this.giveCompetence(key);
 
                 box = document.querySelector(".skill-type-" + key) as HTMLInputElement;
                 box.classList.add('marked');
