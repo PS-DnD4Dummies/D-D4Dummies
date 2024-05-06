@@ -64,7 +64,7 @@
   color: #ffbb00;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.87);
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .topic__container {
@@ -86,11 +86,12 @@
   margin-bottom: 1em;
 }
 mat-paginator {
-  background-color: var(--paleta-azul1);
+  background-color: var(--paleta-dorado2);
   color: var(--paleta-beige);
   border-radius: 1em;
   border: .1em solid black;
   box-shadow: 1em 1em 1em rgba(0, 0, 0, 1);
+  font-size: large;
 }
 
 .mat-mdc-paginator-container {
@@ -125,13 +126,10 @@ mat-paginator {
 
 .new-topic__area {
   width: 70%;
-
-  /*background-color: var(--paleta-azul1);*/
-  background-color: var(--paleta-dorado2);
+  background-color: var(--paleta-azul1);
   border-radius: .5em;
   border: .05em solid ;
   box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
-
   padding: 2em;
 }
 
@@ -141,12 +139,14 @@ mat-paginator {
   font-weight: bold;
   width: 100%;
   margin-bottom: 1em;
+  text-indent: 1em;
 }
 .new-topic__text {
   font-family: 'Platypi', sans-serif;
   font-size: large;
   width: 100%;
   height: 30vh;
+  text-indent: 1em;
 }
 
 
@@ -158,11 +158,12 @@ mat-paginator {
   transition-duration: 0.4s;
   cursor: pointer;
   color:#000000;
-  font-size: 1.5em;
+  font-size: 2em;
   width: 5em;
-  height: 1.5em;
+  height: auto;
+  padding: 0.2em 0.5em;
   background: linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700);
-  background-size: 200% auto;
+  background-size: auto;
   animation: shimmer 2s infinite linear;
   font-family: 'Ringbearer', sans-serif;
   margin-top: 1em;
@@ -306,26 +307,8 @@ mat-paginator {
 }
 */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .forum-title{
-    width: 90%;
-
-  }
-
-  .topic-list {
-    width: 40em;
-  }
-
-  .topic-creation-area {
-    width: 40em;
-  }
-
-  .topic-creation-area__text {
-    width: 44em;
-  }
-
-  .topic-button{
-    font-size: 1.8em;
-    left: 8.8em;
+  .publish__button{
+    font-size: 1.5em;
   }
 }
 
@@ -335,7 +318,7 @@ mat-paginator {
   }
 
   .banner__title {
-    font-size: 2em;
+    font-size: 1.8em;
     width: 100%;
   }
 
@@ -345,16 +328,33 @@ mat-paginator {
     margin: 0;
   }
 
-  .mat-mdc-paginator-container {
-    width: 50%;
+  .section__tittle {
+    font-size: 2em;
   }
 
   .topic__list {
     width: 100%;
   }
 
+  mat-paginator {
+    padding: 2px;
+    font-size: 0.85em;
+  }
+
   .new-topic__area {
     width: 100%;
+    padding: 1em;
+  }
+
+  .new-topic__title {
+    font-size: medium;
+  }
+  .new-topic__text {
+    font-size: small;
+    height: 50vh;
+  }
+  .publish__button {
+    font-size: x-large;
   }
 
 }
