@@ -1,60 +1,54 @@
 <body>
-<main class="forum-main">
+  <main class="forum-main">
 
-  <section class="banner">
-    <img class="banner__image" src="/assets/images/island.png">
-    <p class="banner__hover-text">Welcome to the forum! Feel free to share your thoughts and ask your doubts to the community.</p>
-    <hr class="banner__separator">
-  </section>
+    <section class="banner">
+      <img class="banner__image" src="/assets/images/island.png">
+      <h1 class="banner__title">FORUM</h1>
+      <p class="banner__text">Welcome to the forum!<br>Feel free to share your thoughts and ask your doubts to the community.</p>
+      <hr class="banner__separator">
+    </section>
 
-  <h1 class="forum-title">Forum</h1>
+    <section class="topic__container">
+      <ul class="topic__list">
+        <li class="topic__element" *ngFor="let post of currentPosts">
+          <app-topic-preview [post]="post" ></app-topic-preview>
+        </li>
+      </ul>
+      <mat-paginator #paginator
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+      </mat-paginator>
+    </section>
 
-  <section class="topic-list-container">
-    <ul class="topic-list">
-      <li class="topic-display" *ngFor="let post of currentPosts">
-        <app-topic-preview [post]="post"></app-topic-preview>
-      </li>
-    </ul>
-  </section>
 
-  <mat-paginator #paginator
-    [length]="100"
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Select page">
-  </mat-paginator>
+    <section class="new-topic-area" >
 
-  <section class="new-topic-area" >
-
-    <div class="text-overlay" *ngIf="currentUser===null">
+      <div class="text-overlay" *ngIf="currentUser===null">
         <p>You need to be logged to comment</p>
         <div class="buttons-overlay">
-            <button routerLink="/auth/signUp">Register</button>
+          <button routerLink="/auth/signUp">Register</button>
+        </div>
+      </div>
+
+      <section class="topic-creation-area" >
+        <div class="overlay" *ngIf="currentUser===null"></div>
+        <div class="topic-creation-area__name-container">
+          <input type="text" class="topic-creation-area__name" placeholder="Topic" [(ngModel)]="newPostTitle">
         </div>
 
-    </div>
-
-    <section class="topic-creation-area" >
-      <div class="overlay" *ngIf="currentUser===null"></div>
-
-            <div class="topic-creation-area__name-container">
-              <input type="text" class="topic-creation-area__name" placeholder="Topic" [(ngModel)]="newPostTitle">
-            </div>
-
-            <div class="topic-creation-area__text-container">
-              <textarea class="topic-creation-area__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
-            </div>
-
+        <div class="topic-creation-area__text-container">
+          <textarea class="topic-creation-area__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
+        </div>
       </section>
 
+      <div class="topic-button-container">
+         <div class="overlay overlay-button" *ngIf="currentUser===null"></div>
+        <button class="topic-button" (click)="publishPost()">Publish</button>
+      </div>
 
-    <div class="topic-button-container">
-       <div class="overlay overlay-button" *ngIf="currentUser===null"></div>
-      <button class="topic-button" (click)="publishPost()">Publish</button>
-    </div>
+    </section>
 
-  </section>
-
-</main>
-
+  </main>
 </body>

@@ -15,7 +15,7 @@ import { UtilitiesService } from '@core/services/utilities/utilities.service';
 export class ForumComponent implements OnInit, OnDestroy{
   dummyList = [1, 2, 3, 4, 5];
 
-
+  newId:string = '';
   newPostTitle: string = '';
   newPostContent: string = '';
   currentUser!: OurUser;
@@ -29,7 +29,7 @@ export class ForumComponent implements OnInit, OnDestroy{
               private firestoreService: FirestoreService,
               private utilitiesService: UtilitiesService
   ){
-    
+
   }
 
   ngOnInit() {
@@ -45,10 +45,10 @@ export class ForumComponent implements OnInit, OnDestroy{
           console.log("Ha habido un fallo leyendo los posts");
           return;
         }
-        this.currentPosts = posts;        
+        this.currentPosts = posts;
       })
     });
-    
+
   }
 
   ngOnDestroy() {
@@ -68,14 +68,13 @@ export class ForumComponent implements OnInit, OnDestroy{
         dislike: 0
       };
 
-      this.firestoreService.addPost(newPost).then((success) => {
-        if (success) {
-          this.newPostTitle = '';
-          this.newPostContent = '';
-          console.log('Post added successfully!');
-        } else {
-          console.error('Failed to add post.');
-        }
+      this.firestoreService.addPost(newPost).then((docRef) => {
+        console.log("Post added with ID: ", docRef);
+        // Lógica adicional si es necesario
+        this.newPostTitle = '';
+        this.newPostContent = '';
+      }).catch((error) => {
+        console.error('Error adding post: ', error);
       });
     } else {
       console.error('Title and content are required, and user must be logged in.');

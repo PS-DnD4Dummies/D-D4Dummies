@@ -1,36 +1,36 @@
 <body>
-    <main class="topic-page-main-container">
+    <main class="topic-page-main-container" >
         <section class="topic-display">
             <section class="topic-display__info">
                 <section class="topic-details">
                     <div class="topic-display__name-container">
-                        <p class="topic-display__name">Lorem ipsum</p>
+                        <p class="topic-display__name">{{post.title}}</p>
                     </div>
-                    
-                    <time class="topic-display__date">Published on ...</time>
+
+                    <time class="topic-display__date">{{convertToDate(post.timestamp) | date:'short'}}</time>
                 </section>
-    
+
                 <section class="author-details">
                     <div class="topic-display__image-container">
                         <img class="topic-display__profile-pic" src="/assets/images/default.jpg" alt="">
                     </div>
-                    
-                    <p class="topic-display__author">Author</p>
+
+                    <p class="topic-display__author">{{post.user.username}}</p>
                 </section>
-    
+
             </section>
-            
+
             <div class="topic-display__text-container">
-                <p class="topic-display__text">Topic text</p>
+                <p class="topic-display__text">{{post.content}}</p>
             </div>
-    
+
         </section>
 
         <section class="comment-area">
             <section class="comment-area__creation">
                 <textarea class="comment-area__text" placeholder="Write a comment..."></textarea>
             </section>
-    
+
             <div class="comment-area__button-container">
                 <button class="comment-area__button">Comment</button>
             </div>

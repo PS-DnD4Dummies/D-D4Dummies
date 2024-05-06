@@ -14,9 +14,11 @@ export class TopicPreviewComponent {
   }
 
   @Input() post!:Post;
-  
+  @Input() postId!: string;
+
+
   goToDisplay(){
-    this.router.navigate(["/forum/pages/topic-page"]);
+    this.router.navigate(['/forum', this.postId]);
   }
 
   convertToDate(timestamp:any): Date {

@@ -92,7 +92,7 @@ export class FirestoreService {
     });
     return obj;
   }
-  
+
   async addCharacter(uid:string,character:Character): Promise<boolean>{
 
     const characterData = {
@@ -204,7 +204,7 @@ export class FirestoreService {
 
 
   async addPost(post:Post): Promise<boolean>{
-    
+
     return await addDoc(collection(this.firestore,"posts"),post).then( () => {
       console.log("Escritura en firestore de manera correcta");
       return true;
@@ -218,7 +218,7 @@ export class FirestoreService {
 
     const postsRef = collection(this.firestore, "posts");
     const q = query(postsRef,orderBy("timestamp","desc"),limit(numberOfPosts))
-    
+
     return await getDocs(q).then( (querySnapshot) => {
       console.log("Lectura en firestore de manera correcta");
       const posts : Post[] = [];
@@ -236,7 +236,7 @@ export class FirestoreService {
 
     const postsRef = collection(this.firestore, "posts");
     const q = query(postsRef,orderBy("timestamp","desc"),limit(numberOfPosts),startAt(lastPostTimestamp))
-    
+
     return await getDocs(q).then( (querySnapshot) => {
       console.log("Lectura en firestore de manera correcta");
       const posts : Post[] = [];
