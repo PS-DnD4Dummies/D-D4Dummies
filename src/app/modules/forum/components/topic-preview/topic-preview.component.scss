@@ -7,7 +7,6 @@
 
 .topic-preview{
     display: grid;
-    background: #333;
     grid-template-rows: 3em 3em;
     grid-template-columns: 30% auto 15% 15%;
 
@@ -17,6 +16,8 @@
 
     border-radius: .5em;
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
+
+    background-color: rgba(28, 60, 71, 0.86);
 }
 
 .topic-preview a{

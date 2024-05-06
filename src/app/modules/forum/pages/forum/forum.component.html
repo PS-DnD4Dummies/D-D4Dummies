@@ -9,6 +9,7 @@
     </section>
 
     <section class="topic__container">
+      <h2 class="section__tittle">All Topics</h2>
       <ul class="topic__list">
         <li class="topic__element" *ngFor="let post of currentPosts">
           <app-topic-preview [post]="post" ></app-topic-preview>
@@ -22,8 +23,10 @@
       </mat-paginator>
     </section>
 
+    <!--<hr class="forum__separator">-->
 
-    <section class="new-topic-area" >
+    <section class="new-topic__container" >
+      <h2 class="section__tittle">Create a New Topic</h2>
 
       <div class="text-overlay" *ngIf="currentUser===null">
         <p>You need to be logged to comment</p>
@@ -32,20 +35,21 @@
         </div>
       </div>
 
-      <section class="topic-creation-area" >
+      <section class="new-topic__area" >
         <div class="overlay" *ngIf="currentUser===null"></div>
-        <div class="topic-creation-area__name-container">
-          <input type="text" class="topic-creation-area__name" placeholder="Topic" [(ngModel)]="newPostTitle">
+
+        <div class="new-topic__data">
+          <input type="text" class="new-topic__title" placeholder="Topic" [(ngModel)]="newPostTitle">
         </div>
 
-        <div class="topic-creation-area__text-container">
-          <textarea class="topic-creation-area__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
+        <div class="new-topic__data">
+          <textarea class="new-topic__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
         </div>
       </section>
 
-      <div class="topic-button-container">
+      <div class="new-topic__button">
          <div class="overlay overlay-button" *ngIf="currentUser===null"></div>
-        <button class="topic-button" (click)="publishPost()">Publish</button>
+        <button class="publish__button" (click)="publishPost()">Publish</button>
       </div>
 
     </section>
