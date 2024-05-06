@@ -1,0 +1,58 @@
+<div class = backdrop>
+    <div class = login-container *ngIf="isAuthenticated">
+        <p>Become a Premium User!</p>
+        <span class="login-container__close-icon"><a (click)="closePopUp()"><i class="bi bi-x"></i></a></span>
+        <div class="radio-buttons">
+            <label class="radio-button">
+            <input type="radio" name="subscriptionType" (click)="selectSubscription('mensual')">
+            <span class="radio-label">Monthly Suscription</span>
+            </label>
+            <label class="radio-button">
+            <input type="radio" name="subscriptionType" (click)="selectSubscription('anual')">
+            <span class="radio-label">Annual Suscription</span>
+            </label>
+        </div>
+        <p> Get unique features</p>
+        <div *ngIf="!mensualidad && !anualidad" class = .popup-content>
+        <p id = "auxiliar"> 
+            if you have become a memeber of our community you can create and save all the characters that you want ,post photos in the forumand personalize your profile pick with a unique theme just for premium users.
+        </p>
+        </div>
+        <div *ngIf="mensualidad || anualidad">
+            <form [formGroup]="premiumform" (ngSubmit)="mensual()">
+                <section>
+                    <mat-form-field>
+                        <mat-label>Número de la tarjeta</mat-label>
+                        <input matInput formControlName="tarjeta" type="text">
+                    </mat-form-field>
+                </section>
+                <section>
+                    <mat-form-field>
+                        <mat-label>Titular de la cuenta</mat-label>
+                        <input matInput formControlName="nombre" type="text">
+                    </mat-form-field>
+                </section>
+                <section>
+                    <mat-form-field>
+                        <mat-label>Fecha de caducidad</mat-label>
+                        <input matInput formControlName="fecha" type="date">
+                    </mat-form-field>
+                </section>
+                <section>
+                    <mat-form-field>
+                        <mat-label>Código de seguridad</mat-label>
+                        <input matInput formControlName="code" type="text">
+                    </mat-form-field>
+                </section>
+                <div class="paybutton">
+                    <button (click)="pay()" class = paybutton>pagar</button>
+                    <p> Payment amount {{cantidad}}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="!isAuthenticated" class="auth-container">
+        <p>You must sign in to use this feature</p>
+        <button (click)="Goregister()" class="paybutton">Go to Register</button>
+    </div>
+</div>

@@ -1,0 +1,151 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container {
+    position: absolute;
+    z-index: 100;
+    width: 33em;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid #000;
+    border-radius: .5em;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 1em #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+
+    font-family: 'DRAGON HUNTER', sans-serif;
+
+    background: linear-gradient(to right, #a6a1a1, #c9c5c5, #bab6b6, #b0adad, #a6a1a1);
+    background-size: 200% auto;
+    animation: shimmer 10s infinite linear;
+}
+
+
+.login-container__close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2em;
+    height: 1.5em;
+    background-color: #000;
+    font-size: 2em;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: .5em;
+    cursor: pointer;
+}
+
+.login-container__close-icon a{
+    text-decoration: none;
+    /* Solución temporal */
+    position: absolute;
+    color:white;
+    top: 10%;
+}
+.login-container__close-icon:hover {
+  background-color: red;
+}
+
+.radio-buttons {
+    display: flex;
+  }
+  
+  .radio-button {
+    margin-right: 10px;
+  }
+  
+  .radio-label {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .radio-label:hover {
+    background-color: #f0f0f0;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  input[type="radio"]:checked + .radio-label {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+
+  .popup-content p{
+    font-size: 16px;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.paybutton button {
+  background-color: #5888c3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.paybutton button:hover {
+  background-color: #022238;
+}
+
+#auxiliar{
+  font-size: 16px;
+  color: #000000;
+  margin: 10px;
+  text-align: center;
+}
+
+.auth-container {
+  background-color: #ffffff; 
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.auth-container p {
+  font-size: 16px; 
+  color: #333333; 
+  margin-bottom: 10px; 
+}
+
+.auth-container .paybutton {
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px;
+  border: none; 
+  border-radius: 5px; 
+  font-size: 16px;
+  cursor: pointer; 
+  margin-left: 50px;
+}
+
+.auth-container .paybutton:hover {
+  background-color: #45a049; 
+}
