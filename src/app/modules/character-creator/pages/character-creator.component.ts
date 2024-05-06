@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren, ViewChild } from "@angular/core";
+import { Component, QueryList, ViewChildren, ViewChild, Inject, Renderer2 } from "@angular/core";
 import { OnInit } from "@angular/core";
 import { DiceComponent } from "@shared/components/dice/dice.component";
 import { randomInt } from "crypto";
@@ -22,7 +22,6 @@ import { defaultCharacterPhotoURL } from "@data/constanst/url";
 })
 
 export class CharacterCreatorComponent implements OnInit{
-
     uid = "";
     enumRace = Object.values(Race); 
     enumClass = Object.values(Class); 
@@ -85,25 +84,35 @@ export class CharacterCreatorComponent implements OnInit{
         'Flaws'];
 
     @ViewChildren(LoreSectionComponent) loreSections!: QueryList<LoreSectionComponent>;
+    
     textAreaDisabled = true;
 
     buttonsDisabled = true;
     isModalOpen = false;
 
+    isPremium : boolean = false;
+
     characterList : Character[] = [];
 
     @ViewChild('diceComponent') diceComponent!: DiceComponent;
+
+    window: Window = window;
 
     constructor(private dndApiService: DndApiService, 
         private firestoreService:FirestoreService,
         private cloudStorageService:CloudStorageService, 
         private auth:AuthenticationFirebaseService, 
-        private characterListHandlerService:CharacterListHandlerService
+        private characterListHandlerService:CharacterListHandlerService,
+        private renderer: Renderer2
     ){}
 
     ngOnInit(){
         this.auth.currentAuthStatus.subscribe(authStatus => {
             this.uid = authStatus.uid;
+            this.firestoreService.readRealTimeUser(this.uid).subscribe(user => {
+                this.isPremium = user.isPremium;
+            });
+            this.loadCharacterList();
         });
 
         this.verifyIfFromProfile();
@@ -765,6 +774,13 @@ export class CharacterCreatorComponent implements OnInit{
         window.location.reload();
     }
 
+    scrollToTop(alertMessage : string) {
+        this.window.scrollTo(0, 0);
+        setTimeout(() => {
+            alert(alertMessage);
+        }, 100);
+        
+    }
 
     //----- SAVE TOOLS -----
     enablePersistenceButtons(){
@@ -785,8 +801,14 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     async buildCharacterObject(){
-        if(this.numChecked != this.maxCheck){
-            console.log("Eso")
+        console.log(this.isPremium + " " + this.characterList.length);
+        if (!this.isPremium && this.characterList.length >= 5) {
+            this.scrollToTop("You have reached the maximum number of characters."); // Espera 100 milisegundos antes de mostrar el alert
+            return;
+        }
+
+        if (this.numChecked != this.maxCheck) {
+            this.scrollToTop("Skills left to be checked.");
             return;
         }
 
@@ -807,8 +829,8 @@ export class CharacterCreatorComponent implements OnInit{
                 photoURL: photoURL
             };
     
-            console.log(character);
             this.firestoreService.addCharacter(this.uid, character);
+            this.scrollToTop("Character saved successfully!");
         } catch (error) {
             console.error("Failed to build character object:", error);
         }
@@ -833,25 +855,33 @@ export class CharacterCreatorComponent implements OnInit{
         } else {
             console.log("Error al cargar los personajes.")
         }
-        this.openModal();
     }
 
     openModal() {
+        this.loadCharacterList();
         this.isModalOpen = true;
+    }
+
+    closeModal() {
+        this.isModalOpen = false;
     }
     
     handleCharacterSelect(character: any) {
         if (character) {
             this.importCharacterData(character);
             this.recalculateStats(character);
+            this.scrollToTop("Character loaded successfully!");
         }
-        this.isModalOpen = false;
+        this.closeModal();
+        
     }
 
     handleCharacterDelete(character: any) {
         if (character) {
             this.firestoreService.deleteCharacter(this.uid, character.name);
             this.loadCharacterList();
+            this.openModal();
+            alert("Character deleted successfully!");
         }
             
     }
@@ -898,6 +928,8 @@ export class CharacterCreatorComponent implements OnInit{
         this.disableCheckboxes();
 
         this.manageImportCheckbox();
+
+
     }
 
     manageImportCheckbox(){
