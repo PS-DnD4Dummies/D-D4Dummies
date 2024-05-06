@@ -870,9 +870,10 @@ export class CharacterCreatorComponent implements OnInit{
         if (character) {
             this.importCharacterData(character);
             this.recalculateStats(character);
+            this.scrollToTop("Character loaded successfully!");
         }
         this.closeModal();
-        this.scrollToTop("Character loaded successfully!");
+        
     }
 
     handleCharacterDelete(character: any) {
