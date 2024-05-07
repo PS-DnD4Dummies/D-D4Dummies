@@ -29,7 +29,7 @@
 
     font-family: 'DRAGON HUNTER', sans-serif;
 
-    background: linear-gradient(to right, #a6a1a1, #c9c5c5, #bab6b6, #b0adad, #a6a1a1);
+    background: linear-gradient(to right, #a6a1a1, #e7e189, #c7df66, #d3ee4b,#c7df66,#e7e189,#a6a1a1);
     background-size: 200% auto;
     animation: shimmer 10s infinite linear;
 }
@@ -114,7 +114,9 @@
 .paybutton button:hover {
   background-color: #022238;
 }
-
+#text{
+  font-size: larger;
+}
 #auxiliar{
   font-size: 16px;
   color: #000000;
@@ -149,3 +151,15 @@
 .auth-container .paybutton:hover {
   background-color: #45a049; 
 }
+
+.upper-bar img {
+  padding: 1em;
+  width: 5em;
+  height: 5.5em;
+}
+
+.upper-bar_main-logo-image{
+  max-width: 5.5em;
+  max-height: 5.5em;
+}
+

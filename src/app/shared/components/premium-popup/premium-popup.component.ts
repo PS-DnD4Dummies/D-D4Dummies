@@ -4,6 +4,8 @@ import { ROUTES } from '@data/constanst/routes';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 import { FirestoreService } from '@core/services/firebase/firestore/firestore.service';
 import { Router } from '@angular/router';
+import { FirebaseServerApp } from '@angular/fire/app';
+import { FirebaseService } from '@core/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-premium-popup',
@@ -22,10 +24,13 @@ export class PremiumPopupComponent implements OnInit{
   auth: any;
   isAuthenticated: boolean = false;
   user:any;
+  urlLogo!: string;
+  insurance!: Boolean;
 
   constructor( 
     private authService: AuthenticationFirebaseService, 
     private firestoreService: FirestoreService, 
+    private firebaseService: FirebaseService,
     private router:Router){
   }
   ngOnInit(): void {
@@ -39,6 +44,7 @@ export class PremiumPopupComponent implements OnInit{
         })
       }
     })
+    this.loadImages();
   }
   FormData = {
     tarjeta:"",
@@ -61,24 +67,27 @@ export class PremiumPopupComponent implements OnInit{
         this.setYear();
       }
     }
-  
-    premiumform =  new FormGroup({
-      tarjeta: new FormControl(this.FormData.tarjeta,[
-        Validators.required,
-        Validators.minLength(16)
-      ]),
-      nombre: new FormControl(this.FormData.nombre,[
-        Validators.required,
-      ]),
-      fecha: new FormControl(this.FormData.fecha,[
-        Validators.required,
-        //Validators.pattern(/^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/\d{4}$/)
-      ]),
-      code: new FormControl(this.FormData.code,[
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-    })
+   
+    premiumform = new FormGroup({
+    tarjeta: new FormControl(this.FormData.tarjeta, [
+      Validators.required,
+      Validators.minLength(13), // Assuming minimum length of 13 digits for credit card numbers
+      Validators.maxLength(16), // Assuming maximum length of 16 digits for credit card numbers
+
+    ]),
+    nombre: new FormControl(this.FormData.nombre, [
+      Validators.required,
+    ]),
+    fecha: new FormControl(this.FormData.fecha, [
+      Validators.required,
+      Validators.pattern(/^\d{2}\/\d{4}$/) // Pattern for MM/YYYY format
+    ]),
+    code: new FormControl(this.FormData.code, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(4) // Assuming CVV code is either 3 or 4 digits long
+    ]),
+  });
 
     mensual(){
       if(this.premiumform.valid){
@@ -102,10 +111,14 @@ export class PremiumPopupComponent implements OnInit{
     pay() {
       try {
         if (this.premiumform.valid && this.isAuthenticated) {
-          this.user.isPremium = true; 
+          this.user.isPremium = true;
+          let dict: { [key: string]: any } = {};
+          dict['isPremium'] = this.user.isPremium;
+          this.firebaseService.updateProfileInfo(this.user, dict, this.user.profilePhotoURL,this.auth)//preguntar si esto es asi  
           this.closePopUp();
           this.router.navigate([ROUTES.AUTH .PROFILE]);
           console.log(this.user);
+          console.log(this.auth);
         } else {
           alert('Premium form is not valid ');
         }
@@ -119,5 +132,41 @@ export class PremiumPopupComponent implements OnInit{
       this.router.navigate([ROUTES.AUTH.REGISTER])
       this.closePopUp();
     }
-}
 
+    
+  async loadImages(){
+    
+    const urlLogo = sessionStorage.getItem('logo.png');
+
+    if (urlLogo) {
+
+
+      this.urlLogo = urlLogo;
+
+      
+    } else {
+      !this.insurance ? await this.takeImagesFromCloudService(): console.log("ERROR: Casi se ejecuta un segundo intento de acceder al Cloud.");
+      this.insurance = true;
+    }
+
+  }
+
+  async takeImagesFromCloudService(){
+    var url = this.firebaseService.getImagesFromFile("miscPhotos/");
+      await url.then((links) => {
+        const regex = /%2F([^?]+)/;
+        var urls = links; 
+
+        for (let item of urls){
+          const match = item.match(regex);
+  
+          if (match !== null){
+            sessionStorage.setItem(decodeURIComponent(match[1]), JSON.stringify(item).replace(/^["']|["']$/g, ''));
+          }
+        }
+        
+    })
+
+    this.loadImages();
+  }
+}
