@@ -1,9 +1,9 @@
-
-    <section class="topic-preview">
-        <h1 class="topic-preview__name" (click)="goToDisplay()">{{post.title}}</h1>
-        <time class="topic-preview__date">{{convertToDate(post.timestamp) | date:'short'}}</time>
-        <h2 class="topic-preview__author">{{post.user.username}}</h2>
-        <div class="topic-preview__image-container">
-            <img class="topic-preview__profile-pic" [src]="post.user.photoURL" alt="">
-        </div>
-    </section>
+<section class="topic-preview">
+  <h1 class="topic-preview__name" (click)="goToDisplay()">{{post.title}}</h1>
+  <p class="topic-preview__content" [ngClass]="{ 'short-content': window.innerWidth < 768 }">{{ getContentPreview() }}</p>
+  <time class="topic-preview__date">{{convertToDate(post.timestamp) | date:'short'}}</time>
+  <h2 class="topic-preview__author">{{'@' + post.user.username}}</h2>
+  <div class="topic-preview__image-container">
+      <img class="topic-preview__profile-pic" [src]="post.user.photoURL" alt="">
+  </div>
+</section>
