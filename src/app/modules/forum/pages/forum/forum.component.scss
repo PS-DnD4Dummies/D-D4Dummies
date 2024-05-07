@@ -98,7 +98,6 @@ mat-paginator {
   width: 50%;
 }
 
-
 .forum__separator {
   align-self: center;
   width: 70%;
@@ -106,7 +105,6 @@ mat-paginator {
   border-top: 5px groove rgba(224, 178, 60, 0.16);
   /*border: 5px groove rgba(224, 60, 60, 0.16);*/
 }
-
 
 .new-topic-area {
   width: 100%;
@@ -131,6 +129,9 @@ mat-paginator {
   border: .05em solid ;
   box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .new-topic__title {
@@ -149,7 +150,10 @@ mat-paginator {
   text-indent: 1em;
 }
 
-
+.new-topic__button {
+  justify-self: flex-end;
+  align-self: center;
+}
 
 .publish__button{
   border: none;

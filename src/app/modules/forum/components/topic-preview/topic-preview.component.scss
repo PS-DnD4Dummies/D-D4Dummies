@@ -7,13 +7,14 @@
 
 .topic-preview{
     display: grid;
-    grid-template-rows: 3em 3em;
+    grid-template-rows: auto auto;
     grid-template-columns: 70% 20% 10%;
     color: #c9c5c5;
     border: .05em solid black;
     border-radius: .5em;
     background-color: rgba(28, 60, 71, 0.86);
     box-shadow: .5em .5em .1em rgba(0, 0, 0, 0.5);
+    padding: 1em;
 }
 
 .topic-preview__name {
@@ -26,6 +27,10 @@
     color: white;
     font-size: x-large;
     font-family: 'Platypi', sans-serif;
+}
+
+.topic-preview__name:hover {
+  color: #ffbb00;
 }
 
 .topic-preview__content {
@@ -76,7 +81,7 @@
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .topic-preview {
     display: grid;
-    grid-template-rows: 3em 3em;
+    grid-template-rows: auto auto;
     grid-template-columns: 65% 20% 15%;
   }
   .topic-preview__author {
@@ -89,7 +94,8 @@
   .topic-preview {
     display: grid;
     grid-template-rows: auto auto auto;
-    grid-template-columns:50% 50%;
+    grid-template-columns:52% 48%;
+    padding: 0.2em;
   }
   .topic-preview__name {
     grid-column: 1;
@@ -105,7 +111,7 @@
     grid-column: 2;
     grid-row: 1;
     font-size: medium;
-    margin: 0.5em 0.5em 0 0;
+    margin: 0.1em 0.5em 0 0;
   }
   .topic-preview__date {
     grid-column: 1;
@@ -119,8 +125,8 @@
     justify-content: flex-end;
   }
   .topic-preview__profile-pic {
-    height: 3em;
-    width: 3em;
+    height: 4em;
+    width: 4em;
     margin: 0 0.5em 0.5em 0;
   }
 }

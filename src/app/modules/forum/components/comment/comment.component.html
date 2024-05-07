@@ -1,19 +1,8 @@
 <body>
-
-    <main class="comment">
-        <section class="comment__info">
-            <div class="comment__image-container">
-                <img class="comment__image" src="/assets/images/default.jpg" alt="">
-            </div>
-      
-            <h1 class="comment__author">{{comment.user.username}}</h1>
-    
-            <time class="comment__publish-date">{{comment.timestamp}}</time>
-        </section>
-
-        <section class="comment__text-box">
-            <p class="comment__text">{{ comment.content }}</p>
-        </section>
-    </main>
-    
+  <main class="comment">
+    <img class="comment__image" [src]="comment.user.photoURL" alt="User pfp">
+    <h1 class="comment__author">{{"@" + comment.user.username}}</h1>
+    <time class="comment__date">{{convertToDate(comment.timestamp) | date:'short'}}</time>
+    <p class="comment__text">{{ comment.content }}</p>
+  </main>
 </body>

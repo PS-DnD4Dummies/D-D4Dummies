@@ -45,12 +45,13 @@
         <div class="new-topic__data">
           <textarea class="new-topic__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
         </div>
+
+        <div class="new-topic__button">
+          <div class="overlay overlay-button" *ngIf="currentUser===null"></div>
+          <button class="publish__button" (click)="publishPost()">Publish</button>
+        </div>
       </section>
 
-      <div class="new-topic__button">
-         <div class="overlay overlay-button" *ngIf="currentUser===null"></div>
-        <button class="publish__button" (click)="publishPost()">Publish</button>
-      </div>
 
     </section>
 

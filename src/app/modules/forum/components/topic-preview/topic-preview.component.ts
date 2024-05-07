@@ -25,13 +25,13 @@ export class TopicPreviewComponent {
     return new Date(milliseconds);
   }
 
-  getContentPreview() {
+  getShorterText(text:string) : string {
     if (window.innerWidth < 768) {
-      return this.post.content.length > 21 ? this.post.content.slice(0, 21) + ' ...' : this.post.content;
+      return text.length > 21 ? text.slice(0, 21) + ' ...' : text;
     } else if (window.innerWidth >= 768 && window.innerWidth <= 1023) {
-      return this.post.content.length > 50 ? this.post.content.slice(0, 50) + ' ...' : this.post.content;
+      return text.length > 50 ? text.slice(0, 50) + ' ...' : text;
     } else {
-      return this.post.content.length > 74 ? this.post.content.slice(0, 74) + ' ...' : this.post.content;
+      return text.length > 74 ? text.slice(0, 74) + ' ...' : text;
     }
   }
 
