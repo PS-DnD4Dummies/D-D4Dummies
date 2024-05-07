@@ -129,8 +129,8 @@ export class PremiumPopupComponent implements OnInit{
     }
 
     Goregister(){
-      this.router.navigate([ROUTES.AUTH.REGISTER])
       this.closePopUp();
+      this.router.navigate([ROUTES.AUTH.REGISTER])
     }
 
     
