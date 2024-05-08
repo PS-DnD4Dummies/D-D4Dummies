@@ -118,7 +118,7 @@
   height: 10vh;
   font-family: 'Platypi', sans-serif;
   font-size: medium;
-  text-indent: 1em;
+  padding:1em;
 }
 .comment-area__button-container {
   display: flex;
@@ -192,6 +192,14 @@
     justify-self: center;
     align-self: center;
     box-shadow: none;
+    font-size: medium;
+  }
+  .topic-display__pfp {
+    height: 4em;
+    width: 4em;
+  }
+  .topic-display__author {
+    font-size: smaller;
   }
   .topic-display__date {
     justify-self: center;
@@ -201,10 +209,15 @@
   .topic-display__text {
     margin: 0.8em;
     box-shadow: none;
+    font-size: smaller;
   }
-
+  .comment-area {
+    width: 100%;
+    margin: 1em;
+  }
   .comment-area__text {
     height: 20vh;
+    font-size: smaller;
   }
   .comment-area__button-container {
     display: flex;
