@@ -361,15 +361,22 @@ export class FirestoreService {
     });
   }
 
-  async updateCommentLikes(postId: string, commentId: string, likes: { userId: string; }[]): Promise<void> {
-    const likesIds = likes.map(like => like.userId);
-    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { likes: likesIds });
+  async updateCommentLikes(postId: string, commentId: string, likes: any[]): Promise<void> {
+    // Obtener la referencia al documento del comentario
+    const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);
+
+    // Actualizar los likes en Firestore
+    await updateDoc(commentRef, { likes });
   }
 
-  async updateCommentDislikes(postId: string, commentId: string, dislikes: { userId: string; }[]): Promise<void> {
-    const dislikesIds = dislikes.map(dislike => dislike.userId);
-    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { dislikes: dislikesIds });
+  async updateCommentDislikes(postId: string, commentId: string, dislikes: any[]): Promise<void> {
+    // Obtener la referencia al documento del comentario
+    const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);
+
+    // Actualizar los dislikes en Firestore
+    await updateDoc(commentRef, { dislikes });
   }
+
 
   async updateCommentLikesDislikes(postId: string, commentId: string, newLikes: number, newDislikes: number): Promise<void> {
     const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);

@@ -27,12 +27,23 @@ export class CommentComponent {
     // Obtener el ID de usuario actual
     const userId = this.authService.getCurrentUserId();
     if (userId) {
-      if (!this.comment.likes.some(like => like.userId === userId)) {
-        // El usuario no ha dado like aún
-        this.comment.likes.push({ userId: userId });
+      // Verificar si el usuario ya ha dado like
+      const userLiked = this.comment.likes.some(like => like.userId === userId);
+      if (!userLiked) {
+        // El usuario aún no ha dado like, agregar el like
+        const newLike = { userId };
+        this.comment.likes.push(newLike);
+        // Actualizar los likes en Firestore
+        this.firestoreService.updateCommentLikes(this.postId, commentId, this.comment.likes);
+      } else {
+        // El usuario ya dio like, quitar el like
+        this.comment.likes = this.comment.likes.filter(like => like.userId !== userId);
         // Actualizar los likes en Firestore
         this.firestoreService.updateCommentLikes(this.postId, commentId, this.comment.likes);
       }
+    } else {
+      console.log('Usuario no autenticado');
+      // Manejar el caso en que el usuario no esté autenticado, por ejemplo, mostrar un mensaje de error.
     }
   }
 
@@ -40,18 +51,25 @@ export class CommentComponent {
     // Obtener el ID de usuario actual
     const userId = this.authService.getCurrentUserId();
     if (userId) {
-      if (!this.comment.dislikes.some(dislike => dislike.userId === userId)) {
-        // El usuario no ha dado dislike aún
-        this.comment.dislikes.push({ userId: userId });
+      // Verificar si el usuario ya ha dado dislike
+      const userDisliked = this.comment.dislikes.some(dislike => dislike.userId === userId);
+      if (!userDisliked) {
+        // El usuario aún no ha dado dislike, agregar el dislike
+        const newDislike = { userId };
+        this.comment.dislikes.push(newDislike);
+        // Actualizar los dislikes en Firestore
+        this.firestoreService.updateCommentDislikes(this.postId, commentId, this.comment.dislikes);
+      } else {
+        // El usuario ya dio dislike, quitar el dislike
+        this.comment.dislikes = this.comment.dislikes.filter(dislike => dislike.userId !== userId);
         // Actualizar los dislikes en Firestore
         this.firestoreService.updateCommentDislikes(this.postId, commentId, this.comment.dislikes);
       }
+    } else {
+      console.log('Usuario no autenticado');
+      // Manejar el caso en que el usuario no esté autenticado, por ejemplo, mostrar un mensaje de error.
     }
   }
-
-
-
-
 
   convertToDate(timestamp: any): Date {
     const milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;
