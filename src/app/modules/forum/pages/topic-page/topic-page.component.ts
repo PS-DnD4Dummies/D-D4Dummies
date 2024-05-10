@@ -25,7 +25,7 @@ export class TopicPageComponent {
     private route: ActivatedRoute,
     private authService:AuthenticationFirebaseService,
     private utilitiesService: UtilitiesService
-  
+
   ) { }
 
   ngOnInit(){
@@ -33,7 +33,7 @@ export class TopicPageComponent {
     this.authService.currentAuthStatus.subscribe(user => {
       if(user != null)this.currentUser = this.utilitiesService.firebaseUserToOurUser(user)
     })
-    
+
 
     this.route.params.subscribe(params => {
       this.id = params['topic'];
@@ -53,7 +53,9 @@ export class TopicPageComponent {
     let comment:Comment = {
       content: this.newCommentContent,
       user: this.currentUser,
-      timestamp: new Date()
+      timestamp: new Date(),
+      likes: 0,
+      dislikes: 0
     }
     if(this.currentUser!=null){
        this.firestoreService.addComment(comment,this.id).then(result => {

@@ -25,7 +25,7 @@
           <h2 class="section__tittle">All Comments</h2>
             <ul class="comment-section-list">
                 <li class="comment" *ngFor="let comment of comments">
-                    <app-comment [comment]="comment"></app-comment>
+                    <app-comment [comment]="comment" [postId]="id" [commentId]="comment?.id ?? ''"></app-comment>
                 </li>
             </ul>
         </section>

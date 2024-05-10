@@ -3,6 +3,14 @@
     <img class="comment__image" [src]="comment.user.photoURL" alt="User pfp">
     <h1 class="comment__author">{{"@" + comment.user.username}}</h1>
     <time class="comment__date">{{convertToDate(comment.timestamp) | date:'short'}}</time>
+
+    <!-- Meter aqui los botones de like y dislike-->
+    <button (click)="likeComment(commentId)">Like</button>
+    <button (click)="dislikeComment(commentId)">Dislike</button>
+    <!-- Mostrar los contadores de likes y dislikes -->
+    <p>Likes: {{ comment.likes }}</p>
+    <p>Dislikes: {{ comment.dislikes }}</p>
+
     <p class="comment__text">{{ comment.content }}</p>
   </main>
 </body>

@@ -214,7 +214,7 @@ export class FirestoreService {
     })
   }
 
-  async addComment(comment:Comment,postId:string): Promise<boolean>{
+  /*async addComment(comment:Comment,postId:string): Promise<boolean>{
 
     return await addDoc(collection(this.firestore,"posts",postId,"comments"),comment).then( () => {
       console.log("Escritura en firestore de manera correcta");
@@ -223,9 +223,9 @@ export class FirestoreService {
       console.log("Error al escribir en firestore. Error: "+error);
       return false;
     })
-  }
+  }*/
 
-  async getComments(id:string): Promise<Comment[]|null>{
+  /*async getComments(id:string): Promise<Comment[]|null>{
 
     const commentRef = collection(this.firestore, "posts",id,"comments");
     const q = query(commentRef);
@@ -237,14 +237,14 @@ export class FirestoreService {
         let comment = doc.data() as Comment;
         comments.push(comment);
         console.log(comment);
-        
+
       })
       return comments;
     }).catch(error=>{
       console.log("Error al leer en firestore. Error: "+error);
       return null;
     })
-  }
+  }*/
 
   async getPost(postId:string): Promise<Post|null>{
 
@@ -275,7 +275,7 @@ export class FirestoreService {
         post.id = doc.id;
         posts.push(post);
         console.log(post);
-        
+
       })
       return posts;
     }).catch(error=>{
@@ -311,5 +311,48 @@ export class FirestoreService {
       return null;
     })
   }
+
+  /****************************************************/
+  async addComment(comment: Comment, postId: string): Promise<boolean> {
+    // Agregar el comentario a Firestore y obtener su ID generado automáticamente
+    const docRef = await addDoc(collection(this.firestore, "posts", postId, "comments"), comment);
+    const commentId = docRef.id;
+
+    // Actualizar el comentario recién agregado con su ID
+    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { id: commentId });
+
+    console.log("Comentario agregado a Firestore correctamente");
+    return true;
+  }
+
+  async getComments(postId: string): Promise<Comment[] | null> {
+    const commentRef = collection(this.firestore, "posts", postId, "comments");
+    const q = query(commentRef);
+
+    return await getDocs(q).then((querySnapshot) => {
+      console.log("Lectura en firestore de manera correcta");
+      const comments: Comment[] = [];
+      querySnapshot.forEach((doc) => {
+        let comment = doc.data() as Comment;
+        comment.id = doc.id; // Establecer el ID del comentario
+        comments.push(comment);
+      })
+      return comments;
+    }).catch(error => {
+      console.log("Error al leer en firestore. Error: " + error);
+      return null;
+    });
+  }
+
+  async updateCommentLikes(postId: string, commentId: string, newLikes: number): Promise<void> {
+    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { likes: newLikes });
+  }
+
+  async updateCommentDislikes(postId: string, commentId: string, newDislikes: number): Promise<void> {
+    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { dislikes: newDislikes });
+  }
+
+
+  /****************************************************/
 
 }

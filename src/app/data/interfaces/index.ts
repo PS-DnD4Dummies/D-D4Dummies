@@ -19,9 +19,12 @@ export interface Post {
 }
 
 export interface Comment {
+  id?: string;
   content: string,
   user: User,
   timestamp:Date,
+  likes:number;
+  dislikes:number;
 }
 
 export interface LogInData {
