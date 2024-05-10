@@ -5,11 +5,18 @@
     <time class="comment__date">{{convertToDate(comment.timestamp) | date:'short'}}</time>
 
     <!-- Meter aqui los botones de like y dislike-->
-    <button (click)="likeComment(commentId)">Like</button>
-    <button (click)="dislikeComment(commentId)">Dislike</button>
+    <!-- Botón de like -->
+    <button class="btn btn-link" (click)="likeComment(commentId)" [ngClass]="{ 'liked': isLiked }">
+      <span class="bi bi-hand-thumbs-up" [ngStyle]="{ 'color': isLiked ? 'yellow' : 'white' }"></span>
+    </button>
+
+    <!-- Botón de dislike -->
+    <button class="btn btn-link" (click)="dislikeComment(commentId)" [ngClass]="{ 'disliked': isDisliked }">
+      <span class="bi bi-hand-thumbs-down" [ngStyle]="{ 'color': isDisliked ? 'yellow' : 'white' }"></span>
+    </button>
     <!-- Mostrar los contadores de likes y dislikes -->
-    <p>Likes: {{ comment.likes }}</p>
-    <p>Dislikes: {{ comment.dislikes }}</p>
+    <p>Likes: {{ comment.likes.length }}</p>
+    <p>Dislikes: {{ comment.dislikes.length }}</p>
 
     <p class="comment__text">{{ comment.content }}</p>
   </main>

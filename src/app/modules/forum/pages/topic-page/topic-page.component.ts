@@ -54,8 +54,8 @@ export class TopicPageComponent {
       content: this.newCommentContent,
       user: this.currentUser,
       timestamp: new Date(),
-      likes: 0,
-      dislikes: 0
+      likes: [],
+      dislikes: []
     }
     if(this.currentUser!=null){
        this.firestoreService.addComment(comment,this.id).then(result => {

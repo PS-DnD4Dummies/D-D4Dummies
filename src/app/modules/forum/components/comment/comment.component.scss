@@ -3,6 +3,10 @@
     padding: 0;
     font-family: 'Arial', sans-serif;
 }
+.liked .bi-hand-thumbs-up,
+.disliked .bi-hand-thumbs-down {
+  color: yellow;
+}
 
 .comment {
   color: #c9c5c5;

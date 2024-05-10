@@ -1,5 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, setDoc, updateDoc, query, limit, startAt, getCountFromServer } from '@angular/fire/firestore';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  setDoc,
+  updateDoc,
+  query,
+  limit,
+  startAt,
+  getCountFromServer,
+  runTransaction
+} from '@angular/fire/firestore';
 import { BaseClass, Character, Comment, Post, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
 
@@ -344,12 +361,35 @@ export class FirestoreService {
     });
   }
 
-  async updateCommentLikes(postId: string, commentId: string, newLikes: number): Promise<void> {
-    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { likes: newLikes });
+  async updateCommentLikes(postId: string, commentId: string, likes: { userId: string; }[]): Promise<void> {
+    const likesIds = likes.map(like => like.userId);
+    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { likes: likesIds });
   }
 
-  async updateCommentDislikes(postId: string, commentId: string, newDislikes: number): Promise<void> {
-    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { dislikes: newDislikes });
+  async updateCommentDislikes(postId: string, commentId: string, dislikes: { userId: string; }[]): Promise<void> {
+    const dislikesIds = dislikes.map(dislike => dislike.userId);
+    await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { dislikes: dislikesIds });
+  }
+
+  async updateCommentLikesDislikes(postId: string, commentId: string, newLikes: number, newDislikes: number): Promise<void> {
+    const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);
+
+    return runTransaction(this.firestore, async (transaction) => {
+      const commentSnapshot = await transaction.get(commentRef);
+
+      if (!commentSnapshot.exists()) {
+        throw new Error("Comment does not exist");
+      }
+
+      const currentData = commentSnapshot.data() as Comment;
+      const updatedData = {
+        ...currentData,
+        likes: newLikes,
+        dislikes: newDislikes
+      };
+
+      transaction.update(commentRef, updatedData);
+    });
   }
 
 
