@@ -14,8 +14,7 @@ import {
   query,
   limit,
   startAt,
-  getCountFromServer,
-  runTransaction
+  getCountFromServer
 } from '@angular/fire/firestore';
 import { BaseClass, Character, Comment, Post, User } from '@data/interfaces';
 import { Observable } from 'rxjs';
@@ -231,38 +230,6 @@ export class FirestoreService {
     })
   }
 
-  /*async addComment(comment:Comment,postId:string): Promise<boolean>{
-
-    return await addDoc(collection(this.firestore,"posts",postId,"comments"),comment).then( () => {
-      console.log("Escritura en firestore de manera correcta");
-      return true;
-    }).catch(error=>{
-      console.log("Error al escribir en firestore. Error: "+error);
-      return false;
-    })
-  }*/
-
-  /*async getComments(id:string): Promise<Comment[]|null>{
-
-    const commentRef = collection(this.firestore, "posts",id,"comments");
-    const q = query(commentRef);
-
-    return await getDocs(q).then( (querySnapshot) => {
-      console.log("Lectura en firestore de manera correcta");
-      const comments : Comment[] = [];
-      querySnapshot.forEach((doc)=>{
-        let comment = doc.data() as Comment;
-        comments.push(comment);
-        console.log(comment);
-
-      })
-      return comments;
-    }).catch(error=>{
-      console.log("Error al leer en firestore. Error: "+error);
-      return null;
-    })
-  }*/
-
   async getPost(postId:string): Promise<Post|null>{
 
     return await getDoc(doc(this.firestore,"posts",postId)).then( (docSnap) => {
@@ -329,15 +296,10 @@ export class FirestoreService {
     })
   }
 
-  /****************************************************/
   async addComment(comment: Comment, postId: string): Promise<boolean> {
-    // Agregar el comentario a Firestore y obtener su ID generado automáticamente
     const docRef = await addDoc(collection(this.firestore, "posts", postId, "comments"), comment);
     const commentId = docRef.id;
-
-    // Actualizar el comentario recién agregado con su ID
     await updateDoc(doc(this.firestore, "posts", postId, "comments", commentId), { id: commentId });
-
     console.log("Comentario agregado a Firestore correctamente");
     return true;
   }
@@ -345,7 +307,6 @@ export class FirestoreService {
   async getComments(postId: string): Promise<Comment[] | null> {
     const commentRef = collection(this.firestore, "posts", postId, "comments");
     const q = query(commentRef);
-
     return await getDocs(q).then((querySnapshot) => {
       console.log("Lectura en firestore de manera correcta");
       const comments: Comment[] = [];
@@ -362,44 +323,13 @@ export class FirestoreService {
   }
 
   async updateCommentLikes(postId: string, commentId: string, likes: any[]): Promise<void> {
-    // Obtener la referencia al documento del comentario
     const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);
-
-    // Actualizar los likes en Firestore
     await updateDoc(commentRef, { likes });
   }
 
   async updateCommentDislikes(postId: string, commentId: string, dislikes: any[]): Promise<void> {
-    // Obtener la referencia al documento del comentario
     const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);
-
-    // Actualizar los dislikes en Firestore
     await updateDoc(commentRef, { dislikes });
   }
-
-
-  async updateCommentLikesDislikes(postId: string, commentId: string, newLikes: number, newDislikes: number): Promise<void> {
-    const commentRef = doc(this.firestore, "posts", postId, "comments", commentId);
-
-    return runTransaction(this.firestore, async (transaction) => {
-      const commentSnapshot = await transaction.get(commentRef);
-
-      if (!commentSnapshot.exists()) {
-        throw new Error("Comment does not exist");
-      }
-
-      const currentData = commentSnapshot.data() as Comment;
-      const updatedData = {
-        ...currentData,
-        likes: newLikes,
-        dislikes: newDislikes
-      };
-
-      transaction.update(commentRef, updatedData);
-    });
-  }
-
-
-  /****************************************************/
 
 }
