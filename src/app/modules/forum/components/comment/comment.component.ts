@@ -33,11 +33,15 @@ export class CommentComponent {
         // El usuario aún no ha dado like, agregar el like
         const newLike = { userId };
         this.comment.likes.push(newLike);
+        // Establecer isLiked a true
+        this.isLiked = true;
         // Actualizar los likes en Firestore
         this.firestoreService.updateCommentLikes(this.postId, commentId, this.comment.likes);
       } else {
         // El usuario ya dio like, quitar el like
         this.comment.likes = this.comment.likes.filter(like => like.userId !== userId);
+        // Establecer isLiked a false
+        this.isLiked = false;
         // Actualizar los likes en Firestore
         this.firestoreService.updateCommentLikes(this.postId, commentId, this.comment.likes);
       }
@@ -57,11 +61,15 @@ export class CommentComponent {
         // El usuario aún no ha dado dislike, agregar el dislike
         const newDislike = { userId };
         this.comment.dislikes.push(newDislike);
+        // Establecer isDisliked a true
+        this.isDisliked = true;
         // Actualizar los dislikes en Firestore
         this.firestoreService.updateCommentDislikes(this.postId, commentId, this.comment.dislikes);
       } else {
         // El usuario ya dio dislike, quitar el dislike
         this.comment.dislikes = this.comment.dislikes.filter(dislike => dislike.userId !== userId);
+        // Establecer isDisliked a false
+        this.isDisliked = false;
         // Actualizar los dislikes en Firestore
         this.firestoreService.updateCommentDislikes(this.postId, commentId, this.comment.dislikes);
       }
@@ -70,6 +78,7 @@ export class CommentComponent {
       // Manejar el caso en que el usuario no esté autenticado, por ejemplo, mostrar un mensaje de error.
     }
   }
+
 
   convertToDate(timestamp: any): Date {
     const milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1000000;

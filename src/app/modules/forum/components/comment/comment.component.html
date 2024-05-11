@@ -4,19 +4,15 @@
     <h1 class="comment__author">{{"@" + comment.user.username}}</h1>
     <time class="comment__date">{{convertToDate(comment.timestamp) | date:'short'}}</time>
 
-    <!-- Meter aqui los botones de like y dislike-->
-    <!-- Botón de like -->
-    <button class="btn btn-link" (click)="likeComment(commentId)" [ngClass]="{ 'liked': isLiked }">
+    <button class="button__vote" id="button__like" (click)="likeComment(commentId)" [ngClass]="{ 'liked': isLiked }">
       <span class="bi bi-hand-thumbs-up" [ngStyle]="{ 'color': isLiked ? 'yellow' : 'white' }"></span>
+      <p class="button__num">{{ comment.likes.length }}</p>
     </button>
 
-    <!-- Botón de dislike -->
-    <button class="btn btn-link" (click)="dislikeComment(commentId)" [ngClass]="{ 'disliked': isDisliked }">
+    <button class="button__vote" id="button__dislike" (click)="dislikeComment(commentId)" [ngClass]="{ 'disliked': isDisliked }">
       <span class="bi bi-hand-thumbs-down" [ngStyle]="{ 'color': isDisliked ? 'yellow' : 'white' }"></span>
+      <p class="button__num">{{ comment.dislikes.length }}</p>
     </button>
-    <!-- Mostrar los contadores de likes y dislikes -->
-    <p>Likes: {{ comment.likes.length }}</p>
-    <p>Dislikes: {{ comment.dislikes.length }}</p>
 
     <p class="comment__text">{{ comment.content }}</p>
   </main>
