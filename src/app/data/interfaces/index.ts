@@ -23,10 +23,6 @@ export interface Comment {
   content: string,
   user: User,
   timestamp:Date,
-  /*likes:number;
-  dislikes:number;
-  likes: string[];
-  dislikes: string[];*/
   likes: { userId: string; }[];
   dislikes: { userId: string; }[];
 }
