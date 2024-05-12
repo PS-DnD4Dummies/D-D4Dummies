@@ -97,6 +97,7 @@ export class CharacterCreatorComponent implements OnInit{
     @ViewChild('diceComponent') diceComponent!: DiceComponent;
 
     window: Window = window;
+    isNotCreatedOrIsLoaded: boolean = true;
 
     constructor(private dndApiService: DndApiService, 
         private firestoreService:FirestoreService,
@@ -140,6 +141,7 @@ export class CharacterCreatorComponent implements OnInit{
             return;
         }
 
+        this.isNotCreatedOrIsLoaded = false;
         this.showResetButton();
 
         this.resetTextAreaContent();
@@ -164,6 +166,8 @@ export class CharacterCreatorComponent implements OnInit{
         
         this.calculatePassivePerception();
         this.calculateCombatStats();
+
+        this.manageDisableSections()
         
     }
 
@@ -723,8 +727,7 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     triggerChangeImageInput(){
-        if(this.maxCheck == 0) return;
-        
+        if(this.isNotCreatedOrIsLoaded) return;        
         document.getElementById('file-upload')?.click();
 
         const label = document.querySelector('.character-profile__place-name');
@@ -785,6 +788,16 @@ export class CharacterCreatorComponent implements OnInit{
     resetImageLabel(){
         const label = document.querySelector('.character-profile__place-name');
         if (label != null){ label.classList.remove('marked-character-label'); label.textContent = "Welcome!"; } 
+    }
+
+    manageDisableSections(){
+        let sections = document.querySelectorAll(".property__selector");
+        let nameField = document.querySelector(".character-name__name-value") as HTMLInputElement;
+
+        sections.forEach((sections: any) => {
+            sections.disabled = true;
+          });
+        nameField.disabled = true;
     }
 
     //----- SAVE TOOLS -----
@@ -935,8 +948,22 @@ export class CharacterCreatorComponent implements OnInit{
         this.disableCheckboxes();
 
         this.manageImportCheckbox();
+        this.manageImportImage();
+        this.manageDisableDice();
+        this.manageDisableSections();
 
+    }
 
+    manageDisableDice(){
+        let dice = document.querySelector('.dice-object');
+        let dice_view_mode = document.querySelector('.view-mode');
+
+        dice?.classList.add("disable");
+        dice_view_mode?.classList.remove("disable");
+    }
+
+    manageImportImage(){
+        this.isNotCreatedOrIsLoaded = true;
     }
 
     manageImportCheckbox(){
@@ -959,6 +986,7 @@ export class CharacterCreatorComponent implements OnInit{
         })
 
     }
+
 
     
 }
