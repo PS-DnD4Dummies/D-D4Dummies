@@ -166,6 +166,8 @@ export class CharacterCreatorComponent implements OnInit{
         
         this.calculatePassivePerception();
         this.calculateCombatStats();
+
+        this.manageDisableSections()
         
     }
 
@@ -788,6 +790,16 @@ export class CharacterCreatorComponent implements OnInit{
         if (label != null){ label.classList.remove('marked-character-label'); label.textContent = "Welcome!"; } 
     }
 
+    manageDisableSections(){
+        let sections = document.querySelectorAll(".property__selector");
+        let nameField = document.querySelector(".character-name__name-value") as HTMLInputElement;
+
+        sections.forEach((sections: any) => {
+            sections.disabled = true;
+          });
+        nameField.disabled = true;
+    }
+
     //----- SAVE TOOLS -----
     enablePersistenceButtons(){
         this.buttonsDisabled = false;
@@ -936,6 +948,21 @@ export class CharacterCreatorComponent implements OnInit{
         this.disableCheckboxes();
 
         this.manageImportCheckbox();
+        this.manageImportImage();
+        this.manageDisableDice();
+        this.manageDisableSections();
+
+    }
+
+    manageDisableDice(){
+        let dice = document.querySelector('.dice-object');
+        let dice_view_mode = document.querySelector('.view-mode');
+
+        dice?.classList.add("disable");
+        dice_view_mode?.classList.remove("disable");
+    }
+
+    manageImportImage(){
 
     }
 
