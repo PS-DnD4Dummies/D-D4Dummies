@@ -27,7 +27,7 @@
     flex-direction: column;
     overflow: hidden;
 
-    font-family: 'DRAGON HUNTER', sans-serif;
+    font-family: "platypi";
 
     background: linear-gradient(to right, #e7e189, #c7df66, #d3ee4b,#c7df66,#e7e189);
     background-size: 200% auto;
@@ -99,6 +99,9 @@
     margin-bottom: 30px;
     text-align: center;
 }
+.paybutton{
+  margin-left: 30px;
+}
 
 .paybutton button {
   background-color: #5888c3;
@@ -109,6 +112,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  
 }
 
 .paybutton button:hover {
@@ -121,8 +125,12 @@
   font-size: 16px;
   color: #000000;
   margin: 10px;
-  margin-bottom: 30px;
   text-align: center;
+}
+#texto_auxiliar_padding{
+  padding: 1em;
+  padding-top: 0em;
+  padding-left: 1.2em;
 }
 
 .auth-container {

@@ -78,7 +78,8 @@
         <button *ngIf="currentUser==undefined && currentUser==null" (click)="openClosePopUp()" class = "boton_Log_in">Log In</button>
         <button *ngIf="currentUser!==undefined && currentUser!==null"class = "boton_Log_out" (click)="signOut()" >Log Out</button>
         <button *ngIf="currentUser!==undefined && currentUser!==null" class = "boton_perfil" [routerLink]= "routesURL.AUTH.PROFILE" >Perfil</button>
-        
+      
+
         <div class="side-bar__login-logo-container" *ngIf="currentUser!==undefined && currentUser!==null">
             <app-profile-image [componentMode]="'sidebar'" [profileImageURL]="parsePhotoGoogleURL(userPhotoURL)" [isPremium]="isPremium" class="user-box__img-comp"></app-profile-image>
         </div>
@@ -86,8 +87,11 @@
         <a class="cerrar" (click)="closeSideBar()">
             <img class="exit" src="/assets/images/eliminar-simbolo.png">
         </a>
+        
     </figure>
-
+    <div class=" premium">
+    <button (click)="PopUpPremium()" class = "boton_perfil" >Premium</button>
+    </div>
     <nav class="side-bar__main-menu">
         <ul class="side-bar__menu-primario">
             <li *ngFor="let buttonItem of glossaryLiContents">
