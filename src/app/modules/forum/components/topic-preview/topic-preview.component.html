@@ -1,14 +1,15 @@
-<body>
-    <main class="topic-preview">
-        <a href=""> 
-            <!-- Esto debe llevar al topic-page de este topic en concreto -->
-            <h1 class="topic-preview__name">Topic</h1>
-        </a>
-        <time class="topic-preview__date">Publish date</time>
-        <h2 class="topic-preview__author">Author</h2>
-        <div class="topic-preview__image-container">
-            <img class="topic-preview__profile-pic" src="/assets/images/default.jpg" alt="">
-        </div>
-    </main>
-
-</body>
+<section class="topic-preview">
+  <h1 class="topic-preview__name" (click)="goToDisplay()" [ngClass]="{ 'short-content':
+    window.innerWidth < 768, 'medium-content': window.innerWidth >= 768 && window.innerWidth <= 1023 }">
+    {{getShorterText(post.title)}}
+  </h1>
+  <p class="topic-preview__content" [ngClass]="{ 'short-content':
+    window.innerWidth < 768, 'medium-content': window.innerWidth >= 768 && window.innerWidth <= 1023 }">
+    {{ getShorterText(post.content) }}
+  </p>
+  <time class="topic-preview__date">{{convertToDate(post.timestamp) | date:'short'}}</time>
+  <h2 class="topic-preview__author">{{'@' + post.user.username}}</h2>
+  <div class="topic-preview__image-container">
+      <img class="topic-preview__profile-pic" [src]="post.user.photoURL" alt="User pfp">
+  </div>
+</section>

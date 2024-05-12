@@ -1,0 +1,56 @@
+<body>
+  <main class="forum-main">
+
+    <section class="banner">
+      <img class="banner__image" src="/assets/images/island.png">
+      <h1 class="banner__title">FORUM</h1>
+      <p class="banner__text">Welcome to the forum!<br>Feel free to share your thoughts and ask your doubts to the community.</p>
+      <hr class="banner__separator">
+    </section>
+
+    <section class="topic__container">
+      <h2 class="section__tittle">All Topics</h2>
+      <ul class="topic__list">
+        <li class="topic__element" *ngFor="let post of currentPosts">
+          <app-topic-preview [post]="post" ></app-topic-preview>
+        </li>
+      </ul>
+      <mat-paginator #paginator
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page">
+      </mat-paginator>
+    </section>
+
+    <!--<hr class="forum__separator">-->
+
+    <section class="new-topic__container" >
+      <h2 class="section__tittle">Create a New Topic</h2>
+
+      <div class="overlay" *ngIf="currentUser === null || currentUser === undefined">
+        <p>You need to be logged in to create a post!</p>
+        <div class="buttons-overlay">
+          <button routerLink="/auth/signUp">Register</button>
+        </div>
+      </div>
+
+      <section class="new-topic__area" >
+        <div class="new-topic__data">
+          <input type="text" class="new-topic__title" placeholder="Topic" [(ngModel)]="newPostTitle">
+        </div>
+        <div class="new-topic__data">
+          <textarea class="new-topic__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
+        </div>
+        <div class="new-topic__button">
+          <button class="publish__button" (click)="publishPost()"
+                  [ngStyle]="{ 'background': currentUser ? 'linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700)' : 'rgba(255,170,0,0.3)' }">
+            Publish
+          </button>
+        </div>
+
+      </section>
+
+    </section>
+  </main>
+</body>

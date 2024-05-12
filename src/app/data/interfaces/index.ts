@@ -9,6 +9,25 @@ export interface User {
     isPremium:boolean
 }
 
+export interface Post {
+    id:string,
+    title:string,
+    content:string,
+    user:User,
+    timestamp:Date,
+    like:number,
+    dislike:number,
+}
+
+export interface Comment {
+  id?: string;
+  content: string,
+  user: User,
+  timestamp:Date,
+  likes: { userId: string; }[];
+  dislikes: { userId: string; }[];
+}
+
 export interface LogInData {
     email:string
     password:string

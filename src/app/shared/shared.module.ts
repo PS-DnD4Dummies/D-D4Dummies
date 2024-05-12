@@ -15,6 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { components } from './components';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -24,6 +25,7 @@ import { components } from './components';
   ],
   imports: [
     MatIconModule,
+    MatPaginatorModule,
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -36,6 +38,6 @@ import { components } from './components';
     MatMenuModule,
     MatSnackBarModule
   ],
-  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule,MatSidenavModule,MatButtonModule,MatMenuModule,MatSnackBarModule, ...components]
+  exports: [MatIconModule,CommonModule,LoginComponent,MatFormFieldModule,MatInputModule,FormsModule,ReactiveFormsModule,MatButtonModule,MatSidenavModule,MatButtonModule,MatMenuModule,MatSnackBarModule,MatPaginatorModule, ...components]
 })
 export class SharedModule { }

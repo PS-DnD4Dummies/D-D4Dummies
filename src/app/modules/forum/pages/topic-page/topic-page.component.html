@@ -1,47 +1,44 @@
 <body>
-    <main class="topic-page-main-container">
+    <main class="topic-page-main-container" >
+
         <section class="topic-display">
-            <section class="topic-display__info">
-                <section class="topic-details">
-                    <div class="topic-display__name-container">
-                        <p class="topic-display__name">Lorem ipsum</p>
-                    </div>
-                    
-                    <time class="topic-display__date">Published on ...</time>
-                </section>
-    
-                <section class="author-details">
-                    <div class="topic-display__image-container">
-                        <img class="topic-display__profile-pic" src="/assets/images/default.jpg" alt="">
-                    </div>
-                    
-                    <p class="topic-display__author">Author</p>
-                </section>
-    
-            </section>
-            
-            <div class="topic-display__text-container">
-                <p class="topic-display__text">Topic text</p>
-            </div>
-    
+              <div class="topic-display__user">
+                <img class="topic-display__pfp" [src]="post.user.photoURL" alt="User pfp">
+                <p class="topic-display__author">{{'@' + post.user.username}}</p>
+              </div>
+              <p class="topic-display__name"><span class="name-content">{{ post.title }}</span></p>
+              <time class="topic-display__date">{{convertToDate(post.timestamp) | date:'short'}}</time>
+              <p class="topic-display__text">{{post.content}}</p>
         </section>
 
+        <h2 class="section__tittle">Create a New Comment</h2>
+
         <section class="comment-area">
+          <div class="overlay" *ngIf="currentUser === null || currentUser === undefined">
+            <p>You need to be logged in to comment!</p>
+            <div class="buttons-overlay">
+              <button routerLink="/auth/signUp">Register</button>
+            </div>
+          </div>
+
             <section class="comment-area__creation">
-                <textarea class="comment-area__text" placeholder="Write a comment..."></textarea>
+                <textarea class="comment-area__text" placeholder="Write a comment..." [(ngModel)]="newCommentContent"></textarea>
             </section>
-    
             <div class="comment-area__button-container">
-                <button class="comment-area__button">Comment</button>
+                <button (click)="addComment()" class="comment__button"
+                        [ngStyle]="{ 'background': currentUser ? 'linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700)' : 'rgba(255,170,0,0.3)' }"
+                >Comment</button>
             </div>
         </section>
 
         <section class="comment-section-container">
+          <h2 class="section__tittle">All Comments</h2>
             <ul class="comment-section-list">
-                <li class="comment" *ngFor="let i of dummyList">
-                    <app-comment></app-comment>
+                <li class="comment" *ngFor="let comment of comments">
+                    <app-comment [comment]="comment" [postId]="id" [commentId]="comment?.id ?? ''"></app-comment>
                 </li>
             </ul>
         </section>
+
     </main>
 </body>

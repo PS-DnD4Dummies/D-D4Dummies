@@ -37,7 +37,7 @@ export class FirebaseService {
       }
     }
 
-    this.authService.updateProfile(signUpCheck, undefined, profilePhotoURL);
+    this.authService.updateProfile(signUpCheck, username, profilePhotoURL);
   
     const user: User = {
       uid: signUpCheck.uid,

@@ -171,5 +171,10 @@ export class AuthenticationFirebaseService {
     }
   }
 
+  getCurrentUserId(): string | null {
+    const user: User | null = this.auth.currentUser;
+    return user ? user.uid : null;
+  }
+
 
 }

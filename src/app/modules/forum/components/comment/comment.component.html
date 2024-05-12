@@ -1,19 +1,19 @@
 <body>
+  <main class="comment">
+    <img class="comment__image" [src]="comment.user.photoURL" alt="User pfp">
+    <h1 class="comment__author">{{"@" + comment.user.username}}</h1>
+    <time class="comment__date">{{convertToDate(comment.timestamp) | date:'short'}}</time>
 
-    <main class="comment">
-        <section class="comment__info">
-            <div class="comment__image-container">
-                <img class="comment__image" src="/assets/images/default.jpg" alt="">
-            </div>
-      
-            <h1 class="comment__author">Author</h1>
-    
-            <time class="comment__publish-date">Publish date</time>
-        </section>
+    <button class="button__vote" id="button__like" (click)="likeComment(commentId)" [ngClass]="{ 'liked': isLiked }">
+      <span class="bi bi-hand-thumbs-up" [ngStyle]="{ 'color': isLiked ? 'yellow' : 'white' }"></span>
+      <p class="button__num">{{ comment.likes.length }}</p>
+    </button>
 
-        <section class="comment__text-box">
-            <p class="comment__text">Comment text</p>
-        </section>
-    </main>
-    
+    <button class="button__vote" id="button__dislike" (click)="dislikeComment(commentId)" [ngClass]="{ 'disliked': isDisliked }">
+      <span class="bi bi-hand-thumbs-down" [ngStyle]="{ 'color': isDisliked ? 'yellow' : 'white' }"></span>
+      <p class="button__num">{{ comment.dislikes.length }}</p>
+    </button>
+
+    <p class="comment__text">{{ comment.content }}</p>
+  </main>
 </body>
