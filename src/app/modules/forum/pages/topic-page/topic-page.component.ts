@@ -60,6 +60,10 @@ export class TopicPageComponent {
     if(this.currentUser!=null){
        this.firestoreService.addComment(comment,this.id).then(result => {
         console.log(result);
+        if(this.id) this.firestoreService.getComments(this.id).then(result => {
+          if(result!=null)this.comments = result;
+        })
+  
        })
     }else{
       console.log("usuario tiene que estar registrado");
