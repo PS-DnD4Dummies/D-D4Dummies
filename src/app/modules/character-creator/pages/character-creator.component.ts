@@ -963,7 +963,7 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     manageImportImage(){
-
+        this.isNotCreatedOrIsLoaded = true;
     }
 
     manageImportCheckbox(){
@@ -987,9 +987,6 @@ export class CharacterCreatorComponent implements OnInit{
 
     }
 
-    manageImportImage(){
-        this.isNotCreatedOrIsLoaded = true;
-    }
 
     
 }
