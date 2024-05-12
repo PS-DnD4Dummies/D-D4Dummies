@@ -179,3 +179,12 @@
   color: #000000;
 
 }
+
+/////////////////////////
+@media screen and (max-width: 650px){
+  .login-container {
+      width: 35em;
+      
+      font-size: 60%;
+  }
+}
