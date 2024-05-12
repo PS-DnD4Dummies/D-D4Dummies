@@ -97,6 +97,7 @@ export class CharacterCreatorComponent implements OnInit{
     @ViewChild('diceComponent') diceComponent!: DiceComponent;
 
     window: Window = window;
+    isNotCreatedOrIsLoaded: boolean = true;
 
     constructor(private dndApiService: DndApiService, 
         private firestoreService:FirestoreService,
@@ -140,6 +141,7 @@ export class CharacterCreatorComponent implements OnInit{
             return;
         }
 
+        this.isNotCreatedOrIsLoaded = false;
         this.showResetButton();
 
         this.resetTextAreaContent();
@@ -723,8 +725,7 @@ export class CharacterCreatorComponent implements OnInit{
     }
 
     triggerChangeImageInput(){
-        if(this.maxCheck == 0) return;
-        
+        if(this.isNotCreatedOrIsLoaded) return;        
         document.getElementById('file-upload')?.click();
 
         const label = document.querySelector('.character-profile__place-name');
@@ -936,7 +937,6 @@ export class CharacterCreatorComponent implements OnInit{
 
         this.manageImportCheckbox();
 
-
     }
 
     manageImportCheckbox(){
@@ -958,6 +958,10 @@ export class CharacterCreatorComponent implements OnInit{
             }
         })
 
+    }
+
+    manageImportImage(){
+        this.isNotCreatedOrIsLoaded = true;
     }
 
     
