@@ -18,8 +18,14 @@
             </div>
         <div *ngIf="!mensualidad && !anualidad" class = .popup-content>
         <p id = "auxiliar"> 
-            if you become a member of our community you can create and save all the characters that you want ,post photos in the forum and personalize your profile pick with a unique theme just for premium users.
-        </p>
+            If you become a member of our community: </p>
+            <div id = "texto_auxiliar_padding">
+                <p> - You can create and save all the characters that you want  </p>
+                <p> - Post photos in the forum  </p>
+                <p> - Obtain a new icon shaped as a crown for your profile picture</p>
+                <p> - Early access to new features </p>
+                <p> - No Ads </p>
+            </div>
         </div>
         <div *ngIf="mensualidad || anualidad">
             <form [formGroup]="premiumform" (ngSubmit)="mensual()">
@@ -60,9 +66,9 @@
                     </mat-form-field>
                 </section>
                 <div class="paybutton">
-                    <button (click)="pay()" class = paybutton>pagar</button>
-                    <p class="payment-amount"> Payment amount {{cantidad}}</p>
+                    <button (click)="pay()" class = paybutton>PAY</button>
                 </div>
+                <div> <p class="payment-amount"> Payment amount {{cantidad}}</p></div>
             </form>
         </div>
     </div>

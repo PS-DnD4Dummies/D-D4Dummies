@@ -128,7 +128,16 @@ nav{
 }
 
 
+
 ///////////////////////////////////////////////////////////////////////////////////
+
+.premium{
+  padding: 0.5em;
+  padding-left: 0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .boton_perfil,
 .boton_Log_in, .boton_Log_out {
@@ -145,6 +154,9 @@ nav{
 
     position: relative;
     left: .5em;
+    display: flex;
+    align-self: center;
+    justify-content: center;
     
 }
 
@@ -349,5 +361,8 @@ nav{
       font-size: 60%;
     }
   }
+
+
+
   
   
