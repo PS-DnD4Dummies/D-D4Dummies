@@ -1,10 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { User } from '@angular/fire/auth';
 import { AuthenticationFirebaseService } from '@core/services/firebase/authentication/authentication-firebase.service';
 import {Subscription} from "rxjs";
 import {FirestoreService} from "@core/services/firebase/firestore/firestore.service";
 import {Post, User as OurUser} from "@data/interfaces";
-import {AngularFireAuth} from "@angular/fire/compat/auth";
 import { UtilitiesService } from '@core/services/utilities/utilities.service';
 
 @Component({
@@ -26,10 +24,7 @@ export class ForumComponent implements OnInit, OnDestroy{
 
   constructor(private authService: AuthenticationFirebaseService,
               private firestoreService: FirestoreService,
-              private utilitiesService: UtilitiesService
-  ){
-
-  }
+              private utilitiesService: UtilitiesService){}
 
   ngOnInit() {
     this.authSubscription =  this.authService.currentAuthStatus.subscribe(

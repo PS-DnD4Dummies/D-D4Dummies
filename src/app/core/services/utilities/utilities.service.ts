@@ -9,16 +9,16 @@ export class UtilitiesService {
 
   constructor() { }
 
-
   firebaseUserToOurUser(user:User): OurUser{
     const ourUser:OurUser = {
       uid: user.uid,
       email: user.email!,
       username: user.displayName!,
       birthdate: new Date(),
-      photoURL: user.photoURL!
+      photoURL: user.photoURL!,
+      isPremium: false
     }
-    return ourUser; 
+    return ourUser;
   }
 
 }
