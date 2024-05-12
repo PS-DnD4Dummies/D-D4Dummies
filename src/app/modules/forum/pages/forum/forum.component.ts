@@ -46,7 +46,7 @@ export class ForumComponent implements OnInit, OnDestroy{
         }
         this.currentPosts = posts;
         console.log(posts);
-        
+
       })
     });
 
@@ -72,7 +72,6 @@ export class ForumComponent implements OnInit, OnDestroy{
 
       this.firestoreService.addPost(newPost).then((docRef) => {
         console.log("Post added with ID: ", docRef);
-        // Lógica adicional si es necesario
         this.newPostTitle = '';
         this.newPostContent = '';
       }).catch((error) => {

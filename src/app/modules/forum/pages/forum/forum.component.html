@@ -28,32 +28,29 @@
     <section class="new-topic__container" >
       <h2 class="section__tittle">Create a New Topic</h2>
 
-      <div class="text-overlay" *ngIf="currentUser===null">
-        <p>You need to be logged to comment</p>
+      <div class="overlay" *ngIf="currentUser === null || currentUser === undefined">
+        <p>You need to be logged in to create a post!</p>
         <div class="buttons-overlay">
           <button routerLink="/auth/signUp">Register</button>
         </div>
       </div>
 
       <section class="new-topic__area" >
-        <div class="overlay" *ngIf="currentUser===null"></div>
-
         <div class="new-topic__data">
           <input type="text" class="new-topic__title" placeholder="Topic" [(ngModel)]="newPostTitle">
         </div>
-
         <div class="new-topic__data">
           <textarea class="new-topic__text" placeholder="Enter your text..." [(ngModel)]="newPostContent"></textarea>
         </div>
-
         <div class="new-topic__button">
-          <div class="overlay overlay-button" *ngIf="currentUser===null"></div>
-          <button class="publish__button" (click)="publishPost()">Publish</button>
+          <button class="publish__button" (click)="publishPost()"
+                  [ngStyle]="{ 'background': currentUser ? 'linear-gradient(to right, #ffd700, #ffbf00, #ffaa00, #ffbf00, #ffd700)' : 'rgba(255,170,0,0.3)' }">
+            Publish
+          </button>
         </div>
+
       </section>
 
-
     </section>
-
   </main>
 </body>
