@@ -32,7 +32,7 @@
                 <section>
                     <mat-form-field>
                         <mat-label>Card Number</mat-label>
-                        <input matInput formControlName="tarjeta" type="text">
+                        <input matInput formControlName="tarjeta" type="text" (input)="formatCardNumber($event)">
                         <mat-error *ngIf="premiumform.get('tarjeta')?.invalid && (premiumform.get('tarjeta')?.dirty || premiumform.get('tarjeta')?.touched)">
                             invalid number.
                         </mat-error>

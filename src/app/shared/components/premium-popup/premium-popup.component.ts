@@ -71,8 +71,8 @@ export class PremiumPopupComponent implements OnInit{
     premiumform = new FormGroup({
     tarjeta: new FormControl(this.FormData.tarjeta, [
       Validators.required,
-      Validators.minLength(13), // Assuming minimum length of 13 digits for credit card numbers
-      Validators.maxLength(16), // Assuming maximum length of 16 digits for credit card numbers
+      Validators.minLength(17),
+      Validators.maxLength(20), 
 
     ]),
     nombre: new FormControl(this.FormData.nombre, [
@@ -80,12 +80,12 @@ export class PremiumPopupComponent implements OnInit{
     ]),
     fecha: new FormControl(this.FormData.fecha, [
       Validators.required,
-      Validators.pattern(/^\d{2}\/\d{4}$/) // Pattern for MM/YYYY format
+      Validators.pattern(/^\d{2}\/\d{4}$/) 
     ]),
     code: new FormControl(this.FormData.code, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(4) // Assuming CVV code is either 3 or 4 digits long
+      Validators.maxLength(4)
     ]),
   });
 
@@ -169,4 +169,19 @@ export class PremiumPopupComponent implements OnInit{
 
     this.loadImages();
   }
+
+  formatCardNumber(event: any) {
+    let input = event.target.value.replace(/\D/g, '');
+    let formattedInput = '';
+
+    for (let i = 0; i < input.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+        formattedInput += '-';
+      }
+      formattedInput += input[i];
+    }
+
+    this.premiumform.controls['tarjeta'].setValue(formattedInput);
+  }
+
 }
